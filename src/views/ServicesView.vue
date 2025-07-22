@@ -12,7 +12,7 @@ interface Service {
 const services: Service[] = [
   {
     id: 'web-development',
-    icon: 'fa-solid fa-code',
+    icon: 'code',
     title: 'Web Development',
     description: 'Custom web applications built with modern frameworks and technologies.',
     features: [
@@ -21,12 +21,12 @@ const services: Service[] = [
       'SEO Friendly',
       'Cross-browser Compatible',
     ],
-    color: 'primary',
+    color: 'dark',
     price: 'Starting at $2,999',
   },
   {
     id: 'mobile-apps',
-    icon: 'fa-solid fa-mobile-screen-button',
+    icon: 'mobile-screen-button',
     title: 'Mobile App Development',
     description: 'Native and cross-platform mobile applications for iOS and Android.',
     features: [
@@ -40,7 +40,7 @@ const services: Service[] = [
   },
   {
     id: 'cloud-solutions',
-    icon: 'fa-solid fa-cloud',
+    icon: 'cloud',
     title: 'Cloud Solutions',
     description: 'Scalable cloud infrastructure and migration services.',
     features: ['Cloud Migration', 'Auto Scaling', 'Cost Optimization', '24/7 Monitoring'],
@@ -49,7 +49,7 @@ const services: Service[] = [
   },
   {
     id: 'data-analytics',
-    icon: 'fa-solid fa-chart-column',
+    icon: 'chart-column',
     title: 'Data Analytics',
     description: 'Transform your data into actionable business insights.',
     features: [
@@ -63,7 +63,7 @@ const services: Service[] = [
   },
   {
     id: 'cybersecurity',
-    icon: 'fa-solid fa-shield-halved',
+    icon: 'shield-halved',
     title: 'Cybersecurity',
     description: 'Comprehensive security solutions to protect your business.',
     features: ['Security Audits', 'Threat Detection', 'Compliance Management', 'Employee Training'],
@@ -72,7 +72,7 @@ const services: Service[] = [
   },
   {
     id: 'consulting',
-    icon: 'fa-solid fa-handshake',
+    icon: 'handshake',
     title: 'IT Consulting',
     description: 'Expert consultation to optimize your technology strategy.',
     features: [
@@ -115,7 +115,7 @@ const services: Service[] = [
                   class="service-icon mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle"
                   :class="`bg-${service.color} bg-opacity-10`"
                 >
-                  <i :class="`${service.icon} text-${service.color} fs-2`"></i>
+                  <FontAwesomeIcon :icon="service.icon" :class="`text-${service.color} fs-2`" />
                 </div>
 
                 <h4 class="card-title fw-bold text-center mb-3">{{ service.title }}</h4>
@@ -127,7 +127,7 @@ const services: Service[] = [
                     :key="feature"
                     class="d-flex align-items-center mb-2"
                   >
-                    <i class="fa-solid fa-check text-success me-2"></i>
+                    <FontAwesomeIcon icon="check" class="text-success me-2" />
                     <span class="small">{{ feature }}</span>
                   </li>
                 </ul>
@@ -235,37 +235,57 @@ const services: Service[] = [
         <div class="row g-4 align-items-center justify-content-center">
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <i class="fa-brands fa-react text-info" style="font-size: 3rem"></i>
+              <FontAwesomeIcon :icon="['fab', 'react']" class="text-info" style="font-size: 3rem" />
               <p class="small mt-2 mb-0">React</p>
             </div>
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <i class="fa-brands fa-vue text-success" style="font-size: 3rem"></i>
+              <FontAwesomeIcon
+                :icon="['fab', 'vuejs']"
+                class="text-success"
+                style="font-size: 3rem"
+              />
               <p class="small mt-2 mb-0">Vue.js</p>
             </div>
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <i class="fa-brands fa-node-js text-success" style="font-size: 3rem"></i>
+              <FontAwesomeIcon
+                :icon="['fab', 'node-js']"
+                class="text-success"
+                style="font-size: 3rem"
+              />
               <p class="small mt-2 mb-0">Node.js</p>
             </div>
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <i class="fa-brands fa-python text-primary" style="font-size: 3rem"></i>
+              <FontAwesomeIcon
+                :icon="['fab', 'python']"
+                class="text-primary"
+                style="font-size: 3rem"
+              />
               <p class="small mt-2 mb-0">Python</p>
             </div>
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <i class="fa-brands fa-aws text-warning" style="font-size: 3rem"></i>
+              <FontAwesomeIcon
+                :icon="['fab', 'aws']"
+                class="text-warning"
+                style="font-size: 3rem"
+              />
               <p class="small mt-2 mb-0">AWS</p>
             </div>
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <i class="fa-brands fa-docker text-info" style="font-size: 3rem"></i>
+              <FontAwesomeIcon
+                :icon="['fab', 'docker']"
+                class="text-info"
+                style="font-size: 3rem"
+              />
               <p class="small mt-2 mb-0">Docker</p>
             </div>
           </div>
@@ -285,7 +305,7 @@ const services: Service[] = [
           </div>
           <div class="col-lg-4 text-lg-end">
             <router-link to="/contact" class="btn btn-light btn-lg">
-              <i class="fa-solid fa-comment me-2"></i>
+              <FontAwesomeIcon icon="comment" class="me-2" />
               Contact Us Today
             </router-link>
           </div>

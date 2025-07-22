@@ -5,7 +5,7 @@ import { RouterLink } from 'vue-router'
 <template>
   <section class="hero-section bg-primary text-white">
     <div class="container">
-      <div class="row align-items-center min-vh-100 py-5">
+      <div class="row align-items-center py-5">
         <div class="col-lg-6">
           <h1 class="display-4 fw-bold mb-4">Modern Business Solutions for the Digital Age</h1>
           <p class="lead mb-4">

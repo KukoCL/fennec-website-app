@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
   faCode,
   faMobile,
+  faMobileScreenButton,
   faCloud,
   faChartColumn,
   faChartLine,
@@ -56,6 +57,7 @@ import router from './router'
 library.add(
   faCode,
   faMobile,
+  faMobileScreenButton,
   faCloud,
   faChartColumn,
   faChartLine,
@@ -78,6 +80,7 @@ library.add(
   faStar,
   faCheck,
   faComment,
+  farStar,
   faFacebookF,
   faTwitter,
   faLinkedinIn,
@@ -88,8 +91,7 @@ library.add(
   faNodeJs,
   faPython,
   faAws,
-  faDocker,
-  farStar
+  faDocker
 )
 
 const app = createApp(App)
