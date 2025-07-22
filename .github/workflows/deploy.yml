@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - unreleased
+  workflow_dispatch:
+    inputs:
+      deploy_branch:
+        description: 'Branch to deploy'
+        required: true
+        default: 'unreleased'
+        type: string
 
 jobs:
   build:
@@ -33,9 +40,16 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/unreleased'
+    if: |
+      github.ref == 'refs/heads/unreleased' ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_branch != '')
 
     steps:
+      - name: Set branch variable
+        run: |
+          echo "DEPLOY_BRANCH=${{ github.event.inputs.deploy_branch || 'unreleased' }}" >> $GITHUB_ENV
+        shell: bash
+
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
@@ -47,3 +61,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+        env:
+          BRANCH: ${{ env.DEPLOY_BRANCH }}
