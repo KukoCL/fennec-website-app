@@ -147,7 +147,7 @@ const submitForm = () => {
 
                 <div class="contact-item d-flex mb-4">
                   <div
-                    class="contact-icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
+                    class="contact-icon bg-dark bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
                     style="width: 50px; height: 50px"
                   >
                     <i class="fa-solid fa-map-marker-alt text-primary"></i>

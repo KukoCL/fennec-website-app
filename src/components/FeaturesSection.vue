@@ -12,7 +12,7 @@ const features: Feature[] = [
     title: 'Web Development',
     description:
       'Custom web applications built with modern technologies and best practices for optimal performance.',
-    color: 'primary',
+    color: 'dark',
   },
   {
     icon: 'mobile',
