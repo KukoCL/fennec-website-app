@@ -1,85 +1,66 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from 'vue-router'
+import Navbar from './components/Navbar.vue'
+import FooterComponent from './components/FooterComponent.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div>
+    <Navbar />
+    <main>
+      <RouterView />
+    </main>
+    <FooterComponent />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+<style>
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+html,
+body {
+  overflow-x: hidden;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+main {
+  flex: 1;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+/* Custom theme colors */
+:root {
+  --primary-color: #0066cc;
+  --secondary-color: #6c757d;
+  --accent-color: #28a745;
+  --dark-color: #212529;
+  --light-color: #f8f9fa;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
-nav a:first-of-type {
-  border: 0;
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+.text-primary {
+  color: var(--primary-color) !important;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.bg-primary {
+  background-color: var(--primary-color) !important;
 }
 </style>
