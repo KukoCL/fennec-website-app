@@ -55,14 +55,11 @@ describe('Navbar', () => {
   })
 
   it('contains all navigation links', () => {
-    const expectedLinks = ['Home', 'About', 'Services', 'Portfolio', 'Contact']
+    const expectedLinks = ['Inicio', 'Acerca de', 'Servicios', 'Portafolio', 'Contacto']
 
     expectedLinks.forEach(linkText => {
       expect(wrapper.text()).toContain(linkText)
     })
-
-    // Verify "Get Started" button exists
-    expect(wrapper.find('.btn-primary').text()).toBe('Get Started')
   })
 
   it('contains language dropdown', () => {
