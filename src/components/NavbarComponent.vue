@@ -18,7 +18,7 @@ const changeLanguage = (lang: 'es' | 'en') => {
 }
 
 const currentLanguageLabel = computed(() => {
-  return appLanguage.value === 'es' ? 'Español' : 'English'
+  return appLanguage.value === 'es' ? 'ES' : 'EN'
 })
 </script>
 
@@ -72,7 +72,10 @@ const currentLanguageLabel = computed(() => {
               >Contact</RouterLink
             >
           </li>
-
+          <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+            <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+            <hr class="d-lg-none my-2 text-white-50" />
+          </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -82,7 +85,7 @@ const currentLanguageLabel = computed(() => {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              {{ currentLanguageLabel }}
+              <h6 class="d-inline-block mb-0">{{ currentLanguageLabel }}</h6>
             </a>
             <ul class="dropdown-menu" aria-labelledby="languageDropdown">
               <li>
@@ -106,12 +109,6 @@ const currentLanguageLabel = computed(() => {
                 </a>
               </li>
             </ul>
-          </li>
-
-          <li class="nav-item">
-            <RouterLink class="btn btn-primary ms-2" to="/contact" @click="isNavCollapsed = true"
-              >Get Started</RouterLink
-            >
           </li>
         </ul>
       </div>
