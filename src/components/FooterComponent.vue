@@ -138,6 +138,6 @@ footer a:hover {
   text-align: center;
 }
 .company-name {
-  color: #ff9203;
+  color: #ffd894;
 }
 </style>

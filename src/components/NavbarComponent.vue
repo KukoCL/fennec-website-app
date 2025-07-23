@@ -34,8 +34,8 @@ const currentLanguageLabel = computed(() => {
         <img
           src="/favicon.ico"
           alt="Logo"
-          width="30"
-          height="30"
+          width="45"
+          height="45"
           class="d-inline-block align-top me-2"
         />
         {{ appTexts.navbar.brand }}
@@ -142,7 +142,7 @@ const currentLanguageLabel = computed(() => {
   color: #ffffff !important;
 }
 
-.router-link-active:not(.btn) {
+.router-link-active:not(.btn, .company-name) {
   color: #ffffff !important;
   font-weight: bold;
 }
@@ -177,6 +177,6 @@ const currentLanguageLabel = computed(() => {
 }
 
 .company-name {
-  color: #ff9203;
+  color: #ffd894;
 }
 </style>
