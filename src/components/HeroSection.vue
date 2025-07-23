@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
+import useAppLang from '@/composables/settings/useAppLang'
+
+const { getAppTexts } = useAppLang()
+const appTexts = computed(() => getAppTexts().home.heroSection)
 </script>
 
 <template>
@@ -7,15 +12,16 @@ import { RouterLink } from 'vue-router'
     <div class="container">
       <div class="row align-items-center p-lg-5">
         <div class="col-lg-6">
-          <h1 class="display-4 fw-bold mb-4">Modern Business Solutions for the Digital Age</h1>
+          <h1 class="display-4 fw-bold mb-4 mt-3">{{ appTexts.headerTitle }}</h1>
           <p class="lead mb-4">
-            We help companies transform their business with cutting-edge technology, innovative
-            strategies, and expert consultation to drive growth and success.
+            {{ appTexts.description }}
           </p>
           <div class="d-flex flex-column flex-sm-row gap-3">
-            <RouterLink to="/contact" class="btn btn-light btn-lg px-4"> Get Started </RouterLink>
+            <RouterLink to="/contact" class="btn btn-light btn-lg px-4">{{
+              appTexts.buttons.getStarted
+            }}</RouterLink>
             <RouterLink to="/services" class="btn btn-outline-light btn-lg px-4">
-              Our Services
+              {{ appTexts.buttons.ourServices }}
             </RouterLink>
           </div>
         </div>
@@ -26,25 +32,25 @@ import { RouterLink } from 'vue-router'
                 <div class="col-6">
                   <div class="bg-dark bg-opacity-10 rounded p-3 text-center">
                     <FontAwesomeIcon icon="rocket" class="text-primary fs-2 mb-2" />
-                    <h6 class="text-dark mb-0">Fast Delivery</h6>
+                    <h6 class="text-dark mb-0">{{ appTexts.features.fastDelivery }}</h6>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="bg-success bg-opacity-10 rounded p-3 text-center">
                     <FontAwesomeIcon icon="shield-halved" class="text-success fs-2 mb-2" />
-                    <h6 class="text-dark mb-0">Secure</h6>
+                    <h6 class="text-dark mb-0">{{ appTexts.features.secure }}</h6>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="bg-warning bg-opacity-10 rounded p-3 text-center">
                     <FontAwesomeIcon icon="users" class="text-warning fs-2 mb-2" />
-                    <h6 class="text-dark mb-0">24/7 Support</h6>
+                    <h6 class="text-dark mb-0">{{ appTexts.features.support }}</h6>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="bg-info bg-opacity-10 rounded p-3 text-center">
                     <FontAwesomeIcon icon="chart-line" class="text-info fs-2 mb-2" />
-                    <h6 class="text-dark mb-0">Analytics</h6>
+                    <h6 class="text-dark mb-0">{{ appTexts.features.analytics }}</h6>
                   </div>
                 </div>
               </div>

@@ -1,6 +1,7 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Navbar from '../Navbar.vue'
+import { createTestingPinia } from '@pinia/testing'
+import Navbar from '../NavbarComponent.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 // Create a mock router
@@ -16,12 +17,13 @@ const router = createRouter({
 })
 
 describe('Navbar', () => {
+  const wrapper = mount(Navbar, {
+    global: {
+      plugins: [router, createTestingPinia({ createSpy: vi.fn })]
+    }
+  })
+
   it('renders properly', () => {
-    const wrapper = mount(Navbar, {
-      global: {
-        plugins: [router]
-      }
-    })
 
     // Verify the navbar brand is present
     expect(wrapper.find('.navbar-brand').exists()).toBe(true)
@@ -32,7 +34,7 @@ describe('Navbar', () => {
   it('toggles navigation on button click', async () => {
     const wrapper = mount(Navbar, {
       global: {
-        plugins: [router]
+        plugins: [router, createTestingPinia({ createSpy: vi.fn })]
       }
     })
 
@@ -53,12 +55,6 @@ describe('Navbar', () => {
   })
 
   it('contains all navigation links', () => {
-    const wrapper = mount(Navbar, {
-      global: {
-        plugins: [router]
-      }
-    })
-
     const expectedLinks = ['Home', 'About', 'Services', 'Portfolio', 'Contact']
 
     expectedLinks.forEach(linkText => {
@@ -68,4 +64,10 @@ describe('Navbar', () => {
     // Verify "Get Started" button exists
     expect(wrapper.find('.btn-primary').text()).toBe('Get Started')
   })
-})
+
+  it('contains language dropdown', () => {
+    // Verify language dropdown exists
+    expect(wrapper.find('.dropdown-toggle').exists()).toBe(true)
+    expect(wrapper.text()).toContain('Español') // Default language is Spanish
+  })
+});
