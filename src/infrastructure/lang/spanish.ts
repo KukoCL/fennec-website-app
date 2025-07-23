@@ -287,6 +287,74 @@ export const appTexts = {
       getStarted: 'Comenzar'
     }
   },
+  portfolio: {
+    hero: {
+      title: 'Nuestro Portafolio',
+      description: 'Explore nuestros proyectos exitosos y vea cómo hemos ayudado a las empresas a alcanzar sus objetivos a través de soluciones tecnológicas innovadoras.'
+    },
+    featured: {
+      title: 'Proyectos Destacados',
+      description: 'Aquí están algunos de nuestros proyectos más exitosos e impactantes.'
+    },
+    allProjects: {
+      title: 'Todos los Proyectos',
+      description: 'Navegue a través de nuestro portafolio completo de proyectos exitosos.',
+      filterAll: 'Todos'
+    },
+    projects: {
+      ecommercePlatform: {
+        title: 'Plataforma de Comercio Electrónico',
+        description: 'Solución moderna de comercio electrónico con análisis avanzados y gestión de inventario.',
+        category: 'Desarrollo Web'
+      },
+      mobileBankingApp: {
+        title: 'Aplicación de Banca Móvil',
+        description: 'Aplicación segura de banca móvil con autenticación biométrica.',
+        category: 'Desarrollo Móvil'
+      },
+      cloudMigration: {
+        title: 'Migración a la Nube Empresarial',
+        description: 'Migración completa de infraestructura en la nube para una empresa Fortune 500.',
+        category: 'Soluciones en la Nube'
+      },
+      analyticsDashboard: {
+        title: 'Panel de Análisis de Negocio',
+        description: 'Panel de análisis en tiempo real para monitorear KPIs de negocio.',
+        category: 'Analítica de Datos'
+      },
+      iotPlatform: {
+        title: 'Plataforma de Gestión IoT',
+        description: 'Sistema integral de gestión y monitoreo de dispositivos IoT.',
+        category: 'Soluciones IoT'
+      },
+      healthcareSystem: {
+        title: 'Sistema de Gestión de Salud',
+        description: 'Plataforma digital de salud para gestión de pacientes y citas.',
+        category: 'Desarrollo Web'
+      }
+    },
+    categories: {
+      webDevelopment: 'Desarrollo Web',
+      mobileDevelopment: 'Desarrollo Móvil',
+      cloudSolutions: 'Soluciones en la Nube',
+      dataAnalytics: 'Analítica de Datos',
+      iotSolutions: 'Soluciones IoT'
+    },
+    stats: {
+      projectsCompleted: 'Proyectos Completados',
+      happyClients: 'Clientes Satisfechos',
+      successRate: 'Tasa de Éxito',
+      supportAvailable: 'Soporte Disponible'
+    },
+    cta: {
+      title: '¿Listo para Comenzar su Proyecto?',
+      description: 'Démosle vida a su visión con nuestra experiencia y soluciones innovadoras.',
+      button: 'Iniciar su Proyecto'
+    },
+    common: {
+      viewProject: 'Ver Proyecto'
+    }
+  },
   footer: {
     companyInfo: {
       title: 'Fennec Company',

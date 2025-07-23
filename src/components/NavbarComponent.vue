@@ -30,7 +30,7 @@ const currentLanguageLabel = computed(() => {
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <RouterLink class="navbar-brand fw-bold" to="/">
+      <RouterLink class="navbar-brand company-name fw-bold" to="/">
         <img
           src="/favicon.ico"
           alt="Logo"
@@ -174,5 +174,9 @@ const currentLanguageLabel = computed(() => {
 
 .dropdown-toggle::after {
   margin-left: 0.5rem;
+}
+
+.company-name {
+  color: #ff9203;
 }
 </style>

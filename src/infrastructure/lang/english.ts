@@ -287,6 +287,74 @@ export const appTexts = {
       getStarted: 'Get Started'
     }
   },
+  portfolio: {
+    hero: {
+      title: 'Our Portfolio',
+      description: 'Explore our successful projects and see how we\'ve helped businesses achieve their goals through innovative technology solutions.'
+    },
+    featured: {
+      title: 'Featured Projects',
+      description: 'Here are some of our most successful and impactful projects.'
+    },
+    allProjects: {
+      title: 'All Projects',
+      description: 'Browse through our complete portfolio of successful projects.',
+      filterAll: 'All'
+    },
+    projects: {
+      ecommercePlatform: {
+        title: 'E-commerce Platform',
+        description: 'Modern e-commerce solution with advanced analytics and inventory management.',
+        category: 'Web Development'
+      },
+      mobileBankingApp: {
+        title: 'Mobile Banking App',
+        description: 'Secure mobile banking application with biometric authentication.',
+        category: 'Mobile Development'
+      },
+      cloudMigration: {
+        title: 'Enterprise Cloud Migration',
+        description: 'Complete cloud infrastructure migration for a Fortune 500 company.',
+        category: 'Cloud Solutions'
+      },
+      analyticsDashboard: {
+        title: 'Business Analytics Dashboard',
+        description: 'Real-time analytics dashboard for monitoring business KPIs.',
+        category: 'Data Analytics'
+      },
+      iotPlatform: {
+        title: 'IoT Management Platform',
+        description: 'Comprehensive IoT device management and monitoring system.',
+        category: 'IoT Solutions'
+      },
+      healthcareSystem: {
+        title: 'Healthcare Management System',
+        description: 'Digital healthcare platform for patient and appointment management.',
+        category: 'Web Development'
+      }
+    },
+    categories: {
+      webDevelopment: 'Web Development',
+      mobileDevelopment: 'Mobile Development',
+      cloudSolutions: 'Cloud Solutions',
+      dataAnalytics: 'Data Analytics',
+      iotSolutions: 'IoT Solutions'
+    },
+    stats: {
+      projectsCompleted: 'Projects Completed',
+      happyClients: 'Happy Clients',
+      successRate: 'Success Rate',
+      supportAvailable: 'Support Available'
+    },
+    cta: {
+      title: 'Ready to Start Your Project?',
+      description: 'Let\'s bring your vision to life with our expertise and innovative solutions.',
+      button: 'Start Your Project'
+    },
+    common: {
+      viewProject: 'View Project'
+    }
+  },
   footer: {
     companyInfo: {
       title: 'Fennec Company',
