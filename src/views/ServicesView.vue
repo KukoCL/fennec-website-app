@@ -294,7 +294,7 @@ const services: Service[] = [
     </section>
 
     <!-- CTA Section -->
-    <section class="py-5 bg-primary text-white">
+    <section class="py-5 bg-primary text-white px-3">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-8">

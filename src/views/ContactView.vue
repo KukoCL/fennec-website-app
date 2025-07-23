@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { ref } from 'vue'
 
 const form = ref({
@@ -150,7 +151,10 @@ const submitForm = () => {
                     class="contact-icon bg-dark bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
                     style="width: 50px; height: 50px"
                   >
-                    <i class="fa-solid fa-map-marker-alt text-primary"></i>
+                    <font-awesome-icon
+                      icon="fa-solid fa-map-marker-alt"
+                      class="text-primary"
+                    ></font-awesome-icon>
                   </div>
                   <div>
                     <h6 class="fw-bold mb-1">Address</h6>
@@ -165,7 +169,10 @@ const submitForm = () => {
                     class="contact-icon bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
                     style="width: 50px; height: 50px"
                   >
-                    <i class="fa-solid fa-phone text-success"></i>
+                    <font-awesome-icon
+                      icon="fa-solid fa-phone"
+                      class="text-success"
+                    ></font-awesome-icon>
                   </div>
                   <div>
                     <h6 class="fw-bold mb-1">Phone</h6>
@@ -182,7 +189,10 @@ const submitForm = () => {
                     class="contact-icon bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
                     style="width: 50px; height: 50px"
                   >
-                    <i class="fa-solid fa-envelope text-info"></i>
+                    <font-awesome-icon
+                      icon="fa-solid fa-envelope"
+                      class="text-info"
+                    ></font-awesome-icon>
                   </div>
                   <div>
                     <h6 class="fw-bold mb-1">Email</h6>
@@ -199,7 +209,10 @@ const submitForm = () => {
                     class="contact-icon bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
                     style="width: 50px; height: 50px"
                   >
-                    <i class="fa-solid fa-clock text-warning"></i>
+                    <font-awesome-icon
+                      icon="fa-solid fa-clock"
+                      class="text-warning"
+                    ></font-awesome-icon>
                   </div>
                   <div>
                     <h6 class="fw-bold mb-1">Business Hours</h6>
@@ -216,16 +229,16 @@ const submitForm = () => {
                 <h6 class="fw-bold mb-3">Follow Us</h6>
                 <div class="d-flex gap-2">
                   <a href="#" class="btn btn-outline-primary btn-sm">
-                    <i class="fa-brands fa-facebook-f"></i>
+                    <font-awesome-icon icon="fa-brands fa-facebook-f"></font-awesome-icon>
                   </a>
                   <a href="#" class="btn btn-outline-primary btn-sm">
-                    <i class="fa-brands fa-twitter"></i>
+                    <font-awesome-icon icon="fa-brands fa-twitter"></font-awesome-icon>
                   </a>
                   <a href="#" class="btn btn-outline-primary btn-sm">
-                    <i class="fa-brands fa-linkedin-in"></i>
+                    <font-awesome-icon icon="fa-brands fa-linkedin-in"></font-awesome-icon>
                   </a>
                   <a href="#" class="btn btn-outline-primary btn-sm">
-                    <i class="fa-brands fa-instagram"></i>
+                    <font-awesome-icon icon="fa-brands fa-instagram"></font-awesome-icon>
                   </a>
                 </div>
               </div>

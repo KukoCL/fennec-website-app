@@ -12,7 +12,7 @@ const appTexts = computed(() => getAppTexts().footer)
     <div class="container py-5 px-lg-5">
       <div class="row">
         <div class="col-lg-4 col-md-6 mb-4">
-          <h5 class="text-primary">{{ appTexts.companyInfo.title }}</h5>
+          <h5 class="company-name">{{ appTexts.companyInfo.title }}</h5>
           <p class="mb-3">
             {{ appTexts.companyInfo.description }}
           </p>
@@ -136,5 +136,8 @@ footer a:hover {
 .fab {
   width: 20px;
   text-align: center;
+}
+.company-name {
+  color: #ff9203;
 }
 </style>

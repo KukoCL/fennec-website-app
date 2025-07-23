@@ -39,7 +39,7 @@ const appTexts = computed(() => getAppTexts().home.featuresSection)
 const services = [
   {
     id: 1,
-    icon: 'laptop-code',
+    icon: 'code',
     textKey: 'webDevelopment' as keyof typeof appTexts.value.services,
   },
   {
@@ -54,7 +54,7 @@ const services = [
   },
   {
     id: 4,
-    icon: 'chart-bar',
+    icon: 'fa-solid fa-chart-simple',
     textKey: 'dataAnalytics' as keyof typeof appTexts.value.services,
   },
   {

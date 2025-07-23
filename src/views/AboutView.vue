@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 interface TeamMember {
   name: string
   position: string
@@ -96,10 +97,10 @@ const teamMembers: TeamMember[] = [
             <div class="card border-0 shadow-sm h-100">
               <div class="card-body p-5 text-center">
                 <div
-                  class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
+                  class="bg-dark bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
                   style="width: 80px; height: 80px"
                 >
-                  <i class="fa-solid fa-bullseye text-primary fs-2"></i>
+                  <font-awesome-icon icon="fa-solid fa-crosshairs" class="text-primary fs-2" />
                 </div>
                 <h3 class="fw-bold mb-3">Our Mission</h3>
                 <p class="text-muted">
@@ -116,7 +117,7 @@ const teamMembers: TeamMember[] = [
                   class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
                   style="width: 80px; height: 80px"
                 >
-                  <i class="fa-solid fa-eye text-success fs-2"></i>
+                  <font-awesome-icon icon="fa-solid fa-eye" class="text-success fs-2" />
                 </div>
                 <h3 class="fw-bold mb-3">Our Vision</h3>
                 <p class="text-muted">
@@ -236,21 +237,21 @@ const teamMembers: TeamMember[] = [
                     :href="member.social.linkedin"
                     class="btn btn-outline-primary btn-sm"
                   >
-                    <i class="fa-brands fa-linkedin-in"></i>
+                    <font-awesome-icon icon="fa-brands fa-linkedin-in"></font-awesome-icon>
                   </a>
                   <a
                     v-if="member.social.twitter"
                     :href="member.social.twitter"
                     class="btn btn-outline-primary btn-sm"
                   >
-                    <i class="fa-brands fa-twitter"></i>
+                    <font-awesome-icon icon="fa-brands fa-twitter"></font-awesome-icon>
                   </a>
                   <a
                     v-if="member.social.github"
                     :href="member.social.github"
                     class="btn btn-outline-primary btn-sm"
                   >
-                    <i class="fa-brands fa-github"></i>
+                    <font-awesome-icon icon="fa-brands fa-github"></font-awesome-icon>
                   </a>
                 </div>
               </div>
@@ -276,10 +277,13 @@ const teamMembers: TeamMember[] = [
           <div class="col-lg-3 col-md-6">
             <div class="text-center">
               <div
-                class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                class="bg-dark bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                 style="width: 80px; height: 80px"
               >
-                <i class="fa-solid fa-heart text-primary fs-2"></i>
+                <font-awesome-icon
+                  icon="fa-solid fa-heart"
+                  class="text-primary fs-2"
+                ></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">Passion</h5>
               <p class="text-muted small">
@@ -293,7 +297,10 @@ const teamMembers: TeamMember[] = [
                 class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                 style="width: 80px; height: 80px"
               >
-                <i class="fa-solid fa-shield-halved text-success fs-2"></i>
+                <font-awesome-icon
+                  icon="fa-solid fa-shield-halved"
+                  class="text-success fs-2"
+                ></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">Integrity</h5>
               <p class="text-muted small">
@@ -307,7 +314,10 @@ const teamMembers: TeamMember[] = [
                 class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                 style="width: 80px; height: 80px"
               >
-                <i class="fa-solid fa-lightbulb text-warning fs-2"></i>
+                <font-awesome-icon
+                  icon="fa-solid fa-lightbulb"
+                  class="text-warning fs-2"
+                ></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">Innovation</h5>
               <p class="text-muted small">
@@ -321,7 +331,10 @@ const teamMembers: TeamMember[] = [
                 class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                 style="width: 80px; height: 80px"
               >
-                <i class="fa-solid fa-users text-info fs-2"></i>
+                <font-awesome-icon
+                  icon="fa-solid fa-users"
+                  class="text-info fs-2"
+                ></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">Collaboration</h5>
               <p class="text-muted small">

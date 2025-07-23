@@ -8,91 +8,15 @@ import { createPinia } from 'pinia'
 // Font Awesome imports
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import {
-  faCode,
-  faMobile,
-  faMobileScreenButton,
-  faCloud,
-  faChartColumn,
-  faChartLine,
-  faShieldHalved,
-  faHandshake,
-  faBullseye,
-  faEye,
-  faCheckCircle,
-  faHeart,
-  faLightbulb,
-  faUsers,
-  faExternalLinkAlt,
-  faRocket,
-  faPaperPlane,
-  faMapMarkerAlt,
-  faPhone,
-  faEnvelope,
-  faClock,
-  faChevronDown,
-  faStar,
-  faCheck,
-  faComment
-} from '@fortawesome/free-solid-svg-icons'
-import {
-  faFacebookF,
-  faTwitter,
-  faLinkedinIn,
-  faInstagram,
-  faGithub,
-  faReact,
-  faVuejs,
-  faNodeJs,
-  faPython,
-  faAws,
-  faDocker
-} from '@fortawesome/free-brands-svg-icons'
-import { faStar as farStar } from '@fortawesome/free-regular-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
 
 import App from './App.vue'
 import router from './router'
 
-// Add icons to the library
-library.add(
-  faCode,
-  faMobile,
-  faMobileScreenButton,
-  faCloud,
-  faChartColumn,
-  faChartLine,
-  faShieldHalved,
-  faHandshake,
-  faBullseye,
-  faEye,
-  faCheckCircle,
-  faHeart,
-  faLightbulb,
-  faUsers,
-  faExternalLinkAlt,
-  faRocket,
-  faPaperPlane,
-  faMapMarkerAlt,
-  faPhone,
-  faEnvelope,
-  faClock,
-  faChevronDown,
-  faStar,
-  faCheck,
-  faComment,
-  farStar,
-  faFacebookF,
-  faTwitter,
-  faLinkedinIn,
-  faInstagram,
-  faGithub,
-  faReact,
-  faVuejs,
-  faNodeJs,
-  faPython,
-  faAws,
-  faDocker
-)
+// Add all free icons to the library
+library.add(fas, fab, far)
 
 const app = createApp(App)
 
