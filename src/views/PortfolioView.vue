@@ -146,11 +146,7 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
                 <h5 class="card-title fw-bold mb-2">{{ project.title }}</h5>
                 <p class="card-text text-muted mb-3">{{ project.description }}</p>
                 <div class="d-flex flex-wrap gap-1">
-                  <span
-                    v-for="tech in project.technologies"
-                    :key="tech"
-                    class="badge bg-light text-dark small"
-                  >
+                  <span v-for="tech in project.technologies" :key="tech" class="badge bg-light text-dark small">
                     {{ tech }}
                   </span>
                 </div>
@@ -214,11 +210,7 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
                 <h5 class="card-title fw-bold mb-2">{{ project.title }}</h5>
                 <p class="card-text text-muted mb-3">{{ project.description }}</p>
                 <div class="d-flex flex-wrap gap-1">
-                  <span
-                    v-for="tech in project.technologies"
-                    :key="tech"
-                    class="badge bg-light text-dark small"
-                  >
+                  <span v-for="tech in project.technologies" :key="tech" class="badge bg-light text-dark small">
                     {{ tech }}
                   </span>
                 </div>

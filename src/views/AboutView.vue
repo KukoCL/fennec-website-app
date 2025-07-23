@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import useAppLang from '@/composables/settings/useAppLang'
+import { computed } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import useAppLang from '@/composables/settings/useAppLang';
 
-const { getAppTexts } = useAppLang()
-const appTexts = computed(() => getAppTexts().about)
+const { getAppTexts } = useAppLang();
+const appTexts = computed(() => getAppTexts().about);
 
 interface TeamMember {
   name: string
@@ -23,8 +23,7 @@ const teamMembers: TeamMember[] = [
     name: appTexts.value.team.members.johnSmith.name,
     position: appTexts.value.team.members.johnSmith.position,
     bio: appTexts.value.team.members.johnSmith.bio,
-    avatar:
-      'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=face',
     social: {
       linkedin: '#',
       twitter: '#',
@@ -34,8 +33,7 @@ const teamMembers: TeamMember[] = [
     name: appTexts.value.team.members.sarahDavis.name,
     position: appTexts.value.team.members.sarahDavis.position,
     bio: appTexts.value.team.members.sarahDavis.bio,
-    avatar:
-      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face',
     social: {
       linkedin: '#',
       github: '#',
@@ -45,15 +43,14 @@ const teamMembers: TeamMember[] = [
     name: appTexts.value.team.members.mikeJohnson.name,
     position: appTexts.value.team.members.mikeJohnson.position,
     bio: appTexts.value.team.members.mikeJohnson.bio,
-    avatar:
-      'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face',
     social: {
       linkedin: '#',
       github: '#',
       twitter: '#',
     },
   },
-]
+];
 </script>
 
 <template>
@@ -237,18 +234,10 @@ const teamMembers: TeamMember[] = [
                   >
                     <font-awesome-icon icon="fa-brands fa-linkedin-in"></font-awesome-icon>
                   </a>
-                  <a
-                    v-if="member.social.twitter"
-                    :href="member.social.twitter"
-                    class="btn btn-outline-primary btn-sm"
-                  >
+                  <a v-if="member.social.twitter" :href="member.social.twitter" class="btn btn-outline-primary btn-sm">
                     <font-awesome-icon icon="fa-brands fa-twitter"></font-awesome-icon>
                   </a>
-                  <a
-                    v-if="member.social.github"
-                    :href="member.social.github"
-                    class="btn btn-outline-primary btn-sm"
-                  >
+                  <a v-if="member.social.github" :href="member.social.github" class="btn btn-outline-primary btn-sm">
                     <font-awesome-icon icon="fa-brands fa-github"></font-awesome-icon>
                   </a>
                 </div>
@@ -278,10 +267,7 @@ const teamMembers: TeamMember[] = [
                 class="bg-dark bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                 style="width: 80px; height: 80px"
               >
-                <font-awesome-icon
-                  icon="fa-solid fa-heart"
-                  class="text-primary fs-2"
-                ></font-awesome-icon>
+                <font-awesome-icon icon="fa-solid fa-heart" class="text-primary fs-2"></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">{{ appTexts.values.items.passion.title }}</h5>
               <p class="text-muted small">
@@ -295,10 +281,7 @@ const teamMembers: TeamMember[] = [
                 class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                 style="width: 80px; height: 80px"
               >
-                <font-awesome-icon
-                  icon="fa-solid fa-shield-halved"
-                  class="text-success fs-2"
-                ></font-awesome-icon>
+                <font-awesome-icon icon="fa-solid fa-shield-halved" class="text-success fs-2"></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">{{ appTexts.values.items.integrity.title }}</h5>
               <p class="text-muted small">
@@ -312,10 +295,7 @@ const teamMembers: TeamMember[] = [
                 class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                 style="width: 80px; height: 80px"
               >
-                <font-awesome-icon
-                  icon="fa-solid fa-lightbulb"
-                  class="text-warning fs-2"
-                ></font-awesome-icon>
+                <font-awesome-icon icon="fa-solid fa-lightbulb" class="text-warning fs-2"></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">{{ appTexts.values.items.innovation.title }}</h5>
               <p class="text-muted small">
@@ -329,10 +309,7 @@ const teamMembers: TeamMember[] = [
                 class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                 style="width: 80px; height: 80px"
               >
-                <font-awesome-icon
-                  icon="fa-solid fa-users"
-                  class="text-info fs-2"
-                ></font-awesome-icon>
+                <font-awesome-icon icon="fa-solid fa-users" class="text-info fs-2"></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">{{ appTexts.values.items.collaboration.title }}</h5>
               <p class="text-muted small">

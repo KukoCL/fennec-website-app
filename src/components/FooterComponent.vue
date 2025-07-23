@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { RouterLink } from 'vue-router'
-import useAppLang from '@/composables/settings/useAppLang'
+import { computed } from 'vue';
+import { RouterLink } from 'vue-router';
+import useAppLang from '@/composables/settings/useAppLang';
 
-const { getAppTexts } = useAppLang()
-const appTexts = computed(() => getAppTexts().footer)
+const { getAppTexts } = useAppLang();
+const appTexts = computed(() => getAppTexts().footer);
 </script>
 
 <template>
@@ -62,24 +62,16 @@ const appTexts = computed(() => getAppTexts().footer)
           <h6 class="text-uppercase fw-bold mb-3">{{ appTexts.services.title }}</h6>
           <ul class="list-unstyled">
             <li class="mb-2">
-              <a href="#" class="text-light text-decoration-none">{{
-                appTexts.services.links.webDevelopment
-              }}</a>
+              <a href="#" class="text-light text-decoration-none">{{ appTexts.services.links.webDevelopment }}</a>
             </li>
             <li class="mb-2">
-              <a href="#" class="text-light text-decoration-none">{{
-                appTexts.services.links.mobileApps
-              }}</a>
+              <a href="#" class="text-light text-decoration-none">{{ appTexts.services.links.mobileApps }}</a>
             </li>
             <li class="mb-2">
-              <a href="#" class="text-light text-decoration-none">{{
-                appTexts.services.links.cloudSolutions
-              }}</a>
+              <a href="#" class="text-light text-decoration-none">{{ appTexts.services.links.cloudSolutions }}</a>
             </li>
             <li class="mb-2">
-              <a href="#" class="text-light text-decoration-none">{{
-                appTexts.services.links.consulting
-              }}</a>
+              <a href="#" class="text-light text-decoration-none">{{ appTexts.services.links.consulting }}</a>
             </li>
           </ul>
         </div>
@@ -114,12 +106,8 @@ const appTexts = computed(() => getAppTexts().footer)
             </p>
           </div>
           <div class="col-md-6 text-md-end">
-            <a href="#" class="text-light text-decoration-none me-3">{{
-              appTexts.legalLinks.privacyPolicy
-            }}</a>
-            <a href="#" class="text-light text-decoration-none">{{
-              appTexts.legalLinks.termsOfService
-            }}</a>
+            <a href="#" class="text-light text-decoration-none me-3">{{ appTexts.legalLinks.privacyPolicy }}</a>
+            <a href="#" class="text-light text-decoration-none">{{ appTexts.legalLinks.termsOfService }}</a>
           </div>
         </div>
       </div>

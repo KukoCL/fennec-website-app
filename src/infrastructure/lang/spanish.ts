@@ -1,3 +1,4 @@
+/* eslint-disable vue/max-len */
 export const appTexts = {
   navbar: {
     brand: 'Fennec',
@@ -6,123 +7,140 @@ export const appTexts = {
       about: 'Acerca de',
       services: 'Servicios',
       portfolio: 'Portafolio',
-      contact: 'Contacto'
+      contact: 'Contacto',
     },
     language: {
       spanish: 'Español',
-      english: 'English'
+      english: 'English',
     },
-    toggleNavigation: 'Alternar navegación'
+    toggleNavigation: 'Alternar navegación',
   },
   home: {
     heroSection: {
       headerTitle: 'Soluciones de Negocio Modernas para la Era Digital',
-      description: 'Ayudamos a las empresas a transformar su negocio con tecnología de vanguardia, estrategias innovadoras y consultoría especializada para impulsar el crecimiento y el éxito.',
+      description:
+        'Ayudamos a las empresas a transformar su negocio con tecnología de vanguardia, estrategias innovadoras y consultoría especializada para impulsar el crecimiento y el éxito.',
       buttons: {
         getStarted: 'Comenzar',
-        ourServices: 'Nuestros Servicios'
+        ourServices: 'Nuestros Servicios',
       },
       features: {
         fastDelivery: 'Entrega Rápida',
         secure: 'Seguro',
         support: 'Soporte 24/7',
-        analytics: 'Analítica'
-      }
+        analytics: 'Analítica',
+      },
     },
     featuresSection: {
       title: 'Nuestros Servicios',
-      description: 'Ofrecemos soluciones de negocio integrales diseñadas para acelerar el crecimiento y la transformación digital de su empresa.',
+      description:
+        'Ofrecemos soluciones de negocio integrales diseñadas para acelerar el crecimiento y la transformación digital de su empresa.',
       services: {
         webDevelopment: {
           title: 'Desarrollo Web',
-          description: 'Aplicaciones web personalizadas construidas con tecnologías modernas y mejores prácticas para un rendimiento óptimo.'
+          description:
+            'Aplicaciones web personalizadas construidas con tecnologías modernas y mejores prácticas para un rendimiento óptimo.',
         },
         mobileApps: {
           title: 'Aplicaciones Móviles',
-          description: 'Aplicaciones móviles nativas y multiplataforma que involucran a los usuarios e impulsan el crecimiento del negocio.'
+          description:
+            'Aplicaciones móviles nativas y multiplataforma que involucran a los usuarios e impulsan el crecimiento del negocio.',
         },
         cloudSolutions: {
           title: 'Soluciones en la Nube',
-          description: 'Infraestructura y servicios en la nube escalables para potenciar las operaciones de su negocio de manera eficiente.'
+          description:
+            'Infraestructura y servicios en la nube escalables para potenciar las operaciones de su negocio de manera eficiente.',
         },
         dataAnalytics: {
           title: 'Analítica de Datos',
-          description: 'Transforme sus datos en conocimientos accionables con herramientas avanzadas de análisis y visualización.'
+          description:
+            'Transforme sus datos en conocimientos accionables con herramientas avanzadas de análisis y visualización.',
         },
         cybersecurity: {
           title: 'Ciberseguridad',
-          description: 'Soluciones de seguridad integrales para proteger su negocio de amenazas y vulnerabilidades digitales.'
+          description:
+            'Soluciones de seguridad integrales para proteger su negocio de amenazas y vulnerabilidades digitales.',
         },
         consulting: {
           title: 'Consultoría',
-          description: 'Servicios de consultoría especializada para guiar su negocio a través de la transformación digital y el crecimiento.'
-        }
-      }
+          description:
+            'Servicios de consultoría especializada para guiar su negocio a través de la transformación digital y el crecimiento.',
+        },
+      },
     },
     testimonialsSection: {
       title: 'Lo Que Dicen Nuestros Clientes',
-      description: 'No solo nos tome la palabra. Esto es lo que nuestros clientes satisfechos tienen que decir sobre trabajar con nosotros.',
+      description:
+        'No solo nos tome la palabra. Esto es lo que nuestros clientes satisfechos tienen que decir sobre trabajar con nosotros.',
       testimonials: {
-        sarahJohnson: 'Fennec Company transformó nuestro negocio con sus soluciones innovadoras. Nuestra productividad aumentó un 300% y la satisfacción del cliente está en su punto más alto.',
-        michaelChen: 'El equipo de Fennec entregó resultados excepcionales. Su experiencia en soluciones en la nube nos ayudó a escalar nuestras operaciones sin problemas.',
-        emilyRodriguez: 'Servicio y soporte excepcionales. Entendieron nuestra visión y entregaron una solución que superó nuestras expectativas.'
+        sarahJohnson:
+          'Fennec Company transformó nuestro negocio con sus soluciones innovadoras. Nuestra productividad aumentó un 300% y la satisfacción del cliente está en su punto más alto.',
+        michaelChen:
+          'El equipo de Fennec entregó resultados excepcionales. Su experiencia en soluciones en la nube nos ayudó a escalar nuestras operaciones sin problemas.',
+        emilyRodriguez:
+          'Servicio y soporte excepcionales. Entendieron nuestra visión y entregaron una solución que superó nuestras expectativas.',
       },
       stats: {
         projectsCompleted: 'Proyectos Completados',
         clientSatisfaction: 'Satisfacción del Cliente',
         teamMembers: 'Miembros del Equipo',
-        yearsExperience: 'Años de Experiencia'
-      }
+        yearsExperience: 'Años de Experiencia',
+      },
     },
     callToActionSection: {
       title: '¿Listo para Transformar Su Negocio?',
-      description: 'Únase a cientos de clientes satisfechos que han acelerado su crecimiento con nuestras soluciones innovadoras. Hablemos sobre cómo podemos ayudarle a alcanzar sus objetivos de negocio.',
+      description:
+        'Únase a cientos de clientes satisfechos que han acelerado su crecimiento con nuestras soluciones innovadoras. Hablemos sobre cómo podemos ayudarle a alcanzar sus objetivos de negocio.',
       buttons: {
         getStarted: 'Comenzar Hoy',
-        callUs: 'Llámanos Ahora'
+        callUs: 'Llámanos Ahora',
       },
       newsletter: {
         title: 'Manténgase Actualizado con Nuestras Últimas Noticias',
-        description: 'Suscríbase a nuestro boletín y obtenga las últimas actualizaciones sobre tendencias tecnológicas y conocimientos de negocio.',
+        description:
+          'Suscríbase a nuestro boletín y obtenga las últimas actualizaciones sobre tendencias tecnológicas y conocimientos de negocio.',
         placeholder: 'Correo electrónico',
         button: 'Suscribirse',
         successMessage: '¡Gracias por suscribirse! Nos pondremos en contacto pronto.',
-        privacyNote: 'Respetamos su privacidad. Puede darse de baja en cualquier momento.'
-      }
-    }
+        privacyNote: 'Respetamos su privacidad. Puede darse de baja en cualquier momento.',
+      },
+    },
   },
   about: {
     hero: {
       title: 'Acerca de Fennec Company',
-      description: 'Somos una empresa de tecnología con visión de futuro dedicada a ayudar a las empresas a prosperar en la era digital a través de soluciones innovadoras y orientación experta.',
+      description:
+        'Somos una empresa de tecnología con visión de futuro dedicada a ayudar a las empresas a prosperar en la era digital a través de soluciones innovadoras y orientación experta.',
       stats: {
         projects: 'Proyectos',
         teamMembers: 'Miembros del Equipo',
         years: 'Años',
-        satisfaction: 'Satisfacción'
-      }
+        satisfaction: 'Satisfacción',
+      },
     },
     missionVision: {
       mission: {
         title: 'Nuestra Misión',
-        description: 'Empoderar a las empresas con soluciones tecnológicas de vanguardia que impulsen el crecimiento, la eficiencia y la innovación en un panorama digital en constante evolución.'
+        description:
+          'Empoderar a las empresas con soluciones tecnológicas de vanguardia que impulsen el crecimiento, la eficiencia y la innovación en un panorama digital en constante evolución.',
       },
       vision: {
         title: 'Nuestra Visión',
-        description: 'Ser el socio tecnológico líder para empresas en todo el mundo, creando transformaciones digitales sostenibles que generen un impacto positivo.'
-      }
+        description:
+          'Ser el socio tecnológico líder para empresas en todo el mundo, creando transformaciones digitales sostenibles que generen un impacto positivo.',
+      },
     },
     story: {
       title: 'Nuestra Historia',
       paragraphs: [
         'Fundada en 2019, Fennec Company comenzó con una misión simple: ayudar a las empresas a aprovechar la tecnología para el crecimiento sostenible. Lo que comenzó como un pequeño equipo de desarrolladores apasionados se ha convertido en un proveedor integral de soluciones tecnológicas.',
-        'A lo largo de los años, hemos ayudado a cientos de empresas a transformar sus operaciones, llegar a nuevos mercados y alcanzar sus objetivos comerciales a través de soluciones tecnológicas innovadoras y consultoría estratégica.'
+        'A lo largo de los años, hemos ayudado a cientos de empresas a transformar sus operaciones, llegar a nuevos mercados y alcanzar sus objetivos comerciales a través de soluciones tecnológicas innovadoras y consultoría estratégica.',
       ],
       features: {
         expertTeam: 'Equipo Experto',
         provenResults: 'Resultados Probados',
         support: 'Soporte 24/7',
-        globalReach: 'Alcance Global'
+        globalReach: 'Alcance Global',
       },
       timeline: {
         title: 'Cronología de la Empresa',
@@ -131,9 +149,9 @@ export const appTexts = {
           2020: 'Primeros 50 Clientes',
           2021: 'Expansión Internacional',
           2022: '100+ Miembros del Equipo',
-          2024: 'Líder de la Industria'
-        }
-      }
+          2024: 'Líder de la Industria',
+        },
+      },
     },
     team: {
       title: 'Conoce a Nuestro Equipo',
@@ -142,19 +160,19 @@ export const appTexts = {
         johnSmith: {
           name: 'John Smith',
           position: 'CEO y Fundador',
-          bio: 'Con más de 15 años de experiencia en tecnología y estrategia empresarial, John lidera nuestra visión de innovación.'
+          bio: 'Con más de 15 años de experiencia en tecnología y estrategia empresarial, John lidera nuestra visión de innovación.',
         },
         sarahDavis: {
           name: 'Sarah Davis',
           position: 'CTO',
-          bio: 'Sarah es responsable de nuestra estrategia técnica y se asegura de que nos mantengamos a la vanguardia de las tendencias tecnológicas.'
+          bio: 'Sarah es responsable de nuestra estrategia técnica y se asegura de que nos mantengamos a la vanguardia de las tendencias tecnológicas.',
         },
         mikeJohnson: {
           name: 'Mike Johnson',
           position: 'Desarrollador Líder',
-          bio: 'Mike lidera nuestro equipo de desarrollo y se asegura de que entreguemos soluciones de alta calidad que superen las expectativas.'
-        }
-      }
+          bio: 'Mike lidera nuestro equipo de desarrollo y se asegura de que entreguemos soluciones de alta calidad que superen las expectativas.',
+        },
+      },
     },
     values: {
       title: 'Nuestros Valores',
@@ -162,27 +180,28 @@ export const appTexts = {
       items: {
         passion: {
           title: 'Pasión',
-          description: 'Somos apasionados por la tecnología y por ayudar a nuestros clientes a tener éxito.'
+          description: 'Somos apasionados por la tecnología y por ayudar a nuestros clientes a tener éxito.',
         },
         integrity: {
           title: 'Integridad',
-          description: 'Conducimos los negocios con honestidad, transparencia y prácticas éticas.'
+          description: 'Conducimos los negocios con honestidad, transparencia y prácticas éticas.',
         },
         innovation: {
           title: 'Innovación',
-          description: 'Buscamos continuamente soluciones creativas y adoptamos nuevas tecnologías.'
+          description: 'Buscamos continuamente soluciones creativas y adoptamos nuevas tecnologías.',
         },
         collaboration: {
           title: 'Colaboración',
-          description: 'Creemos en el poder del trabajo en equipo y en la construcción de asociaciones sólidas.'
-        }
-      }
-    }
+          description: 'Creemos en el poder del trabajo en equipo y en la construcción de asociaciones sólidas.',
+        },
+      },
+    },
   },
   services: {
     hero: {
       title: 'Nuestros Servicios',
-      description: 'Ofrecemos soluciones tecnológicas integrales diseñadas para acelerar el crecimiento de su negocio y su viaje de transformación digital.'
+      description:
+        'Ofrecemos soluciones tecnológicas integrales diseñadas para acelerar el crecimiento de su negocio y su viaje de transformación digital.',
     },
     servicesList: {
       webDevelopment: {
@@ -192,31 +211,21 @@ export const appTexts = {
           'Diseño Responsivo',
           'Optimización de Rendimiento',
           'Amigable con SEO',
-          'Compatible con Todos los Navegadores'
+          'Compatible con Todos los Navegadores',
         ],
-        price: 'Desde $2,999'
+        price: 'Desde $2,999',
       },
       mobileApps: {
         title: 'Desarrollo de Aplicaciones Móviles',
         description: 'Aplicaciones móviles nativas y multiplataforma para iOS y Android.',
-        features: [
-          'Rendimiento Nativo',
-          'Multiplataforma',
-          'Optimización para App Store',
-          'Notificaciones Push'
-        ],
-        price: 'Desde $4,999'
+        features: ['Rendimiento Nativo', 'Multiplataforma', 'Optimización para App Store', 'Notificaciones Push'],
+        price: 'Desde $4,999',
       },
       cloudSolutions: {
         title: 'Soluciones en la Nube',
         description: 'Infraestructura en la nube escalable y servicios de migración.',
-        features: [
-          'Migración a la Nube',
-          'Escalado Automático',
-          'Optimización de Costos',
-          'Monitoreo 24/7'
-        ],
-        price: 'Desde $1,999'
+        features: ['Migración a la Nube', 'Escalado Automático', 'Optimización de Costos', 'Monitoreo 24/7'],
+        price: 'Desde $1,999',
       },
       dataAnalytics: {
         title: 'Analítica de Datos',
@@ -225,9 +234,9 @@ export const appTexts = {
           'Analítica en Tiempo Real',
           'Paneles Personalizados',
           'Visualización de Datos',
-          'Modelado Predictivo'
+          'Modelado Predictivo',
         ],
-        price: 'Desde $3,499'
+        price: 'Desde $3,499',
       },
       cybersecurity: {
         title: 'Ciberseguridad',
@@ -236,9 +245,9 @@ export const appTexts = {
           'Auditorías de Seguridad',
           'Detección de Amenazas',
           'Gestión de Cumplimiento',
-          'Capacitación de Empleados'
+          'Capacitación de Empleados',
         ],
-        price: 'Desde $2,499'
+        price: 'Desde $2,499',
       },
       consulting: {
         title: 'Consultoría en TI',
@@ -247,118 +256,122 @@ export const appTexts = {
           'Planificación Estratégica',
           'Evaluación Tecnológica',
           'Transformación Digital',
-          'Optimización de Procesos'
+          'Optimización de Procesos',
         ],
-        price: 'Desde $199/hora'
-      }
+        price: 'Desde $199/hora',
+      },
     },
     process: {
       title: 'Nuestro Proceso',
-      description: 'Seguimos una metodología probada para asegurar el éxito de su proyecto desde el inicio hasta el final.',
+      description:
+        'Seguimos una metodología probada para asegurar el éxito de su proyecto desde el inicio hasta el final.',
       steps: {
         discovery: {
           title: 'Descubrimiento',
-          description: 'Analizamos las necesidades y requisitos de su negocio para crear un plan de proyecto integral.'
+          description: 'Analizamos las necesidades y requisitos de su negocio para crear un plan de proyecto integral.',
         },
         design: {
           title: 'Diseño',
-          description: 'Nuestro equipo crea diseños detallados y prototipos para visualizar su solución.'
+          description: 'Nuestro equipo crea diseños detallados y prototipos para visualizar su solución.',
         },
         development: {
           title: 'Desarrollo',
-          description: 'Construimos su solución utilizando las mejores prácticas de la industria y tecnologías de vanguardia.'
+          description:
+            'Construimos su solución utilizando las mejores prácticas de la industria y tecnologías de vanguardia.',
         },
         launch: {
           title: 'Lanzamiento',
-          description: 'Desplegamos su solución y proporcionamos soporte continuo para asegurar operaciones fluidas.'
-        }
-      }
+          description: 'Desplegamos su solución y proporcionamos soporte continuo para asegurar operaciones fluidas.',
+        },
+      },
     },
     technologies: {
       title: 'Tecnologías que Usamos',
-      description: 'Aprovechamos las últimas tecnologías y marcos para construir soluciones robustas y escalables.'
+      description: 'Aprovechamos las últimas tecnologías y marcos para construir soluciones robustas y escalables.',
     },
     cta: {
       title: '¿Listo para Comenzar?',
       description: 'Discutamos su proyecto y encontremos la solución perfecta para las necesidades de su negocio.',
-      button: 'Contáctanos Hoy'
+      button: 'Contáctanos Hoy',
     },
     common: {
-      getStarted: 'Comenzar'
-    }
+      getStarted: 'Comenzar',
+    },
   },
   portfolio: {
     hero: {
       title: 'Nuestro Portafolio',
-      description: 'Explore nuestros proyectos exitosos y vea cómo hemos ayudado a las empresas a alcanzar sus objetivos a través de soluciones tecnológicas innovadoras.'
+      description:
+        'Explore nuestros proyectos exitosos y vea cómo hemos ayudado a las empresas a alcanzar sus objetivos a través de soluciones tecnológicas innovadoras.',
     },
     featured: {
       title: 'Proyectos Destacados',
-      description: 'Aquí están algunos de nuestros proyectos más exitosos e impactantes.'
+      description: 'Aquí están algunos de nuestros proyectos más exitosos e impactantes.',
     },
     allProjects: {
       title: 'Todos los Proyectos',
       description: 'Navegue a través de nuestro portafolio completo de proyectos exitosos.',
-      filterAll: 'Todos'
+      filterAll: 'Todos',
     },
     projects: {
       ecommercePlatform: {
         title: 'Plataforma de Comercio Electrónico',
         description: 'Solución moderna de comercio electrónico con análisis avanzados y gestión de inventario.',
-        category: 'Desarrollo Web'
+        category: 'Desarrollo Web',
       },
       mobileBankingApp: {
         title: 'Aplicación de Banca Móvil',
         description: 'Aplicación segura de banca móvil con autenticación biométrica.',
-        category: 'Desarrollo Móvil'
+        category: 'Desarrollo Móvil',
       },
       cloudMigration: {
         title: 'Migración a la Nube Empresarial',
         description: 'Migración completa de infraestructura en la nube para una empresa Fortune 500.',
-        category: 'Soluciones en la Nube'
+        category: 'Soluciones en la Nube',
       },
       analyticsDashboard: {
         title: 'Panel de Análisis de Negocio',
         description: 'Panel de análisis en tiempo real para monitorear KPIs de negocio.',
-        category: 'Analítica de Datos'
+        category: 'Analítica de Datos',
       },
       iotPlatform: {
         title: 'Plataforma de Gestión IoT',
         description: 'Sistema integral de gestión y monitoreo de dispositivos IoT.',
-        category: 'Soluciones IoT'
+        category: 'Soluciones IoT',
       },
       healthcareSystem: {
         title: 'Sistema de Gestión de Salud',
         description: 'Plataforma digital de salud para gestión de pacientes y citas.',
-        category: 'Desarrollo Web'
-      }
+        category: 'Desarrollo Web',
+      },
     },
     categories: {
       webDevelopment: 'Desarrollo Web',
       mobileDevelopment: 'Desarrollo Móvil',
       cloudSolutions: 'Soluciones en la Nube',
       dataAnalytics: 'Analítica de Datos',
-      iotSolutions: 'Soluciones IoT'
+      iotSolutions: 'Soluciones IoT',
     },
     stats: {
       projectsCompleted: 'Proyectos Completados',
       happyClients: 'Clientes Satisfechos',
       successRate: 'Tasa de Éxito',
-      supportAvailable: 'Soporte Disponible'
+      supportAvailable: 'Soporte Disponible',
     },
     cta: {
       title: '¿Listo para Comenzar su Proyecto?',
       description: 'Démosle vida a su visión con nuestra experiencia y soluciones innovadoras.',
-      button: 'Iniciar su Proyecto'
+      button: 'Iniciar su Proyecto',
     },
     common: {
-      viewProject: 'Ver Proyecto'
-    }
+      viewProject: 'Ver Proyecto',
+    },
   },
   contact: {
     hero: {
       title: 'Contáctanos',
-      description: '¿Listo para transformar tu negocio? Hablemos de tu proyecto y encontremos la solución perfecta para tus necesidades.'
+      description:
+        '¿Listo para transformar tu negocio? Hablemos de tu proyecto y encontremos la solución perfecta para tus necesidades.',
     },
     form: {
       title: 'Envíanos un Mensaje',
@@ -389,7 +402,7 @@ export const appTexts = {
       messageLabel: 'Detalles del Proyecto *',
       messagePlaceholder: 'Cuéntanos sobre tu proyecto, objetivos y cualquier requerimiento específico...',
       sendButton: 'Enviar Mensaje',
-      successMessage: '¡Gracias por tu mensaje! Nos pondremos en contacto en menos de 24 horas.'
+      successMessage: '¡Gracias por tu mensaje! Nos pondremos en contacto en menos de 24 horas.',
     },
     info: {
       title: 'Información de Contacto',
@@ -400,16 +413,12 @@ export const appTexts = {
       emailLabel: 'Correo',
       email: 'info@fenneccompany.com',
       hoursLabel: 'Horario de Atención',
-      hours: [
-        'Lun - Vie: 9:00 AM - 6:00 PM',
-        'Sáb: 10:00 AM - 4:00 PM',
-        'Dom: Cerrado'
-      ],
-      followUs: 'Síguenos'
+      hours: ['Lun - Vie: 9:00 AM - 6:00 PM', 'Sáb: 10:00 AM - 4:00 PM', 'Dom: Cerrado'],
+      followUs: 'Síguenos',
     },
     map: {
       title: 'Mapa Interactivo',
-      description: 'Aquí iría la integración de mapas (Google Maps, Mapbox, etc.)'
+      description: 'Aquí iría la integración de mapas (Google Maps, Mapbox, etc.)',
     },
     faq: {
       title: 'Preguntas Frecuentes',
@@ -417,27 +426,32 @@ export const appTexts = {
       items: [
         {
           question: '¿Cuánto dura un proyecto típico?',
-          answer: 'El tiempo varía según la complejidad y el alcance. Sitios web simples suelen tomar 2-4 semanas, mientras que aplicaciones complejas pueden tomar 3-6 meses. Te daremos un cronograma detallado en la consulta inicial.'
+          answer:
+            'El tiempo varía según la complejidad y el alcance. Sitios web simples suelen tomar 2-4 semanas, mientras que aplicaciones complejas pueden tomar 3-6 meses. Te daremos un cronograma detallado en la consulta inicial.',
         },
         {
           question: '¿Cuál es su proceso de desarrollo?',
-          answer: 'Seguimos un proceso de 4 fases: Descubrimiento (entender tus necesidades), Diseño (prototipos), Desarrollo (construcción de la solución) y Lanzamiento (despliegue y soporte). Mantenemos comunicación constante.'
+          answer:
+            'Seguimos un proceso de 4 fases: Descubrimiento (entender tus necesidades), Diseño (prototipos), Desarrollo (construcción de la solución) y Lanzamiento (despliegue y soporte). Mantenemos comunicación constante.',
         },
         {
           question: '¿Ofrecen soporte continuo?',
-          answer: 'Sí, ofrecemos paquetes de soporte que incluyen mantenimiento, actualizaciones, monitoreo y soporte técnico. Creemos en relaciones a largo plazo con nuestros clientes.'
+          answer:
+            'Sí, ofrecemos paquetes de soporte que incluyen mantenimiento, actualizaciones, monitoreo y soporte técnico. Creemos en relaciones a largo plazo con nuestros clientes.',
         },
         {
           question: '¿En qué tecnologías se especializan?',
-          answer: 'Nos especializamos en tecnologías modernas como React, Vue.js, Node.js, Python, plataformas en la nube como AWS, desarrollo móvil con React Native y diversas bases de datos y herramientas DevOps.'
-        }
-      ]
-    }
+          answer:
+            'Nos especializamos en tecnologías modernas como React, Vue.js, Node.js, Python, plataformas en la nube como AWS, desarrollo móvil con React Native y diversas bases de datos y herramientas DevOps.',
+        },
+      ],
+    },
   },
   footer: {
     companyInfo: {
       title: 'Fennec Company',
-      description: 'Ofrecemos soluciones de negocio modernas para ayudar a su empresa a crecer y tener éxito en la era digital.'
+      description:
+        'Ofrecemos soluciones de negocio modernas para ayudar a su empresa a crecer y tener éxito en la era digital.',
     },
     navigation: {
       title: 'Enlaces Rápidos',
@@ -445,8 +459,8 @@ export const appTexts = {
         home: 'Inicio',
         about: 'Acerca de',
         services: 'Servicios',
-        portfolio: 'Portafolio'
-      }
+        portfolio: 'Portafolio',
+      },
     },
     services: {
       title: 'Servicios',
@@ -454,19 +468,19 @@ export const appTexts = {
         webDevelopment: 'Desarrollo Web',
         mobileApps: 'Aplicaciones Móviles',
         cloudSolutions: 'Soluciones en la Nube',
-        consulting: 'Consultoría'
-      }
+        consulting: 'Consultoría',
+      },
     },
     contact: {
       title: 'Información de Contacto',
       email: 'info@fenneccompany.com',
       phone: '+1 (555) 123-4567',
-      address: '123 Business St, City, State 12345'
+      address: '123 Business St, City, State 12345',
     },
     copyright: 'Todos los derechos reservados.',
     legalLinks: {
       privacyPolicy: 'Política de Privacidad',
-      termsOfService: 'Términos de Servicio'
-    }
-  }
+      termsOfService: 'Términos de Servicio',
+    },
+  },
 };

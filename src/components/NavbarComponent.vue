@@ -1,43 +1,37 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import { ref, computed } from 'vue'
-import { useAppSettingsStore } from '@/stores/appSettingsStore'
-import { storeToRefs } from 'pinia'
-import useAppLang from '@/composables/settings/useAppLang'
+import { RouterLink } from 'vue-router';
+import { ref, computed } from 'vue';
+import { useAppSettingsStore } from '@/stores/appSettingsStore';
+import { storeToRefs } from 'pinia';
+import useAppLang from '@/composables/settings/useAppLang';
 
-const { getAppTexts } = useAppLang()
-const appTexts = computed(() => getAppTexts())
+const { getAppTexts } = useAppLang();
+const appTexts = computed(() => getAppTexts());
 
-const isNavCollapsed = ref(true)
-const appSettingsStore = useAppSettingsStore()
-const { appLanguage } = storeToRefs(appSettingsStore)
+const isNavCollapsed = ref(true);
+const appSettingsStore = useAppSettingsStore();
+const { appLanguage } = storeToRefs(appSettingsStore);
 
 const toggleNav = () => {
-  isNavCollapsed.value = !isNavCollapsed.value
-}
+  isNavCollapsed.value = !isNavCollapsed.value;
+};
 
 const changeLanguage = (lang: 'es' | 'en') => {
-  appSettingsStore.appLanguage = lang
-  isNavCollapsed.value = true // Close mobile menu after selection
-  localStorage.setItem('appLanguage', lang) // Persist language choice
-}
+  appSettingsStore.appLanguage = lang;
+  isNavCollapsed.value = true; // Close mobile menu after selection
+  localStorage.setItem('appLanguage', lang); // Persist language choice
+};
 
 const currentLanguageLabel = computed(() => {
-  return appLanguage.value === 'es' ? 'ES' : 'EN'
-})
+  return appLanguage.value === 'es' ? 'ES' : 'EN';
+});
 </script>
 
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <RouterLink class="navbar-brand company-name fw-bold" to="/">
-        <img
-          src="/favicon.ico"
-          alt="Logo"
-          width="45"
-          height="45"
-          class="d-inline-block align-top me-2"
-        />
+        <img src="/favicon.ico" alt="Logo" width="45" height="45" class="d-inline-block align-top me-2" />
         {{ appTexts.navbar.brand }}
       </RouterLink>
 

@@ -42,7 +42,9 @@ const submitForm = () => {
       <div class="container">
         <div class="row align-items-center py-5">
           <div class="col-lg-8 mx-auto text-center">
-            <h1 class="display-4 fw-bold mb-4">{{ appTexts.contact.hero.title }}</h1>
+            <h1 class="display-4 fw-bold mb-4">
+              {{ appTexts.contact.hero.title }}
+            </h1>
             <p class="lead">
               {{ appTexts.contact.hero.description }}
             </p>
@@ -59,13 +61,18 @@ const submitForm = () => {
           <div class="col-lg-8">
             <div class="card border-0 shadow-sm">
               <div class="card-body p-5">
-                <h2 class="h3 fw-bold mb-4">{{ appTexts.contact.form.title }}</h2>
+                <h2 class="h3 fw-bold mb-4">
+                  {{ appTexts.contact.form.title }}
+                </h2>
                 <form @submit.prevent="submitForm">
                   <div class="row g-3">
                     <div class="col-md-6">
-                      <label for="name" class="form-label">{{
-                        appTexts.contact.form.nameLabel
-                      }}</label>
+                      <label
+                        for="name"
+                        class="form-label"
+                      >
+                        {{ appTexts.contact.form.nameLabel }}
+                      </label>
                       <input
                         v-model="form.name"
                         type="text"
@@ -75,9 +82,12 @@ const submitForm = () => {
                       />
                     </div>
                     <div class="col-md-6">
-                      <label for="email" class="form-label">{{
-                        appTexts.contact.form.emailLabel
-                      }}</label>
+                      <label
+                        for="email"
+                        class="form-label"
+                      >
+                        {{ appTexts.contact.form.emailLabel }}
+                      </label>
                       <input
                         v-model="form.email"
                         type="email"
@@ -87,37 +97,74 @@ const submitForm = () => {
                       />
                     </div>
                     <div class="col-md-6">
-                      <label for="company" class="form-label">{{
-                        appTexts.contact.form.companyLabel
-                      }}</label>
-                      <input v-model="form.company" type="text" class="form-control" id="company" />
+                      <label
+                        for="company"
+                        class="form-label"
+                      >
+                        {{ appTexts.contact.form.companyLabel }}
+                      </label>
+                      <input
+                        v-model="form.company"
+                        type="text"
+                        class="form-control"
+                        id="company"
+                      />
                     </div>
                     <div class="col-md-6">
-                      <label for="service" class="form-label">{{
-                        appTexts.contact.form.serviceLabel
-                      }}</label>
-                      <select v-model="form.service" class="form-select" id="service">
-                        <option value="">{{ appTexts.contact.form.servicePlaceholder }}</option>
-                        <option v-for="service in services" :key="service" :value="service">
+                      <label
+                        for="service"
+                        class="form-label"
+                      >
+                        {{ appTexts.contact.form.serviceLabel }}
+                      </label>
+                      <select
+                        v-model="form.service"
+                        class="form-select"
+                        id="service"
+                      >
+                        <option value="">
+                          {{ appTexts.contact.form.servicePlaceholder }}
+                        </option>
+                        <option
+                          v-for="service in services"
+                          :key="service"
+                          :value="service"
+                        >
                           {{ service }}
                         </option>
                       </select>
                     </div>
                     <div class="col-12">
-                      <label for="budget" class="form-label">{{
-                        appTexts.contact.form.budgetLabel
-                      }}</label>
-                      <select v-model="form.budget" class="form-select" id="budget">
-                        <option value="">{{ appTexts.contact.form.budgetPlaceholder }}</option>
-                        <option v-for="budget in budgetRanges" :key="budget" :value="budget">
+                      <label
+                        for="budget"
+                        class="form-label"
+                      >
+                        {{ appTexts.contact.form.budgetLabel }}
+                      </label>
+                      <select
+                        v-model="form.budget"
+                        class="form-select"
+                        id="budget"
+                      >
+                        <option value="">
+                          {{ appTexts.contact.form.budgetPlaceholder }}
+                        </option>
+                        <option
+                          v-for="budget in budgetRanges"
+                          :key="budget"
+                          :value="budget"
+                        >
                           {{ budget }}
                         </option>
                       </select>
                     </div>
                     <div class="col-12">
-                      <label for="message" class="form-label">{{
-                        appTexts.contact.form.messageLabel
-                      }}</label>
+                      <label
+                        for="message"
+                        class="form-label"
+                      >
+                        {{ appTexts.contact.form.messageLabel }}
+                      </label>
                       <textarea
                         v-model="form.message"
                         class="form-control"
@@ -128,7 +175,10 @@ const submitForm = () => {
                       ></textarea>
                     </div>
                     <div class="col-12">
-                      <button type="submit" class="btn btn-primary btn-lg">
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn-lg"
+                      >
                         <i class="fa-solid fa-paper-plane me-2"></i>
                         {{ appTexts.contact.form.sendButton }}
                       </button>
@@ -143,7 +193,9 @@ const submitForm = () => {
           <div class="col-lg-4">
             <div class="card border-0 shadow-sm">
               <div class="card-body p-4">
-                <h3 class="h4 fw-bold mb-4">{{ appTexts.contact.info.title }}</h3>
+                <h3 class="h4 fw-bold mb-4">
+                  {{ appTexts.contact.info.title }}
+                </h3>
 
                 <div class="contact-item d-flex mb-4">
                   <div
@@ -156,7 +208,9 @@ const submitForm = () => {
                     ></font-awesome-icon>
                   </div>
                   <div>
-                    <h6 class="fw-bold mb-1">{{ appTexts.contact.info.addressLabel }}</h6>
+                    <h6 class="fw-bold mb-1">
+                      {{ appTexts.contact.info.addressLabel }}
+                    </h6>
                     <p class="text-muted mb-0">
                       {{ appTexts.contact.info.address }}
                     </p>
@@ -174,9 +228,14 @@ const submitForm = () => {
                     ></font-awesome-icon>
                   </div>
                   <div>
-                    <h6 class="fw-bold mb-1">{{ appTexts.contact.info.phoneLabel }}</h6>
+                    <h6 class="fw-bold mb-1">
+                      {{ appTexts.contact.info.phoneLabel }}
+                    </h6>
                     <p class="text-muted mb-0">
-                      <a :href="`tel:${appTexts.contact.info.phone}`" class="text-decoration-none">
+                      <a
+                        :href="`tel:${appTexts.contact.info.phone}`"
+                        class="text-decoration-none"
+                      >
                         {{ appTexts.contact.info.phone }}
                       </a>
                     </p>
@@ -194,7 +253,9 @@ const submitForm = () => {
                     ></font-awesome-icon>
                   </div>
                   <div>
-                    <h6 class="fw-bold mb-1">{{ appTexts.contact.info.emailLabel }}</h6>
+                    <h6 class="fw-bold mb-1">
+                      {{ appTexts.contact.info.emailLabel }}
+                    </h6>
                     <p class="text-muted mb-0">
                       <a
                         :href="`mailto:${appTexts.contact.info.email}`"
@@ -217,10 +278,18 @@ const submitForm = () => {
                     ></font-awesome-icon>
                   </div>
                   <div>
-                    <h6 class="fw-bold mb-1">{{ appTexts.contact.info.hoursLabel }}</h6>
+                    <h6 class="fw-bold mb-1">
+                      {{ appTexts.contact.info.hoursLabel }}
+                    </h6>
                     <p class="text-muted mb-0">
-                      <span v-for="(line, idx) in appTexts.contact.info.hours" :key="idx">
-                        {{ line }}<br v-if="idx < appTexts.contact.info.hours.length - 1" />
+                      <span
+                        v-for="(line, idx) in appTexts.contact.info.hours"
+                        :key="idx"
+                      >
+                        {{ line }}
+                        <br
+                          v-if="idx < appTexts.contact.info.hours.length - 1"
+                        />
                       </span>
                     </p>
                   </div>
@@ -228,19 +297,41 @@ const submitForm = () => {
 
                 <hr />
 
-                <h6 class="fw-bold mb-3">{{ appTexts.contact.info.followUs }}</h6>
+                <h6 class="fw-bold mb-3">
+                  {{ appTexts.contact.info.followUs }}
+                </h6>
                 <div class="d-flex gap-2">
-                  <a href="#" class="btn btn-outline-primary btn-sm">
-                    <font-awesome-icon icon="fa-brands fa-facebook-f"></font-awesome-icon>
+                  <a
+                    href="#"
+                    class="btn btn-outline-primary btn-sm"
+                  >
+                    <font-awesome-icon
+                      icon="fa-brands fa-facebook-f"
+                    ></font-awesome-icon>
                   </a>
-                  <a href="#" class="btn btn-outline-primary btn-sm">
-                    <font-awesome-icon icon="fa-brands fa-twitter"></font-awesome-icon>
+                  <a
+                    href="#"
+                    class="btn btn-outline-primary btn-sm"
+                  >
+                    <font-awesome-icon
+                      icon="fa-brands fa-twitter"
+                    ></font-awesome-icon>
                   </a>
-                  <a href="#" class="btn btn-outline-primary btn-sm">
-                    <font-awesome-icon icon="fa-brands fa-linkedin-in"></font-awesome-icon>
+                  <a
+                    href="#"
+                    class="btn btn-outline-primary btn-sm"
+                  >
+                    <font-awesome-icon
+                      icon="fa-brands fa-linkedin-in"
+                    ></font-awesome-icon>
                   </a>
-                  <a href="#" class="btn btn-outline-primary btn-sm">
-                    <font-awesome-icon icon="fa-brands fa-instagram"></font-awesome-icon>
+                  <a
+                    href="#"
+                    class="btn btn-outline-primary btn-sm"
+                  >
+                    <font-awesome-icon
+                      icon="fa-brands fa-instagram"
+                    ></font-awesome-icon>
                   </a>
                 </div>
               </div>
@@ -282,13 +373,18 @@ const submitForm = () => {
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <div class="text-center mb-5">
-              <h2 class="display-5 fw-bold mb-3">{{ appTexts.contact.faq.title }}</h2>
+              <h2 class="display-5 fw-bold mb-3">
+                {{ appTexts.contact.faq.title }}
+              </h2>
               <p class="lead text-muted">
                 {{ appTexts.contact.faq.description }}
               </p>
             </div>
 
-            <div class="accordion" id="faqAccordion">
+            <div
+              class="accordion"
+              id="faqAccordion"
+            >
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button
@@ -322,7 +418,11 @@ const submitForm = () => {
                     {{ appTexts.contact.faq.items[1].question }}
                   </button>
                 </h2>
-                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div
+                  id="faq2"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
                   <div class="accordion-body">
                     {{ appTexts.contact.faq.items[1].answer }}
                   </div>
@@ -340,7 +440,11 @@ const submitForm = () => {
                     {{ appTexts.contact.faq.items[2].question }}
                   </button>
                 </h2>
-                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div
+                  id="faq3"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
                   <div class="accordion-body">
                     {{ appTexts.contact.faq.items[2].answer }}
                   </div>
@@ -358,7 +462,11 @@ const submitForm = () => {
                     {{ appTexts.contact.faq.items[3].question }}
                   </button>
                 </h2>
-                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div
+                  id="faq4"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
                   <div class="accordion-body">
                     {{ appTexts.contact.faq.items[3].answer }}
                   </div>

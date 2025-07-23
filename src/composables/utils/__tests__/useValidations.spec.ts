@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest';
 import useValidations from '../useValidations';
 
 describe('useValidation', () => {
-
   const { validateEmail, clpFormat, validateRun } = useValidations();
 
   describe('validateEmail', () => {

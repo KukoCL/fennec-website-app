@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import useAppLang from '@/composables/settings/useAppLang'
+import { computed } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import useAppLang from '@/composables/settings/useAppLang';
 
-const { getAppTexts } = useAppLang()
-const appTexts = computed(() => getAppTexts().services)
+const { getAppTexts } = useAppLang();
+const appTexts = computed(() => getAppTexts().services);
 
 interface Service {
   id: string
@@ -71,7 +71,7 @@ const services: Service[] = [
     color: 'secondary',
     price: appTexts.value.servicesList.consulting.price,
   },
-]
+];
 </script>
 
 <template>
@@ -108,11 +108,7 @@ const services: Service[] = [
                 <p class="card-text text-muted text-center mb-4">{{ service.description }}</p>
 
                 <ul class="list-unstyled mb-4">
-                  <li
-                    v-for="feature in service.features"
-                    :key="feature"
-                    class="d-flex align-items-center mb-2"
-                  >
+                  <li v-for="feature in service.features" :key="feature" class="d-flex align-items-center mb-2">
                     <FontAwesomeIcon icon="check" class="text-success me-2" />
                     <span class="small">{{ feature }}</span>
                   </li>
@@ -225,51 +221,31 @@ const services: Service[] = [
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <FontAwesomeIcon
-                :icon="['fab', 'vuejs']"
-                class="text-success"
-                style="font-size: 3rem"
-              />
+              <FontAwesomeIcon :icon="['fab', 'vuejs']" class="text-success" style="font-size: 3rem" />
               <p class="small mt-2 mb-0">Vue.js</p>
             </div>
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <FontAwesomeIcon
-                :icon="['fab', 'node-js']"
-                class="text-success"
-                style="font-size: 3rem"
-              />
+              <FontAwesomeIcon :icon="['fab', 'node-js']" class="text-success" style="font-size: 3rem" />
               <p class="small mt-2 mb-0">Node.js</p>
             </div>
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <FontAwesomeIcon
-                :icon="['fab', 'python']"
-                class="text-primary"
-                style="font-size: 3rem"
-              />
+              <FontAwesomeIcon :icon="['fab', 'python']" class="text-primary" style="font-size: 3rem" />
               <p class="small mt-2 mb-0">Python</p>
             </div>
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <FontAwesomeIcon
-                :icon="['fab', 'aws']"
-                class="text-warning"
-                style="font-size: 3rem"
-              />
+              <FontAwesomeIcon :icon="['fab', 'aws']" class="text-warning" style="font-size: 3rem" />
               <p class="small mt-2 mb-0">AWS</p>
             </div>
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <FontAwesomeIcon
-                :icon="['fab', 'docker']"
-                class="text-info"
-                style="font-size: 3rem"
-              />
+              <FontAwesomeIcon :icon="['fab', 'docker']" class="text-info" style="font-size: 3rem" />
               <p class="small mt-2 mb-0">Docker</p>
             </div>
           </div>
