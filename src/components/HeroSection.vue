@@ -12,7 +12,7 @@ const appTexts = computed(() => getAppTexts().home.heroSection)
     <div class="container">
       <div class="row align-items-center p-lg-5">
         <div class="col-lg-6">
-          <h1 class="display-4 fw-bold mb-4">{{ appTexts.headerTitle }}</h1>
+          <h1 class="display-4 fw-bold mb-4 mt-3">{{ appTexts.headerTitle }}</h1>
           <p class="lead mb-4">
             {{ appTexts.description }}
           </p>
