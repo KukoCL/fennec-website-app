@@ -179,6 +179,114 @@ export const appTexts = {
       }
     }
   },
+  services: {
+    hero: {
+      title: 'Nuestros Servicios',
+      description: 'Ofrecemos soluciones tecnológicas integrales diseñadas para acelerar el crecimiento de su negocio y su viaje de transformación digital.'
+    },
+    servicesList: {
+      webDevelopment: {
+        title: 'Desarrollo Web',
+        description: 'Aplicaciones web personalizadas construidas con marcos y tecnologías modernas.',
+        features: [
+          'Diseño Responsivo',
+          'Optimización de Rendimiento',
+          'Amigable con SEO',
+          'Compatible con Todos los Navegadores'
+        ],
+        price: 'Desde $2,999'
+      },
+      mobileApps: {
+        title: 'Desarrollo de Aplicaciones Móviles',
+        description: 'Aplicaciones móviles nativas y multiplataforma para iOS y Android.',
+        features: [
+          'Rendimiento Nativo',
+          'Multiplataforma',
+          'Optimización para App Store',
+          'Notificaciones Push'
+        ],
+        price: 'Desde $4,999'
+      },
+      cloudSolutions: {
+        title: 'Soluciones en la Nube',
+        description: 'Infraestructura en la nube escalable y servicios de migración.',
+        features: [
+          'Migración a la Nube',
+          'Escalado Automático',
+          'Optimización de Costos',
+          'Monitoreo 24/7'
+        ],
+        price: 'Desde $1,999'
+      },
+      dataAnalytics: {
+        title: 'Analítica de Datos',
+        description: 'Transforme sus datos en conocimientos comerciales accionables.',
+        features: [
+          'Analítica en Tiempo Real',
+          'Paneles Personalizados',
+          'Visualización de Datos',
+          'Modelado Predictivo'
+        ],
+        price: 'Desde $3,499'
+      },
+      cybersecurity: {
+        title: 'Ciberseguridad',
+        description: 'Soluciones de seguridad integrales para proteger su negocio.',
+        features: [
+          'Auditorías de Seguridad',
+          'Detección de Amenazas',
+          'Gestión de Cumplimiento',
+          'Capacitación de Empleados'
+        ],
+        price: 'Desde $2,499'
+      },
+      consulting: {
+        title: 'Consultoría en TI',
+        description: 'Consulta experta para optimizar su estrategia tecnológica.',
+        features: [
+          'Planificación Estratégica',
+          'Evaluación Tecnológica',
+          'Transformación Digital',
+          'Optimización de Procesos'
+        ],
+        price: 'Desde $199/hora'
+      }
+    },
+    process: {
+      title: 'Nuestro Proceso',
+      description: 'Seguimos una metodología probada para asegurar el éxito de su proyecto desde el inicio hasta el final.',
+      steps: {
+        discovery: {
+          title: 'Descubrimiento',
+          description: 'Analizamos las necesidades y requisitos de su negocio para crear un plan de proyecto integral.'
+        },
+        design: {
+          title: 'Diseño',
+          description: 'Nuestro equipo crea diseños detallados y prototipos para visualizar su solución.'
+        },
+        development: {
+          title: 'Desarrollo',
+          description: 'Construimos su solución utilizando las mejores prácticas de la industria y tecnologías de vanguardia.'
+        },
+        launch: {
+          title: 'Lanzamiento',
+          description: 'Desplegamos su solución y proporcionamos soporte continuo para asegurar operaciones fluidas.'
+        }
+      }
+    },
+    technologies: {
+      title: 'Tecnologías que Usamos',
+      description: 'Aprovechamos las últimas tecnologías y marcos para construir soluciones robustas y escalables.'
+    },
+    cta: {
+      title: '¿Listo para Comenzar?',
+      description: 'Discutamos su proyecto y encontremos la solución perfecta para las necesidades de su negocio.',
+      button: 'Contáctanos Hoy'
+    },
+    common: {
+      getStarted: 'Comenzar'
+    }
+  },
   footer: {
     companyInfo: {
       title: 'Fennec Company',

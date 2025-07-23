@@ -179,6 +179,114 @@ export const appTexts = {
       }
     }
   },
+  services: {
+    hero: {
+      title: 'Our Services',
+      description: 'We offer comprehensive technology solutions designed to accelerate your business growth and digital transformation journey.'
+    },
+    servicesList: {
+      webDevelopment: {
+        title: 'Web Development',
+        description: 'Custom web applications built with modern frameworks and technologies.',
+        features: [
+          'Responsive Design',
+          'Performance Optimization',
+          'SEO Friendly',
+          'Cross-browser Compatible'
+        ],
+        price: 'Starting at $2,999'
+      },
+      mobileApps: {
+        title: 'Mobile App Development',
+        description: 'Native and cross-platform mobile applications for iOS and Android.',
+        features: [
+          'Native Performance',
+          'Cross-platform',
+          'App Store Optimization',
+          'Push Notifications'
+        ],
+        price: 'Starting at $4,999'
+      },
+      cloudSolutions: {
+        title: 'Cloud Solutions',
+        description: 'Scalable cloud infrastructure and migration services.',
+        features: [
+          'Cloud Migration',
+          'Auto Scaling',
+          'Cost Optimization',
+          '24/7 Monitoring'
+        ],
+        price: 'Starting at $1,999'
+      },
+      dataAnalytics: {
+        title: 'Data Analytics',
+        description: 'Transform your data into actionable business insights.',
+        features: [
+          'Real-time Analytics',
+          'Custom Dashboards',
+          'Data Visualization',
+          'Predictive Modeling'
+        ],
+        price: 'Starting at $3,499'
+      },
+      cybersecurity: {
+        title: 'Cybersecurity',
+        description: 'Comprehensive security solutions to protect your business.',
+        features: [
+          'Security Audits',
+          'Threat Detection',
+          'Compliance Management',
+          'Employee Training'
+        ],
+        price: 'Starting at $2,499'
+      },
+      consulting: {
+        title: 'IT Consulting',
+        description: 'Expert consultation to optimize your technology strategy.',
+        features: [
+          'Strategy Planning',
+          'Technology Assessment',
+          'Digital Transformation',
+          'Process Optimization'
+        ],
+        price: 'Starting at $199/hour'
+      }
+    },
+    process: {
+      title: 'Our Process',
+      description: 'We follow a proven methodology to ensure your project\'s success from start to finish.',
+      steps: {
+        discovery: {
+          title: 'Discovery',
+          description: 'We analyze your business needs and requirements to create a comprehensive project plan.'
+        },
+        design: {
+          title: 'Design',
+          description: 'Our team creates detailed designs and prototypes to visualize your solution.'
+        },
+        development: {
+          title: 'Development',
+          description: 'We build your solution using industry best practices and cutting-edge technologies.'
+        },
+        launch: {
+          title: 'Launch',
+          description: 'We deploy your solution and provide ongoing support to ensure smooth operations.'
+        }
+      }
+    },
+    technologies: {
+      title: 'Technologies We Use',
+      description: 'We leverage the latest technologies and frameworks to build robust, scalable solutions.'
+    },
+    cta: {
+      title: 'Ready to Get Started?',
+      description: 'Let\'s discuss your project and find the perfect solution for your business needs.',
+      button: 'Contact Us Today'
+    },
+    common: {
+      getStarted: 'Get Started'
+    }
+  },
   footer: {
     companyInfo: {
       title: 'Fennec Company',

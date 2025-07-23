@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { ref, computed } from 'vue'
 
 interface Project {
@@ -266,7 +267,7 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
           </div>
           <div class="col-lg-4 text-lg-end">
             <router-link to="/contact" class="btn btn-light btn-lg">
-              <i class="fa-solid fa-rocket me-2"></i>
+              <font-awesome-icon icon="fa-solid fa-rocket" class="me-2" />
               Start Your Project
             </router-link>
           </div>
