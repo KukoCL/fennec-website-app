@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { createPinia } from 'pinia'
 import Navbar from '../NavbarComponent.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -19,7 +20,7 @@ describe('Navbar', () => {
   it('renders properly', () => {
     const wrapper = mount(Navbar, {
       global: {
-        plugins: [router]
+        plugins: [router, createPinia()]
       }
     })
 
@@ -32,7 +33,7 @@ describe('Navbar', () => {
   it('toggles navigation on button click', async () => {
     const wrapper = mount(Navbar, {
       global: {
-        plugins: [router]
+        plugins: [router, createPinia()]
       }
     })
 
@@ -55,7 +56,7 @@ describe('Navbar', () => {
   it('contains all navigation links', () => {
     const wrapper = mount(Navbar, {
       global: {
-        plugins: [router]
+        plugins: [router, createPinia()]
       }
     })
 
@@ -68,4 +69,16 @@ describe('Navbar', () => {
     // Verify "Get Started" button exists
     expect(wrapper.find('.btn-primary').text()).toBe('Get Started')
   })
-})
+
+  it('contains language dropdown', () => {
+    const wrapper = mount(Navbar, {
+      global: {
+        plugins: [router, createPinia()]
+      }
+    })
+
+    // Verify language dropdown exists
+    expect(wrapper.find('.dropdown-toggle').exists()).toBe(true)
+    expect(wrapper.text()).toContain('English') // Default language
+  })
+});
