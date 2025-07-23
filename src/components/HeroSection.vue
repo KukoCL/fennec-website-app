@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 import useAppLang from '@/composables/settings/useAppLang'
 
 const { getAppTexts } = useAppLang()
-const appTexts = computed(() => getAppTexts().home.header)
+const appTexts = computed(() => getAppTexts().home.heroSection)
 </script>
 
 <template>
