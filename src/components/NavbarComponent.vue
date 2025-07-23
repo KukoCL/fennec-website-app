@@ -19,6 +19,7 @@ const toggleNav = () => {
 const changeLanguage = (lang: 'es' | 'en') => {
   appSettingsStore.appLanguage = lang
   isNavCollapsed.value = true // Close mobile menu after selection
+  localStorage.setItem('appLanguage', lang) // Persist language choice
 }
 
 const currentLanguageLabel = computed(() => {
