@@ -56,20 +56,26 @@ const testimonials: Testimonial[] = [
       </div>
 
       <div class="row g-4">
-        <div v-for="testimonial in testimonials" :key="testimonial.name" class="col-lg-4 col-md-6">
+        <div
+          v-for="testimonial in testimonials"
+          :key="testimonial.name"
+          class="col-lg-4 col-md-6"
+        >
           <div class="card h-100 border-0 shadow-sm testimonial-card">
             <div class="card-body p-4">
               <!-- Stars Rating -->
               <div class="mb-3">
-                <span v-for="star in 5" :key="star" class="text-warning">
+                <span
+                  v-for="star in 5"
+                  :key="star"
+                  class="text-warning"
+                >
                   <FontAwesomeIcon :icon="star <= testimonial.rating ? 'star' : ['far', 'star']" />
                 </span>
               </div>
 
               <!-- Testimonial Text -->
-              <p class="card-text text-muted mb-4">
-                "{{ appTexts.testimonials[testimonial.messageKey] }}"
-              </p>
+              <p class="card-text text-muted mb-4">"{{ appTexts.testimonials[testimonial.messageKey] }}"</p>
 
               <!-- Client Info -->
               <div class="d-flex align-items-center">
@@ -80,13 +86,10 @@ const testimonials: Testimonial[] = [
                   width="50"
                   height="50"
                   style="object-fit: cover"
-                  onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjUiIGN5PSIyNSIgcj0iMjUiIGZpbGw9IiNGMEYwRjAiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSIxMyIgeT0iMTMiPgo8cGF0aCBkPSJNMTIgMTJDMTQuMjA5MSAxMiAxNiAxMC4yMDkxIDE2IDhDMTYgNS43OTA5IDE0LjIwOTEgNCAxMiA0QzkuNzkwODYgNCA4IDUuNzkwOSA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSIjOTk5OTk5Ii8+CjxwYXRoIGQ9Ik0xMiAxNEM5LjMzIDE0IDcgMTYuMzMgNyAxOVYyMEgxN1YxOUMxNyAxNi4zMyAxNC42NyAxNCAxMiAxNFoiIGZpbGw9IiM5OTk5OTkiLz4KPC9zdmc+Cjwvc3ZnPgo='"
                 />
                 <div>
                   <h6 class="mb-0 fw-bold">{{ testimonial.name }}</h6>
-                  <small class="text-muted">
-                    {{ testimonial.position }}, {{ testimonial.company }}
-                  </small>
+                  <small class="text-muted">{{ testimonial.position }}, {{ testimonial.company }}</small>
                 </div>
               </div>
             </div>

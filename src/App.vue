@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import Navbar from './components/NavbarComponent.vue'
-import FooterComponent from './components/FooterComponent.vue'
+import { RouterView } from 'vue-router';
+import Navbar from './components/NavbarComponent.vue';
+import FooterComponent from './components/FooterComponent.vue';
 </script>
 
 <template>

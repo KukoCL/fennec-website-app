@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { RouterLink } from 'vue-router'
-import useAppLang from '@/composables/settings/useAppLang'
+import { computed } from 'vue';
+import { RouterLink } from 'vue-router';
+import useAppLang from '@/composables/settings/useAppLang';
 
-const { getAppTexts } = useAppLang()
-const appTexts = computed(() => getAppTexts().home.heroSection)
+const { getAppTexts } = useAppLang();
+const appTexts = computed(() => getAppTexts().home.heroSection);
 </script>
 
 <template>
@@ -17,9 +17,7 @@ const appTexts = computed(() => getAppTexts().home.heroSection)
             {{ appTexts.description }}
           </p>
           <div class="d-flex flex-column flex-sm-row gap-3">
-            <RouterLink to="/contact" class="btn btn-light btn-lg px-4">{{
-              appTexts.buttons.getStarted
-            }}</RouterLink>
+            <RouterLink to="/contact" class="btn btn-light btn-lg px-4">{{ appTexts.buttons.getStarted }}</RouterLink>
             <RouterLink to="/services" class="btn btn-outline-light btn-lg px-4">
               {{ appTexts.buttons.ourServices }}
             </RouterLink>

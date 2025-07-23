@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { RouterLink } from 'vue-router'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import useAppLang from '../composables/settings/useAppLang'
+import { computed } from 'vue';
+import { RouterLink } from 'vue-router';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import useAppLang from '../composables/settings/useAppLang';
 
-const { getAppTexts } = useAppLang()
-const appTexts = computed(() => getAppTexts().home.callToActionSection)
+const { getAppTexts } = useAppLang();
+const appTexts = computed(() => getAppTexts().home.callToActionSection);
 
 const subscribeNewsletter = () => {
   // Handle newsletter subscription
-  alert(appTexts.value.newsletter.successMessage)
-}
+  alert(appTexts.value.newsletter.successMessage);
+};
 </script>
 
 <template>

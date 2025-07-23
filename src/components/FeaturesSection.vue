@@ -29,12 +29,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import useAppLang from '../composables/settings/useAppLang'
+import { computed } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import useAppLang from '../composables/settings/useAppLang';
 
-const { getAppTexts } = useAppLang()
-const appTexts = computed(() => getAppTexts().home.featuresSection)
+const { getAppTexts } = useAppLang();
+const appTexts = computed(() => getAppTexts().home.featuresSection);
 
 const services = [
   {
@@ -67,7 +67,7 @@ const services = [
     icon: 'users',
     textKey: 'consulting' as keyof typeof appTexts.value.services,
   },
-]
+];
 </script>
 
 <style scoped>

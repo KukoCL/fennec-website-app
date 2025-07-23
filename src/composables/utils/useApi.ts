@@ -2,7 +2,6 @@ import type { ApiResponse } from '@/infrastructure/types';
 import axios, { type AxiosResponse } from 'axios';
 
 export default function useApi() {
-
   const get = async <T>(url: string): Promise<ApiResponse<T>> => {
     const response: AxiosResponse<T> = await axios.get(url);
     return {

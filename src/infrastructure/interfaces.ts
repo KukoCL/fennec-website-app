@@ -1,4 +1,4 @@
 export interface ExampleInterface {
-  exampleProperty: string;
-  exampleMethod(param: number): () => boolean;
+  exampleProperty: string
+  exampleMethod(param: number): () => boolean
 }
