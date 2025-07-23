@@ -24,7 +24,7 @@ const currentLanguageLabel = computed(() => {
 
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
+    <div class="container">
       <RouterLink class="navbar-brand fw-bold" to="/">
         <img
           src="/favicon.ico"
