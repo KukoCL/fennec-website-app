@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 
 <template>
   <footer class="bg-dark text-light mt-5">
-    <div class="container py-5">
+    <div class="container py-5 px-lg-5">
       <div class="row">
         <div class="col-lg-4 col-md-6 mb-4">
           <h5 class="text-primary">Fennec Company</h5>
@@ -89,7 +89,7 @@ import { RouterLink } from 'vue-router'
     </div>
 
     <div class="border-top border-secondary">
-      <div class="container py-3">
+      <div class="container py-3 px-lg-5">
         <div class="row align-items-center">
           <div class="col-md-6">
             <p class="mb-0">

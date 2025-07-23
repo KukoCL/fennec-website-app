@@ -9,7 +9,7 @@ const subscribeNewsletter = () => {
 
 <template>
   <section class="cta-section bg-primary text-white py-5">
-    <div class="container">
+    <div class="container px-lg-5">
       <div class="row align-items-center">
         <div class="col-lg-8">
           <h2 class="display-5 fw-bold mb-3">Ready to Transform Your Business?</h2>
