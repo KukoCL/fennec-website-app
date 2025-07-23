@@ -1,4 +1,19 @@
 export const appTexts = {
+  navbar: {
+    brand: 'Fennec',
+    navigation: {
+      home: 'Inicio',
+      about: 'Acerca de',
+      services: 'Servicios',
+      portfolio: 'Portafolio',
+      contact: 'Contacto'
+    },
+    language: {
+      spanish: 'Español',
+      english: 'English'
+    },
+    toggleNavigation: 'Alternar navegación'
+  },
   home: {
     heroSection: {
       headerTitle: 'Soluciones de Negocio Modernas para la Era Digital',
@@ -71,8 +86,44 @@ export const appTexts = {
         description: 'Suscríbase a nuestro boletín y obtenga las últimas actualizaciones sobre tendencias tecnológicas y conocimientos de negocio.',
         placeholder: 'Correo electrónico',
         button: 'Suscribirse',
-        successMessage: '¡Gracias por suscribirse! Nos pondremos en contacto pronto.'
+        successMessage: '¡Gracias por suscribirse! Nos pondremos en contacto pronto.',
+        privacyNote: 'Respetamos su privacidad. Darse de baja en cualquier momento.'
       }
     }
   },
+  footer: {
+    companyInfo: {
+      title: 'Fennec Company',
+      description: 'Ofrecemos soluciones de negocio modernas para ayudar a su empresa a crecer y tener éxito en la era digital.'
+    },
+    navigation: {
+      title: 'Enlaces Rápidos',
+      links: {
+        home: 'Inicio',
+        about: 'Acerca de',
+        services: 'Servicios',
+        portfolio: 'Portafolio'
+      }
+    },
+    services: {
+      title: 'Servicios',
+      links: {
+        webDevelopment: 'Desarrollo Web',
+        mobileApps: 'Aplicaciones Móviles',
+        cloudSolutions: 'Soluciones en la Nube',
+        consulting: 'Consultoría'
+      }
+    },
+    contact: {
+      title: 'Información de Contacto',
+      email: 'info@fenneccompany.com',
+      phone: '+1 (555) 123-4567',
+      address: '123 Business St, City, State 12345'
+    },
+    copyright: 'Todos los derechos reservados.',
+    legalLinks: {
+      privacyPolicy: 'Política de Privacidad',
+      termsOfService: 'Términos de Servicio'
+    }
+  }
 };

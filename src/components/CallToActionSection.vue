@@ -62,7 +62,7 @@ const subscribeNewsletter = () => {
           </form>
 
           <small class="d-block mt-3 opacity-75">
-            We respect your privacy. Unsubscribe at any time.
+            {{ appTexts.newsletter.privacyNote }}
           </small>
         </div>
       </div>

@@ -1,4 +1,19 @@
 export const appTexts = {
+  navbar: {
+    brand: 'Fennec',
+    navigation: {
+      home: 'Home',
+      about: 'About',
+      services: 'Services',
+      portfolio: 'Portfolio',
+      contact: 'Contact'
+    },
+    language: {
+      spanish: 'Español',
+      english: 'English'
+    },
+    toggleNavigation: 'Toggle navigation'
+  },
   home: {
     heroSection: {
       headerTitle: 'Modern Business Solutions for the Digital Age',
@@ -71,8 +86,44 @@ export const appTexts = {
         description: 'Subscribe to our newsletter and get the latest updates on technology trends and business insights.',
         placeholder: 'Enter your email address',
         button: 'Subscribe Now',
-        successMessage: 'Thank you for subscribing! We\'ll be in touch soon.'
+        successMessage: 'Thank you for subscribing! We\'ll be in touch soon.',
+        privacyNote: 'We respect your privacy. Unsubscribe at any time.'
       }
     }
   },
+  footer: {
+    companyInfo: {
+      title: 'Fennec Company',
+      description: 'We provide modern business solutions to help your company grow and succeed in the digital age.'
+    },
+    navigation: {
+      title: 'Quick Links',
+      links: {
+        home: 'Home',
+        about: 'About',
+        services: 'Services',
+        portfolio: 'Portfolio'
+      }
+    },
+    services: {
+      title: 'Services',
+      links: {
+        webDevelopment: 'Web Development',
+        mobileApps: 'Mobile Apps',
+        cloudSolutions: 'Cloud Solutions',
+        consulting: 'Consulting'
+      }
+    },
+    contact: {
+      title: 'Contact Info',
+      email: 'info@fenneccompany.com',
+      phone: '+1 (555) 123-4567',
+      address: '123 Business St, City, State 12345'
+    },
+    copyright: 'All rights reserved.',
+    legalLinks: {
+      privacyPolicy: 'Privacy Policy',
+      termsOfService: 'Terms of Service'
+    }
+  }
 };
