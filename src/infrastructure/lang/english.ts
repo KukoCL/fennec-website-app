@@ -47,6 +47,11 @@ export const appTexts = {
     testimonialsSection: {
       title: 'What Our Clients Say',
       description: 'Don\'t just take our word for it. Here\'s what our satisfied clients have to say about working with us.',
+      testimonials: {
+        sarahJohnson: 'Fennec Company transformed our business with their innovative solutions. Our productivity increased by 300% and customer satisfaction is at an all-time high.',
+        michaelChen: 'The team at Fennec delivered exceptional results. Their expertise in cloud solutions helped us scale our operations seamlessly.',
+        emilyRodriguez: 'Outstanding service and support. They understood our vision and delivered a solution that exceeded our expectations.'
+      },
       stats: {
         projectsCompleted: 'Projects Completed',
         clientSatisfaction: 'Client Satisfaction',

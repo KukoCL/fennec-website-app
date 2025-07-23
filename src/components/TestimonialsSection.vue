@@ -10,7 +10,7 @@ interface Testimonial {
   name: string
   position: string
   company: string
-  message: string
+  messageKey: keyof typeof appTexts.value.testimonials
   avatar: string
   rating: number
 }
@@ -20,8 +20,7 @@ const testimonials: Testimonial[] = [
     name: 'Sarah Johnson',
     position: 'CEO',
     company: 'TechStart Inc.',
-    message:
-      'Fennec Company transformed our business with their innovative solutions. Our productivity increased by 300% and customer satisfaction is at an all-time high.',
+    messageKey: 'sarahJohnson',
     avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
     rating: 5,
   },
@@ -29,8 +28,7 @@ const testimonials: Testimonial[] = [
     name: 'Michael Chen',
     position: 'CTO',
     company: 'Global Solutions',
-    message:
-      'The team at Fennec delivered exceptional results. Their expertise in cloud solutions helped us scale our operations seamlessly.',
+    messageKey: 'michaelChen',
     avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
     rating: 5,
   },
@@ -38,8 +36,7 @@ const testimonials: Testimonial[] = [
     name: 'Emily Rodriguez',
     position: 'Marketing Director',
     company: 'Creative Agency',
-    message:
-      'Outstanding service and support. They understood our vision and delivered a solution that exceeded our expectations.',
+    messageKey: 'emilyRodriguez',
     avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
     rating: 5,
   },
@@ -70,7 +67,9 @@ const testimonials: Testimonial[] = [
               </div>
 
               <!-- Testimonial Text -->
-              <p class="card-text text-muted mb-4">"{{ testimonial.message }}"</p>
+              <p class="card-text text-muted mb-4">
+                "{{ appTexts.testimonials[testimonial.messageKey] }}"
+              </p>
 
               <!-- Client Info -->
               <div class="d-flex align-items-center">
