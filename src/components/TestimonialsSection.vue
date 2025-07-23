@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import useAppLang from '../composables/settings/useAppLang'
+
+const { getAppTexts } = useAppLang()
+const appTexts = computed(() => getAppTexts().home.testimonialsSection)
+
 interface Testimonial {
   name: string
   position: string
@@ -44,10 +51,9 @@ const testimonials: Testimonial[] = [
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto text-center mb-5">
-          <h2 class="display-5 fw-bold mb-3">What Our Clients Say</h2>
+          <h2 class="display-5 fw-bold mb-3">{{ appTexts.title }}</h2>
           <p class="lead text-muted">
-            Don't just take our word for it. Here's what our satisfied clients have to say about
-            working with us.
+            {{ appTexts.description }}
           </p>
         </div>
       </div>
@@ -94,25 +100,25 @@ const testimonials: Testimonial[] = [
         <div class="col-lg-3 col-md-6 text-center mb-4">
           <div class="stat-item">
             <h3 class="display-4 fw-bold text-primary mb-0">250+</h3>
-            <p class="text-muted">Projects Completed</p>
+            <p class="text-muted">{{ appTexts.stats.projectsCompleted }}</p>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 text-center mb-4">
           <div class="stat-item">
             <h3 class="display-4 fw-bold text-primary mb-0">98%</h3>
-            <p class="text-muted">Client Satisfaction</p>
+            <p class="text-muted">{{ appTexts.stats.clientSatisfaction }}</p>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 text-center mb-4">
           <div class="stat-item">
             <h3 class="display-4 fw-bold text-primary mb-0">50+</h3>
-            <p class="text-muted">Team Members</p>
+            <p class="text-muted">{{ appTexts.stats.teamMembers }}</p>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 text-center mb-4">
           <div class="stat-item">
             <h3 class="display-4 fw-bold text-primary mb-0">5+</h3>
-            <p class="text-muted">Years Experience</p>
+            <p class="text-muted">{{ appTexts.stats.yearsExperience }}</p>
           </div>
         </div>
       </div>
