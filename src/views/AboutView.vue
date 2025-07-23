@@ -53,7 +53,7 @@ const teamMembers: TeamMember[] = [
   <div class="about-page">
     <!-- Hero Section -->
     <section class="hero-section bg-primary text-white py-5">
-      <div class="container">
+      <div class="container px-lg-5">
         <div class="row align-items-center py-5">
           <div class="col-lg-6">
             <h1 class="display-4 fw-bold mb-4">About Fennec Company</h1>
@@ -132,7 +132,7 @@ const teamMembers: TeamMember[] = [
 
     <!-- Our Story -->
     <section class="py-5 bg-light">
-      <div class="container">
+      <div class="container px-lg-5">
         <div class="row align-items-center">
           <div class="col-lg-6">
             <h2 class="display-5 fw-bold mb-4">Our Story</h2>
@@ -262,7 +262,7 @@ const teamMembers: TeamMember[] = [
 
     <!-- Values Section -->
     <section class="py-5 bg-light">
-      <div class="container">
+      <div class="container px-lg-5">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
             <h2 class="display-5 fw-bold mb-3">Our Values</h2>

@@ -256,7 +256,7 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
 
     <!-- CTA Section -->
     <section class="py-5 bg-primary text-white">
-      <div class="container">
+      <div class="container px-lg-5">
         <div class="row align-items-center">
           <div class="col-lg-8">
             <h2 class="display-6 fw-bold mb-3">Ready to Start Your Project?</h2>
