@@ -55,7 +55,7 @@ describe('Navbar', () => {
   })
 
   it('contains all navigation links', () => {
-    const expectedLinks = ['Pifia', 'Acerca de', 'Servicios', 'Portafolio', 'Contacto']
+    const expectedLinks = ['Inicio', 'Acerca de', 'Servicios', 'Portafolio', 'Contacto']
 
     expectedLinks.forEach(linkText => {
       expect(wrapper.text()).toContain(linkText)
