@@ -87,7 +87,7 @@ export const appTexts = {
         placeholder: 'Correo electrónico',
         button: 'Suscribirse',
         successMessage: '¡Gracias por suscribirse! Nos pondremos en contacto pronto.',
-        privacyNote: 'Respetamos su privacidad. Darse de baja en cualquier momento.'
+        privacyNote: 'Respetamos su privacidad. Puede darse de baja en cualquier momento.'
       }
     }
   },
@@ -353,6 +353,85 @@ export const appTexts = {
     },
     common: {
       viewProject: 'Ver Proyecto'
+    }
+  },
+  contact: {
+    hero: {
+      title: 'Contáctanos',
+      description: '¿Listo para transformar tu negocio? Hablemos de tu proyecto y encontremos la solución perfecta para tus necesidades.'
+    },
+    form: {
+      title: 'Envíanos un Mensaje',
+      nameLabel: 'Nombre Completo *',
+      emailLabel: 'Correo Electrónico *',
+      companyLabel: 'Empresa',
+      serviceLabel: 'Servicio de Interés',
+      servicePlaceholder: 'Selecciona un servicio',
+      services: [
+        'Desarrollo Web',
+        'Desarrollo de Apps Móviles',
+        'Soluciones en la Nube',
+        'Analítica de Datos',
+        'Ciberseguridad',
+        'Consultoría IT',
+        'Otro',
+      ],
+      budgetLabel: 'Presupuesto del Proyecto',
+      budgetPlaceholder: 'Selecciona un rango de presupuesto',
+      budgetRanges: [
+        'Menos de $5,000',
+        '$5,000 - $10,000',
+        '$10,000 - $25,000',
+        '$25,000 - $50,000',
+        '$50,000+',
+        'A convenir',
+      ],
+      messageLabel: 'Detalles del Proyecto *',
+      messagePlaceholder: 'Cuéntanos sobre tu proyecto, objetivos y cualquier requerimiento específico...',
+      sendButton: 'Enviar Mensaje',
+      successMessage: '¡Gracias por tu mensaje! Nos pondremos en contacto en menos de 24 horas.'
+    },
+    info: {
+      title: 'Información de Contacto',
+      addressLabel: 'Dirección',
+      address: 'Calle Negocios 123, Oficina 100, Ciudad, Estado 12345',
+      phoneLabel: 'Teléfono',
+      phone: '+1 (555) 123-4567',
+      emailLabel: 'Correo',
+      email: 'info@fenneccompany.com',
+      hoursLabel: 'Horario de Atención',
+      hours: [
+        'Lun - Vie: 9:00 AM - 6:00 PM',
+        'Sáb: 10:00 AM - 4:00 PM',
+        'Dom: Cerrado'
+      ],
+      followUs: 'Síguenos'
+    },
+    map: {
+      title: 'Mapa Interactivo',
+      description: 'Aquí iría la integración de mapas (Google Maps, Mapbox, etc.)'
+    },
+    faq: {
+      title: 'Preguntas Frecuentes',
+      description: 'Respuestas rápidas a preguntas comunes sobre nuestros servicios y procesos.',
+      items: [
+        {
+          question: '¿Cuánto dura un proyecto típico?',
+          answer: 'El tiempo varía según la complejidad y el alcance. Sitios web simples suelen tomar 2-4 semanas, mientras que aplicaciones complejas pueden tomar 3-6 meses. Te daremos un cronograma detallado en la consulta inicial.'
+        },
+        {
+          question: '¿Cuál es su proceso de desarrollo?',
+          answer: 'Seguimos un proceso de 4 fases: Descubrimiento (entender tus necesidades), Diseño (prototipos), Desarrollo (construcción de la solución) y Lanzamiento (despliegue y soporte). Mantenemos comunicación constante.'
+        },
+        {
+          question: '¿Ofrecen soporte continuo?',
+          answer: 'Sí, ofrecemos paquetes de soporte que incluyen mantenimiento, actualizaciones, monitoreo y soporte técnico. Creemos en relaciones a largo plazo con nuestros clientes.'
+        },
+        {
+          question: '¿En qué tecnologías se especializan?',
+          answer: 'Nos especializamos en tecnologías modernas como React, Vue.js, Node.js, Python, plataformas en la nube como AWS, desarrollo móvil con React Native y diversas bases de datos y herramientas DevOps.'
+        }
+      ]
     }
   },
   footer: {

@@ -355,6 +355,85 @@ export const appTexts = {
       viewProject: 'View Project'
     }
   },
+  contact: {
+    hero: {
+      title: 'Get In Touch',
+      description: "Ready to transform your business? Let's discuss your project and find the perfect solution for your needs."
+    },
+    form: {
+      title: 'Send us a Message',
+      nameLabel: 'Full Name *',
+      emailLabel: 'Email Address *',
+      companyLabel: 'Company',
+      serviceLabel: 'Service Interested In',
+      servicePlaceholder: 'Select a service',
+      services: [
+        'Web Development',
+        'Mobile App Development',
+        'Cloud Solutions',
+        'Data Analytics',
+        'Cybersecurity',
+        'IT Consulting',
+        'Other',
+      ],
+      budgetLabel: 'Project Budget',
+      budgetPlaceholder: 'Select budget range',
+      budgetRanges: [
+        'Under $5,000',
+        '$5,000 - $10,000',
+        '$10,000 - $25,000',
+        '$25,000 - $50,000',
+        '$50,000+',
+        "Let's discuss",
+      ],
+      messageLabel: 'Project Details *',
+      messagePlaceholder: 'Tell us about your project, goals, and any specific requirements...',
+      sendButton: 'Send Message',
+      successMessage: "Thank you for your message! We'll get back to you within 24 hours."
+    },
+    info: {
+      title: 'Contact Information',
+      addressLabel: 'Address',
+      address: '123 Business Street, Suite 100, City, State 12345',
+      phoneLabel: 'Phone',
+      phone: '+1 (555) 123-4567',
+      emailLabel: 'Email',
+      email: 'info@fenneccompany.com',
+      hoursLabel: 'Business Hours',
+      hours: [
+        'Mon - Fri: 9:00 AM - 6:00 PM',
+        'Sat: 10:00 AM - 4:00 PM',
+        'Sun: Closed'
+      ],
+      followUs: 'Follow Us'
+    },
+    map: {
+      title: 'Interactive Map',
+      description: 'Map integration would go here (Google Maps, Mapbox, etc.)'
+    },
+    faq: {
+      title: 'Frequently Asked Questions',
+      description: 'Quick answers to common questions about our services and process.',
+      items: [
+        {
+          question: 'How long does a typical project take?',
+          answer: "Project timelines vary depending on complexity and scope. Simple websites typically take 2-4 weeks, while complex applications can take 3-6 months. We'll provide a detailed timeline during our initial consultation."
+        },
+        {
+          question: 'What is your development process?',
+          answer: 'We follow a structured 4-phase process: Discovery (understanding your needs), Design (creating prototypes), Development (building your solution), and Launch (deployment and support). We maintain constant communication throughout.'
+        },
+        {
+          question: 'Do you provide ongoing support?',
+          answer: 'Yes, we offer comprehensive support packages including maintenance, updates, monitoring, and technical support. We believe in long-term partnerships with our clients.'
+        },
+        {
+          question: 'What technologies do you specialize in?',
+          answer: 'We specialize in modern web technologies including React, Vue.js, Node.js, Python, cloud platforms like AWS, mobile development with React Native, and various databases and DevOps tools.'
+        }
+      ]
+    }
+  },
   footer: {
     companyInfo: {
       title: 'Fennec Company',
