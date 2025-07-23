@@ -91,6 +91,94 @@ export const appTexts = {
       }
     }
   },
+  about: {
+    hero: {
+      title: 'Acerca de Fennec Company',
+      description: 'Somos una empresa de tecnología con visión de futuro dedicada a ayudar a las empresas a prosperar en la era digital a través de soluciones innovadoras y orientación experta.',
+      stats: {
+        projects: 'Proyectos',
+        teamMembers: 'Miembros del Equipo',
+        years: 'Años',
+        satisfaction: 'Satisfacción'
+      }
+    },
+    missionVision: {
+      mission: {
+        title: 'Nuestra Misión',
+        description: 'Empoderar a las empresas con soluciones tecnológicas de vanguardia que impulsen el crecimiento, la eficiencia y la innovación en un panorama digital en constante evolución.'
+      },
+      vision: {
+        title: 'Nuestra Visión',
+        description: 'Ser el socio tecnológico líder para empresas en todo el mundo, creando transformaciones digitales sostenibles que generen un impacto positivo.'
+      }
+    },
+    story: {
+      title: 'Nuestra Historia',
+      paragraphs: [
+        'Fundada en 2019, Fennec Company comenzó con una misión simple: ayudar a las empresas a aprovechar la tecnología para el crecimiento sostenible. Lo que comenzó como un pequeño equipo de desarrolladores apasionados se ha convertido en un proveedor integral de soluciones tecnológicas.',
+        'A lo largo de los años, hemos ayudado a cientos de empresas a transformar sus operaciones, llegar a nuevos mercados y alcanzar sus objetivos comerciales a través de soluciones tecnológicas innovadoras y consultoría estratégica.'
+      ],
+      features: {
+        expertTeam: 'Equipo Experto',
+        provenResults: 'Resultados Probados',
+        support: 'Soporte 24/7',
+        globalReach: 'Alcance Global'
+      },
+      timeline: {
+        title: 'Cronología de la Empresa',
+        events: {
+          2019: 'Fundación de la Empresa',
+          2020: 'Primeros 50 Clientes',
+          2021: 'Expansión Internacional',
+          2022: '100+ Miembros del Equipo',
+          2024: 'Líder de la Industria'
+        }
+      }
+    },
+    team: {
+      title: 'Conoce a Nuestro Equipo',
+      description: 'Nuestro diverso equipo de expertos reúne años de experiencia y pasión por la innovación.',
+      members: {
+        johnSmith: {
+          name: 'John Smith',
+          position: 'CEO y Fundador',
+          bio: 'Con más de 15 años de experiencia en tecnología y estrategia empresarial, John lidera nuestra visión de innovación.'
+        },
+        sarahDavis: {
+          name: 'Sarah Davis',
+          position: 'CTO',
+          bio: 'Sarah es responsable de nuestra estrategia técnica y se asegura de que nos mantengamos a la vanguardia de las tendencias tecnológicas.'
+        },
+        mikeJohnson: {
+          name: 'Mike Johnson',
+          position: 'Desarrollador Líder',
+          bio: 'Mike lidera nuestro equipo de desarrollo y se asegura de que entreguemos soluciones de alta calidad que superen las expectativas.'
+        }
+      }
+    },
+    values: {
+      title: 'Nuestros Valores',
+      description: 'Estos valores fundamentales guían todo lo que hacemos y definen quiénes somos como empresa.',
+      items: {
+        passion: {
+          title: 'Pasión',
+          description: 'Somos apasionados por la tecnología y por ayudar a nuestros clientes a tener éxito.'
+        },
+        integrity: {
+          title: 'Integridad',
+          description: 'Conducimos los negocios con honestidad, transparencia y prácticas éticas.'
+        },
+        innovation: {
+          title: 'Innovación',
+          description: 'Buscamos continuamente soluciones creativas y adoptamos nuevas tecnologías.'
+        },
+        collaboration: {
+          title: 'Colaboración',
+          description: 'Creemos en el poder del trabajo en equipo y en la construcción de asociaciones sólidas.'
+        }
+      }
+    }
+  },
   footer: {
     companyInfo: {
       title: 'Fennec Company',

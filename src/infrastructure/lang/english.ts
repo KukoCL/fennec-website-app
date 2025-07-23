@@ -91,6 +91,94 @@ export const appTexts = {
       }
     }
   },
+  about: {
+    hero: {
+      title: 'About Fennec Company',
+      description: 'We are a forward-thinking technology company dedicated to helping businesses thrive in the digital age through innovative solutions and expert guidance.',
+      stats: {
+        projects: 'Projects',
+        teamMembers: 'Team Members',
+        years: 'Years',
+        satisfaction: 'Satisfaction'
+      }
+    },
+    missionVision: {
+      mission: {
+        title: 'Our Mission',
+        description: 'To empower businesses with cutting-edge technology solutions that drive growth, efficiency, and innovation in an ever-evolving digital landscape.'
+      },
+      vision: {
+        title: 'Our Vision',
+        description: 'To be the leading technology partner for businesses worldwide, creating sustainable digital transformations that make a positive impact.'
+      }
+    },
+    story: {
+      title: 'Our Story',
+      paragraphs: [
+        'Founded in 2019, Fennec Company started with a simple mission: to help businesses leverage technology for sustainable growth. What began as a small team of passionate developers has grown into a comprehensive technology solutions provider.',
+        'Over the years, we\'ve helped hundreds of companies transform their operations, reach new markets, and achieve their business goals through innovative technology solutions and strategic consulting.'
+      ],
+      features: {
+        expertTeam: 'Expert Team',
+        provenResults: 'Proven Results',
+        support: '24/7 Support',
+        globalReach: 'Global Reach'
+      },
+      timeline: {
+        title: 'Company Timeline',
+        events: {
+          2019: 'Company Founded',
+          2020: 'First 50 Clients',
+          2021: 'International Expansion',
+          2022: '100+ Team Members',
+          2024: 'Industry Leader'
+        }
+      }
+    },
+    team: {
+      title: 'Meet Our Team',
+      description: 'Our diverse team of experts brings together years of experience and passion for innovation.',
+      members: {
+        johnSmith: {
+          name: 'John Smith',
+          position: 'CEO & Founder',
+          bio: 'With over 15 years of experience in technology and business strategy, John leads our vision for innovation.'
+        },
+        sarahDavis: {
+          name: 'Sarah Davis',
+          position: 'CTO',
+          bio: 'Sarah is responsible for our technical strategy and ensures we stay at the forefront of technology trends.'
+        },
+        mikeJohnson: {
+          name: 'Mike Johnson',
+          position: 'Lead Developer',
+          bio: 'Mike leads our development team and ensures we deliver high-quality solutions that exceed expectations.'
+        }
+      }
+    },
+    values: {
+      title: 'Our Values',
+      description: 'These core values guide everything we do and define who we are as a company.',
+      items: {
+        passion: {
+          title: 'Passion',
+          description: 'We are passionate about technology and helping our clients succeed.'
+        },
+        integrity: {
+          title: 'Integrity',
+          description: 'We conduct business with honesty, transparency, and ethical practices.'
+        },
+        innovation: {
+          title: 'Innovation',
+          description: 'We continuously seek creative solutions and embrace new technologies.'
+        },
+        collaboration: {
+          title: 'Collaboration',
+          description: 'We believe in the power of teamwork and building strong partnerships.'
+        }
+      }
+    }
+  },
   footer: {
     companyInfo: {
       title: 'Fennec Company',

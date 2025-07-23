@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import useAppLang from '@/composables/settings/useAppLang'
+
+const { getAppTexts } = useAppLang()
+const appTexts = computed(() => getAppTexts().about)
+
 interface TeamMember {
   name: string
   position: string
@@ -14,9 +20,9 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
-    name: 'John Smith',
-    position: 'CEO & Founder',
-    bio: 'With over 15 years of experience in technology and business strategy, John leads our vision for innovation.',
+    name: appTexts.value.team.members.johnSmith.name,
+    position: appTexts.value.team.members.johnSmith.position,
+    bio: appTexts.value.team.members.johnSmith.bio,
     avatar:
       'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=face',
     social: {
@@ -25,9 +31,9 @@ const teamMembers: TeamMember[] = [
     },
   },
   {
-    name: 'Sarah Davis',
-    position: 'CTO',
-    bio: 'Sarah is responsible for our technical strategy and ensures we stay at the forefront of technology trends.',
+    name: appTexts.value.team.members.sarahDavis.name,
+    position: appTexts.value.team.members.sarahDavis.position,
+    bio: appTexts.value.team.members.sarahDavis.bio,
     avatar:
       'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face',
     social: {
@@ -36,9 +42,9 @@ const teamMembers: TeamMember[] = [
     },
   },
   {
-    name: 'Mike Johnson',
-    position: 'Lead Developer',
-    bio: 'Mike leads our development team and ensures we deliver high-quality solutions that exceed expectations.',
+    name: appTexts.value.team.members.mikeJohnson.name,
+    position: appTexts.value.team.members.mikeJohnson.position,
+    bio: appTexts.value.team.members.mikeJohnson.bio,
     avatar:
       'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face',
     social: {
@@ -57,10 +63,9 @@ const teamMembers: TeamMember[] = [
       <div class="container px-lg-5">
         <div class="row align-items-center py-5">
           <div class="col-lg-6">
-            <h1 class="display-4 fw-bold mb-4">About Fennec Company</h1>
+            <h1 class="display-4 fw-bold mb-4">{{ appTexts.hero.title }}</h1>
             <p class="lead">
-              We are a forward-thinking technology company dedicated to helping businesses thrive in
-              the digital age through innovative solutions and expert guidance.
+              {{ appTexts.hero.description }}
             </p>
           </div>
           <div class="col-lg-6">
@@ -68,19 +73,19 @@ const teamMembers: TeamMember[] = [
               <div class="row text-center">
                 <div class="col-6 mb-3">
                   <h3 class="text-primary fw-bold">250+</h3>
-                  <small class="text-muted">Projects</small>
+                  <small class="text-muted">{{ appTexts.hero.stats.projects }}</small>
                 </div>
                 <div class="col-6 mb-3">
                   <h3 class="text-primary fw-bold">50+</h3>
-                  <small class="text-muted">Team Members</small>
+                  <small class="text-muted">{{ appTexts.hero.stats.teamMembers }}</small>
                 </div>
                 <div class="col-6">
                   <h3 class="text-primary fw-bold">5+</h3>
-                  <small class="text-muted">Years</small>
+                  <small class="text-muted">{{ appTexts.hero.stats.years }}</small>
                 </div>
                 <div class="col-6">
                   <h3 class="text-primary fw-bold">98%</h3>
-                  <small class="text-muted">Satisfaction</small>
+                  <small class="text-muted">{{ appTexts.hero.stats.satisfaction }}</small>
                 </div>
               </div>
             </div>
@@ -102,10 +107,9 @@ const teamMembers: TeamMember[] = [
                 >
                   <font-awesome-icon icon="fa-solid fa-crosshairs" class="text-primary fs-2" />
                 </div>
-                <h3 class="fw-bold mb-3">Our Mission</h3>
+                <h3 class="fw-bold mb-3">{{ appTexts.missionVision.mission.title }}</h3>
                 <p class="text-muted">
-                  To empower businesses with cutting-edge technology solutions that drive growth,
-                  efficiency, and innovation in an ever-evolving digital landscape.
+                  {{ appTexts.missionVision.mission.description }}
                 </p>
               </div>
             </div>
@@ -119,10 +123,9 @@ const teamMembers: TeamMember[] = [
                 >
                   <font-awesome-icon icon="fa-solid fa-eye" class="text-success fs-2" />
                 </div>
-                <h3 class="fw-bold mb-3">Our Vision</h3>
+                <h3 class="fw-bold mb-3">{{ appTexts.missionVision.vision.title }}</h3>
                 <p class="text-muted">
-                  To be the leading technology partner for businesses worldwide, creating
-                  sustainable digital transformations that make a positive impact.
+                  {{ appTexts.missionVision.vision.description }}
                 </p>
               </div>
             </div>
@@ -136,40 +139,36 @@ const teamMembers: TeamMember[] = [
       <div class="container px-lg-5">
         <div class="row align-items-center">
           <div class="col-lg-6">
-            <h2 class="display-5 fw-bold mb-4">Our Story</h2>
+            <h2 class="display-5 fw-bold mb-4">{{ appTexts.story.title }}</h2>
             <p class="mb-4">
-              Founded in 2019, Fennec Company started with a simple mission: to help businesses
-              leverage technology for sustainable growth. What began as a small team of passionate
-              developers has grown into a comprehensive technology solutions provider.
+              {{ appTexts.story.paragraphs[0] }}
             </p>
             <p class="mb-4">
-              Over the years, we've helped hundreds of companies transform their operations, reach
-              new markets, and achieve their business goals through innovative technology solutions
-              and strategic consulting.
+              {{ appTexts.story.paragraphs[1] }}
             </p>
             <div class="row g-3">
               <div class="col-6">
                 <div class="d-flex align-items-center">
                   <i class="fa-solid fa-check-circle text-success me-2"></i>
-                  <span>Expert Team</span>
+                  <span>{{ appTexts.story.features.expertTeam }}</span>
                 </div>
               </div>
               <div class="col-6">
                 <div class="d-flex align-items-center">
                   <i class="fa-solid fa-check-circle text-success me-2"></i>
-                  <span>Proven Results</span>
+                  <span>{{ appTexts.story.features.provenResults }}</span>
                 </div>
               </div>
               <div class="col-6">
                 <div class="d-flex align-items-center">
                   <i class="fa-solid fa-check-circle text-success me-2"></i>
-                  <span>24/7 Support</span>
+                  <span>{{ appTexts.story.features.support }}</span>
                 </div>
               </div>
               <div class="col-6">
                 <div class="d-flex align-items-center">
                   <i class="fa-solid fa-check-circle text-success me-2"></i>
-                  <span>Global Reach</span>
+                  <span>{{ appTexts.story.features.globalReach }}</span>
                 </div>
               </div>
             </div>
@@ -178,22 +177,22 @@ const teamMembers: TeamMember[] = [
             <div class="bg-primary rounded-3 p-4">
               <div class="row g-3 text-white text-center">
                 <div class="col-12">
-                  <h4 class="mb-3">Company Timeline</h4>
+                  <h4 class="mb-3">{{ appTexts.story.timeline.title }}</h4>
                 </div>
                 <div class="col-12">
                   <div class="border-bottom border-light pb-3 mb-3">
-                    <strong>2019</strong> - Company Founded
+                    <strong>2019</strong> - {{ appTexts.story.timeline.events[2019] }}
                   </div>
                   <div class="border-bottom border-light pb-3 mb-3">
-                    <strong>2020</strong> - First 50 Clients
+                    <strong>2020</strong> - {{ appTexts.story.timeline.events[2020] }}
                   </div>
                   <div class="border-bottom border-light pb-3 mb-3">
-                    <strong>2021</strong> - International Expansion
+                    <strong>2021</strong> - {{ appTexts.story.timeline.events[2021] }}
                   </div>
                   <div class="border-bottom border-light pb-3 mb-3">
-                    <strong>2022</strong> - 100+ Team Members
+                    <strong>2022</strong> - {{ appTexts.story.timeline.events[2022] }}
                   </div>
-                  <div><strong>2024</strong> - Industry Leader</div>
+                  <div><strong>2024</strong> - {{ appTexts.story.timeline.events[2024] }}</div>
                 </div>
               </div>
             </div>
@@ -207,10 +206,9 @@ const teamMembers: TeamMember[] = [
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">Meet Our Team</h2>
+            <h2 class="display-5 fw-bold mb-3">{{ appTexts.team.title }}</h2>
             <p class="lead text-muted">
-              Our diverse team of experts brings together years of experience and passion for
-              innovation.
+              {{ appTexts.team.description }}
             </p>
           </div>
         </div>
@@ -266,9 +264,9 @@ const teamMembers: TeamMember[] = [
       <div class="container px-lg-5">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">Our Values</h2>
+            <h2 class="display-5 fw-bold mb-3">{{ appTexts.values.title }}</h2>
             <p class="lead text-muted">
-              These core values guide everything we do and define who we are as a company.
+              {{ appTexts.values.description }}
             </p>
           </div>
         </div>
@@ -285,9 +283,9 @@ const teamMembers: TeamMember[] = [
                   class="text-primary fs-2"
                 ></font-awesome-icon>
               </div>
-              <h5 class="fw-bold mb-2">Passion</h5>
+              <h5 class="fw-bold mb-2">{{ appTexts.values.items.passion.title }}</h5>
               <p class="text-muted small">
-                We are passionate about technology and helping our clients succeed.
+                {{ appTexts.values.items.passion.description }}
               </p>
             </div>
           </div>
@@ -302,9 +300,9 @@ const teamMembers: TeamMember[] = [
                   class="text-success fs-2"
                 ></font-awesome-icon>
               </div>
-              <h5 class="fw-bold mb-2">Integrity</h5>
+              <h5 class="fw-bold mb-2">{{ appTexts.values.items.integrity.title }}</h5>
               <p class="text-muted small">
-                We conduct business with honesty, transparency, and ethical practices.
+                {{ appTexts.values.items.integrity.description }}
               </p>
             </div>
           </div>
@@ -319,9 +317,9 @@ const teamMembers: TeamMember[] = [
                   class="text-warning fs-2"
                 ></font-awesome-icon>
               </div>
-              <h5 class="fw-bold mb-2">Innovation</h5>
+              <h5 class="fw-bold mb-2">{{ appTexts.values.items.innovation.title }}</h5>
               <p class="text-muted small">
-                We continuously seek creative solutions and embrace new technologies.
+                {{ appTexts.values.items.innovation.description }}
               </p>
             </div>
           </div>
@@ -336,9 +334,9 @@ const teamMembers: TeamMember[] = [
                   class="text-info fs-2"
                 ></font-awesome-icon>
               </div>
-              <h5 class="fw-bold mb-2">Collaboration</h5>
+              <h5 class="fw-bold mb-2">{{ appTexts.values.items.collaboration.title }}</h5>
               <p class="text-muted small">
-                We believe in the power of teamwork and building strong partnerships.
+                {{ appTexts.values.items.collaboration.description }}
               </p>
             </div>
           </div>
