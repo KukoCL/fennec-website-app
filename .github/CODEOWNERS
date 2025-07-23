@@ -1,16 +1,11 @@
 # Global code owners - Copilot will be automatically requested as a reviewer for all PRs
-* @copilot
 
-# Specific patterns (you can customize these)
+* @copilot
 *.ts @copilot
 *.vue @copilot
 *.js @copilot
 src/ @copilot
-
-# GitHub Actions workflows
 .github/workflows/ @copilot
-
-# Configuration files
 package.json @copilot
 vite.config.ts @copilot
 tsconfig*.json @copilot
