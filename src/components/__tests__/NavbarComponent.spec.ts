@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Navbar from '../Navbar.vue'
+import Navbar from '../NavbarComponent.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 // Create a mock router

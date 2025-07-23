@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import useAppLang from '@/composables/settings/useAppLang'
+
+const { getAppTexts } = useAppLang()
+const appTexts = getAppTexts().home.header
 </script>
 
 <template>
@@ -7,10 +11,9 @@ import { RouterLink } from 'vue-router'
     <div class="container">
       <div class="row align-items-center p-lg-5">
         <div class="col-lg-6">
-          <h1 class="display-4 fw-bold mb-4">Modern Business Solutions for the Digital Age</h1>
+          <h1 class="display-4 fw-bold mb-4">{{ appTexts.headerTitle }}</h1>
           <p class="lead mb-4">
-            We help companies transform their business with cutting-edge technology, innovative
-            strategies, and expert consultation to drive growth and success.
+            {{ appTexts.description }}
           </p>
           <div class="d-flex flex-column flex-sm-row gap-3">
             <RouterLink to="/contact" class="btn btn-light btn-lg px-4"> Get Started </RouterLink>
