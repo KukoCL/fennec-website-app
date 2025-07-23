@@ -1,12 +1,25 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useAppSettingsStore } from '@/stores/appSettingsStore'
+import { storeToRefs } from 'pinia'
 
 const isNavCollapsed = ref(true)
+const appSettingsStore = useAppSettingsStore()
+const { appLanguage } = storeToRefs(appSettingsStore)
 
 const toggleNav = () => {
   isNavCollapsed.value = !isNavCollapsed.value
 }
+
+const changeLanguage = (lang: 'es' | 'en') => {
+  appSettingsStore.appLanguage = lang
+  isNavCollapsed.value = true // Close mobile menu after selection
+}
+
+const currentLanguageLabel = computed(() => {
+  return appLanguage.value === 'es' ? 'Español' : 'English'
+})
 </script>
 
 <template>
@@ -59,6 +72,42 @@ const toggleNav = () => {
               >Contact</RouterLink
             >
           </li>
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="languageDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {{ currentLanguageLabel }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  @click.prevent="changeLanguage('es')"
+                  :class="{ active: appLanguage === 'es' }"
+                >
+                  🇪🇸 Español
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  @click.prevent="changeLanguage('en')"
+                  :class="{ active: appLanguage === 'en' }"
+                >
+                  🇺🇸 English
+                </a>
+              </li>
+            </ul>
+          </li>
+
           <li class="nav-item">
             <RouterLink class="btn btn-primary ms-2" to="/contact" @click="isNavCollapsed = true"
               >Get Started</RouterLink
@@ -97,5 +146,29 @@ const toggleNav = () => {
 .btn-primary {
   padding: 0.5rem 1rem;
   border-radius: 25px;
+}
+
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.dropdown-item.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.dropdown-toggle::after {
+  margin-left: 0.5rem;
 }
 </style>

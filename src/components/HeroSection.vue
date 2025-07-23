@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import useAppLang from '@/composables/settings/useAppLang'
 
 const { getAppTexts } = useAppLang()
-const appTexts = getAppTexts().home.header
+const appTexts = computed(() => getAppTexts().home.header)
 </script>
 
 <template>
