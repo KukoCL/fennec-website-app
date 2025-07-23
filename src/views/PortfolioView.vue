@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { ref, computed } from 'vue'
+import useAppLang from '@/composables/settings/useAppLang'
+
+const { getAppTexts } = useAppLang()
+const appTexts = computed(() => getAppTexts().portfolio)
 
 interface Project {
   id: string
@@ -15,71 +20,74 @@ interface Project {
 const projects: Project[] = [
   {
     id: 'ecommerce-platform',
-    title: 'E-commerce Platform',
-    description: 'Modern e-commerce solution with advanced analytics and inventory management.',
+    title: appTexts.value.projects.ecommercePlatform.title,
+    description: appTexts.value.projects.ecommercePlatform.description,
     image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=300&fit=crop',
-    category: 'Web Development',
+    category: appTexts.value.projects.ecommercePlatform.category,
     technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
     link: '#',
     featured: true,
   },
   {
     id: 'mobile-banking-app',
-    title: 'Mobile Banking App',
-    description: 'Secure mobile banking application with biometric authentication.',
+    title: appTexts.value.projects.mobileBankingApp.title,
+    description: appTexts.value.projects.mobileBankingApp.description,
     image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=300&fit=crop',
-    category: 'Mobile Development',
+    category: appTexts.value.projects.mobileBankingApp.category,
     technologies: ['React Native', 'Express.js', 'PostgreSQL', 'JWT'],
     link: '#',
     featured: true,
   },
   {
     id: 'cloud-migration',
-    title: 'Enterprise Cloud Migration',
-    description: 'Complete cloud infrastructure migration for a Fortune 500 company.',
+    title: appTexts.value.projects.cloudMigration.title,
+    description: appTexts.value.projects.cloudMigration.description,
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&h=300&fit=crop',
-    category: 'Cloud Solutions',
+    category: appTexts.value.projects.cloudMigration.category,
     technologies: ['AWS', 'Docker', 'Kubernetes', 'Terraform'],
     link: '#',
     featured: true,
   },
   {
     id: 'analytics-dashboard',
-    title: 'Business Analytics Dashboard',
-    description: 'Real-time analytics dashboard for monitoring business KPIs.',
+    title: appTexts.value.projects.analyticsDashboard.title,
+    description: appTexts.value.projects.analyticsDashboard.description,
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop',
-    category: 'Data Analytics',
+    category: appTexts.value.projects.analyticsDashboard.category,
     technologies: ['Vue.js', 'Python', 'D3.js', 'Flask'],
     link: '#',
     featured: false,
   },
   {
     id: 'iot-platform',
-    title: 'IoT Management Platform',
-    description: 'Comprehensive IoT device management and monitoring system.',
-    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=500&h=300&fit=crop',
-    category: 'IoT Solutions',
+    title: appTexts.value.projects.iotPlatform.title,
+    description: appTexts.value.projects.iotPlatform.description,
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=300&fit=crop',
+    category: appTexts.value.projects.iotPlatform.category,
     technologies: ['Angular', 'MQTT', 'InfluxDB', 'Grafana'],
     link: '#',
     featured: false,
   },
   {
     id: 'healthcare-system',
-    title: 'Healthcare Management System',
-    description: 'Digital healthcare platform for patient and appointment management.',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=500&h=300&fit=crop',
-    category: 'Web Development',
+    title: appTexts.value.projects.healthcareSystem.title,
+    description: appTexts.value.projects.healthcareSystem.description,
+    image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&h=300&fit=crop',
+    category: appTexts.value.projects.healthcareSystem.category,
     technologies: ['React', 'Django', 'PostgreSQL', 'Redis'],
     link: '#',
     featured: false,
   },
 ]
 
-const categories = ['All', ...Array.from(new Set(projects.map((p) => p.category)))]
-const selectedCategory = ref('All')
+const categories = computed(() => [
+  appTexts.value.allProjects.filterAll,
+  ...Array.from(new Set(projects.map((p) => p.category))),
+])
+const selectedCategory = ref(appTexts.value.allProjects.filterAll)
 
 const filteredProjects = computed(() => {
-  if (selectedCategory.value === 'All') {
+  if (selectedCategory.value === appTexts.value.allProjects.filterAll) {
     return projects
   }
   return projects.filter((project) => project.category === selectedCategory.value)
@@ -95,10 +103,9 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
       <div class="container">
         <div class="row align-items-center py-5">
           <div class="col-lg-8 mx-auto text-center">
-            <h1 class="display-4 fw-bold mb-4">Our Portfolio</h1>
+            <h1 class="display-4 fw-bold mb-4">{{ appTexts.hero.title }}</h1>
             <p class="lead">
-              Explore our successful projects and see how we've helped businesses achieve their
-              goals through innovative technology solutions.
+              {{ appTexts.hero.description }}
             </p>
           </div>
         </div>
@@ -110,9 +117,9 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">Featured Projects</h2>
+            <h2 class="display-5 fw-bold mb-3">{{ appTexts.featured.title }}</h2>
             <p class="lead text-muted">
-              Here are some of our most successful and impactful projects.
+              {{ appTexts.featured.description }}
             </p>
           </div>
         </div>
@@ -130,7 +137,7 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
                 <div class="project-overlay d-flex align-items-center justify-content-center">
                   <a :href="project.link" class="btn btn-light btn-sm">
                     <i class="fa-solid fa-external-link-alt me-1"></i>
-                    View Project
+                    {{ appTexts.common.viewProject }}
                   </a>
                 </div>
               </div>
@@ -159,9 +166,9 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">All Projects</h2>
+            <h2 class="display-5 fw-bold mb-3">{{ appTexts.allProjects.title }}</h2>
             <p class="lead text-muted">
-              Browse through our complete portfolio of successful projects.
+              {{ appTexts.allProjects.description }}
             </p>
           </div>
         </div>
@@ -198,7 +205,7 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
                 <div class="project-overlay d-flex align-items-center justify-content-center">
                   <a :href="project.link" class="btn btn-light btn-sm">
                     <i class="fa-solid fa-external-link-alt me-1"></i>
-                    View Project
+                    {{ appTexts.common.viewProject }}
                   </a>
                 </div>
               </div>
@@ -229,25 +236,25 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
           <div class="col-lg-3 col-md-6">
             <div class="stat-item">
               <h3 class="display-4 fw-bold text-primary mb-0">250+</h3>
-              <p class="text-muted">Projects Completed</p>
+              <p class="text-muted">{{ appTexts.stats.projectsCompleted }}</p>
             </div>
           </div>
           <div class="col-lg-3 col-md-6">
             <div class="stat-item">
               <h3 class="display-4 fw-bold text-primary mb-0">150+</h3>
-              <p class="text-muted">Happy Clients</p>
+              <p class="text-muted">{{ appTexts.stats.happyClients }}</p>
             </div>
           </div>
           <div class="col-lg-3 col-md-6">
             <div class="stat-item">
               <h3 class="display-4 fw-bold text-primary mb-0">98%</h3>
-              <p class="text-muted">Success Rate</p>
+              <p class="text-muted">{{ appTexts.stats.successRate }}</p>
             </div>
           </div>
           <div class="col-lg-3 col-md-6">
             <div class="stat-item">
               <h3 class="display-4 fw-bold text-primary mb-0">24/7</h3>
-              <p class="text-muted">Support Available</p>
+              <p class="text-muted">{{ appTexts.stats.supportAvailable }}</p>
             </div>
           </div>
         </div>
@@ -259,15 +266,15 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
       <div class="container px-lg-5">
         <div class="row align-items-center">
           <div class="col-lg-8">
-            <h2 class="display-6 fw-bold mb-3">Ready to Start Your Project?</h2>
+            <h2 class="display-6 fw-bold mb-3">{{ appTexts.cta.title }}</h2>
             <p class="lead mb-0">
-              Let's bring your vision to life with our expertise and innovative solutions.
+              {{ appTexts.cta.description }}
             </p>
           </div>
           <div class="col-lg-4 text-lg-end">
             <router-link to="/contact" class="btn btn-light btn-lg">
-              <i class="fa-solid fa-rocket me-2"></i>
-              Start Your Project
+              <font-awesome-icon icon="fa-solid fa-rocket" class="me-2" />
+              {{ appTexts.cta.button }}
             </router-link>
           </div>
         </div>

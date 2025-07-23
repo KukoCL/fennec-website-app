@@ -3,6 +3,10 @@ import { RouterLink } from 'vue-router'
 import { ref, computed } from 'vue'
 import { useAppSettingsStore } from '@/stores/appSettingsStore'
 import { storeToRefs } from 'pinia'
+import useAppLang from '@/composables/settings/useAppLang'
+
+const { getAppTexts } = useAppLang()
+const appTexts = computed(() => getAppTexts())
 
 const isNavCollapsed = ref(true)
 const appSettingsStore = useAppSettingsStore()
@@ -15,25 +19,26 @@ const toggleNav = () => {
 const changeLanguage = (lang: 'es' | 'en') => {
   appSettingsStore.appLanguage = lang
   isNavCollapsed.value = true // Close mobile menu after selection
+  localStorage.setItem('appLanguage', lang) // Persist language choice
 }
 
 const currentLanguageLabel = computed(() => {
-  return appLanguage.value === 'es' ? 'Español' : 'English'
+  return appLanguage.value === 'es' ? 'ES' : 'EN'
 })
 </script>
 
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <RouterLink class="navbar-brand fw-bold" to="/">
+      <RouterLink class="navbar-brand company-name fw-bold" to="/">
         <img
           src="/favicon.ico"
           alt="Logo"
-          width="30"
-          height="30"
+          width="45"
+          height="45"
           class="d-inline-block align-top me-2"
         />
-        Fennec
+        {{ appTexts.navbar.brand }}
       </RouterLink>
 
       <button
@@ -42,7 +47,7 @@ const currentLanguageLabel = computed(() => {
         @click="toggleNav"
         aria-controls="navbarNav"
         aria-expanded="false"
-        aria-label="Toggle navigation"
+        :aria-label="appTexts.navbar.toggleNavigation"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -50,29 +55,34 @@ const currentLanguageLabel = computed(() => {
       <div class="collapse navbar-collapse" :class="{ show: !isNavCollapsed }" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/" @click="isNavCollapsed = true">Home</RouterLink>
+            <RouterLink class="nav-link" to="/" @click="isNavCollapsed = true">{{
+              appTexts.navbar.navigation.home
+            }}</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/about" @click="isNavCollapsed = true"
-              >About</RouterLink
-            >
+            <RouterLink class="nav-link" to="/about" @click="isNavCollapsed = true">{{
+              appTexts.navbar.navigation.about
+            }}</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/services" @click="isNavCollapsed = true"
-              >Services</RouterLink
-            >
+            <RouterLink class="nav-link" to="/services" @click="isNavCollapsed = true">{{
+              appTexts.navbar.navigation.services
+            }}</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/portfolio" @click="isNavCollapsed = true"
-              >Portfolio</RouterLink
-            >
+            <RouterLink class="nav-link" to="/portfolio" @click="isNavCollapsed = true">{{
+              appTexts.navbar.navigation.portfolio
+            }}</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/contact" @click="isNavCollapsed = true"
-              >Contact</RouterLink
-            >
+            <RouterLink class="nav-link" to="/contact" @click="isNavCollapsed = true">{{
+              appTexts.navbar.navigation.contact
+            }}</RouterLink>
           </li>
-
+          <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+            <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+            <hr class="d-lg-none my-2 text-white-50" />
+          </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -82,7 +92,7 @@ const currentLanguageLabel = computed(() => {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              {{ currentLanguageLabel }}
+              <h6 class="d-inline-block mb-0">{{ currentLanguageLabel }}</h6>
             </a>
             <ul class="dropdown-menu" aria-labelledby="languageDropdown">
               <li>
@@ -92,7 +102,7 @@ const currentLanguageLabel = computed(() => {
                   @click.prevent="changeLanguage('es')"
                   :class="{ active: appLanguage === 'es' }"
                 >
-                  🇪🇸 Español
+                  🇪🇸 {{ appTexts.navbar.language.spanish }}
                 </a>
               </li>
               <li>
@@ -102,16 +112,10 @@ const currentLanguageLabel = computed(() => {
                   @click.prevent="changeLanguage('en')"
                   :class="{ active: appLanguage === 'en' }"
                 >
-                  🇺🇸 English
+                  🇺🇸 {{ appTexts.navbar.language.english }}
                 </a>
               </li>
             </ul>
-          </li>
-
-          <li class="nav-item">
-            <RouterLink class="btn btn-primary ms-2" to="/contact" @click="isNavCollapsed = true"
-              >Get Started</RouterLink
-            >
           </li>
         </ul>
       </div>
@@ -138,7 +142,7 @@ const currentLanguageLabel = computed(() => {
   color: #ffffff !important;
 }
 
-.router-link-active:not(.btn) {
+.router-link-active:not(.btn, .company-name) {
   color: #ffffff !important;
   font-weight: bold;
 }
@@ -170,5 +174,9 @@ const currentLanguageLabel = computed(() => {
 
 .dropdown-toggle::after {
   margin-left: 0.5rem;
+}
+
+.company-name {
+  color: #ffd894;
 }
 </style>

@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { ref, computed } from 'vue'
+import useAppLang from '@/composables/settings/useAppLang'
+
+const { getAppTexts } = useAppLang()
+const appTexts = computed(() => getAppTexts())
 
 const form = ref({
   name: '',
@@ -10,29 +15,13 @@ const form = ref({
   budget: '',
 })
 
-const services = [
-  'Web Development',
-  'Mobile App Development',
-  'Cloud Solutions',
-  'Data Analytics',
-  'Cybersecurity',
-  'IT Consulting',
-  'Other',
-]
-
-const budgetRanges = [
-  'Under $5,000',
-  '$5,000 - $10,000',
-  '$10,000 - $25,000',
-  '$25,000 - $50,000',
-  '$50,000+',
-  "Let's discuss",
-]
+const services = computed(() => appTexts.value.contact.form.services)
+const budgetRanges = computed(() => appTexts.value.contact.form.budgetRanges)
 
 const submitForm = () => {
   // Handle form submission
   console.log('Form submitted:', form.value)
-  alert("Thank you for your message! We'll get back to you within 24 hours.")
+  alert(appTexts.value.contact.form.successMessage)
 
   // Reset form
   form.value = {
@@ -53,10 +42,9 @@ const submitForm = () => {
       <div class="container">
         <div class="row align-items-center py-5">
           <div class="col-lg-8 mx-auto text-center">
-            <h1 class="display-4 fw-bold mb-4">Get In Touch</h1>
+            <h1 class="display-4 fw-bold mb-4">{{ appTexts.contact.hero.title }}</h1>
             <p class="lead">
-              Ready to transform your business? Let's discuss your project and find the perfect
-              solution for your needs.
+              {{ appTexts.contact.hero.description }}
             </p>
           </div>
         </div>
@@ -71,11 +59,13 @@ const submitForm = () => {
           <div class="col-lg-8">
             <div class="card border-0 shadow-sm">
               <div class="card-body p-5">
-                <h2 class="h3 fw-bold mb-4">Send us a Message</h2>
+                <h2 class="h3 fw-bold mb-4">{{ appTexts.contact.form.title }}</h2>
                 <form @submit.prevent="submitForm">
                   <div class="row g-3">
                     <div class="col-md-6">
-                      <label for="name" class="form-label">Full Name *</label>
+                      <label for="name" class="form-label">{{
+                        appTexts.contact.form.nameLabel
+                      }}</label>
                       <input
                         v-model="form.name"
                         type="text"
@@ -85,7 +75,9 @@ const submitForm = () => {
                       />
                     </div>
                     <div class="col-md-6">
-                      <label for="email" class="form-label">Email Address *</label>
+                      <label for="email" class="form-label">{{
+                        appTexts.contact.form.emailLabel
+                      }}</label>
                       <input
                         v-model="form.email"
                         type="email"
@@ -95,42 +87,50 @@ const submitForm = () => {
                       />
                     </div>
                     <div class="col-md-6">
-                      <label for="company" class="form-label">Company</label>
+                      <label for="company" class="form-label">{{
+                        appTexts.contact.form.companyLabel
+                      }}</label>
                       <input v-model="form.company" type="text" class="form-control" id="company" />
                     </div>
                     <div class="col-md-6">
-                      <label for="service" class="form-label">Service Interested In</label>
+                      <label for="service" class="form-label">{{
+                        appTexts.contact.form.serviceLabel
+                      }}</label>
                       <select v-model="form.service" class="form-select" id="service">
-                        <option value="">Select a service</option>
+                        <option value="">{{ appTexts.contact.form.servicePlaceholder }}</option>
                         <option v-for="service in services" :key="service" :value="service">
                           {{ service }}
                         </option>
                       </select>
                     </div>
                     <div class="col-12">
-                      <label for="budget" class="form-label">Project Budget</label>
+                      <label for="budget" class="form-label">{{
+                        appTexts.contact.form.budgetLabel
+                      }}</label>
                       <select v-model="form.budget" class="form-select" id="budget">
-                        <option value="">Select budget range</option>
+                        <option value="">{{ appTexts.contact.form.budgetPlaceholder }}</option>
                         <option v-for="budget in budgetRanges" :key="budget" :value="budget">
                           {{ budget }}
                         </option>
                       </select>
                     </div>
                     <div class="col-12">
-                      <label for="message" class="form-label">Project Details *</label>
+                      <label for="message" class="form-label">{{
+                        appTexts.contact.form.messageLabel
+                      }}</label>
                       <textarea
                         v-model="form.message"
                         class="form-control"
                         id="message"
                         rows="5"
-                        placeholder="Tell us about your project, goals, and any specific requirements..."
+                        :placeholder="appTexts.contact.form.messagePlaceholder"
                         required
                       ></textarea>
                     </div>
                     <div class="col-12">
                       <button type="submit" class="btn btn-primary btn-lg">
                         <i class="fa-solid fa-paper-plane me-2"></i>
-                        Send Message
+                        {{ appTexts.contact.form.sendButton }}
                       </button>
                     </div>
                   </div>
@@ -143,19 +143,22 @@ const submitForm = () => {
           <div class="col-lg-4">
             <div class="card border-0 shadow-sm">
               <div class="card-body p-4">
-                <h3 class="h4 fw-bold mb-4">Contact Information</h3>
+                <h3 class="h4 fw-bold mb-4">{{ appTexts.contact.info.title }}</h3>
 
                 <div class="contact-item d-flex mb-4">
                   <div
                     class="contact-icon bg-dark bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
                     style="width: 50px; height: 50px"
                   >
-                    <i class="fa-solid fa-map-marker-alt text-primary"></i>
+                    <font-awesome-icon
+                      icon="fa-solid fa-map-marker-alt"
+                      class="text-primary"
+                    ></font-awesome-icon>
                   </div>
                   <div>
-                    <h6 class="fw-bold mb-1">Address</h6>
+                    <h6 class="fw-bold mb-1">{{ appTexts.contact.info.addressLabel }}</h6>
                     <p class="text-muted mb-0">
-                      123 Business Street<br />Suite 100<br />City, State 12345
+                      {{ appTexts.contact.info.address }}
                     </p>
                   </div>
                 </div>
@@ -165,14 +168,17 @@ const submitForm = () => {
                     class="contact-icon bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
                     style="width: 50px; height: 50px"
                   >
-                    <i class="fa-solid fa-phone text-success"></i>
+                    <font-awesome-icon
+                      icon="fa-solid fa-phone"
+                      class="text-success"
+                    ></font-awesome-icon>
                   </div>
                   <div>
-                    <h6 class="fw-bold mb-1">Phone</h6>
+                    <h6 class="fw-bold mb-1">{{ appTexts.contact.info.phoneLabel }}</h6>
                     <p class="text-muted mb-0">
-                      <a href="tel:+1-555-123-4567" class="text-decoration-none"
-                        >+1 (555) 123-4567</a
-                      >
+                      <a :href="`tel:${appTexts.contact.info.phone}`" class="text-decoration-none">
+                        {{ appTexts.contact.info.phone }}
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -182,14 +188,20 @@ const submitForm = () => {
                     class="contact-icon bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
                     style="width: 50px; height: 50px"
                   >
-                    <i class="fa-solid fa-envelope text-info"></i>
+                    <font-awesome-icon
+                      icon="fa-solid fa-envelope"
+                      class="text-info"
+                    ></font-awesome-icon>
                   </div>
                   <div>
-                    <h6 class="fw-bold mb-1">Email</h6>
+                    <h6 class="fw-bold mb-1">{{ appTexts.contact.info.emailLabel }}</h6>
                     <p class="text-muted mb-0">
-                      <a href="mailto:info@fenneccompany.com" class="text-decoration-none"
-                        >info@fenneccompany.com</a
+                      <a
+                        :href="`mailto:${appTexts.contact.info.email}`"
+                        class="text-decoration-none"
                       >
+                        {{ appTexts.contact.info.email }}
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -199,33 +211,36 @@ const submitForm = () => {
                     class="contact-icon bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
                     style="width: 50px; height: 50px"
                   >
-                    <i class="fa-solid fa-clock text-warning"></i>
+                    <font-awesome-icon
+                      icon="fa-solid fa-clock"
+                      class="text-warning"
+                    ></font-awesome-icon>
                   </div>
                   <div>
-                    <h6 class="fw-bold mb-1">Business Hours</h6>
+                    <h6 class="fw-bold mb-1">{{ appTexts.contact.info.hoursLabel }}</h6>
                     <p class="text-muted mb-0">
-                      Mon - Fri: 9:00 AM - 6:00 PM<br />
-                      Sat: 10:00 AM - 4:00 PM<br />
-                      Sun: Closed
+                      <span v-for="(line, idx) in appTexts.contact.info.hours" :key="idx">
+                        {{ line }}<br v-if="idx < appTexts.contact.info.hours.length - 1" />
+                      </span>
                     </p>
                   </div>
                 </div>
 
                 <hr />
 
-                <h6 class="fw-bold mb-3">Follow Us</h6>
+                <h6 class="fw-bold mb-3">{{ appTexts.contact.info.followUs }}</h6>
                 <div class="d-flex gap-2">
                   <a href="#" class="btn btn-outline-primary btn-sm">
-                    <i class="fa-brands fa-facebook-f"></i>
+                    <font-awesome-icon icon="fa-brands fa-facebook-f"></font-awesome-icon>
                   </a>
                   <a href="#" class="btn btn-outline-primary btn-sm">
-                    <i class="fa-brands fa-twitter"></i>
+                    <font-awesome-icon icon="fa-brands fa-twitter"></font-awesome-icon>
                   </a>
                   <a href="#" class="btn btn-outline-primary btn-sm">
-                    <i class="fa-brands fa-linkedin-in"></i>
+                    <font-awesome-icon icon="fa-brands fa-linkedin-in"></font-awesome-icon>
                   </a>
                   <a href="#" class="btn btn-outline-primary btn-sm">
-                    <i class="fa-brands fa-instagram"></i>
+                    <font-awesome-icon icon="fa-brands fa-instagram"></font-awesome-icon>
                   </a>
                 </div>
               </div>
@@ -248,9 +263,9 @@ const submitForm = () => {
                 >
                   <div class="text-center text-white">
                     <i class="fa-solid fa-map-marker-alt fa-3x mb-3"></i>
-                    <h4>Interactive Map</h4>
+                    <h4>{{ appTexts.contact.map.title }}</h4>
                     <p class="mb-0">
-                      Map integration would go here<br />(Google Maps, Mapbox, etc.)
+                      {{ appTexts.contact.map.description }}
                     </p>
                   </div>
                 </div>
@@ -267,9 +282,9 @@ const submitForm = () => {
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <div class="text-center mb-5">
-              <h2 class="display-5 fw-bold mb-3">Frequently Asked Questions</h2>
+              <h2 class="display-5 fw-bold mb-3">{{ appTexts.contact.faq.title }}</h2>
               <p class="lead text-muted">
-                Quick answers to common questions about our services and process.
+                {{ appTexts.contact.faq.description }}
               </p>
             </div>
 
@@ -282,7 +297,7 @@ const submitForm = () => {
                     data-bs-toggle="collapse"
                     data-bs-target="#faq1"
                   >
-                    How long does a typical project take?
+                    {{ appTexts.contact.faq.items[0].question }}
                   </button>
                 </h2>
                 <div
@@ -291,9 +306,7 @@ const submitForm = () => {
                   data-bs-parent="#faqAccordion"
                 >
                   <div class="accordion-body">
-                    Project timelines vary depending on complexity and scope. Simple websites
-                    typically take 2-4 weeks, while complex applications can take 3-6 months. We'll
-                    provide a detailed timeline during our initial consultation.
+                    {{ appTexts.contact.faq.items[0].answer }}
                   </div>
                 </div>
               </div>
@@ -306,14 +319,12 @@ const submitForm = () => {
                     data-bs-toggle="collapse"
                     data-bs-target="#faq2"
                   >
-                    What is your development process?
+                    {{ appTexts.contact.faq.items[1].question }}
                   </button>
                 </h2>
                 <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    We follow a structured 4-phase process: Discovery (understanding your needs),
-                    Design (creating prototypes), Development (building your solution), and Launch
-                    (deployment and support). We maintain constant communication throughout.
+                    {{ appTexts.contact.faq.items[1].answer }}
                   </div>
                 </div>
               </div>
@@ -326,14 +337,12 @@ const submitForm = () => {
                     data-bs-toggle="collapse"
                     data-bs-target="#faq3"
                   >
-                    Do you provide ongoing support?
+                    {{ appTexts.contact.faq.items[2].question }}
                   </button>
                 </h2>
                 <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    Yes, we offer comprehensive support packages including maintenance, updates,
-                    monitoring, and technical support. We believe in long-term partnerships with our
-                    clients.
+                    {{ appTexts.contact.faq.items[2].answer }}
                   </div>
                 </div>
               </div>
@@ -346,14 +355,12 @@ const submitForm = () => {
                     data-bs-toggle="collapse"
                     data-bs-target="#faq4"
                   >
-                    What technologies do you specialize in?
+                    {{ appTexts.contact.faq.items[3].question }}
                   </button>
                 </h2>
                 <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    We specialize in modern web technologies including React, Vue.js, Node.js,
-                    Python, cloud platforms like AWS, mobile development with React Native, and
-                    various databases and DevOps tools.
+                    {{ appTexts.contact.faq.items[3].answer }}
                   </div>
                 </div>
               </div>

@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import useAppLang from '@/composables/settings/useAppLang'
+
+const { getAppTexts } = useAppLang()
+const appTexts = computed(() => getAppTexts().services)
+
 interface Service {
   id: string
   icon: string
@@ -13,76 +20,56 @@ const services: Service[] = [
   {
     id: 'web-development',
     icon: 'code',
-    title: 'Web Development',
-    description: 'Custom web applications built with modern frameworks and technologies.',
-    features: [
-      'Responsive Design',
-      'Performance Optimization',
-      'SEO Friendly',
-      'Cross-browser Compatible',
-    ],
+    title: appTexts.value.servicesList.webDevelopment.title,
+    description: appTexts.value.servicesList.webDevelopment.description,
+    features: appTexts.value.servicesList.webDevelopment.features,
     color: 'dark',
-    price: 'Starting at $2,999',
+    price: appTexts.value.servicesList.webDevelopment.price,
   },
   {
     id: 'mobile-apps',
     icon: 'mobile-screen-button',
-    title: 'Mobile App Development',
-    description: 'Native and cross-platform mobile applications for iOS and Android.',
-    features: [
-      'Native Performance',
-      'Cross-platform',
-      'App Store Optimization',
-      'Push Notifications',
-    ],
+    title: appTexts.value.servicesList.mobileApps.title,
+    description: appTexts.value.servicesList.mobileApps.description,
+    features: appTexts.value.servicesList.mobileApps.features,
     color: 'success',
-    price: 'Starting at $4,999',
+    price: appTexts.value.servicesList.mobileApps.price,
   },
   {
     id: 'cloud-solutions',
     icon: 'cloud',
-    title: 'Cloud Solutions',
-    description: 'Scalable cloud infrastructure and migration services.',
-    features: ['Cloud Migration', 'Auto Scaling', 'Cost Optimization', '24/7 Monitoring'],
+    title: appTexts.value.servicesList.cloudSolutions.title,
+    description: appTexts.value.servicesList.cloudSolutions.description,
+    features: appTexts.value.servicesList.cloudSolutions.features,
     color: 'info',
-    price: 'Starting at $1,999',
+    price: appTexts.value.servicesList.cloudSolutions.price,
   },
   {
     id: 'data-analytics',
     icon: 'chart-column',
-    title: 'Data Analytics',
-    description: 'Transform your data into actionable business insights.',
-    features: [
-      'Real-time Analytics',
-      'Custom Dashboards',
-      'Data Visualization',
-      'Predictive Modeling',
-    ],
+    title: appTexts.value.servicesList.dataAnalytics.title,
+    description: appTexts.value.servicesList.dataAnalytics.description,
+    features: appTexts.value.servicesList.dataAnalytics.features,
     color: 'warning',
-    price: 'Starting at $3,499',
+    price: appTexts.value.servicesList.dataAnalytics.price,
   },
   {
     id: 'cybersecurity',
     icon: 'shield-halved',
-    title: 'Cybersecurity',
-    description: 'Comprehensive security solutions to protect your business.',
-    features: ['Security Audits', 'Threat Detection', 'Compliance Management', 'Employee Training'],
+    title: appTexts.value.servicesList.cybersecurity.title,
+    description: appTexts.value.servicesList.cybersecurity.description,
+    features: appTexts.value.servicesList.cybersecurity.features,
     color: 'danger',
-    price: 'Starting at $2,499',
+    price: appTexts.value.servicesList.cybersecurity.price,
   },
   {
     id: 'consulting',
     icon: 'handshake',
-    title: 'IT Consulting',
-    description: 'Expert consultation to optimize your technology strategy.',
-    features: [
-      'Strategy Planning',
-      'Technology Assessment',
-      'Digital Transformation',
-      'Process Optimization',
-    ],
+    title: appTexts.value.servicesList.consulting.title,
+    description: appTexts.value.servicesList.consulting.description,
+    features: appTexts.value.servicesList.consulting.features,
     color: 'secondary',
-    price: 'Starting at $199/hour',
+    price: appTexts.value.servicesList.consulting.price,
   },
 ]
 </script>
@@ -94,10 +81,9 @@ const services: Service[] = [
       <div class="container">
         <div class="row align-items-center py-5">
           <div class="col-lg-8 mx-auto text-center">
-            <h1 class="display-4 fw-bold mb-4">Our Services</h1>
+            <h1 class="display-4 fw-bold mb-4">{{ appTexts.hero.title }}</h1>
             <p class="lead">
-              We offer comprehensive technology solutions designed to accelerate your business
-              growth and digital transformation journey.
+              {{ appTexts.hero.description }}
             </p>
           </div>
         </div>
@@ -135,7 +121,7 @@ const services: Service[] = [
                 <div class="text-center">
                   <p class="fw-bold mb-3" :class="`text-${service.color}`">{{ service.price }}</p>
                   <router-link to="/contact" :class="`btn btn-${service.color} btn-sm`">
-                    Get Started
+                    {{ appTexts.common.getStarted }}
                   </router-link>
                 </div>
               </div>
@@ -150,9 +136,9 @@ const services: Service[] = [
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">Our Process</h2>
+            <h2 class="display-5 fw-bold mb-3">{{ appTexts.process.title }}</h2>
             <p class="lead text-muted">
-              We follow a proven methodology to ensure your project's success from start to finish.
+              {{ appTexts.process.description }}
             </p>
           </div>
         </div>
@@ -166,10 +152,9 @@ const services: Service[] = [
               >
                 <span class="fw-bold fs-4">1</span>
               </div>
-              <h5 class="fw-bold mb-2">Discovery</h5>
+              <h5 class="fw-bold mb-2">{{ appTexts.process.steps.discovery.title }}</h5>
               <p class="text-muted small">
-                We analyze your business needs and requirements to create a comprehensive project
-                plan.
+                {{ appTexts.process.steps.discovery.description }}
               </p>
             </div>
           </div>
@@ -181,9 +166,9 @@ const services: Service[] = [
               >
                 <span class="fw-bold fs-4">2</span>
               </div>
-              <h5 class="fw-bold mb-2">Design</h5>
+              <h5 class="fw-bold mb-2">{{ appTexts.process.steps.design.title }}</h5>
               <p class="text-muted small">
-                Our team creates detailed designs and prototypes to visualize your solution.
+                {{ appTexts.process.steps.design.description }}
               </p>
             </div>
           </div>
@@ -195,9 +180,9 @@ const services: Service[] = [
               >
                 <span class="fw-bold fs-4">3</span>
               </div>
-              <h5 class="fw-bold mb-2">Development</h5>
+              <h5 class="fw-bold mb-2">{{ appTexts.process.steps.development.title }}</h5>
               <p class="text-muted small">
-                We build your solution using industry best practices and cutting-edge technologies.
+                {{ appTexts.process.steps.development.description }}
               </p>
             </div>
           </div>
@@ -209,9 +194,9 @@ const services: Service[] = [
               >
                 <span class="fw-bold fs-4">4</span>
               </div>
-              <h5 class="fw-bold mb-2">Launch</h5>
+              <h5 class="fw-bold mb-2">{{ appTexts.process.steps.launch.title }}</h5>
               <p class="text-muted small">
-                We deploy your solution and provide ongoing support to ensure smooth operations.
+                {{ appTexts.process.steps.launch.description }}
               </p>
             </div>
           </div>
@@ -224,10 +209,9 @@ const services: Service[] = [
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">Technologies We Use</h2>
+            <h2 class="display-5 fw-bold mb-3">{{ appTexts.technologies.title }}</h2>
             <p class="lead text-muted">
-              We leverage the latest technologies and frameworks to build robust, scalable
-              solutions.
+              {{ appTexts.technologies.description }}
             </p>
           </div>
         </div>
@@ -294,19 +278,19 @@ const services: Service[] = [
     </section>
 
     <!-- CTA Section -->
-    <section class="py-5 bg-primary text-white">
+    <section class="py-5 bg-primary text-white px-3">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-8">
-            <h2 class="display-6 fw-bold mb-3">Ready to Get Started?</h2>
+            <h2 class="display-6 fw-bold mb-3">{{ appTexts.cta.title }}</h2>
             <p class="lead mb-0">
-              Let's discuss your project and find the perfect solution for your business needs.
+              {{ appTexts.cta.description }}
             </p>
           </div>
           <div class="col-lg-4 text-lg-end">
             <router-link to="/contact" class="btn btn-light btn-lg">
               <FontAwesomeIcon icon="comment" class="me-2" />
-              Contact Us Today
+              {{ appTexts.cta.button }}
             </router-link>
           </div>
         </div>
