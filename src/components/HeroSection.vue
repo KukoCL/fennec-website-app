@@ -2,7 +2,23 @@
 import { computed } from 'vue';
 import { RouterLink } from 'vue-router';
 import useAppLang from '@/composables/settings/useAppLang';
+import { useCounterStore } from '@/stores/exampleStore';
+import useApi from '@/composables/utils/useApi';
+import { storeToRefs } from 'pinia';
+import type { ExampleInterface } from '@/infrastructure/interfaces';
 
+const { get } = useApi();
+
+const obtenerCosas = async () => {
+  const resultado = await get<ExampleInterface>('unaUrl.com');
+  console.log(resultado);
+  // guardar en la store
+  count.value = resultado.data.exampleInt;
+};
+
+const counterStore = useCounterStore();
+const { count } = storeToRefs(counterStore);
+const { increment } = counterStore;
 const { getAppTexts } = useAppLang();
 const appTexts = computed(() => getAppTexts().home.heroSection);
 </script>
@@ -10,6 +26,8 @@ const appTexts = computed(() => getAppTexts().home.heroSection);
 <template>
   <section class="hero-section bg-primary text-white">
     <div class="container">
+      Cuenta: {{ count }}
+      <button @click="increment" >Incrementar</button>
       <div class="row align-items-center p-lg-5">
         <div class="col-lg-6">
           <h1 class="display-4 fw-bold mb-4 mt-3">{{ appTexts.headerTitle }}</h1>
