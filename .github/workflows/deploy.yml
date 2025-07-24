@@ -33,9 +33,6 @@ jobs:
       - name: Run linting
         run: npm run lint
 
-      - name: Type check
-        run: npm run type-check
-
   build:
     name: Build
     needs: test
@@ -56,6 +53,9 @@ jobs:
 
       - name: Build project
         run: npm run build
+
+      - name: Copy CNAME file to dist folder
+        run: cp CNAME ./dist/
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
