@@ -3,18 +3,18 @@ import { computed } from 'vue';
 import { RouterLink } from 'vue-router';
 import useAppLang from '@/composables/settings/useAppLang';
 import { useCounterStore } from '@/stores/exampleStore';
-import useApi from '@/composables/utils/useApi';
+// import useApi from '@/composables/utils/useApi';
 import { storeToRefs } from 'pinia';
-import type { ExampleInterface } from '@/infrastructure/interfaces';
+// import type { ExampleInterface } from '@/infrastructure/interfaces';
 
-const { get } = useApi();
+// const { get } = useApi();
 
-const obtenerCosas = async () => {
-  const resultado = await get<ExampleInterface>('unaUrl.com');
-  console.log(resultado);
-  // guardar en la store
-  count.value = resultado.data.exampleInt;
-};
+// const obtenerCosas = async () => {
+//   const resultado = await get<ExampleInterface>('unaUrl.com');
+//   console.log(resultado);
+//   // guardar en la store
+//   count.value = resultado.data.exampleInt;
+// };
 
 const counterStore = useCounterStore();
 const { count } = storeToRefs(counterStore);
