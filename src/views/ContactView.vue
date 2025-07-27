@@ -26,14 +26,14 @@ const submitForm = async () => {
   try {
     const response = await post(
       AWS_CONTACT_ENDPOINT,
-      JSON.stringify({
+      {
         name: form.value.name,
         email: form.value.email,
         company: form.value.company,
         message: form.value.message,
-      }),
+      },
       {
-        'Content-Type': 'application/json',
+        'Content-Type': 'text/plain',
       },
     )
 
