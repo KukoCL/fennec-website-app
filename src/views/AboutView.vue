@@ -56,33 +56,41 @@ const teamMembers: TeamMember[] = [
 <template>
   <div class="about-page">
     <!-- Hero Section -->
-    <section class="hero-section bg-primary text-white py-5">
+    <section class="hero-section d-flex align-items-center">
       <div class="container px-lg-5">
-        <div class="row align-items-center py-5">
+        <div class="row align-items-center g-5">
           <div class="col-lg-6">
-            <h1 class="display-4 fw-bold mb-4">{{ appTexts.hero.title }}</h1>
-            <p class="lead">
+            <h1 class="display-3 fw-bolder mb-4 mt-3 text-gradient">{{ appTexts.hero.title }}</h1>
+            <p class="lead fs-4 mb-4 text-light-custom">
               {{ appTexts.hero.description }}
             </p>
           </div>
           <div class="col-lg-6">
-            <div class="bg-light rounded-3 p-4">
-              <div class="row text-center">
-                <div class="col-6 mb-3">
-                  <h3 class="text-primary fw-bold">250+</h3>
-                  <small class="text-muted">{{ appTexts.hero.stats.projects }}</small>
-                </div>
-                <div class="col-6 mb-3">
-                  <h3 class="text-primary fw-bold">50+</h3>
-                  <small class="text-muted">{{ appTexts.hero.stats.teamMembers }}</small>
+            <div class="custom-dark-bg rounded-3 p-4 shadow-lg mt-3">
+              <div class="row text-center g-3">
+                <div class="col-6">
+                  <div class="feature-card rounded p-3">
+                    <h3 class="text-fennec-orange fw-bold">250+</h3>
+                    <p class="text-white mb-0">{{ appTexts.hero.stats.projects }}</p>
+                  </div>
                 </div>
                 <div class="col-6">
-                  <h3 class="text-primary fw-bold">5+</h3>
-                  <small class="text-muted">{{ appTexts.hero.stats.years }}</small>
+                  <div class="feature-card rounded p-3">
+                    <h3 class="text-fennec-orange fw-bold">50+</h3>
+                    <p class="text-white mb-0">{{ appTexts.hero.stats.teamMembers }}</p>
+                  </div>
                 </div>
                 <div class="col-6">
-                  <h3 class="text-primary fw-bold">98%</h3>
-                  <small class="text-muted">{{ appTexts.hero.stats.satisfaction }}</small>
+                  <div class="feature-card rounded p-3">
+                    <h3 class="text-fennec-orange fw-bold">5+</h3>
+                    <p class="text-white mb-0">{{ appTexts.hero.stats.years }}</p>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="feature-card rounded p-3">
+                    <h3 class="text-fennec-orange fw-bold">98%</h3>
+                    <p class="text-white mb-0">{{ appTexts.hero.stats.satisfaction }}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -325,15 +333,80 @@ const teamMembers: TeamMember[] = [
 
 <style scoped>
 .hero-section {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #004085 100%);
+  background-color: rgb(17, 24, 39);
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #FF8C00, #DAA520);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.custom-dark-bg {
+  background-color: #1E1E1E;
+  border: 1px solid #3D3D3D33;
+}
+
+.feature-card {
+  background-color: #2D2D2D;
+  transition: all 0.3s ease;
+  border: 1px solid #3D3D3D33;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(255, 140, 0, 0.1);
+}
+
+.text-fennec-orange {
+  color: #FF8C00;
+}
+
+.text-light-custom {
+  color: #D1D5DB;
 }
 
 .team-card {
   transition: all 0.3s ease;
+  background-color: #1E1E1E;
+  border: 1px solid #3D3D3D33;
 }
 
 .team-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Estilos consistentes para las secciones */
+section {
+  background-color: rgb(17, 24, 39);
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0;
+}
+
+section.bg-light {
+  background-color: rgb(22, 29, 44);
+}
+
+.card {
+  background-color: #1E1E1E;
+  border: 1px solid #3D3D3D33;
+}
+
+h2, h3, h4, h5 {
+  color: #FFFFFF;
+}
+
+p {
+  color: #D1D5DB;
+}
+
+.text-muted {
+  color: #9CA3AF !important;
 }
 </style>

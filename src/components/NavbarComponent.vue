@@ -28,11 +28,11 @@ const currentLanguageLabel = computed(() => {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <RouterLink class="navbar-brand company-name fw-bold" to="/">
-        <img src="/favicon.ico" alt="Logo" width="45" height="45" class="d-inline-block align-top me-2" />
-        {{ appTexts.navbar.brand }}
+      <RouterLink class="navbar-brand fw-bold" to="/">
+        <img src="/favicon.ico" alt="Logo" width="45" height="40" class="d-inline-block align-top me-2 fennec-logo" />
+        <span class="brand-text">{{ appTexts.navbar.brand1 }}<span class="text-fennec-orange">{{ appTexts.navbar.brand2 }}</span></span>
       </RouterLink>
 
       <button
@@ -47,9 +47,9 @@ const currentLanguageLabel = computed(() => {
       </button>
 
       <div class="collapse navbar-collapse" :class="{ show: !isNavCollapsed }" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto align-items-center">
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/" @click="isNavCollapsed = true">{{
+            <RouterLink class="nav-link px-3" to="/" @click="isNavCollapsed = true">{{
               appTexts.navbar.navigation.home
             }}</RouterLink>
           </li>
@@ -119,58 +119,148 @@ const currentLanguageLabel = computed(() => {
 
 <style scoped>
 .navbar {
-  position: relative;
+  background-color: #121212e6;
+  backdrop-filter: blur(8px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #3d3d3d33;
 }
 
 .navbar-brand {
   font-size: 1.5rem;
+  padding: 0;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.navbar-brand:hover {
+  transform: translateY(-1px);
+  background: transparent;
+}
+
+.brand-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover .brand-text {
+  color: #D1D5DB;
+}
+
+.navbar-brand:hover .text-fennec-orange {
+  color: #FFA533;
+}
+
+.text-fennec-orange {
+  color: #FF8C00;
+  transition: color 0.3s ease;
 }
 
 .nav-link {
   font-weight: 500;
+  color: #D1D5DB !important;
   transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-  color: #ffffff !important;
-}
-
-.router-link-active:not(.btn, .company-name) {
-  color: #ffffff !important;
-  font-weight: bold;
-}
-
-.btn-primary {
+  position: relative;
+  font-size: 0.95rem;
   padding: 0.5rem 1rem;
-  border-radius: 25px;
+  background: transparent;
+}
+
+.nav-link:hover, .nav-link.router-link-active {
+  color: #FF8C00 !important;
+  background: transparent;
+}
+
+.nav-link.router-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #FF8C00;
+}
+
+.navbar-toggler {
+  border-color: #3d3d3d33;
+  padding: 0.5rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
 }
 
 .dropdown-menu {
-  border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #1E1E1E;
+  border: 1px solid #3d3d3d33;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
+  padding: 0.5rem;
 }
 
 .dropdown-item {
+  color: #D1D5DB;
   padding: 0.5rem 1rem;
-  transition: background-color 0.3s ease;
+  transition: color 0.3s ease;
+  border-radius: 4px;
+  background: transparent;
 }
 
 .dropdown-item:hover {
-  background-color: #f8f9fa;
+  background: transparent;
+  color: #FF8C00;
 }
 
 .dropdown-item.active {
-  background-color: #007bff;
-  color: white;
+  background: transparent;
+  color: #FF8C00;
+  font-weight: 600;
 }
 
-.dropdown-toggle::after {
-  margin-left: 0.5rem;
+.fennec-logo {
+  transition: all 0.3s ease;
+  background: transparent;
 }
 
-.company-name {
-  color: #ffd894;
+.fennec-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 8px rgba(255, 140, 0, 0.4));
+  background: transparent;
+}
+
+/* Línea separadora en el menú de idiomas */
+.vr {
+  background-color: #3d3d3d33;
+  opacity: 0.5;
+}
+
+hr {
+  opacity: 0.1;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background-color: #121212e6;
+    backdrop-filter: blur(8px);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    border: 1px solid #3d3d3d33;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-link.router-link-active::after {
+    display: none;
+  }
 }
 </style>

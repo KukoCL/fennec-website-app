@@ -38,14 +38,14 @@ const submitForm = () => {
 <template>
   <div class="contact-page">
     <!-- Hero Section -->
-    <section class="hero-section bg-primary text-white py-5">
+    <section class="hero-section d-flex align-items-center">
       <div class="container">
         <div class="row align-items-center py-5">
           <div class="col-lg-8 mx-auto text-center">
-            <h1 class="display-4 fw-bold mb-4">
+            <h1 class="display-3 fw-bolder text-gradient mb-4">
               {{ appTexts.contact.hero.title }}
             </h1>
-            <p class="lead">
+            <p class="lead fs-4 text-light-custom">
               {{ appTexts.contact.hero.description }}
             </p>
           </div>
@@ -482,7 +482,17 @@ const submitForm = () => {
 
 <style scoped>
 .hero-section {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #004085 100%);
+  background-color: rgb(17, 24, 39);
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #FF8C00, #DAA520);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .contact-item {
@@ -496,14 +506,22 @@ const submitForm = () => {
 .form-control,
 .form-select {
   border-radius: 8px;
-  border: 1px solid #e9ecef;
+  background-color: #1E1E1E;
+  border: 1px solid #3d3d3d33;
+  color: #D1D5DB;
   padding: 0.75rem 1rem;
 }
 
 .form-control:focus,
 .form-select:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 0.2rem rgba(0, 102, 204, 0.25);
+  background-color: #2D2D2D;
+  border-color: #FF8C00;
+  box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.25);
+  color: #D1D5DB;
+}
+
+.form-control::placeholder {
+  color: #6B7280;
 }
 
 .btn {
@@ -511,17 +529,80 @@ const submitForm = () => {
   transition: all 0.3s ease;
 }
 
+.btn-primary {
+  background-color: #FF8C00;
+  border-color: #FF8C00;
+}
+
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 15px -3px rgba(255, 140, 0, 0.3);
+}
+
+.accordion {
+  background-color: #1E1E1E;
+  border: 1px solid #3d3d3d33;
+  border-radius: 8px;
 }
 
 .accordion-button {
   font-weight: 600;
+  background-color: #1E1E1E;
+  color: #D1D5DB;
 }
 
 .accordion-button:not(.collapsed) {
-  background-color: var(--primary-color);
+  background-color: #FF8C00;
+  color: white;
+}
+
+.accordion-item {
+  background-color: #1E1E1E;
+  border: 1px solid #3d3d3d33;
+}
+
+.accordion-body {
+  background-color: #2D2D2D;
+  color: #D1D5DB;
+}
+
+.text-light-custom {
+  color: #D1D5DB;
+}
+
+section {
+  background-color: rgb(17, 24, 39);
+}
+
+section.bg-light {
+  background-color: rgb(22, 29, 44);
+}
+
+.card {
+  background-color: #1E1E1E;
+  border: 1px solid #3d3d3d33;
+}
+
+.text-muted {
+  color: #9CA3AF !important;
+}
+
+h2, h3, h4, h5, h6 {
+  color: #FFFFFF;
+}
+
+.contact-icon {
+  background-color: #2D2D2D !important;
+}
+
+.btn-outline-primary {
+  border-color: #FF8C00;
+  color: #FF8C00;
+}
+
+.btn-outline-primary:hover {
+  background-color: #FF8C00;
+  border-color: #FF8C00;
   color: white;
 }
 </style>
