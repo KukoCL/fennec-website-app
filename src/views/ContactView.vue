@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { ref, computed } from 'vue'
 import useAppLang from '@/composables/settings/useAppLang'
 import useApi from '@/composables/utils/useApi'
+import { AWS_CONTACT_ENDPOINT } from '@/infrastructure/constants/constants'
 
 const { getAppTexts } = useAppLang()
 const appTexts = computed(() => getAppTexts())
@@ -16,6 +17,7 @@ const form = ref({
 })
 
 const isSubmitting = ref(false)
+const showSuccessAlert = ref(false)
 
 const submitForm = async () => {
   if (isSubmitting.value) return
@@ -23,7 +25,7 @@ const submitForm = async () => {
   isSubmitting.value = true
   try {
     const response = await post(
-      'https://vwa336a3txkiyqqf2wvo453mva0zhpbl.lambda-url.us-east-1.on.aws/',
+      AWS_CONTACT_ENDPOINT,
       {
         name: form.value.name,
         email: form.value.email,
@@ -36,7 +38,7 @@ const submitForm = async () => {
     )
 
     if (response.isOk) {
-      alert(appTexts.value.contact.form.successMessage)
+      showSuccessAlert.value = true
 
       // Reset form
       form.value = {
@@ -45,6 +47,11 @@ const submitForm = async () => {
         company: '',
         message: '',
       }
+
+      // Hide alert after 10 seconds
+      setTimeout(() => {
+        showSuccessAlert.value = false
+      }, 10000)
     } else {
       throw new Error('Failed to send message')
     }
@@ -154,14 +161,31 @@ const submitForm = async () => {
                         class="btn btn-primary btn-lg"
                         :disabled="isSubmitting"
                       >
-                        <i
-                          :class="isSubmitting ? 'fa-solid fa-spinner fa-spin me-2' : 'fa-solid fa-paper-plane me-2'"
-                        ></i>
-                        {{ isSubmitting ? 'Sending...' : appTexts.contact.form.sendButton }}
+                        <font-awesome-icon
+                          :icon="isSubmitting ? 'fa-solid fa-spinner' : 'fa-solid fa-paper-plane'"
+                          :class="isSubmitting ? 'fa-spin me-2' : 'me-2'"
+                        />
+                        {{ isSubmitting ? appTexts.contact.form.sendingButton : appTexts.contact.form.sendButton }}
                       </button>
                     </div>
                   </div>
                 </form>
+
+                <!-- Success Alert -->
+                <div
+                  v-if="showSuccessAlert"
+                  class="alert alert-success alert-dismissible fade show mt-4"
+                  role="alert"
+                >
+                  <i class="fa-solid fa-check-circle me-2"></i>
+                  {{ appTexts.contact.form.successMessage }}
+                  <button
+                    type="button"
+                    class="btn-close"
+                    @click="showSuccessAlert = false"
+                    aria-label="Close"
+                  ></button>
+                </div>
               </div>
             </div>
           </div>

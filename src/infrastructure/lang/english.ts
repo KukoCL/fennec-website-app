@@ -376,6 +376,7 @@ export const appTexts = {
       messageLabel: 'Project Details *',
       messagePlaceholder: 'Tell us about your project, goals, and any specific requirements...',
       sendButton: 'Send Message',
+      sendingButton: 'Sending...',
       successMessage: "Thank you for your message! We'll get back to you within 24 hours.",
     },
     info: {
