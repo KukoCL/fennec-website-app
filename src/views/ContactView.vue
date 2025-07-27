@@ -178,7 +178,7 @@ const submitForm = async () => {
                   class="alert alert-success alert-dismissible fade show mt-4"
                   role="alert"
                 >
-                  <i class="fa-solid fa-check-circle me-2"></i>
+                  <font-awesome-icon icon="fa-solid fa-check-circle" class="me-2" />
                   {{ appTexts.contact.form.successMessage }}
                   <button
                     type="button"
