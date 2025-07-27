@@ -2,35 +2,57 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { ref, computed } from 'vue'
 import useAppLang from '@/composables/settings/useAppLang'
+import useApi from '@/composables/utils/useApi'
 
 const { getAppTexts } = useAppLang()
 const appTexts = computed(() => getAppTexts())
+const { post } = useApi()
 
 const form = ref({
   name: '',
   email: '',
   company: '',
-  service: '',
   message: '',
-  budget: '',
 })
 
-const services = computed(() => appTexts.value.contact.form.services)
-const budgetRanges = computed(() => appTexts.value.contact.form.budgetRanges)
+const isSubmitting = ref(false)
 
-const submitForm = () => {
-  // Handle form submission
-  console.log('Form submitted:', form.value)
-  alert(appTexts.value.contact.form.successMessage)
+const submitForm = async () => {
+  if (isSubmitting.value) return
 
-  // Reset form
-  form.value = {
-    name: '',
-    email: '',
-    company: '',
-    service: '',
-    message: '',
-    budget: '',
+  isSubmitting.value = true
+  try {
+    const response = await post(
+      'https://vwa336a3txkiyqqf2wvo453mva0zhpbl.lambda-url.us-east-1.on.aws/',
+      {
+        name: form.value.name,
+        email: form.value.email,
+        company: form.value.company,
+        message: form.value.message,
+      },
+      {
+        'Content-Type': 'text/plain',
+      },
+    )
+
+    if (response.isOk) {
+      alert(appTexts.value.contact.form.successMessage)
+
+      // Reset form
+      form.value = {
+        name: '',
+        email: '',
+        company: '',
+        message: '',
+      }
+    } else {
+      throw new Error('Failed to send message')
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error)
+    alert('There was an error sending your message. Please try again.')
+  } finally {
+    isSubmitting.value = false
   }
 }
 </script>
@@ -96,7 +118,7 @@ const submitForm = () => {
                         required
                       />
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-12">
                       <label
                         for="company"
                         class="form-label"
@@ -109,54 +131,6 @@ const submitForm = () => {
                         class="form-control"
                         id="company"
                       />
-                    </div>
-                    <div class="col-md-6">
-                      <label
-                        for="service"
-                        class="form-label"
-                      >
-                        {{ appTexts.contact.form.serviceLabel }}
-                      </label>
-                      <select
-                        v-model="form.service"
-                        class="form-select"
-                        id="service"
-                      >
-                        <option value="">
-                          {{ appTexts.contact.form.servicePlaceholder }}
-                        </option>
-                        <option
-                          v-for="service in services"
-                          :key="service"
-                          :value="service"
-                        >
-                          {{ service }}
-                        </option>
-                      </select>
-                    </div>
-                    <div class="col-12">
-                      <label
-                        for="budget"
-                        class="form-label"
-                      >
-                        {{ appTexts.contact.form.budgetLabel }}
-                      </label>
-                      <select
-                        v-model="form.budget"
-                        class="form-select"
-                        id="budget"
-                      >
-                        <option value="">
-                          {{ appTexts.contact.form.budgetPlaceholder }}
-                        </option>
-                        <option
-                          v-for="budget in budgetRanges"
-                          :key="budget"
-                          :value="budget"
-                        >
-                          {{ budget }}
-                        </option>
-                      </select>
                     </div>
                     <div class="col-12">
                       <label
@@ -178,9 +152,12 @@ const submitForm = () => {
                       <button
                         type="submit"
                         class="btn btn-primary btn-lg"
+                        :disabled="isSubmitting"
                       >
-                        <i class="fa-solid fa-paper-plane me-2"></i>
-                        {{ appTexts.contact.form.sendButton }}
+                        <i
+                          :class="isSubmitting ? 'fa-solid fa-spinner fa-spin me-2' : 'fa-solid fa-paper-plane me-2'"
+                        ></i>
+                        {{ isSubmitting ? 'Sending...' : appTexts.contact.form.sendButton }}
                       </button>
                     </div>
                   </div>
