@@ -53,7 +53,8 @@ const submitForm = async () => {
         showSuccessAlert.value = false
       }, 10000)
     } else {
-      throw new Error('Failed to send message')
+      const errorDetails = response.error || 'Unknown error'
+      throw new Error(`Failed to send message. Status: ${response.status}, Details: ${errorDetails}`)
     }
   } catch (error) {
     console.error('Error submitting form:', error)
