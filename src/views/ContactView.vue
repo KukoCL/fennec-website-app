@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { ref, computed } from 'vue'
 import useAppLang from '@/composables/settings/useAppLang'
 import useApi from '@/composables/utils/useApi'
+import useValidations from '@/composables/utils/useValidations'
 import { AWS_CONTACT_ENDPOINT } from '@/infrastructure/constants/constants'
 
 const { getAppTexts } = useAppLang()
 const appTexts = computed(() => getAppTexts())
 const { post } = useApi()
+const { validateEmail: validateEmailUtil } = useValidations()
 
 const form = ref({
   name: '',
@@ -18,43 +20,139 @@ const form = ref({
 
 const isSubmitting = ref(false)
 const showSuccessAlert = ref(false)
+const formElement = ref<HTMLFormElement | null>(null)
+const validationErrors = ref({
+  name: '',
+  email: '',
+  message: '',
+})
+
+// Validation functions
+const validateName = (name: string) => {
+  if (!name || name.trim().length < 2) {
+    return appTexts.value.contact.form.validation?.nameRequired || 'Name is required (minimum 2 characters)'
+  }
+  return ''
+}
+
+const validateEmail = (email: string) => {
+  if (!email || email.trim().length === 0) {
+    return appTexts.value.contact.form.validation?.emailRequired || 'Email is required'
+  }
+  if (!validateEmailUtil(email)) {
+    return appTexts.value.contact.form.validation?.emailInvalid || 'Please enter a valid email address'
+  }
+  return ''
+}
+
+const validateMessage = (message: string) => {
+  if (!message || message.trim().length < 10) {
+    return appTexts.value.contact.form.validation?.messageRequired || 'Message is required (minimum 10 characters)'
+  }
+  return ''
+}
+
+// Validate individual field
+const validateField = (fieldName: string) => {
+  switch (fieldName) {
+  case 'name':
+    validationErrors.value.name = validateName(form.value.name)
+    break
+  case 'email':
+    validationErrors.value.email = validateEmail(form.value.email)
+    break
+  case 'message':
+    validationErrors.value.message = validateMessage(form.value.message)
+    break
+  }
+}
+
+// Validate entire form
+const validateForm = () => {
+  validationErrors.value.name = validateName(form.value.name)
+  validationErrors.value.email = validateEmail(form.value.email)
+  validationErrors.value.message = validateMessage(form.value.message)
+
+  return !validationErrors.value.name && !validationErrors.value.email && !validationErrors.value.message
+}
+
+const resetFormAndShowSuccess = () => {
+  showSuccessAlert.value = true
+
+  // Reset form
+  form.value = {
+    name: '',
+    email: '',
+    company: '',
+    message: '',
+  }
+
+  // Reset validation
+  validationErrors.value = {
+    name: '',
+    email: '',
+    message: '',
+  }
+
+  // Remove Bootstrap validation classes
+  if (formElement.value) {
+    formElement.value.classList.remove('was-validated')
+  }
+
+  // Hide alert after 10 seconds
+  setTimeout(() => {
+    showSuccessAlert.value = false
+  }, 10000)
+}
 
 const submitForm = async () => {
   if (isSubmitting.value) return
 
+  // Add Bootstrap validation classes
+  if (formElement.value) {
+    formElement.value.classList.add('was-validated')
+  }
+
+  // Validate form
+  if (!validateForm()) {
+    return
+  }
+
   isSubmitting.value = true
   try {
-    const response = await post(
-      AWS_CONTACT_ENDPOINT,
-      {
-        name: form.value.name,
-        email: form.value.email,
-        company: form.value.company,
-        message: form.value.message,
-      },
-      {
-        'Content-Type': 'text/plain',
-      },
-    )
+    // Check if running in development mode
+    const isDevelopment = import.meta.env.DEV
+      || window.location.hostname === 'localhost'
+      || window.location.hostname === '127.0.0.1'
 
-    if (response.isOk) {
-      showSuccessAlert.value = true
+    if (isDevelopment) {
+      // Simulate email sending with 2-second delay in development
+      console.log('Development mode: Simulating email sending...')
+      await new Promise(resolve => setTimeout(resolve, 2000))
 
-      // Reset form
-      form.value = {
-        name: '',
-        email: '',
-        company: '',
-        message: '',
-      }
-
-      // Hide alert after 10 seconds
-      setTimeout(() => {
-        showSuccessAlert.value = false
-      }, 10000)
+      // Simulate successful response
+      resetFormAndShowSuccess()
     } else {
-      const errorDetails = response.statusText || 'Unknown error'
-      throw new Error(`Failed to send message. Status: ${response.status}, Details: ${errorDetails}`)
+      // Production mode: actual API call
+      const response = await post(
+        AWS_CONTACT_ENDPOINT,
+        {
+          name: form.value.name,
+          email: form.value.email,
+          company: form.value.company,
+          message: form.value.message,
+        },
+        {
+          'Content-Type': 'text/plain',
+        },
+      )
+
+      if (response.isOk) {
+        resetFormAndShowSuccess()
+      } else {
+        const errorDetails = response.statusText || 'Unknown error'
+        throw new Error(`Failed to send message. Status: ${response.status}, Details: ${errorDetails}`)
+      }
     }
   } catch (error) {
     console.error('Error submitting form:', error)
@@ -94,7 +192,12 @@ const submitForm = async () => {
                 <h2 class="h3 fw-bold mb-4">
                   {{ appTexts.contact.form.title }}
                 </h2>
-                <form @submit.prevent="submitForm">
+                <form
+                  ref="formElement"
+                  class="needs-validation"
+                  novalidate
+                  @submit.prevent="submitForm"
+                >
                   <div class="row g-3">
                     <div class="col-md-6">
                       <label
@@ -107,9 +210,27 @@ const submitForm = async () => {
                         v-model="form.name"
                         type="text"
                         class="form-control"
+                        :class="{
+                          'is-invalid': validationErrors.name,
+                          'is-valid': form.name && !validationErrors.name
+                        }"
                         id="name"
                         required
+                        @blur="validateField('name')"
+                        @input="validationErrors.name && validateField('name')"
                       />
+                      <div
+                        v-if="validationErrors.name"
+                        class="invalid-feedback"
+                      >
+                        {{ validationErrors.name }}
+                      </div>
+                      <div
+                        v-else-if="form.name && !validationErrors.name"
+                        class="valid-feedback"
+                      >
+                        {{ appTexts.contact.form.validation?.looksGood }}
+                      </div>
                     </div>
                     <div class="col-md-6">
                       <label
@@ -122,9 +243,27 @@ const submitForm = async () => {
                         v-model="form.email"
                         type="email"
                         class="form-control"
+                        :class="{
+                          'is-invalid': validationErrors.email,
+                          'is-valid': form.email && !validationErrors.email
+                        }"
                         id="email"
                         required
+                        @blur="validateField('email')"
+                        @input="validationErrors.email && validateField('email')"
                       />
+                      <div
+                        v-if="validationErrors.email"
+                        class="invalid-feedback"
+                      >
+                        {{ validationErrors.email }}
+                      </div>
+                      <div
+                        v-else-if="form.email && !validationErrors.email"
+                        class="valid-feedback"
+                      >
+                        {{ appTexts.contact.form.validation?.looksGood }}
+                      </div>
                     </div>
                     <div class="col-12">
                       <label
@@ -137,8 +276,15 @@ const submitForm = async () => {
                         v-model="form.company"
                         type="text"
                         class="form-control"
+                        :class="{ 'is-valid': form.company }"
                         id="company"
                       />
+                      <div
+                        v-if="form.company"
+                        class="valid-feedback"
+                      >
+                        {{ appTexts.contact.form.validation?.looksGood }}
+                      </div>
                     </div>
                     <div class="col-12">
                       <label
@@ -150,11 +296,29 @@ const submitForm = async () => {
                       <textarea
                         v-model="form.message"
                         class="form-control"
+                        :class="{
+                          'is-invalid': validationErrors.message,
+                          'is-valid': form.message && !validationErrors.message
+                        }"
                         id="message"
                         rows="5"
                         :placeholder="appTexts.contact.form.messagePlaceholder"
                         required
+                        @blur="validateField('message')"
+                        @input="validationErrors.message && validateField('message')"
                       ></textarea>
+                      <div
+                        v-if="validationErrors.message"
+                        class="invalid-feedback"
+                      >
+                        {{ validationErrors.message }}
+                      </div>
+                      <div
+                        v-else-if="form.message && !validationErrors.message"
+                        class="valid-feedback"
+                      >
+                        {{ appTexts.contact.form.validation?.looksGood }}
+                      </div>
                     </div>
                     <div class="col-12">
                       <button
@@ -198,26 +362,6 @@ const submitForm = async () => {
                 <h3 class="h4 fw-bold mb-4">
                   {{ appTexts.contact.info.title }}
                 </h3>
-
-                <div class="contact-item d-flex mb-4">
-                  <div
-                    class="contact-icon bg-dark bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
-                    style="width: 50px; height: 50px"
-                  >
-                    <font-awesome-icon
-                      icon="fa-solid fa-map-marker-alt"
-                      class="text-primary"
-                    ></font-awesome-icon>
-                  </div>
-                  <div>
-                    <h6 class="fw-bold mb-1">
-                      {{ appTexts.contact.info.addressLabel }}
-                    </h6>
-                    <p class="text-muted mb-0">
-                      {{ appTexts.contact.info.address }}
-                    </p>
-                  </div>
-                </div>
 
                 <div class="contact-item d-flex mb-4">
                   <div
@@ -506,6 +650,60 @@ const submitForm = async () => {
 .form-select:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 0.2rem rgba(0, 102, 204, 0.25);
+}
+
+/* Validation styles enhancement */
+.form-control.is-valid,
+.form-select.is-valid {
+  border-color: var(--bs-success);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/&gt;%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.form-control.is-valid:focus,
+.form-select.is-valid:focus {
+  border-color: var(--bs-success);
+  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: var(--bs-danger);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.form-control.is-invalid:focus,
+.form-select.is-invalid:focus {
+  border-color: var(--bs-danger);
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.valid-feedback {
+  display: block;
+  color: var(--bs-success);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.invalid-feedback {
+  display: block;
+  color: var(--bs-danger);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Textarea specific validation styling */
+textarea.form-control.is-valid {
+  background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
+}
+
+textarea.form-control.is-invalid {
+  background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
 }
 
 .btn {

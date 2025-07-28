@@ -378,6 +378,13 @@ export const appTexts = {
       sendButton: 'Send Message',
       sendingButton: 'Sending...',
       successMessage: "Thank you for your message! We'll get back to you within 24 hours.",
+      validation: {
+        nameRequired: 'Name is required (minimum 2 characters)',
+        emailRequired: 'Email is required',
+        emailInvalid: 'Please enter a valid email address',
+        messageRequired: 'Message is required (minimum 10 characters)',
+        looksGood: '',
+      },
     },
     info: {
       title: 'Contact Information',
