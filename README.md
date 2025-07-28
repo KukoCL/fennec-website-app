@@ -1,7 +1,7 @@
 # fennec-website-app
 
-**Version:** 1.0.0  
-**Last Deploy:** July 28, 2025  
+**Version:** 1.0.1
+**Last Deploy:** July 28, 2025
 **Status:** 🚀 Active
 
 Front repository for FennecSoft website built with Vue 3, TypeScript, and Vite. Features a responsive design with multi-language support and contact form integration.
