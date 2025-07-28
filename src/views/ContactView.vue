@@ -19,42 +19,61 @@ const form = ref({
 const isSubmitting = ref(false)
 const showSuccessAlert = ref(false)
 
+const resetFormAndShowSuccess = () => {
+  showSuccessAlert.value = true
+
+  // Reset form
+  form.value = {
+    name: '',
+    email: '',
+    company: '',
+    message: '',
+  }
+
+  // Hide alert after 10 seconds
+  setTimeout(() => {
+    showSuccessAlert.value = false
+  }, 10000)
+}
+
 const submitForm = async () => {
   if (isSubmitting.value) return
 
   isSubmitting.value = true
   try {
-    const response = await post(
-      AWS_CONTACT_ENDPOINT,
-      {
-        name: form.value.name,
-        email: form.value.email,
-        company: form.value.company,
-        message: form.value.message,
-      },
-      {
-        'Content-Type': 'text/plain',
-      },
-    )
+    // Check if running in development mode
+    const isDevelopment = import.meta.env.DEV
+      || window.location.hostname === 'localhost'
+      || window.location.hostname === '127.0.0.1'
 
-    if (response.isOk) {
-      showSuccessAlert.value = true
+    if (isDevelopment) {
+      // Simulate email sending with 2-second delay in development
+      console.log('Development mode: Simulating email sending...')
+      await new Promise(resolve => setTimeout(resolve, 2000))
 
-      // Reset form
-      form.value = {
-        name: '',
-        email: '',
-        company: '',
-        message: '',
-      }
-
-      // Hide alert after 10 seconds
-      setTimeout(() => {
-        showSuccessAlert.value = false
-      }, 10000)
+      // Simulate successful response
+      resetFormAndShowSuccess()
     } else {
-      const errorDetails = response.statusText || 'Unknown error'
-      throw new Error(`Failed to send message. Status: ${response.status}, Details: ${errorDetails}`)
+      // Production mode: actual API call
+      const response = await post(
+        AWS_CONTACT_ENDPOINT,
+        {
+          name: form.value.name,
+          email: form.value.email,
+          company: form.value.company,
+          message: form.value.message,
+        },
+        {
+          'Content-Type': 'text/plain',
+        },
+      )
+
+      if (response.isOk) {
+        resetFormAndShowSuccess()
+      } else {
+        const errorDetails = response.statusText || 'Unknown error'
+        throw new Error(`Failed to send message. Status: ${response.status}, Details: ${errorDetails}`)
+      }
     }
   } catch (error) {
     console.error('Error submitting form:', error)
