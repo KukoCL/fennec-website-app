@@ -2,8 +2,8 @@ name: Deploy
 
 on:
   push:
-    branches:
-      - unreleased
+    tags:
+      - 'v*.*.*'
   pull_request:
     branches:
       - '*'
@@ -67,10 +67,10 @@ jobs:
           path: ./dist
 
   deploy:
-    name: Deploy
+    name: Production Deploy
     needs: [test, build]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/unreleased'
+    if: startsWith(github.ref, 'refs/tags/')
 
     steps:
       - name: Download artifact
