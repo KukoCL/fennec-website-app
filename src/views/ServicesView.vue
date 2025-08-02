@@ -218,15 +218,29 @@ const services: Service[] = [
 </template>
 
 <style scoped>
+/* Títulos y texto en blanco para contraste */
+.services-page h2,
+.services-page .display-5 {
+  color: #ffffff !important;
+}
+.services-page .lead {
+  color: #cccccc !important;
+}
 
+/* Hero Section */
 .hero-section {
-  background: linear-gradient(135deg, #212529 0%, #a8c4e0 100%);
+  background: linear-gradient(135deg, #1a1a1a 0%, #ff8c00 100%);
   position: relative;
   z-index: 1;
   min-height: 60vh;
   display: flex;
   align-items: center;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin: 0 10px;
+  overflow: hidden;
 }
+
 .hero-section::before {
   content: '';
   position: absolute;
@@ -234,16 +248,18 @@ const services: Service[] = [
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: linear-gradient(135deg, #000000 0%, #ff6600 100%);
   opacity: 0.8;
   z-index: -1;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 /* Elementos decorativos para el Hero */
 .hero-decoration-1 {
   width: 300px;
   height: 300px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 140, 0, 0.1);
   border-radius: 50%;
   top: -150px;
   right: -150px;
@@ -253,7 +269,7 @@ const services: Service[] = [
 .hero-decoration-2 {
   width: 200px;
   height: 200px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 140, 0, 0.05);
   border-radius: 50%;
   bottom: -100px;
   left: -100px;
@@ -263,7 +279,7 @@ const services: Service[] = [
 .hero-decoration-3 {
   width: 100px;
   height: 100px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 140, 0, 0.08);
   border-radius: 50%;
   top: 20%;
   left: 10%;
@@ -281,12 +297,12 @@ const services: Service[] = [
 
 /* Texto del Hero con efectos */
 .hero-title {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   animation: fadeInUp 1s ease-out;
 }
 
 .hero-description {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   animation: fadeInUp 1s ease-out 0.3s both;
 }
 
@@ -303,8 +319,8 @@ const services: Service[] = [
 
 /* Botón Hero mejorado */
 .hero-btn {
-  background: linear-gradient(45deg, #fff, #f8f9fa);
-  color: #495057;
+  background: linear-gradient(45deg, #0f0f0f, #383736);
+  color: #ffffff;
   border: none;
   padding: 15px 30px;
   border-radius: 50px;
@@ -325,15 +341,16 @@ const services: Service[] = [
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transition: left 0.8s ease;
 }
 
 .hero-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-  color: #212529;
+  box-shadow: 0 15px 40px rgba(255, 140, 0, 0.5);
+  color: #ffffff;
   text-decoration: none;
+  background: linear-gradient(45deg, #ff8c00, #ff6600);
 }
 
 .hero-btn:hover::before {
@@ -345,13 +362,31 @@ const services: Service[] = [
   z-index: 1;
 }
 
+/* Tarjetas de servicio con fondo negro */
 .service-card {
+  background-color: #383636 !important;
+  color: #ffffff !important;
   transition: all 0.3s ease;
+  border: 1px solid rgba(255, 140, 0, 0.3) !important;
 }
 
 .service-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 20px 40px rgba(255, 140, 0, 0.4) !important;
+  border: 1px solid rgba(255, 140, 0, 0.6) !important;
+}
+
+/* Texto de las tarjetas */
+.service-card .card-title {
+  color: #ffffff !important;
+}
+
+.service-card .card-text {
+  color: #cccccc !important;
+}
+
+.service-card .list-unstyled li span {
+  color: #cccccc !important;
 }
 
 .service-icon {
@@ -366,7 +401,7 @@ const services: Service[] = [
 
 /* CTA Section con gradiente mejorado */
 .cta-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #000000 0%, #ff8c00 100%);
   position: relative;
   z-index: 1;
 }
@@ -378,7 +413,7 @@ const services: Service[] = [
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #1a1a1a 0%, #ff6600 100%);
   opacity: 0.9;
   z-index: -1;
 }
@@ -387,7 +422,7 @@ const services: Service[] = [
 .cta-decoration {
   width: 200px;
   height: 200px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 140, 0, 0.1);
   border-radius: 50%;
   top: -100px;
   right: -100px;
@@ -397,33 +432,24 @@ const services: Service[] = [
 .cta-decoration-2 {
   width: 150px;
   height: 150px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 140, 0, 0.05);
   border-radius: 50%;
   bottom: -75px;
   left: -75px;
   animation: float 8s ease-in-out infinite reverse;
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
 /* Botón CTA mejorado */
 .cta-btn {
-  background: linear-gradient(45deg, #fff, #f8f9fa);
-  color: #495057;
+  background: linear-gradient(45deg, #ff8c00, #ff6600);
+  color: #ffffff;
   border: none;
   padding: 15px 30px;
   border-radius: 50px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
   transition: all 0.4s ease;
   text-decoration: none;
   display: inline-block;
@@ -436,15 +462,16 @@ const services: Service[] = [
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transition: left 0.8s ease;
 }
 
 .cta-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-  color: #212529;
+  box-shadow: 0 15px 40px rgba(255, 140, 0, 0.6);
+  color: #ffffff;
   text-decoration: none;
+  background: linear-gradient(45deg, #000000, #333333);
 }
 
 .cta-btn:hover::before {
@@ -487,7 +514,7 @@ const services: Service[] = [
 
 .custom-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px rgba(255, 140, 0, 0.3);
 }
 
 .btn-content {
@@ -495,23 +522,31 @@ const services: Service[] = [
   z-index: 1;
 }
 
-.process-step {
-  transition: all 0.3s ease;
-}
-
-.process-step:hover {
-  transform: translateY(-5px);
-}
-
+/* Sección de tecnologías */
 .tech-logo {
   transition: all 0.3s ease;
   border-radius: 10px;
+  background-color: rgba(255, 140, 0, 0.05);
+  border: 1px solid rgba(255, 140, 0, 0.2);
 }
 
 .tech-logo:hover {
-  background-color: var(--light-color);
+  background-color: rgba(255, 140, 0, 0.2);
   transform: scale(1.1);
+  border: 1px solid rgba(255, 140, 0, 0.5);
 }
+
+.tech-logo p {
+  color: #ffffff !important;
+}
+
+/* Iconos de tecnología en naranja * /
+.tech-logo .text-info,
+.tech-logo .text-success,
+.tech-logo .text-primary,
+.tech-logo .text-purple {
+  color: #ff8c00 !important;
+}*/
 
 /* Blue color classes - emulando Bootstrap */
 :root {
