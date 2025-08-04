@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import useAppLang from '@/composables/settings/useAppLang'
 
 const { getAppTexts } = useAppLang()
@@ -80,36 +80,28 @@ const projects: Project[] = [
   },
 ]
 
-const categories = computed(() => [
-  appTexts.value.allProjects.filterAll,
-  ...Array.from(new Set(projects.map((p) => p.category))),
-])
-const selectedCategory = ref(appTexts.value.allProjects.filterAll)
-
-const filteredProjects = computed(() => {
-  if (selectedCategory.value === appTexts.value.allProjects.filterAll) {
-    return projects
-  }
-  return projects.filter((project) => project.category === selectedCategory.value)
-})
-
 const featuredProjects = computed(() => projects.filter((p) => p.featured))
 </script>
 
 <template>
   <div class="portfolio-page">
     <!-- Hero Section -->
-    <section class="hero-section bg-primary text-white py-5">
-      <div class="container">
+    <section class="hero-section bg-primary text-white py-5 position-relative overflow-hidden">
+      <div class="container position-relative">
         <div class="row align-items-center py-5">
           <div class="col-lg-8 mx-auto text-center">
-            <h1 class="display-4 fw-bold mb-4">{{ appTexts.hero.title }}</h1>
-            <p class="lead">
+            <h1 class="display-4 fw-bold mb-4 hero-title">{{ appTexts.hero.title }}</h1>
+            <p class="lead hero-description">
               {{ appTexts.hero.description }}
             </p>
           </div>
         </div>
       </div>
+
+      <!-- Decorative elements -->
+      <div class="hero-decoration-1 position-absolute"></div>
+      <div class="hero-decoration-2 position-absolute"></div>
+      <div class="hero-decoration-3 position-absolute"></div>
     </section>
 
     <!-- Featured Projects -->
@@ -117,8 +109,8 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">{{ appTexts.featured.title }}</h2>
-            <p class="lead text-muted">
+            <h2 class="display-5 fw-bold mb-3 text-white">{{ appTexts.featured.title }}</h2>
+            <p class="lead text-white">
               {{ appTexts.featured.description }}
             </p>
           </div>
@@ -157,104 +149,8 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
       </div>
     </section>
 
-    <!-- All Projects -->
-    <section class="py-5 bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">{{ appTexts.allProjects.title }}</h2>
-            <p class="lead text-muted">
-              {{ appTexts.allProjects.description }}
-            </p>
-          </div>
-        </div>
-
-        <!-- Filter Buttons -->
-        <div class="row mb-4">
-          <div class="col-12 text-center">
-            <div class="btn-group" role="group">
-              <button
-                v-for="category in categories"
-                :key="category"
-                type="button"
-                class="btn"
-                :class="selectedCategory === category ? 'btn-primary' : 'btn-outline-primary'"
-                @click="selectedCategory = category"
-              >
-                {{ category }}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Projects Grid -->
-        <div class="row g-4">
-          <div v-for="project in filteredProjects" :key="project.id" class="col-lg-4 col-md-6">
-            <div class="card border-0 shadow-sm project-card h-100">
-              <div class="position-relative overflow-hidden">
-                <img
-                  :src="project.image"
-                  :alt="project.title"
-                  class="card-img-top project-image"
-                  style="height: 200px; object-fit: cover"
-                />
-                <div class="project-overlay d-flex align-items-center justify-content-center">
-                  <a :href="project.link" class="btn btn-light btn-sm">
-                    <i class="fa-solid fa-external-link-alt me-1"></i>
-                    {{ appTexts.common.viewProject }}
-                  </a>
-                </div>
-              </div>
-              <div class="card-body p-4">
-                <span class="badge bg-primary mb-2">{{ project.category }}</span>
-                <h5 class="card-title fw-bold mb-2">{{ project.title }}</h5>
-                <p class="card-text text-muted mb-3">{{ project.description }}</p>
-                <div class="d-flex flex-wrap gap-1">
-                  <span v-for="tech in project.technologies" :key="tech" class="badge bg-light text-dark small">
-                    {{ tech }}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="py-5">
-      <div class="container">
-        <div class="row g-4 text-center">
-          <div class="col-lg-3 col-md-6">
-            <div class="stat-item">
-              <h3 class="display-4 fw-bold text-primary mb-0">250+</h3>
-              <p class="text-muted">{{ appTexts.stats.projectsCompleted }}</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="stat-item">
-              <h3 class="display-4 fw-bold text-primary mb-0">150+</h3>
-              <p class="text-muted">{{ appTexts.stats.happyClients }}</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="stat-item">
-              <h3 class="display-4 fw-bold text-primary mb-0">98%</h3>
-              <p class="text-muted">{{ appTexts.stats.successRate }}</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="stat-item">
-              <h3 class="display-4 fw-bold text-primary mb-0">24/7</h3>
-              <p class="text-muted">{{ appTexts.stats.supportAvailable }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- CTA Section -->
-    <section class="py-5 bg-primary text-white">
+    <section class="py-5 cta-section text-white">
       <div class="container px-lg-5">
         <div class="row align-items-center">
           <div class="col-lg-8">
@@ -264,7 +160,7 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
             </p>
           </div>
           <div class="col-lg-4 text-lg-end">
-            <router-link to="/contact" class="btn btn-light btn-lg">
+            <router-link to="/contact" class="btn hero-btn btn-light btn-lg overflow-hidden">
               <font-awesome-icon icon="fa-solid fa-rocket" class="me-2" />
               {{ appTexts.cta.button }}
             </router-link>
@@ -276,8 +172,22 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
 </template>
 
 <style scoped>
-.hero-section {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #004085 100%);
+.cta-section {
+  background: linear-gradient(135deg, #000000 0%, var(--orange) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, var(--orange-dark) 100%);
+  opacity: 0.9;
+  z-index: -1;
 }
 
 .project-card {

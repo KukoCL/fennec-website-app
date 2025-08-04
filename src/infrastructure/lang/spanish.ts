@@ -202,6 +202,7 @@ export const appTexts = {
       title: 'Nuestros Servicios',
       description:
         'Creamos ecosistemas tecnológicos que conectan personas, procesos y plataformas con impacto real.',
+      button: 'Descubre Nuestros Servicios',
     },
     servicesList: {
       webDevelopment: {
