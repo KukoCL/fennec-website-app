@@ -25,7 +25,7 @@ const subscribeNewsletter = () => {
         </div>
         <div class="col-lg-4 text-lg-end">
           <div class="d-flex flex-column flex-sm-row flex-lg-column gap-3">
-            <RouterLink to="/contact" class="btn btn-light btn-lg">
+            <RouterLink to="/contact" class="btn btn-success custom-btn position-relative overflow-hidden btn-lg">
               <FontAwesomeIcon icon="rocket" class="me-2" />
               {{ appTexts.buttons.getStarted }}
             </RouterLink>
@@ -55,7 +55,7 @@ const subscribeNewsletter = () => {
               />
             </div>
             <div class="col-md-3">
-              <button type="submit" class="btn btn-light btn-lg w-100">
+              <button type="submit" class="btn custom-btn position-relative overflow-hidden btn-purple btn-lg w-100">
                 {{ appTexts.newsletter.button }}
               </button>
             </div>
