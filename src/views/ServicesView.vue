@@ -488,7 +488,6 @@ const services: Service[] = [
   padding: 5px 10px;
   border-radius: 25px;
   font-weight: 400;
-  /*text-transform: uppercase;*/
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
   border: none;
