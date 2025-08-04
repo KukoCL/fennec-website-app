@@ -14,7 +14,7 @@ const subscribeNewsletter = () => {
 </script>
 
 <template>
-  <section class="cta-section bg-primary text-white py-5">
+  <section class="cta-section text-white py-5">
     <div class="container px-lg-5">
       <div class="row align-items-center">
         <div class="col-lg-8">
@@ -72,7 +72,7 @@ const subscribeNewsletter = () => {
 
 <style scoped>
 .cta-section {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #004085 100%);
+  background: linear-gradient(135deg, #000000 0%, var(--orange) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -84,8 +84,9 @@ const subscribeNewsletter = () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-  pointer-events: none;
+  background: linear-gradient(135deg, #1a1a1a 0%, var(--orange-dark) 100%);
+  opacity: 0.9;
+  z-index: -1;
 }
 
 .btn {
