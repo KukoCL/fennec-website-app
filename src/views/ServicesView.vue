@@ -89,7 +89,7 @@ const services: Service[] = [
               <router-link to="/contact" class="btn hero-btn position-relative overflow-hidden">
                 <span class="btn-content">
                   <FontAwesomeIcon icon="rocket" class="me-2" />
-                  Descubre Nuestros Servicios
+                  {{ appTexts.hero.button }}
                 </span>
               </router-link>
             </div>
@@ -216,8 +216,3 @@ const services: Service[] = [
     </section>
   </div>
 </template>
-
-<style scoped>
-/* Component-specific styles for ServicesView only */
-/* Add any specific overrides here if needed */
-</style>

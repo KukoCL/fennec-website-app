@@ -86,17 +86,22 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
 <template>
   <div class="portfolio-page">
     <!-- Hero Section -->
-    <section class="hero-section bg-primary text-white py-5">
-      <div class="container">
+    <section class="hero-section bg-primary text-white py-5 position-relative overflow-hidden">
+      <div class="container position-relative">
         <div class="row align-items-center py-5">
           <div class="col-lg-8 mx-auto text-center">
-            <h1 class="display-4 fw-bold mb-4">{{ appTexts.hero.title }}</h1>
-            <p class="lead">
+            <h1 class="display-4 fw-bold mb-4 hero-title">{{ appTexts.hero.title }}</h1>
+            <p class="lead hero-description">
               {{ appTexts.hero.description }}
             </p>
           </div>
         </div>
       </div>
+
+      <!-- Decorative elements -->
+      <div class="hero-decoration-1 position-absolute"></div>
+      <div class="hero-decoration-2 position-absolute"></div>
+      <div class="hero-decoration-3 position-absolute"></div>
     </section>
 
     <!-- Featured Projects -->

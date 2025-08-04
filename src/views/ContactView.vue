@@ -166,19 +166,24 @@ const submitForm = async () => {
 <template>
   <div class="contact-page">
     <!-- Hero Section -->
-    <section class="hero-section bg-primary text-white py-5">
-      <div class="container">
+    <section class="hero-section bg-primary text-white py-5 position-relative overflow-hidden">
+      <div class="container position-relative">
         <div class="row align-items-center py-5">
           <div class="col-lg-8 mx-auto text-center">
-            <h1 class="display-4 fw-bold mb-4">
+            <h1 class="display-4 fw-bold mb-4 hero-title">
               {{ appTexts.contact.hero.title }}
             </h1>
-            <p class="lead">
+            <p class="lead hero-description">
               {{ appTexts.contact.hero.description }}
             </p>
           </div>
         </div>
       </div>
+
+      <!-- Decorative elements -->
+      <div class="hero-decoration-1 position-absolute"></div>
+      <div class="hero-decoration-2 position-absolute"></div>
+      <div class="hero-decoration-3 position-absolute"></div>
     </section>
 
     <!-- Contact Form & Info -->
