@@ -14,7 +14,7 @@ const subscribeNewsletter = () => {
 </script>
 
 <template>
-  <section class="cta-section bg-primary text-white py-5">
+  <section class="cta-section text-white py-5">
     <div class="container px-lg-5">
       <div class="row align-items-center">
         <div class="col-lg-8">
@@ -25,7 +25,7 @@ const subscribeNewsletter = () => {
         </div>
         <div class="col-lg-4 text-lg-end">
           <div class="d-flex flex-column flex-sm-row flex-lg-column gap-3">
-            <RouterLink to="/contact" class="btn btn-light btn-lg">
+            <RouterLink to="/contact" class="btn btn-success custom-btn position-relative overflow-hidden btn-lg">
               <FontAwesomeIcon icon="rocket" class="me-2" />
               {{ appTexts.buttons.getStarted }}
             </RouterLink>
@@ -55,7 +55,7 @@ const subscribeNewsletter = () => {
               />
             </div>
             <div class="col-md-3">
-              <button type="submit" class="btn btn-light btn-lg w-100">
+              <button type="submit" class="btn custom-btn position-relative overflow-hidden btn-purple btn-lg w-100">
                 {{ appTexts.newsletter.button }}
               </button>
             </div>
@@ -72,7 +72,7 @@ const subscribeNewsletter = () => {
 
 <style scoped>
 .cta-section {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #004085 100%);
+  background: linear-gradient(135deg, #000000 0%, var(--orange) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -84,8 +84,9 @@ const subscribeNewsletter = () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-  pointer-events: none;
+  background: linear-gradient(135deg, #1a1a1a 0%, var(--orange-dark) 100%);
+  opacity: 0.9;
+  z-index: -1;
 }
 
 .btn {

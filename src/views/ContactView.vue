@@ -166,19 +166,24 @@ const submitForm = async () => {
 <template>
   <div class="contact-page">
     <!-- Hero Section -->
-    <section class="hero-section bg-primary text-white py-5">
-      <div class="container">
+    <section class="hero-section bg-primary text-white py-5 position-relative overflow-hidden">
+      <div class="container position-relative">
         <div class="row align-items-center py-5">
           <div class="col-lg-8 mx-auto text-center">
-            <h1 class="display-4 fw-bold mb-4">
+            <h1 class="display-4 fw-bold mb-4 hero-title">
               {{ appTexts.contact.hero.title }}
             </h1>
-            <p class="lead">
+            <p class="lead hero-description">
               {{ appTexts.contact.hero.description }}
             </p>
           </div>
         </div>
       </div>
+
+      <!-- Decorative elements -->
+      <div class="hero-decoration-1 position-absolute"></div>
+      <div class="hero-decoration-2 position-absolute"></div>
+      <div class="hero-decoration-3 position-absolute"></div>
     </section>
 
     <!-- Contact Form & Info -->
@@ -323,7 +328,7 @@ const submitForm = async () => {
                     <div class="col-12">
                       <button
                         type="submit"
-                        class="btn btn-primary btn-lg"
+                        class="btn btn-primary hero-btn btn-lg overflow-hidden"
                         :disabled="isSubmitting"
                       >
                         <font-awesome-icon
@@ -357,264 +362,61 @@ const submitForm = async () => {
 
           <!-- Contact Information -->
           <div class="col-lg-4">
-            <div class="card border-0 shadow-sm">
-              <div class="card-body p-4">
-                <h3 class="h4 fw-bold mb-4">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4 d-flex flex-column">
+                <h3 class="h4 fw-bold mb-4 text-center">
                   {{ appTexts.contact.info.title }}
                 </h3>
 
-                <div class="contact-item d-flex mb-4">
-                  <div
-                    class="contact-icon bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
-                    style="width: 50px; height: 50px"
-                  >
-                    <font-awesome-icon
-                      icon="fa-solid fa-phone"
-                      class="text-success"
-                    ></font-awesome-icon>
-                  </div>
-                  <div>
-                    <h6 class="fw-bold mb-1">
-                      {{ appTexts.contact.info.phoneLabel }}
-                    </h6>
-                    <p class="text-muted mb-0">
-                      <a
-                        :href="`tel:${appTexts.contact.info.phone}`"
-                        class="text-decoration-none"
-                      >
+                <!-- Phone Contact -->
+                <div class="contact-item mb-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <div class="contact-icon bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px; min-width: 48px;">
+                      <font-awesome-icon icon="fa-solid fa-phone" class="text-success fs-5" />
+                    </div>
+                    <div class="flex-grow-1">
+                      <h6 class="fw-bold mb-1">{{ appTexts.contact.info.phoneLabel }}</h6>
+                      <a :href="`tel:${appTexts.contact.info.phone}`" class="text-decoration-none text-muted">
                         {{ appTexts.contact.info.phone }}
                       </a>
-                    </p>
+                    </div>
                   </div>
                 </div>
 
-                <div class="contact-item d-flex mb-4">
-                  <div
-                    class="contact-icon bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
-                    style="width: 50px; height: 50px"
-                  >
-                    <font-awesome-icon
-                      icon="fa-solid fa-envelope"
-                      class="text-info"
-                    ></font-awesome-icon>
-                  </div>
-                  <div>
-                    <h6 class="fw-bold mb-1">
-                      {{ appTexts.contact.info.emailLabel }}
-                    </h6>
-                    <p class="text-muted mb-0">
-                      <a
-                        :href="`mailto:${appTexts.contact.info.email}`"
-                        class="text-decoration-none"
-                      >
+                <!-- Email Contact -->
+                <div class="contact-item mb-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <div class="contact-icon bg-white bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px; min-width: 48px;">
+                      <font-awesome-icon icon="fa-solid fa-envelope" class="text-white fs-5" style="color: var(--orange);" />
+                    </div>
+                    <div class="flex-grow-1">
+                      <h6 class="fw-bold mb-1">{{ appTexts.contact.info.emailLabel }}</h6>
+                      <a :href="`mailto:${appTexts.contact.info.email}`" class="text-decoration-none text-muted text-break">
                         {{ appTexts.contact.info.email }}
                       </a>
-                    </p>
+                    </div>
                   </div>
                 </div>
 
-                <div class="contact-item d-flex mb-4">
-                  <div
-                    class="contact-icon bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
-                    style="width: 50px; height: 50px"
-                  >
-                    <font-awesome-icon
-                      icon="fa-solid fa-clock"
-                      class="text-warning"
-                    ></font-awesome-icon>
-                  </div>
-                  <div>
-                    <h6 class="fw-bold mb-1">
-                      {{ appTexts.contact.info.hoursLabel }}
-                    </h6>
-                    <p class="text-muted mb-0">
-                      <span
-                        v-for="(line, idx) in appTexts.contact.info.hours"
-                        :key="idx"
-                      >
-                        {{ line }}
-                        <br
-                          v-if="idx < appTexts.contact.info.hours.length - 1"
-                        />
-                      </span>
-                    </p>
-                  </div>
-                </div>
+                <!-- Divider -->
+                <hr class="my-4" />
 
-                <hr />
-
-                <h6 class="fw-bold mb-3">
-                  {{ appTexts.contact.info.followUs }}
-                </h6>
-                <div class="d-flex gap-2">
-                  <a
-                    href="#"
-                    class="btn btn-outline-primary btn-sm"
-                  >
-                    <font-awesome-icon
-                      icon="fa-brands fa-facebook-f"
-                    ></font-awesome-icon>
-                  </a>
-                  <a
-                    href="#"
-                    class="btn btn-outline-primary btn-sm"
-                  >
-                    <font-awesome-icon
-                      icon="fa-brands fa-twitter"
-                    ></font-awesome-icon>
-                  </a>
-                  <a
-                    href="#"
-                    class="btn btn-outline-primary btn-sm"
-                  >
-                    <font-awesome-icon
-                      icon="fa-brands fa-linkedin-in"
-                    ></font-awesome-icon>
-                  </a>
-                  <a
-                    href="#"
-                    class="btn btn-outline-primary btn-sm"
-                  >
-                    <font-awesome-icon
-                      icon="fa-brands fa-instagram"
-                    ></font-awesome-icon>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Map Section -->
-    <section class="py-5 bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <div class="card border-0 shadow-sm">
-              <div class="card-body p-0">
-                <div
-                  class="bg-secondary d-flex align-items-center justify-content-center"
-                  style="height: 400px"
-                >
-                  <div class="text-center text-white">
-                    <i class="fa-solid fa-map-marker-alt fa-3x mb-3"></i>
-                    <h4>{{ appTexts.contact.map.title }}</h4>
-                    <p class="mb-0">
-                      {{ appTexts.contact.map.description }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <div class="text-center mb-5">
-              <h2 class="display-5 fw-bold mb-3">
-                {{ appTexts.contact.faq.title }}
-              </h2>
-              <p class="lead text-muted">
-                {{ appTexts.contact.faq.description }}
-              </p>
-            </div>
-
-            <div
-              class="accordion"
-              id="faqAccordion"
-            >
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#faq1"
-                  >
-                    {{ appTexts.contact.faq.items[0].question }}
-                  </button>
-                </h2>
-                <div
-                  id="faq1"
-                  class="accordion-collapse collapse show"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    {{ appTexts.contact.faq.items[0].answer }}
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#faq2"
-                  >
-                    {{ appTexts.contact.faq.items[1].question }}
-                  </button>
-                </h2>
-                <div
-                  id="faq2"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    {{ appTexts.contact.faq.items[1].answer }}
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#faq3"
-                  >
-                    {{ appTexts.contact.faq.items[2].question }}
-                  </button>
-                </h2>
-                <div
-                  id="faq3"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    {{ appTexts.contact.faq.items[2].answer }}
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#faq4"
-                  >
-                    {{ appTexts.contact.faq.items[3].question }}
-                  </button>
-                </h2>
-                <div
-                  id="faq4"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    {{ appTexts.contact.faq.items[3].answer }}
+                <!-- Social Media -->
+                <div class="mt-auto">
+                  <h6 class="fw-bold mb-3 text-center">{{ appTexts.contact.info.followUs }}</h6>
+                  <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="btn btn-outline-primary btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                      <font-awesome-icon icon="fa-brands fa-facebook-f" />
+                    </a>
+                    <a href="#" class="btn btn-outline-info btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                      <font-awesome-icon icon="fa-brands fa-twitter" />
+                    </a>
+                    <a href="#" class="btn btn-outline-primary btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                      <font-awesome-icon icon="fa-brands fa-linkedin-in" />
+                    </a>
+                    <a href="#" class="btn btn-outline-danger btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                      <font-awesome-icon icon="fa-brands fa-instagram" />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -627,10 +429,6 @@ const submitForm = async () => {
 </template>
 
 <style scoped>
-.hero-section {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #004085 100%);
-}
-
 .contact-item {
   transition: all 0.3s ease;
 }

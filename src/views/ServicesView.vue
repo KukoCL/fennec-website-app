@@ -13,7 +13,7 @@ interface Service {
   description: string
   features: string[]
   color: string
-  price: string
+  contact: string
 }
 
 const services: Service[] = [
@@ -23,71 +23,83 @@ const services: Service[] = [
     title: appTexts.value.servicesList.webDevelopment.title,
     description: appTexts.value.servicesList.webDevelopment.description,
     features: appTexts.value.servicesList.webDevelopment.features,
-    color: 'dark',
-    price: appTexts.value.servicesList.webDevelopment.price,
+    color: 'blue',
+    contact: appTexts.value.servicesList.webDevelopment.contact,
   },
   {
-    id: 'mobile-apps',
-    icon: 'mobile-screen-button',
-    title: appTexts.value.servicesList.mobileApps.title,
-    description: appTexts.value.servicesList.mobileApps.description,
-    features: appTexts.value.servicesList.mobileApps.features,
-    color: 'success',
-    price: appTexts.value.servicesList.mobileApps.price,
-  },
-  {
-    id: 'cloud-solutions',
-    icon: 'cloud',
-    title: appTexts.value.servicesList.cloudSolutions.title,
-    description: appTexts.value.servicesList.cloudSolutions.description,
-    features: appTexts.value.servicesList.cloudSolutions.features,
+    id: 'systems-integration',
+    icon: 'puzzle-piece',
+    title: appTexts.value.servicesList.systemsIntegration.title,
+    description: appTexts.value.servicesList.systemsIntegration.description,
+    features: appTexts.value.servicesList.systemsIntegration.features,
     color: 'info',
-    price: appTexts.value.servicesList.cloudSolutions.price,
+    contact: appTexts.value.servicesList.systemsIntegration.contact,
   },
   {
-    id: 'data-analytics',
-    icon: 'chart-column',
-    title: appTexts.value.servicesList.dataAnalytics.title,
-    description: appTexts.value.servicesList.dataAnalytics.description,
-    features: appTexts.value.servicesList.dataAnalytics.features,
+    id: 'process-automation',
+    icon: 'wand-magic-sparkles',
+    title: appTexts.value.servicesList.processAutomation.title,
+    description: appTexts.value.servicesList.processAutomation.description,
+    features: appTexts.value.servicesList.processAutomation.features,
+    color: 'success',
+    contact: appTexts.value.servicesList.processAutomation.contact,
+  },
+  {
+    id: 'tech-consulting',
+    icon: 'comments',
+    title: appTexts.value.servicesList.techConsulting.title,
+    description: appTexts.value.servicesList.techConsulting.description,
+    features: appTexts.value.servicesList.techConsulting.features,
     color: 'warning',
-    price: appTexts.value.servicesList.dataAnalytics.price,
+    contact: appTexts.value.servicesList.techConsulting.contact,
   },
   {
-    id: 'cybersecurity',
-    icon: 'shield-halved',
-    title: appTexts.value.servicesList.cybersecurity.title,
-    description: appTexts.value.servicesList.cybersecurity.description,
-    features: appTexts.value.servicesList.cybersecurity.features,
+    id: 'agile-empowerment',
+    icon: 'arrows-up-down-left-right',
+    title: appTexts.value.servicesList.agileEmpowerment.title,
+    description: appTexts.value.servicesList.agileEmpowerment.description,
+    features: appTexts.value.servicesList.agileEmpowerment.features,
     color: 'danger',
-    price: appTexts.value.servicesList.cybersecurity.price,
+    contact: appTexts.value.servicesList.agileEmpowerment.contact,
   },
   {
-    id: 'consulting',
-    icon: 'handshake',
-    title: appTexts.value.servicesList.consulting.title,
-    description: appTexts.value.servicesList.consulting.description,
-    features: appTexts.value.servicesList.consulting.features,
-    color: 'secondary',
-    price: appTexts.value.servicesList.consulting.price,
+    id: 'training-programs',
+    icon: 'chalkboard-teacher',
+    title: appTexts.value.servicesList.trainingPrograms.title,
+    description: appTexts.value.servicesList.trainingPrograms.description,
+    features: appTexts.value.servicesList.trainingPrograms.features,
+    color: 'purple',
+    contact: appTexts.value.servicesList.trainingPrograms.contact,
   },
 ];
 </script>
 
 <template>
-  <div class="services-page">
+  <div class="services-page page-content">
     <!-- Hero Section -->
-    <section class="hero-section bg-primary text-white py-5">
-      <div class="container">
+    <section class="hero-section text-white py-5 position-relative overflow-hidden">
+      <div class="container position-relative">
         <div class="row align-items-center py-5">
           <div class="col-lg-8 mx-auto text-center">
-            <h1 class="display-4 fw-bold mb-4">{{ appTexts.hero.title }}</h1>
-            <p class="lead">
+            <h1 class="display-4 fw-bold mb-4 hero-title">{{ appTexts.hero.title }}</h1>
+            <p class="lead hero-description">
               {{ appTexts.hero.description }}
             </p>
+            <div class="mt-4">
+              <router-link to="/contact" class="btn hero-btn position-relative overflow-hidden">
+                <span class="btn-content">
+                  <FontAwesomeIcon icon="rocket" class="me-2" />
+                  {{ appTexts.hero.button }}
+                </span>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
+      <!-- Elementos decorativos -->
+      <div class="hero-decoration-1 position-absolute"></div>
+      <div class="hero-decoration-2 position-absolute"></div>
+      <div class="hero-decoration-3 position-absolute"></div>
     </section>
 
     <!-- Services Grid -->
@@ -96,7 +108,7 @@ const services: Service[] = [
         <div class="row g-4">
           <div v-for="service in services" :key="service.id" class="col-lg-4 col-md-6">
             <div class="card h-100 border-0 shadow-sm service-card">
-              <div class="card-body p-4">
+              <div class="card-body p-4 d-flex flex-column">
                 <div
                   class="service-icon mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle"
                   :class="`bg-${service.color} bg-opacity-10`"
@@ -107,93 +119,20 @@ const services: Service[] = [
                 <h4 class="card-title fw-bold text-center mb-3">{{ service.title }}</h4>
                 <p class="card-text text-muted text-center mb-4">{{ service.description }}</p>
 
-                <ul class="list-unstyled mb-4">
+                <ul class="list-unstyled mb-4 flex-grow-1">
                   <li v-for="feature in service.features" :key="feature" class="d-flex align-items-center mb-2">
                     <FontAwesomeIcon icon="check" class="text-success me-2" />
                     <span class="small">{{ feature }}</span>
                   </li>
                 </ul>
 
-                <div class="text-center">
-                  <p class="fw-bold mb-3" :class="`text-${service.color}`">{{ service.price }}</p>
-                  <router-link to="/contact" :class="`btn btn-${service.color} btn-sm`">
-                    {{ appTexts.common.getStarted }}
+                <div class="text-center mt-auto">
+                  <router-link to="/contact" :class="`btn btn-${service.color} custom-btn position-relative overflow-hidden`">
+                   <FontAwesomeIcon icon="arrow-right" class="me-2" />
+                    {{ service.contact }}
                   </router-link>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Process Section -->
-    <section class="py-5 bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">{{ appTexts.process.title }}</h2>
-            <p class="lead text-muted">
-              {{ appTexts.process.description }}
-            </p>
-          </div>
-        </div>
-
-        <div class="row g-4">
-          <div class="col-lg-3 col-md-6">
-            <div class="text-center process-step">
-              <div
-                class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 80px; height: 80px"
-              >
-                <span class="fw-bold fs-4">1</span>
-              </div>
-              <h5 class="fw-bold mb-2">{{ appTexts.process.steps.discovery.title }}</h5>
-              <p class="text-muted small">
-                {{ appTexts.process.steps.discovery.description }}
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="text-center process-step">
-              <div
-                class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 80px; height: 80px"
-              >
-                <span class="fw-bold fs-4">2</span>
-              </div>
-              <h5 class="fw-bold mb-2">{{ appTexts.process.steps.design.title }}</h5>
-              <p class="text-muted small">
-                {{ appTexts.process.steps.design.description }}
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="text-center process-step">
-              <div
-                class="bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 80px; height: 80px"
-              >
-                <span class="fw-bold fs-4">3</span>
-              </div>
-              <h5 class="fw-bold mb-2">{{ appTexts.process.steps.development.title }}</h5>
-              <p class="text-muted small">
-                {{ appTexts.process.steps.development.description }}
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="text-center process-step">
-              <div
-                class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 80px; height: 80px"
-              >
-                <span class="fw-bold fs-4">4</span>
-              </div>
-              <h5 class="fw-bold mb-2">{{ appTexts.process.steps.launch.title }}</h5>
-              <p class="text-muted small">
-                {{ appTexts.process.steps.launch.description }}
-              </p>
             </div>
           </div>
         </div>
@@ -239,14 +178,14 @@ const services: Service[] = [
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <FontAwesomeIcon :icon="['fab', 'aws']" class="text-warning" style="font-size: 3rem" />
-              <p class="small mt-2 mb-0">AWS</p>
+              <FontAwesomeIcon :icon="['fab', 'bootstrap']" class="text-purple" style="font-size: 3rem" />
+              <p class="small mt-2 mb-0">Bootstrap</p>
             </div>
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <FontAwesomeIcon :icon="['fab', 'docker']" class="text-info" style="font-size: 3rem" />
-              <p class="small mt-2 mb-0">Docker</p>
+              <FontAwesomeIcon :icon="['fab', 'windows']" class="text-info" style="font-size: 3rem" />
+              <p class="small mt-2 mb-0">.NET Core</p>
             </div>
           </div>
         </div>
@@ -254,7 +193,7 @@ const services: Service[] = [
     </section>
 
     <!-- CTA Section -->
-    <section class="py-5 bg-primary text-white px-3">
+    <section class="cta-section py-5 bg-primary text-white px-3">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-8">
@@ -264,56 +203,16 @@ const services: Service[] = [
             </p>
           </div>
           <div class="col-lg-4 text-lg-end">
-            <router-link to="/contact" class="btn btn-light btn-lg">
+            <router-link to="/contact" class="btn cta-btn position-relative overflow-hidden">
               <FontAwesomeIcon icon="comment" class="me-2" />
               {{ appTexts.cta.button }}
             </router-link>
           </div>
         </div>
       </div>
+      <!-- Elementos decorativos -->
+      <div class="cta-decoration position-absolute"></div>
+      <div class="cta-decoration-2 position-absolute"></div>
     </section>
   </div>
 </template>
-
-<style scoped>
-.hero-section {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #004085 100%);
-}
-
-.service-card {
-  transition: all 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
-}
-
-.service-icon {
-  width: 80px;
-  height: 80px;
-  transition: all 0.3s ease;
-}
-
-.service-card:hover .service-icon {
-  transform: scale(1.1);
-}
-
-.process-step {
-  transition: all 0.3s ease;
-}
-
-.process-step:hover {
-  transform: translateY(-5px);
-}
-
-.tech-logo {
-  transition: all 0.3s ease;
-  border-radius: 10px;
-}
-
-.tech-logo:hover {
-  background-color: var(--light-color);
-  transform: scale(1.1);
-}
-</style>

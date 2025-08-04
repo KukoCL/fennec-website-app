@@ -56,39 +56,44 @@ const teamMembers: TeamMember[] = [
 <template>
   <div class="about-page">
     <!-- Hero Section -->
-    <section class="hero-section bg-primary text-white py-5">
-      <div class="container px-lg-5">
+    <section class="hero-section bg-primary text-white py-5 position-relative overflow-hidden">
+      <div class="container px-lg-5 position-relative">
         <div class="row align-items-center py-5">
           <div class="col-lg-6">
-            <h1 class="display-4 fw-bold mb-4">{{ appTexts.hero.title }}</h1>
-            <p class="lead">
+            <h1 class="display-4 fw-bold mb-4 hero-title">{{ appTexts.hero.title }}</h1>
+            <p class="lead hero-description">
               {{ appTexts.hero.description }}
             </p>
           </div>
           <div class="col-lg-6">
-            <div class="bg-light rounded-3 p-4">
+            <div class="bg-dark rounded-3 p-4">
               <div class="row text-center">
                 <div class="col-6 mb-3">
                   <h3 class="text-primary fw-bold">250+</h3>
-                  <small class="text-muted">{{ appTexts.hero.stats.projects }}</small>
+                  <small class="text-white">{{ appTexts.hero.stats.projects }}</small>
                 </div>
                 <div class="col-6 mb-3">
                   <h3 class="text-primary fw-bold">50+</h3>
-                  <small class="text-muted">{{ appTexts.hero.stats.teamMembers }}</small>
+                  <small class="text-white">{{ appTexts.hero.stats.teamMembers }}</small>
                 </div>
                 <div class="col-6">
                   <h3 class="text-primary fw-bold">5+</h3>
-                  <small class="text-muted">{{ appTexts.hero.stats.years }}</small>
+                  <small class="text-white">{{ appTexts.hero.stats.years }}</small>
                 </div>
                 <div class="col-6">
                   <h3 class="text-primary fw-bold">98%</h3>
-                  <small class="text-muted">{{ appTexts.hero.stats.satisfaction }}</small>
+                  <small class="text-white">{{ appTexts.hero.stats.satisfaction }}</small>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Decorative elements -->
+      <div class="hero-decoration-1 position-absolute"></div>
+      <div class="hero-decoration-2 position-absolute"></div>
+      <div class="hero-decoration-3 position-absolute"></div>
     </section>
 
     <!-- Mission & Vision -->
@@ -132,7 +137,7 @@ const teamMembers: TeamMember[] = [
     </section>
 
     <!-- Our Story -->
-    <section class="py-5 bg-light">
+    <section class="py-5 text-white">
       <div class="container px-lg-5">
         <div class="row align-items-center">
           <div class="col-lg-6">
@@ -203,8 +208,8 @@ const teamMembers: TeamMember[] = [
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">{{ appTexts.team.title }}</h2>
-            <p class="lead text-muted">
+            <h2 class="display-5 fw-bold mb-3 text-white">{{ appTexts.team.title }}</h2>
+            <p class="lead text-white">
               {{ appTexts.team.description }}
             </p>
           </div>
@@ -249,12 +254,12 @@ const teamMembers: TeamMember[] = [
     </section>
 
     <!-- Values Section -->
-    <section class="py-5 bg-light">
+    <section class="py-5 text-white">
       <div class="container px-lg-5">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
             <h2 class="display-5 fw-bold mb-3">{{ appTexts.values.title }}</h2>
-            <p class="lead text-muted">
+            <p class="lead text-white">
               {{ appTexts.values.description }}
             </p>
           </div>
@@ -270,7 +275,7 @@ const teamMembers: TeamMember[] = [
                 <font-awesome-icon icon="fa-solid fa-heart" class="text-primary fs-2"></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">{{ appTexts.values.items.passion.title }}</h5>
-              <p class="text-muted small">
+              <p class="text-white small">
                 {{ appTexts.values.items.passion.description }}
               </p>
             </div>
@@ -284,7 +289,7 @@ const teamMembers: TeamMember[] = [
                 <font-awesome-icon icon="fa-solid fa-shield-halved" class="text-success fs-2"></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">{{ appTexts.values.items.integrity.title }}</h5>
-              <p class="text-muted small">
+              <p class="text-white small">
                 {{ appTexts.values.items.integrity.description }}
               </p>
             </div>
@@ -298,7 +303,7 @@ const teamMembers: TeamMember[] = [
                 <font-awesome-icon icon="fa-solid fa-lightbulb" class="text-warning fs-2"></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">{{ appTexts.values.items.innovation.title }}</h5>
-              <p class="text-muted small">
+              <p class="text-white small">
                 {{ appTexts.values.items.innovation.description }}
               </p>
             </div>
@@ -312,7 +317,7 @@ const teamMembers: TeamMember[] = [
                 <font-awesome-icon icon="fa-solid fa-users" class="text-info fs-2"></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">{{ appTexts.values.items.collaboration.title }}</h5>
-              <p class="text-muted small">
+              <p class="text-white small">
                 {{ appTexts.values.items.collaboration.description }}
               </p>
             </div>
@@ -324,10 +329,6 @@ const teamMembers: TeamMember[] = [
 </template>
 
 <style scoped>
-.hero-section {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #004085 100%);
-}
-
 .team-card {
   transition: all 0.3s ease;
 }
