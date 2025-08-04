@@ -540,13 +540,6 @@ const services: Service[] = [
   color: #ffffff !important;
 }
 
-/* Iconos de tecnología en naranja * /
-.tech-logo .text-info,
-.tech-logo .text-success,
-.tech-logo .text-primary,
-.tech-logo .text-purple {
-  color: #ff8c00 !important;
-}*/
 
 /* Blue color classes - emulando Bootstrap */
 :root {
