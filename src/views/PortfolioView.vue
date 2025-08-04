@@ -145,7 +145,7 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
     </section>
 
     <!-- CTA Section -->
-    <section class="py-5 bg-primary text-white">
+    <section class="py-5 cta-section text-white">
       <div class="container px-lg-5">
         <div class="row align-items-center">
           <div class="col-lg-8">
@@ -167,6 +167,24 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
 </template>
 
 <style scoped>
+.cta-section {
+  background: linear-gradient(135deg, #000000 0%, var(--orange) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, var(--orange-dark) 100%);
+  opacity: 0.9;
+  z-index: -1;
+}
+
 .project-card {
   transition: all 0.3s ease;
 }
