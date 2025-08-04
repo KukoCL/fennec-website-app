@@ -1,10 +1,10 @@
 <template>
-  <section class="py-5 bg-light">
+  <section class="py-5">
     <div class="container">
       <div class="row">
         <div class="col-12 text-center mb-5">
-          <h2 class="display-5 fw-bold text-primary">{{ appTexts.title }}</h2>
-          <p class="lead text-muted">{{ appTexts.description }}</p>
+          <h2 class="display-5 fw-bold text-white">{{ appTexts.title }}</h2>
+          <p class="lead text-white">{{ appTexts.description }}</p>
         </div>
       </div>
       <div class="row g-4">

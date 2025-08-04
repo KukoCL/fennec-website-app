@@ -48,8 +48,8 @@ const testimonials: Testimonial[] = [
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto text-center mb-5">
-          <h2 class="display-5 fw-bold mb-3">{{ appTexts.title }}</h2>
-          <p class="lead text-muted">
+          <h2 class="display-5 fw-bold mb-3 text-white">{{ appTexts.title }}</h2>
+          <p class="lead text-white">
             {{ appTexts.description }}
           </p>
         </div>
@@ -93,34 +93,6 @@ const testimonials: Testimonial[] = [
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stats Section -->
-      <div class="row mt-5 pt-5 border-top">
-        <div class="col-lg-3 col-md-6 text-center mb-4">
-          <div class="stat-item">
-            <h3 class="display-4 fw-bold text-primary mb-0">250+</h3>
-            <p class="text-muted">{{ appTexts.stats.projectsCompleted }}</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center mb-4">
-          <div class="stat-item">
-            <h3 class="display-4 fw-bold text-primary mb-0">98%</h3>
-            <p class="text-muted">{{ appTexts.stats.clientSatisfaction }}</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center mb-4">
-          <div class="stat-item">
-            <h3 class="display-4 fw-bold text-primary mb-0">50+</h3>
-            <p class="text-muted">{{ appTexts.stats.teamMembers }}</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center mb-4">
-          <div class="stat-item">
-            <h3 class="display-4 fw-bold text-primary mb-0">5+</h3>
-            <p class="text-muted">{{ appTexts.stats.yearsExperience }}</p>
           </div>
         </div>
       </div>

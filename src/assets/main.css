@@ -36,7 +36,7 @@ a,
 
 /* ===== HERO SECTION STYLES ===== */
 .hero-section {
-  background: linear-gradient(135deg, #1a1a1a 0%, var(--orange) 100%);
+  background: linear-gradient(135deg, #000000 0%, var(--orange) 100%);
   position: relative;
   z-index: 1;
   min-height: 60vh;
@@ -55,8 +55,8 @@ a,
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #000000 0%, var(--orange-dark) 100%);
-  opacity: 0.8;
+  background: linear-gradient(135deg, #1a1a1a 0%, var(--orange-dark) 100%);
+  opacity: 0.9;
   z-index: -1;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -258,31 +258,269 @@ a,
 }
 
 /* ===== CARD STYLES ===== */
-.service-card {
+/* Global card styling - all cards use dark theme like services */
+.card {
   background-color: #383636 !important;
   color: #ffffff !important;
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 140, 0, 0.3) !important;
 }
 
-.service-card:hover {
+.card:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 40px rgba(255, 140, 0, 0.4) !important;
   border: 1px solid rgba(255, 140, 0, 0.6) !important;
 }
 
-.service-card .card-title {
+.card .card-title,
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6 {
   color: #ffffff !important;
 }
 
-.service-card .card-text {
+.card .card-text,
+.card p, .card span, .card div {
   color: #cccccc !important;
 }
 
-.service-card .list-unstyled li span {
+.card .list-unstyled li span {
   color: #cccccc !important;
 }
 
+/* Form elements inside cards */
+.card .form-label {
+  color: #ffffff !important;
+  font-weight: 500;
+}
+
+.card .form-control,
+.card .form-select {
+  background-color: #2c2c2c !important;
+  border-color: rgba(255, 140, 0, 0.3) !important;
+  color: #ffffff !important;
+}
+
+.card .form-control::placeholder {
+  color: #999999 !important;
+}
+
+.card .form-control:focus,
+.card .form-select:focus {
+  background-color: #2c2c2c !important;
+  border-color: var(--orange) !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.25) !important;
+  color: #ffffff !important;
+}
+
+/* Text elements inside cards */
+.card .text-muted {
+  color: #999999 !important;
+}
+
+/* Links inside cards */
+.card a {
+  color: var(--orange) !important;
+}
+
+.card a:hover {
+  color: var(--orange-dark) !important;
+}
+
+/* Contact items and icons inside cards */
+.card .contact-item {
+  color: #ffffff !important;
+}
+
+.card .contact-item h6 {
+  color: #ffffff !important;
+}
+
+/* Badges inside cards - ensure proper contrast */
+.card .badge.bg-light {
+  background-color: #f8f9fa !important;
+  color: #212529 !important;
+}
+
+.card .badge.bg-light.text-dark {
+  color: #212529 !important;
+}
+
+.card .badge.bg-primary {
+  background-color: var(--orange) !important;
+  color: #ffffff !important;
+}
+
+.card .badge {
+  color: inherit;
+}
+
+/* Buttons inside cards - preserve their intended colors */
+.card .btn {
+  color: initial !important;
+}
+
+.card .btn-primary {
+  color: #ffffff !important;
+}
+
+.card .btn-primary:hover {
+  color: #ffffff !important;
+}
+
+.card .btn-secondary {
+  color: #ffffff !important;
+}
+
+.card .btn-secondary:hover {
+  color: #ffffff !important;
+}
+
+.card .btn-success {
+  color: #ffffff !important;
+}
+
+.card .btn-success:hover {
+  color: #ffffff !important;
+}
+
+.card .btn-danger {
+  color: #ffffff !important;
+}
+
+.card .btn-danger:hover {
+  color: #ffffff !important;
+}
+
+.card .btn-warning {
+  color: #000000 !important;
+}
+
+.card .btn-warning:hover {
+  color: #000000 !important;
+}
+
+.card .btn-info {
+  color: #ffffff !important;
+}
+
+.card .btn-info:hover {
+  color: #ffffff !important;
+}
+
+.card .btn-light {
+  color: #000000 !important;
+}
+
+.card .btn-light:hover {
+  color: #000000 !important;
+}
+
+.card .btn-dark {
+  color: #ffffff !important;
+}
+
+.card .btn-dark:hover {
+  color: #ffffff !important;
+}
+
+.card .btn-outline-primary {
+  color: var(--bs-primary) !important;
+}
+
+.card .btn-outline-primary:hover {
+  color: #ffffff !important;
+}
+
+.card .btn-outline-secondary {
+  color: var(--bs-secondary) !important;
+}
+
+.card .btn-outline-secondary:hover {
+  color: #ffffff !important;
+}
+
+.card .btn-outline-success {
+  color: var(--bs-success) !important;
+}
+
+.card .btn-outline-success:hover {
+  color: #ffffff !important;
+}
+
+.card .btn-outline-danger {
+  color: var(--bs-danger) !important;
+}
+
+.card .btn-outline-danger:hover {
+  color: #ffffff !important;
+}
+
+.card .btn-outline-warning {
+  color: var(--bs-warning) !important;
+}
+
+.card .btn-outline-warning:hover {
+  color: #000000 !important;
+}
+
+.card .btn-outline-info {
+  color: var(--bs-info) !important;
+}
+
+.card .btn-outline-info:hover {
+  color: #ffffff !important;
+}
+
+.card .btn-outline-light {
+  color: var(--bs-light) !important;
+}
+
+.card .btn-outline-light:hover {
+  color: #000000 !important;
+}
+
+.card .btn-outline-dark {
+  color: var(--bs-dark) !important;
+}
+
+.card .btn-outline-dark:hover {
+  color: #ffffff !important;
+}
+
+/* Custom button classes */
+.card .btn-blue {
+  color: #ffffff !important;
+}
+
+.card .btn-blue:hover {
+  color: #ffffff !important;
+}
+
+.card .btn-purple {
+  color: #ffffff !important;
+}
+
+.card .btn-purple:hover {
+  color: #ffffff !important;
+}
+
+/* Hero buttons inside cards */
+.card .hero-btn {
+  color: #ffffff !important;
+}
+
+.card .hero-btn:hover {
+  color: #ffffff !important;
+}
+
+.card .cta-btn {
+  color: #ffffff !important;
+}
+
+.card .cta-btn:hover {
+  color: #ffffff !important;
+}
+
+/* Specific service card styling and animations */
 .service-icon {
   width: 80px;
   height: 80px;

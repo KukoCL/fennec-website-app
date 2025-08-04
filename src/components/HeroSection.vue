@@ -8,12 +8,12 @@ const appTexts = computed(() => getAppTexts().home.heroSection);
 </script>
 
 <template>
-  <section class="hero-section bg-primary text-white">
-    <div class="container">
+  <section class="hero-section text-white position-relative overflow-hidden">
+    <div class="container position-relative">
       <div class="row align-items-center p-lg-5">
         <div class="col-lg-6">
-          <h1 class="display-4 fw-bold mb-4 mt-3">{{ appTexts.headerTitle }}</h1>
-          <p class="lead mb-4">
+          <h1 class="display-4 fw-bold mb-4 mt-3 hero-title">{{ appTexts.headerTitle }}</h1>
+          <p class="lead mb-4 hero-description">
             {{ appTexts.description }}
           </p>
           <div class="d-flex flex-column flex-sm-row gap-3">
@@ -58,6 +58,11 @@ const appTexts = computed(() => getAppTexts().home.heroSection);
       </div>
     </div>
 
+    <!-- Decorative elements -->
+    <div class="hero-decoration-1 position-absolute"></div>
+    <div class="hero-decoration-2 position-absolute"></div>
+    <div class="hero-decoration-3 position-absolute"></div>
+
     <!-- Scroll indicator -->
     <div class="text-center pb-4">
       <FontAwesomeIcon icon="chevron-down" class="fa-2x opacity-50 bounce" />
@@ -66,23 +71,6 @@ const appTexts = computed(() => getAppTexts().home.heroSection);
 </template>
 
 <style scoped>
-.hero-section {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #004085 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-  pointer-events: none;
-}
-
 .btn {
   transition: all 0.3s ease;
 }

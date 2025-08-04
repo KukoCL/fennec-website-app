@@ -323,7 +323,7 @@ const submitForm = async () => {
                     <div class="col-12">
                       <button
                         type="submit"
-                        class="btn btn-primary btn-lg"
+                        class="btn btn-primary hero-btn btn-lg overflow-hidden"
                         :disabled="isSubmitting"
                       >
                         <font-awesome-icon
@@ -486,151 +486,10 @@ const submitForm = async () => {
         </div>
       </div>
     </section>
-
-    <!-- Map Section -->
-    <section class="py-5 bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <div class="card border-0 shadow-sm">
-              <div class="card-body p-0">
-                <div
-                  class="bg-secondary d-flex align-items-center justify-content-center"
-                  style="height: 400px"
-                >
-                  <div class="text-center text-white">
-                    <i class="fa-solid fa-map-marker-alt fa-3x mb-3"></i>
-                    <h4>{{ appTexts.contact.map.title }}</h4>
-                    <p class="mb-0">
-                      {{ appTexts.contact.map.description }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <div class="text-center mb-5">
-              <h2 class="display-5 fw-bold mb-3">
-                {{ appTexts.contact.faq.title }}
-              </h2>
-              <p class="lead text-muted">
-                {{ appTexts.contact.faq.description }}
-              </p>
-            </div>
-
-            <div
-              class="accordion"
-              id="faqAccordion"
-            >
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#faq1"
-                  >
-                    {{ appTexts.contact.faq.items[0].question }}
-                  </button>
-                </h2>
-                <div
-                  id="faq1"
-                  class="accordion-collapse collapse show"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    {{ appTexts.contact.faq.items[0].answer }}
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#faq2"
-                  >
-                    {{ appTexts.contact.faq.items[1].question }}
-                  </button>
-                </h2>
-                <div
-                  id="faq2"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    {{ appTexts.contact.faq.items[1].answer }}
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#faq3"
-                  >
-                    {{ appTexts.contact.faq.items[2].question }}
-                  </button>
-                </h2>
-                <div
-                  id="faq3"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    {{ appTexts.contact.faq.items[2].answer }}
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#faq4"
-                  >
-                    {{ appTexts.contact.faq.items[3].question }}
-                  </button>
-                </h2>
-                <div
-                  id="faq4"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    {{ appTexts.contact.faq.items[3].answer }}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
 <style scoped>
-.hero-section {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #004085 100%);
-}
-
 .contact-item {
   transition: all 0.3s ease;
 }

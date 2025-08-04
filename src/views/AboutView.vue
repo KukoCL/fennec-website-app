@@ -324,10 +324,6 @@ const teamMembers: TeamMember[] = [
 </template>
 
 <style scoped>
-.hero-section {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #004085 100%);
-}
-
 .team-card {
   transition: all 0.3s ease;
 }
