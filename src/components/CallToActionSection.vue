@@ -19,7 +19,7 @@ const subscribeNewsletter = () => {
       <div class="row align-items-center">
         <div class="col-lg-8">
           <h2 class="display-5 fw-bold mb-3">{{ appTexts.title }}</h2>
-          <p class="lead mb-0">
+          <p class="lead mb-4">
             {{ appTexts.description }}
           </p>
         </div>

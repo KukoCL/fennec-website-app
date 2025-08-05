@@ -198,7 +198,7 @@ export const appTexts = {
       title: 'Our Services',
       description:
         'We build tech ecosystems that connect people, processes, and platforms with real impact.',
-      button: 'Discover Our Services',
+      button: 'Get Our Services',
     },
     servicesList: {
       webDevelopment: {
