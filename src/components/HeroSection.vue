@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { RouterLink } from 'vue-router';
-import useAppLang from '@/composables/settings/useAppLang';
+import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
+import useAppLang from '@/composables/settings/useAppLang'
 
-const { getAppTexts } = useAppLang();
-const appTexts = computed(() => getAppTexts().home.heroSection);
+const { getAppTexts } = useAppLang()
+const appTexts = computed(() => getAppTexts().home.heroSection)
 </script>
 
 <template>
@@ -17,8 +17,16 @@ const appTexts = computed(() => getAppTexts().home.heroSection);
             {{ appTexts.description }}
           </p>
           <div class="d-flex flex-column flex-sm-row gap-3">
-            <RouterLink to="/contact" class="btn hero-btn overflow-hidden">{{ appTexts.buttons.getStarted }}</RouterLink>
-            <RouterLink to="/services" class="btn hero-btn overflow-hidden">
+            <RouterLink
+              to="/contact"
+              class="btn hero-btn overflow-hidden"
+            >
+              {{ appTexts.buttons.getStarted }}
+            </RouterLink>
+            <RouterLink
+              to="/services"
+              class="btn hero-btn overflow-hidden"
+            >
               {{ appTexts.buttons.ourServices }}
             </RouterLink>
           </div>
@@ -29,25 +37,37 @@ const appTexts = computed(() => getAppTexts().home.heroSection);
               <div class="row g-3">
                 <div class="col-6">
                   <div class="bg-dark bg-opacity-10 rounded p-3 text-center">
-                    <FontAwesomeIcon icon="rocket" class="text-primary fs-2 mb-2" />
+                    <FontAwesomeIcon
+                      icon="rocket"
+                      class="text-primary fs-2 mb-2"
+                    />
                     <h6 class="text-white mb-0">{{ appTexts.features.fastDelivery }}</h6>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="bg-success bg-opacity-10 rounded p-3 text-center">
-                    <FontAwesomeIcon icon="shield-halved" class="text-success fs-2 mb-2" />
+                    <FontAwesomeIcon
+                      icon="shield-halved"
+                      class="text-success fs-2 mb-2"
+                    />
                     <h6 class="text-white mb-0">{{ appTexts.features.secure }}</h6>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="bg-warning bg-opacity-10 rounded p-3 text-center">
-                    <FontAwesomeIcon icon="users" class="text-warning fs-2 mb-2" />
+                    <FontAwesomeIcon
+                      icon="users"
+                      class="text-warning fs-2 mb-2"
+                    />
                     <h6 class="text-white mb-0">{{ appTexts.features.support }}</h6>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="bg-info bg-opacity-10 rounded p-3 text-center">
-                    <FontAwesomeIcon icon="chart-line" class="text-info fs-2 mb-2" />
+                    <FontAwesomeIcon
+                      icon="chart-line"
+                      class="text-info fs-2 mb-2"
+                    />
                     <h6 class="text-white mb-0">{{ appTexts.features.analytics }}</h6>
                   </div>
                 </div>
@@ -56,16 +76,22 @@ const appTexts = computed(() => getAppTexts().home.heroSection);
           </div>
         </div>
       </div>
-    </div>
+      <!-- Scroll indicator -->
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="text-center pb-4">
+            <FontAwesomeIcon
+              icon="chevron-down"
+              class="fa-2x opacity-50 bounce"
+            />
+          </div>
+        </div>
+      </div>
 
-    <!-- Decorative elements -->
-    <div class="hero-decoration-1 position-absolute"></div>
-    <div class="hero-decoration-2 position-absolute"></div>
-    <div class="hero-decoration-3 position-absolute"></div>
-
-    <!-- Scroll indicator -->
-    <div class="text-center pb-4">
-      <FontAwesomeIcon icon="chevron-down" class="fa-2x opacity-50 bounce" />
+      <!-- Decorative elements -->
+      <div class="hero-decoration-1 position-absolute"></div>
+      <div class="hero-decoration-2 position-absolute"></div>
+      <div class="hero-decoration-3 position-absolute"></div>
     </div>
   </section>
 </template>
