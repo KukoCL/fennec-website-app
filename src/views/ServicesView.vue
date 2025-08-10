@@ -16,62 +16,66 @@ interface Service {
   contact: string
 }
 
-const services: Service[] = [
-  {
-    id: 'web-development',
-    icon: 'code',
-    title: appTexts.value.servicesList.webDevelopment.title,
-    description: appTexts.value.servicesList.webDevelopment.description,
-    features: appTexts.value.servicesList.webDevelopment.features,
-    color: 'blue',
-    contact: appTexts.value.servicesList.webDevelopment.contact,
-  },
-  {
-    id: 'systems-integration',
-    icon: 'puzzle-piece',
-    title: appTexts.value.servicesList.systemsIntegration.title,
-    description: appTexts.value.servicesList.systemsIntegration.description,
-    features: appTexts.value.servicesList.systemsIntegration.features,
-    color: 'info',
-    contact: appTexts.value.servicesList.systemsIntegration.contact,
-  },
-  {
-    id: 'process-automation',
-    icon: 'wand-magic-sparkles',
-    title: appTexts.value.servicesList.processAutomation.title,
-    description: appTexts.value.servicesList.processAutomation.description,
-    features: appTexts.value.servicesList.processAutomation.features,
-    color: 'success',
-    contact: appTexts.value.servicesList.processAutomation.contact,
-  },
-  {
-    id: 'tech-consulting',
-    icon: 'comments',
-    title: appTexts.value.servicesList.techConsulting.title,
-    description: appTexts.value.servicesList.techConsulting.description,
-    features: appTexts.value.servicesList.techConsulting.features,
-    color: 'warning',
-    contact: appTexts.value.servicesList.techConsulting.contact,
-  },
-  {
-    id: 'agile-empowerment',
-    icon: 'arrows-up-down-left-right',
-    title: appTexts.value.servicesList.agileEmpowerment.title,
-    description: appTexts.value.servicesList.agileEmpowerment.description,
-    features: appTexts.value.servicesList.agileEmpowerment.features,
-    color: 'danger',
-    contact: appTexts.value.servicesList.agileEmpowerment.contact,
-  },
-  {
-    id: 'training-programs',
-    icon: 'chalkboard-teacher',
-    title: appTexts.value.servicesList.trainingPrograms.title,
-    description: appTexts.value.servicesList.trainingPrograms.description,
-    features: appTexts.value.servicesList.trainingPrograms.features,
-    color: 'purple',
-    contact: appTexts.value.servicesList.trainingPrograms.contact,
-  },
-];
+const services = computed<Service[]>(() => {
+  const texts = getAppTexts().services.servicesList;
+
+  return [
+    {
+      id: 'web-development',
+      icon: 'code',
+      title: texts.webDevelopment.title,
+      description: texts.webDevelopment.description,
+      features: texts.webDevelopment.features,
+      color: 'blue',
+      contact: texts.webDevelopment.contact,
+    },
+    {
+      id: 'systems-integration',
+      icon: 'puzzle-piece',
+      title: texts.systemsIntegration.title,
+      description: texts.systemsIntegration.description,
+      features: texts.systemsIntegration.features,
+      color: 'info',
+      contact: texts.systemsIntegration.contact,
+    },
+    {
+      id: 'process-automation',
+      icon: 'wand-magic-sparkles',
+      title: texts.processAutomation.title,
+      description: texts.processAutomation.description,
+      features: texts.processAutomation.features,
+      color: 'success',
+      contact: texts.processAutomation.contact,
+    },
+    {
+      id: 'tech-consulting',
+      icon: 'comments',
+      title: texts.techConsulting.title,
+      description: texts.techConsulting.description,
+      features: texts.techConsulting.features,
+      color: 'warning',
+      contact: texts.techConsulting.contact,
+    },
+    {
+      id: 'agile-empowerment',
+      icon: 'arrows-up-down-left-right',
+      title: texts.agileEmpowerment.title,
+      description: texts.agileEmpowerment.description,
+      features: texts.agileEmpowerment.features,
+      color: 'danger',
+      contact: texts.agileEmpowerment.contact,
+    },
+    {
+      id: 'training-programs',
+      icon: 'chalkboard-teacher',
+      title: texts.trainingPrograms.title,
+      description: texts.trainingPrograms.description,
+      features: texts.trainingPrograms.features,
+      color: 'purple',
+      contact: texts.trainingPrograms.contact,
+    },
+  ];
+});
 </script>
 
 <template>

@@ -43,28 +43,23 @@ export const appTexts = {
         },
         mobileApps: {
           title: 'Aplicaciones Móviles',
-          description:
-            'Aplicaciones móviles nativas y multiplataforma que involucran a los usuarios e impulsan el crecimiento del negocio.',
+          description:'Aplicaciones móviles nativas y multiplataforma que involucran a los usuarios e impulsan el crecimiento del negocio.',
         },
         cloudSolutions: {
           title: 'Soluciones en la Nube',
-          description:
-            'Infraestructura y servicios en la nube escalables para potenciar las operaciones de su negocio de manera eficiente.',
+          description:'Infraestructura y servicios en la nube escalables para potenciar las operaciones de su negocio de manera eficiente.',
         },
         dataAnalytics: {
           title: 'Analítica de Datos',
-          description:
-            'Transforme sus datos en conocimientos accionables con herramientas avanzadas de análisis y visualización.',
+          description:'Transforme sus datos en conocimientos accionables con herramientas avanzadas de análisis y visualización.',
         },
         cybersecurity: {
           title: 'Ciberseguridad',
-          description:
-            'Soluciones de seguridad integrales para proteger su negocio de amenazas y vulnerabilidades digitales.',
+          description:'Soluciones de seguridad integrales para proteger su negocio de amenazas y vulnerabilidades digitales.',
         },
         consulting: {
           title: 'Consultoría',
-          description:
-            'Servicios de consultoría especializada para guiar su negocio a través de la transformación digital y el crecimiento.',
+          description:'Servicios de consultoría especializada para guiar su negocio a través de la transformación digital y el crecimiento.',
         },
       },
     },
@@ -286,30 +281,6 @@ export const appTexts = {
           'Certificación opcional',
         ],
         contact: 'Explora nuestros programas',
-      },
-    },
-    process: {
-      title: 'Nuestro Proceso',
-      description:
-        'Seguimos una metodología probada para asegurar el éxito de su proyecto desde el inicio hasta el final.',
-      steps: {
-        discovery: {
-          title: 'Descubrimiento',
-          description: 'Analizamos las necesidades y requisitos de su negocio para crear un plan de proyecto integral.',
-        },
-        design: {
-          title: 'Diseño',
-          description: 'Nuestro equipo crea diseños detallados y prototipos para visualizar su solución.',
-        },
-        development: {
-          title: 'Desarrollo',
-          description:
-            'Construimos su solución utilizando las mejores prácticas de la industria y tecnologías de vanguardia.',
-        },
-        launch: {
-          title: 'Lanzamiento',
-          description: 'Desplegamos su solución y proporcionamos soporte continuo para asegurar operaciones fluidas.',
-        },
       },
     },
     technologies: {

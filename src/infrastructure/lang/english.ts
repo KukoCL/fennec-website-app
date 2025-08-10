@@ -55,8 +55,7 @@ export const appTexts = {
         },
         cybersecurity: {
           title: 'Cybersecurity',
-          description:
-            'Comprehensive security solutions to protect your business from digital threats and vulnerabilities.',
+          description:'Comprehensive security solutions to protect your business from digital threats and vulnerabilities.',
         },
         consulting: {
           title: 'Consulting',
@@ -203,9 +202,17 @@ export const appTexts = {
     servicesList: {
       webDevelopment: {
         title: 'Web Development',
-        description: 'Custom web applications built with modern frameworks and technologies.',
-        features: ['Responsive Design', 'Performance Optimization', 'SEO Friendly', 'Cross-browser Compatible'],
-        contact: 'Starting at $2,999',
+        description: 'We build custom software that combines efficiency, scalability, and usability, tailored for enterprise platforms and applications.',
+        features: [
+          'Web and mobile applications',
+          'Internal management systems',
+          'E-commerce platforms',
+          'Responsive design',
+          'Performance optimization',
+          'Technical SEO',
+          'Cross-browser compatibility',
+        ],
+        contact: 'Boost your project',
       },
       systemsIntegration: {
         title: 'Systems Integration',
@@ -274,28 +281,6 @@ export const appTexts = {
           'Optional certification',
         ],
         contact: 'Explore our programs',
-      },
-    },
-    process: {
-      title: 'Our Process',
-      description: "We follow a proven methodology to ensure your project's success from start to finish.",
-      steps: {
-        discovery: {
-          title: 'Discovery',
-          description: 'We analyze your business needs and requirements to create a comprehensive project plan.',
-        },
-        design: {
-          title: 'Design',
-          description: 'Our team creates detailed designs and prototypes to visualize your solution.',
-        },
-        development: {
-          title: 'Development',
-          description: 'We build your solution using industry best practices and cutting-edge technologies.',
-        },
-        launch: {
-          title: 'Launch',
-          description: 'We deploy your solution and provide ongoing support to ensure smooth operations.',
-        },
       },
     },
     technologies: {
