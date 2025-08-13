@@ -1,7 +1,8 @@
 /* eslint-disable vue/max-len */
 export const appTexts = {
   navbar: {
-    brand: 'Fennec',
+    brand1: 'Fennec',
+    brand2: 'Soft',
     navigation: {
       home: 'Inicio',
       about: 'Acerca de',

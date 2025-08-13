@@ -17,7 +17,7 @@ const appTexts = computed(() => getAppTexts().footer);
             {{ appTexts.companyInfo.description }}
           </p>
           <div class="d-flex">
-            <a href="#" class="text-light me-3" aria-label="Facebook">
+            <a href="https://www.facebook.com/profile.php?id=61578497711864" class="text-light me-3" aria-label="Facebook">
               <FontAwesomeIcon :icon="['fab', 'facebook-f']" />
             </a>
             <a href="#" class="text-light me-3" aria-label="Twitter">
