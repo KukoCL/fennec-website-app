@@ -39,7 +39,7 @@ a,
   background: linear-gradient(135deg, #000000 0%, var(--orange) 100%);
   position: relative;
   z-index: 1;
-  min-height: 60vh;
+  /*min-height: 60vh;*/
   display: flex;
   align-items: center;
   border-bottom-left-radius: 20px;
