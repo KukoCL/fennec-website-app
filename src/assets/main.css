@@ -843,3 +843,7 @@ a,
   background-color: var(--bs-alert-bg);
   border-color: var(--bs-alert-border-color);
 }
+
+.icon-orange {
+  color: orange;
+}

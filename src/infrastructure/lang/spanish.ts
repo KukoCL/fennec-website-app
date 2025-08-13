@@ -128,8 +128,9 @@ export const appTexts = {
     story: {
       title: 'Nuestra Historia',
       paragraphs: [
-        'Fundada en 2019, Fennec Company comenzó con una misión simple: ayudar a las empresas a aprovechar la tecnología para el crecimiento sostenible. Lo que comenzó como un pequeño equipo de desarrolladores apasionados se ha convertido en un proveedor integral de soluciones tecnológicas.',
-        'A lo largo de los años, hemos ayudado a cientos de empresas a transformar sus operaciones, llegar a nuevos mercados y alcanzar sus objetivos comerciales a través de soluciones tecnológicas innovadoras y consultoría estratégica.',
+        'El equipo fundador de Fennec está conformado por profesionales apasionados, resilientes y estratégicos, con más de 60 años de experiencia acumulada en el diseño e implementación de soluciones tecnológicas. Su diversidad de talentos y trayectorias, tanto en el sector público como privado, les permite abordar desafíos complejos con enfoque certero, sensibilidad creativa y ejecución efectiva.',
+        'Desde arquitecturas modernas y sistemas críticos, hasta gestión de proyectos de alto impacto, el equipo combina profundidad técnica con agilidad, visión estratégica y pensamiento fuera de la caja. Han liderado iniciativas con impacto local e internacional, destacando por su adaptabilidad, rigurosidad y compromiso con la excelencia.',
+        'Fennec cuenta con profesionales certificados internacionalmente. Sin embargo, su fortaleza no solo reside solamente en sus certificaciones, sino en cómo articulan sus capacidades en una célula dinámica que transforma problemas en soluciones sólidas, funcionales y efectivas. Esta unidad técnica representa el corazón operativo de Fennec, alineando lógica y creatividad para impulsar la innovación.',
       ],
       features: {
         expertTeam: 'Equipo Experto',
@@ -152,22 +153,41 @@ export const appTexts = {
       title: 'Conoce a Nuestro Equipo',
       description: 'Nuestro diverso equipo de expertos reúne años de experiencia y pasión por la innovación.',
       members: {
-        johnSmith: {
-          name: 'John Smith',
+        gonzalo: {
+          name: 'Gonzalo Hevia',
           position: 'CEO y Fundador',
-          bio: 'Con más de 15 años de experiencia en tecnología y estrategia empresarial, John lidera nuestra visión de innovación.',
+          bio: 'Metódico y analítico, vive bajo la filosofía de que todo tiene una lógica. Apasionado por los videojuegos y por entender cómo funcionan las cosas desde su raíz. Con sólida trayectoria en el sector público y privado, ha sido arquitecto de soluciones tecnológicas para proyectos críticos en instituciones clave. Su compromiso, responsabilidad y rigurosidad lo convierten en un pilar técnico confiable y eficiente.',
         },
-        sarahDavis: {
-          name: 'Sarah Davis',
+        francisco: {
+          name: 'Francisco Puebla',
           position: 'CTO',
-          bio: 'Sarah es responsable de nuestra estrategia técnica y se asegura de que nos mantengamos a la vanguardia de las tendencias tecnológicas.',
+          bio: 'Apasionado por el fútbol y la tecnología, con más de 15 años creando soluciones que generan impacto. Ha liderado proyectos estratégicos en el sector público, enfrentando desafíos complejos con enfoque técnico y resultados concretos. Representó a Chile en encuentros internacionales sobre tecnología aplicada a propiedad intelectual, incluyendo instancias en Japón, referente mundial en innovación. Con experiencia en arquitecturas modernas y sistemas críticos, combina liderazgo y sensibilidad creativa para desarrollar soluciones funcionales, sólidas y memorables.',
         },
-        mikeJohnson: {
-          name: 'Mike Johnson',
+        christian: {
+          name: 'Christian Silva',
           position: 'Desarrollador Líder',
-          bio: 'Mike lidera nuestro equipo de desarrollo y se asegura de que entreguemos soluciones de alta calidad que superen las expectativas.',
+          bio: 'Entusiasta, creativo y con una mente inquieta. Apasionado por el animé y por todo desafío que implique resolver con astucia. Profesional del mundo tecnológico con una trayectoria sólida, destaca por su capacidad de adaptación y pensamiento ágil. Sagaz y efectivo, “donde pone el ojo, pone la baja”. Su energía contagiosa y su habilidad para encontrar soluciones rápidas lo convierten en un elemento clave dentro del equipo.',
+        },
+        daniel: {
+          name: 'Daniel Madariaga',
+          position: 'Desarrollador Líder',
+          bio: 'El más joven del grupo, pero con experiencia de sobra. Metódico, de ideas firmes y con un profundo sentido de justicia, Daniel aporta una mirada crítica y fresca a cada proyecto. Su paso por minería, puerto e instituciones públicas le ha dado un enfoque versátil y práctico. Experto en desarrollo de software, siempre busca la elegancia en la solución, sin dejar de pensar “fuera de la caja”. Un profesional que transforma la lógica en impacto.',
+        },
+        jaime: {
+          name: 'Jaime Vidal',
+          position: 'Desarrollador Líder',
+          bio: 'Apasionado, resiliente, y convencido de que “no pain, no gain”. Loco por las motocicletas. Profesional de TI con más de 15 años de experiencia, fanático de la gestión de proyectos, certificado como Scrum Master y Project Management Professional (PMP). Ha liderado iniciativas complejas junto a equipos multidisciplinarios, destacando por su visión estratégica, su capacidad de liderazgo y su habilidad para encontrar soluciones incluso en los contextos más desafiantes.',
         },
       },
+    },
+    teamBackground: {
+      title: 'Background técnico del equipo',
+      paragraphs: [
+        'El equipo fundador de Fennec está conformado por profesionales apasionados, resilientes y estratégicos, con más de 60 años de experiencia acumulada en el diseño e implementación de soluciones tecnológicas. Su diversidad de talentos y trayectorias —tanto en el sector público como privado— les permite abordar desafíos complejos con enfoque certero, sensibilidad creativa y ejecución efectiva.',
+        'Desde arquitecturas modernas y sistemas críticos, hasta la gestión de proyectos de alto impacto, el equipo combina profundidad técnica con agilidad, visión estratégica y pensamiento fuera de la caja. Han liderado iniciativas con impacto local e internacional, destacando por su adaptabilidad, rigurosidad y compromiso con la excelencia.',
+        'Fennec cuenta con profesionales certificados internacionalmente en áreas clave de la ingeniería de software, gestión de proyectos y tecnologías emergentes. Sin embargo, su fortaleza no reside únicamente en las certificaciones, sino en cómo articulan sus capacidades dentro de una célula dinámica que transforma problemas en soluciones sólidas, funcionales y escalables.',
+        'Esta unidad técnica representa el corazón operativo de Fennec, alineando lógica y creatividad para impulsar la innovación con propósito.',
+      ],
     },
     values: {
       title: 'Nuestros Valores',
