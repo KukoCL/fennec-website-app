@@ -865,3 +865,23 @@ a,
   transform: scale(1.05);
   transition: all 0.3s ease;
 }
+
+/* ===== NAVBAR FIXED COMPENSATION ===== */
+/* Compensar navbar fija globalmente para todas las páginas */
+body {
+  padding-top: 0px; /* Altura aproximada de la navbar */
+}
+
+/* Ajuste para móviles */
+@media (max-width: 991.98px) {
+  body {
+    padding-top: 60px; /* Más espacio cuando la navbar se expande en móviles */
+  }
+}
+
+/* Ajuste para pantallas muy pequeñas */
+@media (max-width: 576px) {
+  body {
+    padding-top: 60px;
+  }
+}
