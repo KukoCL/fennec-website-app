@@ -56,8 +56,7 @@ export const appTexts = {
         },
         cybersecurity: {
           title: 'Cybersecurity',
-          description:
-            'Comprehensive security solutions to protect your business from digital threats and vulnerabilities.',
+          description: 'Comprehensive security solutions to protect your business from digital threats and vulnerabilities.',
         },
         consulting: {
           title: 'Consulting',
@@ -130,8 +129,10 @@ export const appTexts = {
     story: {
       title: 'Our Story',
       paragraphs: [
-        'Founded in 2019, Fennec Company started with a simple mission: to help businesses leverage technology for sustainable growth. What began as a small team of passionate developers has grown into a comprehensive technology solutions provider.',
-        "Over the years, we've helped hundreds of companies transform their operations, reach new markets, and achieve their business goals through innovative technology solutions and strategic consulting.",
+        "FennecSoft's story began like all great ideas do: among friends, coffee, barbecues, and conversations that stretched beyond working hours. What initially seemed like a casual brainstorming session quickly took shape when we realized we shared more than just technical knowledge—we shared a deep passion for solving problems creatively, efficiently, and with real impact.",
+        "That's how FennecSoft was born—as a space where professional experience meets friendship and technological curiosity to create solutions that truly make a difference. From the beginning, we knew we didn’t want to be just another company. We wanted to be the ones who find a new angle, who question, who propose.",
+        'Today, we continue to uphold that essence. The founding team brings together diverse talents and complementary perspectives, allowing us to approach every challenge from multiple angles while staying focused on our clients’ goals. Because for us, innovation isn’t just about creating—it’s about transforming.',
+        'At FennecSoft, we deeply believe in resilience—in our ability to adapt, learn, and evolve. We know that change is part of the journey, and we embrace it fearlessly, with the conviction that every challenge carries an opportunity to grow and move forward.',
       ],
       features: {
         expertTeam: 'Expert Team',
@@ -139,37 +140,46 @@ export const appTexts = {
         support: '24/7 Support',
         globalReach: 'Global Reach',
       },
-      timeline: {
-        title: 'Company Timeline',
-        events: {
-          2019: 'Company Founded',
-          2020: 'First 50 Clients',
-          2021: 'International Expansion',
-          2022: '100+ Team Members',
-          2024: 'Industry Leader',
-        },
-      },
     },
     team: {
       title: 'Meet Our Team',
-      description: 'Our diverse team of experts brings together years of experience and passion for innovation.',
+      description: 'Our diverse team of experts brings together years of experience and a passion for innovation.',
       members: {
-        johnSmith: {
-          name: 'John Smith',
+        gonzalo: {
+          name: 'Gonzalo Hevia',
           position: 'CEO & Founder',
-          bio: 'With over 15 years of experience in technology and business strategy, John leads our vision for innovation.',
+          bio: 'Methodical and analytical, he lives by the philosophy that everything has a logic. Passionate about video games and understanding how things work at their core. With a solid track record in both the public and private sectors, he has architected technological solutions for critical projects in key institutions. His commitment, responsibility, and rigor make him a reliable and efficient technical pillar.',
         },
-        sarahDavis: {
-          name: 'Sarah Davis',
+        francisco: {
+          name: 'Francisco Puebla',
           position: 'CTO',
-          bio: 'Sarah is responsible for our technical strategy and ensures we stay at the forefront of technology trends.',
+          bio: 'Passionate about football and technology, with over 15 years of experience creating impactful solutions. He has led strategic projects in the public sector, tackling complex challenges with technical focus and tangible results. He represented Chile in international meetings on technology applied to intellectual property, including events in Japan—a global benchmark in innovation. With expertise in modern architectures and critical systems, he blends leadership and creative sensitivity to develop functional, robust, and memorable solutions.',
         },
-        mikeJohnson: {
-          name: 'Mike Johnson',
+        christian: {
+          name: 'Christian Silva',
           position: 'Lead Developer',
-          bio: 'Mike leads our development team and ensures we deliver high-quality solutions that exceed expectations.',
+          bio: 'Enthusiastic, creative, and with a restless mind. Passionate about anime and any challenge that requires clever problem-solving. A seasoned tech professional, he stands out for his adaptability and agile thinking. Sharp and effective, “he hits the mark every time.” His contagious energy and ability to find quick solutions make him a key asset to the team.',
+        },
+        daniel: {
+          name: 'Daniel Madariaga',
+          position: 'Lead Developer',
+          bio: 'The youngest of the group, yet with plenty of experience. Methodical, strong-minded, and with a deep sense of justice, Daniel brings a critical and fresh perspective to every project. His background in mining, port operations, and public institutions gives him a versatile and practical approach. An expert in software development, he always seeks elegance in solutions while thinking outside the box. A professional who turns logic into impact.',
+        },
+        jaime: {
+          name: 'Jaime Vidal',
+          position: 'Lead Developer',
+          bio: 'Passionate, resilient, and convinced that “no pain, no gain.” Crazy about motorcycles. An IT professional with over 15 years of experience, a project management enthusiast, certified Scrum Master and Project Management Professional (PMP). He has led complex initiatives with multidisciplinary teams, standing out for his strategic vision, leadership skills, and ability to find solutions even in the most challenging contexts.',
         },
       },
+    },
+    teamBackground: {
+      title: 'Technical Background of the Team',
+      paragraphs: [
+        "Fennec's founding team is made up of passionate, resilient, and strategic professionals with over 60 years of combined experience in designing and implementing technological solutions. Their diverse talents and career paths—across both public and private sectors—enable them to tackle complex challenges with precision, creative sensitivity, and effective execution.",
+        'From modern architectures and mission-critical systems to high-impact project management, the team blends deep technical expertise with agility, strategic vision, and out-of-the-box thinking. They have led initiatives with both local and international impact, standing out for their adaptability, rigor, and commitment to excellence.',
+        "Fennec's professionals hold internationally recognized certifications in key areas such as software engineering, project management, and emerging technologies. However, their strength lies not only in their credentials, but in how they orchestrate their capabilities within a dynamic unit that transforms problems into solid, functional, and scalable solutions.",
+        'This technical unit represents the operational core of Fennec, aligning logic and creativity to drive purposeful innovation.',
+      ],
     },
     values: {
       title: 'Our Values',
@@ -204,9 +214,17 @@ export const appTexts = {
     servicesList: {
       webDevelopment: {
         title: 'Web Development',
-        description: 'Custom web applications built with modern frameworks and technologies.',
-        features: ['Responsive Design', 'Performance Optimization', 'SEO Friendly', 'Cross-browser Compatible'],
-        contact: 'Starting at $2,999',
+        description: 'We build custom software that combines efficiency, scalability, and usability, tailored for enterprise platforms and applications.',
+        features: [
+          'Web and mobile applications',
+          'Internal management systems',
+          'E-commerce platforms',
+          'Responsive design',
+          'Performance optimization',
+          'Technical SEO',
+          'Cross-browser compatibility',
+        ],
+        contact: 'Boost your project',
       },
       systemsIntegration: {
         title: 'Systems Integration',
@@ -275,28 +293,6 @@ export const appTexts = {
           'Optional certification',
         ],
         contact: 'Explore our programs',
-      },
-    },
-    process: {
-      title: 'Our Process',
-      description: "We follow a proven methodology to ensure your project's success from start to finish.",
-      steps: {
-        discovery: {
-          title: 'Discovery',
-          description: 'We analyze your business needs and requirements to create a comprehensive project plan.',
-        },
-        design: {
-          title: 'Design',
-          description: 'Our team creates detailed designs and prototypes to visualize your solution.',
-        },
-        development: {
-          title: 'Development',
-          description: 'We build your solution using industry best practices and cutting-edge technologies.',
-        },
-        launch: {
-          title: 'Launch',
-          description: 'We deploy your solution and provide ongoing support to ensure smooth operations.',
-        },
       },
     },
     technologies: {
