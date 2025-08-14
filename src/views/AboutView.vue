@@ -18,39 +18,65 @@ interface TeamMember {
   }
 }
 
-const teamMembers: TeamMember[] = [
-  {
-    name: appTexts.value.team.members.johnSmith.name,
-    position: appTexts.value.team.members.johnSmith.position,
-    bio: appTexts.value.team.members.johnSmith.bio,
-    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=face',
-    social: {
-      linkedin: '#',
-      twitter: '#',
+const teamMembers = computed<TeamMember[]>(() => {
+  const members = appTexts.value.team.members;
+
+  return [
+    {
+      name: members.gonzalo.name,
+      position: members.gonzalo.position,
+      bio: members.gonzalo.bio,
+      avatar: 'src/assets/images/team/avatar1.png',
+      social: {
+        linkedin: '#',
+        twitter: '#',
+      },
     },
-  },
-  {
-    name: appTexts.value.team.members.sarahDavis.name,
-    position: appTexts.value.team.members.sarahDavis.position,
-    bio: appTexts.value.team.members.sarahDavis.bio,
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face',
-    social: {
-      linkedin: '#',
-      github: '#',
+    {
+      name: members.francisco.name,
+      position: members.francisco.position,
+      bio: members.francisco.bio,
+      avatar: 'src/assets/images/team/avatar2.png',
+      social: {
+        linkedin: 'https://www.linkedin.com/in/franciscopuebla/',
+        github: 'https://github.com/fpueblaCL',
+      },
     },
-  },
-  {
-    name: appTexts.value.team.members.mikeJohnson.name,
-    position: appTexts.value.team.members.mikeJohnson.position,
-    bio: appTexts.value.team.members.mikeJohnson.bio,
-    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face',
-    social: {
-      linkedin: '#',
-      github: '#',
-      twitter: '#',
+    {
+      name: members.christian.name,
+      position: members.christian.position,
+      bio: members.christian.bio,
+      avatar: 'src/assets/images/team/avatar3.png',
+      social: {
+        linkedin: '#',
+        github: '#',
+        twitter: '#',
+      },
     },
-  },
-];
+    {
+      name: members.daniel.name,
+      position: members.daniel.position,
+      bio: members.daniel.bio,
+      avatar: 'src/assets/images/team/avatar4.png',
+      social: {
+        linkedin: '#',
+        github: '#',
+        twitter: '#',
+      },
+    },
+    {
+      name: members.jaime.name,
+      position: members.jaime.position,
+      bio: members.jaime.bio,
+      avatar: 'src/assets/images/team/avatar5.png',
+      social: {
+        linkedin: '#',
+        github: '#',
+        twitter: '#',
+      },
+    },
+  ];
+});
 </script>
 
 <template>
@@ -69,19 +95,19 @@ const teamMembers: TeamMember[] = [
             <div class="bg-dark rounded-3 p-4">
               <div class="row text-center">
                 <div class="col-6 mb-3">
-                  <h3 class="text-primary fw-bold">250+</h3>
+                  <h3 class="gradient-text fw-bold">250+</h3>
                   <small class="text-white">{{ appTexts.hero.stats.projects }}</small>
                 </div>
                 <div class="col-6 mb-3">
-                  <h3 class="text-primary fw-bold">50+</h3>
+                  <h3 class="gradient-text fw-bold">50+</h3>
                   <small class="text-white">{{ appTexts.hero.stats.teamMembers }}</small>
                 </div>
                 <div class="col-6">
-                  <h3 class="text-primary fw-bold">5+</h3>
+                  <h3 class="gradient-text fw-bold">5+</h3>
                   <small class="text-white">{{ appTexts.hero.stats.years }}</small>
                 </div>
                 <div class="col-6">
-                  <h3 class="text-primary fw-bold">98%</h3>
+                  <h3 class="gradient-text fw-bold">98%</h3>
                   <small class="text-white">{{ appTexts.hero.stats.satisfaction }}</small>
                 </div>
               </div>
@@ -107,7 +133,7 @@ const teamMembers: TeamMember[] = [
                   class="bg-dark bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
                   style="width: 80px; height: 80px"
                 >
-                  <font-awesome-icon icon="fa-solid fa-crosshairs" class="text-primary fs-2" />
+                  <font-awesome-icon icon="fa-solid fa-crosshairs" class="fs-2 icon-orange" />
                 </div>
                 <h3 class="fw-bold mb-3">{{ appTexts.missionVision.mission.title }}</h3>
                 <p class="text-muted">
@@ -123,7 +149,7 @@ const teamMembers: TeamMember[] = [
                   class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
                   style="width: 80px; height: 80px"
                 >
-                  <font-awesome-icon icon="fa-solid fa-eye" class="text-success fs-2" />
+                  <font-awesome-icon icon="fa-solid fa-eye" class="fs-2 icon-orange" />
                 </div>
                 <h3 class="fw-bold mb-3">{{ appTexts.missionVision.vision.title }}</h3>
                 <p class="text-muted">
@@ -141,62 +167,28 @@ const teamMembers: TeamMember[] = [
       <div class="container px-lg-5">
         <div class="row align-items-center">
           <div class="col-lg-6">
-            <h2 class="display-5 fw-bold mb-4">{{ appTexts.story.title }}</h2>
-            <p class="mb-4">
+            <h2 class="display-5 fw-bold mb-4 gradient-text">{{ appTexts.story.title }}</h2>
+            <p class="mb-5 justified-text">
               {{ appTexts.story.paragraphs[0] }}
             </p>
-            <p class="mb-4">
+            <p class="mb-4 justified-text">
               {{ appTexts.story.paragraphs[1] }}
             </p>
-            <div class="row g-3">
-              <div class="col-6">
-                <div class="d-flex align-items-center">
-                  <i class="fa-solid fa-check-circle text-success me-2"></i>
-                  <span>{{ appTexts.story.features.expertTeam }}</span>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="d-flex align-items-center">
-                  <i class="fa-solid fa-check-circle text-success me-2"></i>
-                  <span>{{ appTexts.story.features.provenResults }}</span>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="d-flex align-items-center">
-                  <i class="fa-solid fa-check-circle text-success me-2"></i>
-                  <span>{{ appTexts.story.features.support }}</span>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="d-flex align-items-center">
-                  <i class="fa-solid fa-check-circle text-success me-2"></i>
-                  <span>{{ appTexts.story.features.globalReach }}</span>
-                </div>
-              </div>
-            </div>
+            <p class="mb-4 justified-text">
+              {{ appTexts.story.paragraphs[2] }}
+            </p>
+            <p class="mb-4 justified-text">
+              {{ appTexts.story.paragraphs[3] }}
+            </p>
           </div>
+
           <div class="col-lg-6">
-            <div class="bg-primary rounded-3 p-4">
-              <div class="row g-3 text-white text-center">
-                <div class="col-12">
-                  <h4 class="mb-3">{{ appTexts.story.timeline.title }}</h4>
-                </div>
-                <div class="col-12">
-                  <div class="border-bottom border-light pb-3 mb-3">
-                    <strong>2019</strong> - {{ appTexts.story.timeline.events[2019] }}
-                  </div>
-                  <div class="border-bottom border-light pb-3 mb-3">
-                    <strong>2020</strong> - {{ appTexts.story.timeline.events[2020] }}
-                  </div>
-                  <div class="border-bottom border-light pb-3 mb-3">
-                    <strong>2021</strong> - {{ appTexts.story.timeline.events[2021] }}
-                  </div>
-                  <div class="border-bottom border-light pb-3 mb-3">
-                    <strong>2022</strong> - {{ appTexts.story.timeline.events[2022] }}
-                  </div>
-                  <div><strong>2024</strong> - {{ appTexts.story.timeline.events[2024] }}</div>
-                </div>
-              </div>
+            <div class="card border-0 shadow-sm h-100">
+              <img
+                src="/src/assets/images/team/team.jpg"
+                alt="Team Image"
+                class="img-fluid rounded-3"
+                style="object-fit: cover; height: auto; width: 100%" />
             </div>
           </div>
         </div>
@@ -208,14 +200,14 @@ const teamMembers: TeamMember[] = [
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3 text-white">{{ appTexts.team.title }}</h2>
+            <h2 class="display-5 fw-bold mb-3 gradient-text">{{ appTexts.team.title }}</h2>
             <p class="lead text-white">
               {{ appTexts.team.description }}
             </p>
           </div>
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4 justify-content-center">
           <div v-for="member in teamMembers" :key="member.name" class="col-lg-4 col-md-6">
             <div class="card border-0 shadow-sm team-card">
               <div class="card-body text-center p-4">
@@ -232,20 +224,43 @@ const teamMembers: TeamMember[] = [
                 <p class="text-muted small mb-3">{{ member.bio }}</p>
 
                 <div class="d-flex justify-content-center gap-2">
-                  <a
-                    v-if="member.social.linkedin"
-                    :href="member.social.linkedin"
-                    class="btn btn-outline-primary btn-sm"
-                  >
-                    <font-awesome-icon icon="fa-brands fa-linkedin-in"></font-awesome-icon>
+                  <a v-if="member.social.linkedin" :href="member.social.linkedin" class="btn btn-sm" target="_blank">
+                    <font-awesome-icon icon="fa-brands fa-linkedin-in" class="icon-orange"></font-awesome-icon>
                   </a>
-                  <a v-if="member.social.twitter" :href="member.social.twitter" class="btn btn-outline-primary btn-sm">
-                    <font-awesome-icon icon="fa-brands fa-twitter"></font-awesome-icon>
+                  <a v-if="member.social.twitter" :href="member.social.twitter" class="btn btn-sm" target="_blank">
+                    <font-awesome-icon icon="fa-brands fa-twitter" class="icon-orange"></font-awesome-icon>
                   </a>
-                  <a v-if="member.social.github" :href="member.social.github" class="btn btn-outline-primary btn-sm">
-                    <font-awesome-icon icon="fa-brands fa-github"></font-awesome-icon>
+                  <a v-if="member.social.github" :href="member.social.github" class="btn btn-sm" target="_blank">
+                    <font-awesome-icon icon="fa-brands fa-github" class="icon-orange"></font-awesome-icon>
                   </a>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Background Section-->
+    <section class="py-5 text-white">
+      <div class="container px-lg-5">
+        <div class="row align-items-center">
+          <div class="col-lg-12">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-5 text-center">
+                <h2 class="display-5 fw-bold mb-4 ">{{ appTexts.teamBackground.title }}</h2>
+                <p class="mb-5 justified-text">
+                  {{ appTexts.teamBackground.paragraphs[0] }}
+                </p>
+                <p class="mb-4 justified-text">
+                  {{ appTexts.teamBackground.paragraphs[1] }}
+                </p>
+                <p class="mb-4 justified-text">
+                  {{ appTexts.teamBackground.paragraphs[2] }}
+                </p>
+                <p class="mb-4 justified-text">
+                  {{ appTexts.teamBackground.paragraphs[3] }}
+                </p>
               </div>
             </div>
           </div>
@@ -258,7 +273,7 @@ const teamMembers: TeamMember[] = [
       <div class="container px-lg-5">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">{{ appTexts.values.title }}</h2>
+            <h2 class="display-5 fw-bold mb-3 gradient-text">{{ appTexts.values.title }}</h2>
             <p class="lead text-white">
               {{ appTexts.values.description }}
             </p>
@@ -331,10 +346,35 @@ const teamMembers: TeamMember[] = [
 <style scoped>
 .team-card {
   transition: all 0.3s ease;
+  min-height: 100%;
 }
 
 .team-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+}
+
+.justified-text {
+  text-align: justify;
+}
+
+.team-background-section {
+  padding: 3rem 0;
+  background-color: #f8f9fa; /* bg-light */
+  color: #212529; /* text-dark */
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.section-content {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  max-width: 900px;
 }
 </style>
