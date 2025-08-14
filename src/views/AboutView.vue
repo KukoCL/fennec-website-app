@@ -26,7 +26,7 @@ const teamMembers = computed<TeamMember[]>(() => {
       name: members.gonzalo.name,
       position: members.gonzalo.position,
       bio: members.gonzalo.bio,
-      avatar: avatar1,
+      avatar: 'src/assets/images/team/avatar1.png',
       social: {
         linkedin: '#',
         twitter: '#',
