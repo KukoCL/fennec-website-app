@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import useAppLang from '@/composables/settings/useAppLang';
+import { computed } from 'vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import useAppLang from '@/composables/settings/useAppLang'
+import gonzalo from '@/assets/images/team/gonzalo.png'
+import francisco from '@/assets/images/team/francisco.png'
+import christian from '@/assets/images/team/christian.png'
+import daniel from '@/assets/images/team/daniel.png'
+import jaime from '@/assets/images/team/jaime.png'
+import teamImg from '@/assets/images/team/team.jpg'
 
-const { getAppTexts } = useAppLang();
-const appTexts = computed(() => getAppTexts().about);
+const { getAppTexts } = useAppLang()
+const appTexts = computed(() => getAppTexts().about)
 
 interface TeamMember {
   name: string
@@ -19,14 +25,14 @@ interface TeamMember {
 }
 
 const teamMembers = computed<TeamMember[]>(() => {
-  const members = appTexts.value.team.members;
+  const members = appTexts.value.team.members
 
   return [
     {
       name: members.gonzalo.name,
       position: members.gonzalo.position,
       bio: members.gonzalo.bio,
-      avatar: 'src/assets/images/team/avatar1.png',
+      avatar: gonzalo,
       social: {
         linkedin: '#',
         twitter: '#',
@@ -36,7 +42,7 @@ const teamMembers = computed<TeamMember[]>(() => {
       name: members.francisco.name,
       position: members.francisco.position,
       bio: members.francisco.bio,
-      avatar: 'src/assets/images/team/avatar2.png',
+      avatar: francisco,
       social: {
         linkedin: 'https://www.linkedin.com/in/franciscopuebla/',
         github: 'https://github.com/fpueblaCL',
@@ -46,7 +52,7 @@ const teamMembers = computed<TeamMember[]>(() => {
       name: members.christian.name,
       position: members.christian.position,
       bio: members.christian.bio,
-      avatar: 'src/assets/images/team/avatar3.png',
+      avatar: christian,
       social: {
         linkedin: '#',
         github: '#',
@@ -57,7 +63,7 @@ const teamMembers = computed<TeamMember[]>(() => {
       name: members.daniel.name,
       position: members.daniel.position,
       bio: members.daniel.bio,
-      avatar: 'src/assets/images/team/avatar4.png',
+      avatar: daniel,
       social: {
         linkedin: '#',
         github: '#',
@@ -68,15 +74,15 @@ const teamMembers = computed<TeamMember[]>(() => {
       name: members.jaime.name,
       position: members.jaime.position,
       bio: members.jaime.bio,
-      avatar: 'src/assets/images/team/avatar5.png',
+      avatar: jaime,
       social: {
         linkedin: '#',
         github: '#',
         twitter: '#',
       },
     },
-  ];
-});
+  ]
+})
 </script>
 
 <template>
@@ -130,10 +136,13 @@ const teamMembers = computed<TeamMember[]>(() => {
             <div class="card border-0 shadow-sm h-100">
               <div class="card-body p-5 text-center">
                 <div
-                  class="bg-dark bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
+                  class="bg-blue bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
                   style="width: 80px; height: 80px"
                 >
-                  <font-awesome-icon icon="fa-solid fa-crosshairs" class="fs-2 icon-orange" />
+                  <font-awesome-icon
+                    icon="fa-solid fa-crosshairs"
+                    class="fs-2 icon-orange"
+                  />
                 </div>
                 <h3 class="fw-bold mb-3">{{ appTexts.missionVision.mission.title }}</h3>
                 <p class="text-muted">
@@ -149,7 +158,10 @@ const teamMembers = computed<TeamMember[]>(() => {
                   class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
                   style="width: 80px; height: 80px"
                 >
-                  <font-awesome-icon icon="fa-solid fa-eye" class="fs-2 icon-orange" />
+                  <font-awesome-icon
+                    icon="fa-solid fa-eye"
+                    class="fs-2 icon-orange"
+                  />
                 </div>
                 <h3 class="fw-bold mb-3">{{ appTexts.missionVision.vision.title }}</h3>
                 <p class="text-muted">
@@ -185,10 +197,11 @@ const teamMembers = computed<TeamMember[]>(() => {
           <div class="col-lg-6">
             <div class="card border-0 shadow-sm h-100">
               <img
-                src="/src/assets/images/team/team.jpg"
+                :src="teamImg"
                 alt="Team Image"
                 class="img-fluid rounded-3"
-                style="object-fit: cover; height: auto; width: 100%" />
+                style="object-fit: cover; height: auto; width: 100%"
+              />
             </div>
           </div>
         </div>
@@ -208,7 +221,11 @@ const teamMembers = computed<TeamMember[]>(() => {
         </div>
 
         <div class="row g-4 justify-content-center">
-          <div v-for="member in teamMembers" :key="member.name" class="col-lg-4 col-md-6">
+          <div
+            v-for="member in teamMembers"
+            :key="member.name"
+            class="col-lg-4 col-md-6"
+          >
             <div class="card border-0 shadow-sm team-card">
               <div class="card-body text-center p-4">
                 <img
@@ -224,14 +241,38 @@ const teamMembers = computed<TeamMember[]>(() => {
                 <p class="text-muted small mb-3">{{ member.bio }}</p>
 
                 <div class="d-flex justify-content-center gap-2">
-                  <a v-if="member.social.linkedin" :href="member.social.linkedin" class="btn btn-sm" target="_blank">
-                    <font-awesome-icon icon="fa-brands fa-linkedin-in" class="icon-orange"></font-awesome-icon>
+                  <a
+                    v-if="member.social.linkedin"
+                    :href="member.social.linkedin"
+                    class="btn btn-sm"
+                    target="_blank"
+                  >
+                    <font-awesome-icon
+                      icon="fa-brands fa-linkedin-in"
+                      class="icon-orange"
+                    ></font-awesome-icon>
                   </a>
-                  <a v-if="member.social.twitter" :href="member.social.twitter" class="btn btn-sm" target="_blank">
-                    <font-awesome-icon icon="fa-brands fa-twitter" class="icon-orange"></font-awesome-icon>
+                  <a
+                    v-if="member.social.twitter"
+                    :href="member.social.twitter"
+                    class="btn btn-sm"
+                    target="_blank"
+                  >
+                    <font-awesome-icon
+                      icon="fa-brands fa-twitter"
+                      class="icon-orange"
+                    ></font-awesome-icon>
                   </a>
-                  <a v-if="member.social.github" :href="member.social.github" class="btn btn-sm" target="_blank">
-                    <font-awesome-icon icon="fa-brands fa-github" class="icon-orange"></font-awesome-icon>
+                  <a
+                    v-if="member.social.github"
+                    :href="member.social.github"
+                    class="btn btn-sm"
+                    target="_blank"
+                  >
+                    <font-awesome-icon
+                      icon="fa-brands fa-github"
+                      class="icon-orange"
+                    ></font-awesome-icon>
                   </a>
                 </div>
               </div>
@@ -248,7 +289,7 @@ const teamMembers = computed<TeamMember[]>(() => {
           <div class="col-lg-12">
             <div class="card border-0 shadow-sm h-100">
               <div class="card-body p-5 text-center">
-                <h2 class="display-5 fw-bold mb-4 ">{{ appTexts.teamBackground.title }}</h2>
+                <h2 class="display-5 fw-bold mb-4">{{ appTexts.teamBackground.title }}</h2>
                 <p class="mb-5 justified-text">
                   {{ appTexts.teamBackground.paragraphs[0] }}
                 </p>
@@ -284,10 +325,13 @@ const teamMembers = computed<TeamMember[]>(() => {
           <div class="col-lg-3 col-md-6">
             <div class="text-center">
               <div
-                class="bg-dark bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                class="bg-blue bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                 style="width: 80px; height: 80px"
               >
-                <font-awesome-icon icon="fa-solid fa-heart" class="text-primary fs-2"></font-awesome-icon>
+                <font-awesome-icon
+                  icon="fa-solid fa-heart"
+                  class="text-primary fs-2"
+                ></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">{{ appTexts.values.items.passion.title }}</h5>
               <p class="text-white small">
@@ -301,7 +345,10 @@ const teamMembers = computed<TeamMember[]>(() => {
                 class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                 style="width: 80px; height: 80px"
               >
-                <font-awesome-icon icon="fa-solid fa-shield-halved" class="text-success fs-2"></font-awesome-icon>
+                <font-awesome-icon
+                  icon="fa-solid fa-shield-halved"
+                  class="text-success fs-2"
+                ></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">{{ appTexts.values.items.integrity.title }}</h5>
               <p class="text-white small">
@@ -315,7 +362,10 @@ const teamMembers = computed<TeamMember[]>(() => {
                 class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                 style="width: 80px; height: 80px"
               >
-                <font-awesome-icon icon="fa-solid fa-lightbulb" class="text-warning fs-2"></font-awesome-icon>
+                <font-awesome-icon
+                  icon="fa-solid fa-lightbulb"
+                  class="text-warning fs-2"
+                ></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">{{ appTexts.values.items.innovation.title }}</h5>
               <p class="text-white small">
@@ -329,7 +379,10 @@ const teamMembers = computed<TeamMember[]>(() => {
                 class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                 style="width: 80px; height: 80px"
               >
-                <font-awesome-icon icon="fa-solid fa-users" class="text-info fs-2"></font-awesome-icon>
+                <font-awesome-icon
+                  icon="fa-solid fa-users"
+                  class="text-info fs-2"
+                ></font-awesome-icon>
               </div>
               <h5 class="fw-bold mb-2">{{ appTexts.values.items.collaboration.title }}</h5>
               <p class="text-white small">
