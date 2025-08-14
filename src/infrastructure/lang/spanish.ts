@@ -48,7 +48,7 @@ export const appTexts = {
         },
         cloudSolutions: {
           title: 'Soluciones en la Nube',
-          description:'Infraestructura y servicios en la nube escalables para potenciar las operaciones de su negocio de manera eficiente.',
+          description: 'Infraestructura y servicios en la nube escalables para potenciar las operaciones de su negocio de manera eficiente.',
         },
         dataAnalytics: {
           title: 'Analítica de Datos',
