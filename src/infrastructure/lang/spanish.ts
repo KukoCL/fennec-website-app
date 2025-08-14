@@ -44,7 +44,7 @@ export const appTexts = {
         },
         mobileApps: {
           title: 'Aplicaciones Móviles',
-          description:'Aplicaciones móviles nativas y multiplataforma que involucran a los usuarios e impulsan el crecimiento del negocio.',
+          description: 'Aplicaciones móviles nativas y multiplataforma que involucran a los usuarios e impulsan el crecimiento del negocio.',
         },
         cloudSolutions: {
           title: 'Soluciones en la Nube',
