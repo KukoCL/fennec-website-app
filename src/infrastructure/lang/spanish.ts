@@ -56,7 +56,7 @@ export const appTexts = {
         },
         cybersecurity: {
           title: 'Ciberseguridad',
-          description:'Soluciones de seguridad integrales para proteger su negocio de amenazas y vulnerabilidades digitales.',
+          description: 'Soluciones de seguridad integrales para proteger su negocio de amenazas y vulnerabilidades digitales.',
         },
         consulting: {
           title: 'Consultoría',
