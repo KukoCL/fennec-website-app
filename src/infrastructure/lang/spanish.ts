@@ -52,7 +52,7 @@ export const appTexts = {
         },
         dataAnalytics: {
           title: 'Analítica de Datos',
-          description:'Transforme sus datos en conocimientos accionables con herramientas avanzadas de análisis y visualización.',
+          description: 'Transforme sus datos en conocimientos accionables con herramientas avanzadas de análisis y visualización.',
         },
         cybersecurity: {
           title: 'Ciberseguridad',
