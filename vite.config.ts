@@ -15,17 +15,4 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  build: {
-    target: 'esnext',
-    minify: 'esbuild',
-    rollupOptions: {
-      external: [],
-      output: {
-        format: 'es',
-        manualChunks: {
-          vendor: ['vue', 'vue-router', 'pinia'],
-        },
-      },
-    },
-  },
 });
