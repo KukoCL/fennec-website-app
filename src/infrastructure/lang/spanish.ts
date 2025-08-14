@@ -129,25 +129,16 @@ export const appTexts = {
     story: {
       title: 'Nuestra Historia',
       paragraphs: [
-        'El equipo fundador de Fennec está conformado por profesionales apasionados, resilientes y estratégicos, con más de 60 años de experiencia acumulada en el diseño e implementación de soluciones tecnológicas. Su diversidad de talentos y trayectorias, tanto en el sector público como privado, les permite abordar desafíos complejos con enfoque certero, sensibilidad creativa y ejecución efectiva.',
-        'Desde arquitecturas modernas y sistemas críticos, hasta gestión de proyectos de alto impacto, el equipo combina profundidad técnica con agilidad, visión estratégica y pensamiento fuera de la caja. Han liderado iniciativas con impacto local e internacional, destacando por su adaptabilidad, rigurosidad y compromiso con la excelencia.',
-        'Fennec cuenta con profesionales certificados internacionalmente. Sin embargo, su fortaleza no solo reside solamente en sus certificaciones, sino en cómo articulan sus capacidades en una célula dinámica que transforma problemas en soluciones sólidas, funcionales y efectivas. Esta unidad técnica representa el corazón operativo de Fennec, alineando lógica y creatividad para impulsar la innovación.',
+        'La historia de FennecSoft comienza como toda buena idea: entre amigos, café, asados y conversaciones que iban más allá del horario laboral. Lo que al principio parecía una simple lluvia de ideas, pronto tomó forma cuando nos dimos cuenta de que compartíamos algo más que conocimientos técnicos: una pasión profunda por resolver problemas de forma creativa, eficiente y con impacto.',
+        'Así nació FennecSoft—como un espacio donde la experiencia profesional se une con la amistad y la curiosidad tecnológica para crear soluciones que realmente marcan la diferencia. Desde el principio, supimos que no queríamos ser “uno más”. Queríamos ser los que encuentran una vuelta, los que cuestionan, los que proponen.',
+        'Hoy, seguimos manteniendo esa esencia. El equipo fundador reúne talentos diversos y miradas complementarias, lo que nos permite abordar cada desafío desde múltiples ángulos, siempre manteniendo el foco en los objetivos de nuestros clientes. Porque para nosotros, innovar no es solo crear, es transformar.',
+        'En FennecSoft creemos profundamente en la resiliencia, en la capacidad de adaptarnos, aprender y evolucionar. Sabemos que el cambio es parte del camino, y lo abrazamos sin temor, con la convicción de que cada desafío trae consigo una oportunidad para crecer y avanzar.',
       ],
       features: {
         expertTeam: 'Equipo Experto',
         provenResults: 'Resultados Probados',
         support: 'Soporte 24/7',
         globalReach: 'Alcance Global',
-      },
-      timeline: {
-        title: 'Cronología de la Empresa',
-        events: {
-          2019: 'Fundación de la Empresa',
-          2020: 'Primeros 50 Clientes',
-          2021: 'Expansión Internacional',
-          2022: '100+ Miembros del Equipo',
-          2024: 'Líder de la Industria',
-        },
       },
     },
     team: {

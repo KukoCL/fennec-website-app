@@ -148,7 +148,7 @@ const services = computed<Service[]>(() => {
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">{{ appTexts.technologies.title }}</h2>
+            <h2 class="display-5 fw-bold mb-4">{{ appTexts.technologies.title }}</h2>
             <p class="lead text-muted">
               {{ appTexts.technologies.description }}
             </p>

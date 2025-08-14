@@ -95,19 +95,19 @@ const teamMembers = computed<TeamMember[]>(() => {
             <div class="bg-dark rounded-3 p-4">
               <div class="row text-center">
                 <div class="col-6 mb-3">
-                  <h3 class="text-primary fw-bold">250+</h3>
+                  <h3 class="gradient-text fw-bold">250+</h3>
                   <small class="text-white">{{ appTexts.hero.stats.projects }}</small>
                 </div>
                 <div class="col-6 mb-3">
-                  <h3 class="text-primary fw-bold">50+</h3>
+                  <h3 class="gradient-text fw-bold">50+</h3>
                   <small class="text-white">{{ appTexts.hero.stats.teamMembers }}</small>
                 </div>
                 <div class="col-6">
-                  <h3 class="text-primary fw-bold">5+</h3>
+                  <h3 class="gradient-text fw-bold">5+</h3>
                   <small class="text-white">{{ appTexts.hero.stats.years }}</small>
                 </div>
                 <div class="col-6">
-                  <h3 class="text-primary fw-bold">98%</h3>
+                  <h3 class="gradient-text fw-bold">98%</h3>
                   <small class="text-white">{{ appTexts.hero.stats.satisfaction }}</small>
                 </div>
               </div>
@@ -166,8 +166,8 @@ const teamMembers = computed<TeamMember[]>(() => {
     <section class="py-5 text-white">
       <div class="container px-lg-5">
         <div class="row align-items-center">
-          <div class="col-lg-7">
-            <h2 class="display-5 fw-bold mb-4">{{ appTexts.story.title }}</h2>
+          <div class="col-lg-6">
+            <h2 class="display-5 fw-bold mb-4 gradient-text">{{ appTexts.story.title }}</h2>
             <p class="mb-5 justified-text">
               {{ appTexts.story.paragraphs[0] }}
             </p>
@@ -177,34 +177,18 @@ const teamMembers = computed<TeamMember[]>(() => {
             <p class="mb-4 justified-text">
               {{ appTexts.story.paragraphs[2] }}
             </p>
+            <p class="mb-4 justified-text">
+              {{ appTexts.story.paragraphs[3] }}
+            </p>
           </div>
 
-          <div class="col-lg-5">
+          <div class="col-lg-6">
             <div class="card border-0 shadow-sm h-100">
-              <div class="card-body p-5 text-center">
-                <div class="rounded-3 p-4">
-                  <div class="row g-3 text-white text-center">
-                    <div class="col-12">
-                      <h4 class="mb-3">{{ appTexts.story.timeline.title }}</h4>
-                    </div>
-                    <div class="col-12">
-                      <div class="border-bottom border-light pb-3 mb-3">
-                        <strong>2019</strong> - {{ appTexts.story.timeline.events[2019] }}
-                      </div>
-                      <div class="border-bottom border-light pb-3 mb-3">
-                        <strong>2020</strong> - {{ appTexts.story.timeline.events[2020] }}
-                      </div>
-                      <div class="border-bottom border-light pb-3 mb-3">
-                        <strong>2021</strong> - {{ appTexts.story.timeline.events[2021] }}
-                      </div>
-                      <div class="border-bottom border-light pb-3 mb-3">
-                        <strong>2022</strong> - {{ appTexts.story.timeline.events[2022] }}
-                      </div>
-                      <div><strong>2024</strong> - {{ appTexts.story.timeline.events[2024] }}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <img
+                src="/src/assets/images/team/team.jpg"
+                alt="Team Image"
+                class="img-fluid rounded-3"
+                style="object-fit: cover; height: auto; width: 100%" />
             </div>
           </div>
         </div>
@@ -216,7 +200,7 @@ const teamMembers = computed<TeamMember[]>(() => {
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3 text-white">{{ appTexts.team.title }}</h2>
+            <h2 class="display-5 fw-bold mb-3 gradient-text">{{ appTexts.team.title }}</h2>
             <p class="lead text-white">
               {{ appTexts.team.description }}
             </p>
@@ -258,21 +242,28 @@ const teamMembers = computed<TeamMember[]>(() => {
     </section>
 
     <!-- Background Section-->
-    <section class="team-background-section py-5 bg-light text-dark">
-      <div class="container">
-        <header class="section-header text-center mb-4">
-          <h2 class="display-5 fw-bold mb-3">
-            {{ appTexts.teamBackground.title }}
-          </h2>
-          <slot name="subtitle" />
-        </header>
-
-        <div class="section-content bg-white p-4 p-md-5 rounded shadow-sm mx-auto justified-text">
-          <p>{{ appTexts.teamBackground.paragraphs[0] }}</p>
-          <p>{{ appTexts.teamBackground.paragraphs[1] }}</p>
-          <p>{{ appTexts.teamBackground.paragraphs[2] }}</p>
-          <p>{{ appTexts.teamBackground.paragraphs[3] }}</p>
-          <slot name="extra" />
+    <section class="py-5 text-white">
+      <div class="container px-lg-5">
+        <div class="row align-items-center">
+          <div class="col-lg-12">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-5 text-center">
+                <h2 class="display-5 fw-bold mb-4 ">{{ appTexts.teamBackground.title }}</h2>
+                <p class="mb-5 justified-text">
+                  {{ appTexts.teamBackground.paragraphs[0] }}
+                </p>
+                <p class="mb-4 justified-text">
+                  {{ appTexts.teamBackground.paragraphs[1] }}
+                </p>
+                <p class="mb-4 justified-text">
+                  {{ appTexts.teamBackground.paragraphs[2] }}
+                </p>
+                <p class="mb-4 justified-text">
+                  {{ appTexts.teamBackground.paragraphs[3] }}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -282,7 +273,7 @@ const teamMembers = computed<TeamMember[]>(() => {
       <div class="container px-lg-5">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">{{ appTexts.values.title }}</h2>
+            <h2 class="display-5 fw-bold mb-3 gradient-text">{{ appTexts.values.title }}</h2>
             <p class="lead text-white">
               {{ appTexts.values.description }}
             </p>

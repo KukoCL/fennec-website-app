@@ -129,25 +129,16 @@ export const appTexts = {
     story: {
       title: 'Our Story',
       paragraphs: [
-        'The founding team of Fennec is made up of passionate, resilient, and strategic professionals with over 60 years of combined experience in designing and implementing technological solutions. Their diverse talents and backgrounds—spanning both the public and private sectors—enable them to tackle complex challenges with precision, creative sensitivity, and effective execution.',
-        'From modern architectures and critical systems to the management of high-impact projects, the team blends deep technical expertise with agility, strategic vision, and out-of-the-box thinking. They have led initiatives with both local and international impact, standing out for their adaptability, rigor, and commitment to excellence.',
-        "Fennec's professionals hold internationally recognized certifications. However, their strength lies not only in their credentials, but in how they integrate their capabilities within a dynamic unit that transforms problems into solid, functional, and effective solutions. This technical core represents the operational heart of Fennec, aligning logic and creativity to drive innovation.",
+        "FennecSoft's story began like all great ideas do: among friends, coffee, barbecues, and conversations that stretched beyond working hours. What initially seemed like a casual brainstorming session quickly took shape when we realized we shared more than just technical knowledge—we shared a deep passion for solving problems creatively, efficiently, and with real impact.",
+        "That's how FennecSoft was born—as a space where professional experience meets friendship and technological curiosity to create solutions that truly make a difference. From the beginning, we knew we didn’t want to be just another company. We wanted to be the ones who find a new angle, who question, who propose.",
+        'Today, we continue to uphold that essence. The founding team brings together diverse talents and complementary perspectives, allowing us to approach every challenge from multiple angles while staying focused on our clients’ goals. Because for us, innovation isn’t just about creating—it’s about transforming.',
+        'At FennecSoft, we deeply believe in resilience—in our ability to adapt, learn, and evolve. We know that change is part of the journey, and we embrace it fearlessly, with the conviction that every challenge carries an opportunity to grow and move forward.',
       ],
       features: {
         expertTeam: 'Expert Team',
         provenResults: 'Proven Results',
         support: '24/7 Support',
         globalReach: 'Global Reach',
-      },
-      timeline: {
-        title: 'Company Timeline',
-        events: {
-          2019: 'Company Founded',
-          2020: 'First 50 Clients',
-          2021: 'International Expansion',
-          2022: '100+ Team Members',
-          2024: 'Industry Leader',
-        },
       },
     },
     team: {
