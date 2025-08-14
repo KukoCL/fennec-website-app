@@ -26,7 +26,7 @@ const teamMembers = computed<TeamMember[]>(() => {
       name: members.gonzalo.name,
       position: members.gonzalo.position,
       bio: members.gonzalo.bio,
-      avatar: 'src/assets/images/team/avatar1.png',
+      avatar: '/src/assets/images/team/avatar1.png',
       social: {
         linkedin: '#',
         twitter: '#',
@@ -36,7 +36,7 @@ const teamMembers = computed<TeamMember[]>(() => {
       name: members.francisco.name,
       position: members.francisco.position,
       bio: members.francisco.bio,
-      avatar: 'src/assets/images/team/avatar2.png',
+      avatar: '/src/assets/images/team/avatar2.png',
       social: {
         linkedin: 'https://www.linkedin.com/in/franciscopuebla/',
         github: 'https://github.com/fpueblaCL',
@@ -46,7 +46,7 @@ const teamMembers = computed<TeamMember[]>(() => {
       name: members.christian.name,
       position: members.christian.position,
       bio: members.christian.bio,
-      avatar: 'src/assets/images/team/avatar3.png',
+      avatar: '/src/assets/images/team/avatar3.png',
       social: {
         linkedin: '#',
         github: '#',
@@ -57,7 +57,7 @@ const teamMembers = computed<TeamMember[]>(() => {
       name: members.daniel.name,
       position: members.daniel.position,
       bio: members.daniel.bio,
-      avatar: 'src/assets/images/team/avatar4.png',
+      avatar: '/src/assets/images/team/avatar4.png',
       social: {
         linkedin: '#',
         github: '#',
@@ -68,7 +68,7 @@ const teamMembers = computed<TeamMember[]>(() => {
       name: members.jaime.name,
       position: members.jaime.position,
       bio: members.jaime.bio,
-      avatar: 'src/assets/images/team/avatar5.png',
+      avatar: '/src/assets/images/team/avatar5.png',
       social: {
         linkedin: '#',
         github: '#',
