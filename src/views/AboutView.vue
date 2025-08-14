@@ -185,7 +185,7 @@ const teamMembers = computed<TeamMember[]>(() => {
           <div class="col-lg-6">
             <div class="card border-0 shadow-sm h-100">
               <img
-                src="/src/assets/images/team/team.jpg"
+                :src="teamImage"
                 alt="Team Image"
                 class="img-fluid rounded-3"
                 style="object-fit: cover; height: auto; width: 100%" />
