@@ -136,7 +136,7 @@ const teamMembers = computed<TeamMember[]>(() => {
             <div class="card border-0 shadow-sm h-100">
               <div class="card-body p-5 text-center">
                 <div
-                  class="bg-dark bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
+                  class="bg-blue bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
                   style="width: 80px; height: 80px"
                 >
                   <font-awesome-icon
@@ -325,7 +325,7 @@ const teamMembers = computed<TeamMember[]>(() => {
           <div class="col-lg-3 col-md-6">
             <div class="text-center">
               <div
-                class="bg-dark bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                class="bg-blue bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                 style="width: 80px; height: 80px"
               >
                 <font-awesome-icon

@@ -19,6 +19,7 @@ import {
   faCheck,
   faArrowRight,
   faComment,
+  faComments,
   faExternalLinkAlt,
   faSpinner,
   faPaperPlane,
@@ -29,6 +30,9 @@ import {
   faChartLine,
   faStar,
   faMapMarkerAlt,
+  faWandMagicSparkles,
+  faArrowsUpDownLeftRight,
+  faChalkboardTeacher,
 } from '@fortawesome/free-solid-svg-icons';
 
 // Import only the specific brand icons used in the app
@@ -70,6 +74,7 @@ library.add(
   faCheck,
   faArrowRight,
   faComment,
+  faComments,
   faExternalLinkAlt,
   faSpinner,
   faPaperPlane,
@@ -80,6 +85,9 @@ library.add(
   faChartLine,
   faStar,
   faMapMarkerAlt,
+  faWandMagicSparkles,
+  faArrowsUpDownLeftRight,
+  faChalkboardTeacher,
 
   // Brand icons
   faReact,
