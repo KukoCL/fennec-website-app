@@ -60,7 +60,7 @@ export const appTexts = {
         },
         consulting: {
           title: 'Consultoría',
-          description:'Servicios de consultoría especializada para guiar su negocio a través de la transformación digital y el crecimiento.',
+          description: 'Servicios de consultoría especializada para guiar su negocio a través de la transformación digital y el crecimiento.',
         },
       },
     },
