@@ -56,7 +56,7 @@ export const appTexts = {
         },
         cybersecurity: {
           title: 'Cybersecurity',
-          description:'Comprehensive security solutions to protect your business from digital threats and vulnerabilities.',
+          description: 'Comprehensive security solutions to protect your business from digital threats and vulnerabilities.',
         },
         consulting: {
           title: 'Consulting',
