@@ -1,6 +1,6 @@
 # fennec-website-app
 
-**Version:** 1.0.5
+**Version:** 1.0.6
 **Last Deploy:** August 14, 2025
 **Status:** 🚀 Active
 
