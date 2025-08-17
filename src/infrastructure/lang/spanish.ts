@@ -325,13 +325,13 @@ export const appTexts = {
     },
     projects: {
       ecommercePlatform: {
-        title: 'Plataforma Organizacional - Concesionaria RED (ex Transantiago)',
+        title: 'Plataforma Organizacional | Concesionaria RED (ex Transantiago)',
         description: 'Plataforma integral diseñada para respaldar y optimizar la gestión operativa de una importante concesionaria de RED, abordando las necesidades específicas de sus distintas unidades de negocio. Dentro de sus características principales destacan: planificación operativa de flota, gestión de jornadas de conductores, gestión de flota y despacho de viajes, módulo de recursos humanos, control y reducción de evasiones, dashboard y reportes de gestión.',
-        category: 'Desarrollo Web',
+        category: 'Desarrollo a Medida',
       },
       mobileBankingApp: {
-        title: 'Aplicación de Banca Móvil',
-        description: 'Aplicación segura de banca móvil con autenticación biométrica.',
+        title: 'Plataforma para la Tramitación de Propiedad Industrial',
+        description: 'Plataforma tecnológica especializada para apoyar la implementación de la nueva Ley de Propiedad Industrial, vigente desde el año 2022. Esta solución fue creada para modernizar y agilizar los procesos relacionados con la gestión de derechos marcarios y de invenciones, alineándose con los nuevos estándares normativos y operativos. Componentes clave de esta solución son; plataforma web para presentación de solicitudes, API para automatización de procesos, herramienta backoffice para la gestión interna de las presentaciones de solicitudes.',
         category: 'Desarrollo Móvil',
       },
       cloudMigration: {
