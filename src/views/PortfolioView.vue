@@ -127,10 +127,6 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
                   style="height: 200px; object-fit: cover"
                 />
                 <div class="project-overlay d-flex align-items-center justify-content-center">
-                  <a :href="project.link" class="btn btn-light btn-sm">
-                    <i class="fa-solid fa-external-link-alt me-1"></i>
-                    {{ appTexts.common.viewProject }}
-                  </a>
                 </div>
               </div>
               <div class="card-body p-4">
@@ -204,18 +200,7 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
 }
 
 .project-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-.project-card:hover .project-overlay {
-  opacity: 1;
+  display: none !important;
 }
 
 .project-card:hover .project-image {
