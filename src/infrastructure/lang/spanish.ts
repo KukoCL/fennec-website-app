@@ -325,9 +325,9 @@ export const appTexts = {
     },
     projects: {
       ecommercePlatform: {
-        title: 'Plataforma de Comercio Electrónico',
-        description: 'Solución moderna de comercio electrónico con análisis avanzados y gestión de inventario.',
-        category: 'Desarrollo Web AWA',
+        title: 'Plataforma Organizacional - Concesionaria RED (ex Transantiago)',
+        description: 'Plataforma integral diseñada para respaldar y optimizar la gestión operativa de una importante concesionaria de RED, abordando las necesidades específicas de sus distintas unidades de negocio. Dentro de sus características principales destacan: planificación operativa de flota, gestión de jornadas de conductores, gestión de flota y despacho de viajes, módulo de recursos humanos, control y reducción de evasiones, dashboard y reportes de gestión.',
+        category: 'Desarrollo Web',
       },
       mobileBankingApp: {
         title: 'Aplicación de Banca Móvil',
