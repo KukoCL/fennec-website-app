@@ -327,7 +327,7 @@ export const appTexts = {
       ecommercePlatform: {
         title: 'Plataforma de Comercio Electrónico',
         description: 'Solución moderna de comercio electrónico con análisis avanzados y gestión de inventario.',
-        category: 'Desarrollo Web',
+        category: 'Desarrollo Web AWA',
       },
       mobileBankingApp: {
         title: 'Aplicación de Banca Móvil',
