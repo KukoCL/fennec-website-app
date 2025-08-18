@@ -22,7 +22,8 @@ const projects: Project[] = [
     id: 'ecommerce-platform',
     title: appTexts.value.projects.ecommercePlatform.title,
     description: appTexts.value.projects.ecommercePlatform.description,
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=300&fit=crop',
+    image:  'https://www.revistaei.cl/wp-content/uploads/2024/01' +
+            '/red-movilidad-nuevos-buses.jpg',
     category: appTexts.value.projects.ecommercePlatform.category,
     technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
     link: '#',
@@ -32,7 +33,8 @@ const projects: Project[] = [
     id: 'mobile-banking-app',
     title: appTexts.value.projects.mobileBankingApp.title,
     description: appTexts.value.projects.mobileBankingApp.description,
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=300&fit=crop',
+    image:  'https://derechoequidad.com/wp-content/uploads/2022/10/' +
+            'img-la-propiedad-industrial-en-colombia-leyes-y-regulacion-1.jpg',
     category: appTexts.value.projects.mobileBankingApp.category,
     technologies: ['React Native', 'Express.js', 'PostgreSQL', 'JWT'],
     link: '#',
@@ -127,10 +129,6 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
                   style="height: 200px; object-fit: cover"
                 />
                 <div class="project-overlay d-flex align-items-center justify-content-center">
-                  <a :href="project.link" class="btn btn-light btn-sm">
-                    <i class="fa-solid fa-external-link-alt me-1"></i>
-                    {{ appTexts.common.viewProject }}
-                  </a>
                 </div>
               </div>
               <div class="card-body p-4">
@@ -204,18 +202,7 @@ const featuredProjects = computed(() => projects.filter((p) => p.featured))
 }
 
 .project-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-.project-card:hover .project-overlay {
-  opacity: 1;
+  display: none !important;
 }
 
 .project-card:hover .project-image {
