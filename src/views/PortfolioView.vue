@@ -22,7 +22,8 @@ const projects: Project[] = [
     id: 'ecommerce-platform',
     title: appTexts.value.projects.ecommercePlatform.title,
     description: appTexts.value.projects.ecommercePlatform.description,
-    image: 'https://www.revistaei.cl/wp-content/uploads/2024/01/red-movilidad-nuevos-buses.jpg',
+    image:  'https://www.revistaei.cl/wp-content/uploads/2024/01' +
+            '/red-movilidad-nuevos-buses.jpg',
     category: appTexts.value.projects.ecommercePlatform.category,
     technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
     link: '#',
@@ -32,7 +33,8 @@ const projects: Project[] = [
     id: 'mobile-banking-app',
     title: appTexts.value.projects.mobileBankingApp.title,
     description: appTexts.value.projects.mobileBankingApp.description,
-    image: 'https://derechoequidad.com/wp-content/uploads/2022/10/img-la-propiedad-industrial-en-colombia-leyes-y-regulacion-1.jpg',
+    image:  'https://derechoequidad.com/wp-content/uploads/2022/10/' +
+            'img-la-propiedad-industrial-en-colombia-leyes-y-regulacion-1.jpg',
     category: appTexts.value.projects.mobileBankingApp.category,
     technologies: ['React Native', 'Express.js', 'PostgreSQL', 'JWT'],
     link: '#',
