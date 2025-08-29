@@ -33,6 +33,13 @@ import {
   faWandMagicSparkles,
   faArrowsUpDownLeftRight,
   faChalkboardTeacher,
+  faLaptopCode,
+  faNetworkWired,
+  faCogs,
+  faRobot,
+  faHandshake,
+  faGraduationCap,
+  faProjectDiagram,
 } from '@fortawesome/free-solid-svg-icons';
 
 // Import only the specific brand icons used in the app
@@ -88,6 +95,13 @@ library.add(
   faWandMagicSparkles,
   faArrowsUpDownLeftRight,
   faChalkboardTeacher,
+  faLaptopCode,
+  faNetworkWired,
+  faCogs,
+  faRobot,
+  faHandshake,
+  faGraduationCap,
+  faProjectDiagram,
 
   // Brand icons
   faReact,

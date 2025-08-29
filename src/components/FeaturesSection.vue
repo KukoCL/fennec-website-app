@@ -39,33 +39,33 @@ const appTexts = computed(() => getAppTexts().home.featuresSection);
 const services = [
   {
     id: 1,
-    icon: 'code',
+    icon: 'laptop-code',
     textKey: 'webDevelopment' as keyof typeof appTexts.value.services,
   },
   {
     id: 2,
-    icon: 'mobile-alt',
-    textKey: 'mobileApps' as keyof typeof appTexts.value.services,
+    icon: 'network-wired',
+    textKey: 'systemsIntegration' as keyof typeof appTexts.value.services,
   },
   {
     id: 3,
-    icon: 'cloud',
-    textKey: 'cloudSolutions' as keyof typeof appTexts.value.services,
+    icon: 'robot',
+    textKey: 'processAutomation' as keyof typeof appTexts.value.services,
   },
   {
     id: 4,
-    icon: 'fa-solid fa-chart-simple',
-    textKey: 'dataAnalytics' as keyof typeof appTexts.value.services,
+    icon: 'lightbulb',
+    textKey: 'techConsulting' as keyof typeof appTexts.value.services,
   },
   {
     id: 5,
-    icon: 'shield-alt',
-    textKey: 'cybersecurity' as keyof typeof appTexts.value.services,
+    icon: 'rocket',
+    textKey: 'agileEmpowerment' as keyof typeof appTexts.value.services,
   },
   {
     id: 6,
-    icon: 'users',
-    textKey: 'consulting' as keyof typeof appTexts.value.services,
+    icon: 'chalkboard-teacher',
+    textKey: 'trainingPrograms' as keyof typeof appTexts.value.services,
   },
 ];
 </script>

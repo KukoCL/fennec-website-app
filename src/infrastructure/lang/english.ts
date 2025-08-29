@@ -42,25 +42,25 @@ export const appTexts = {
           description:
             'Custom web applications built with modern technologies and best practices for optimal performance.',
         },
-        mobileApps: {
-          title: 'Mobile Apps',
-          description: 'Native and cross-platform mobile applications that engage users and drive business growth.',
+        systemsIntegration: {
+          title: 'Systems Integration',
+          description: 'We connect applications and platforms to build efficient, scalable, and secure digital ecosystems.',
         },
-        cloudSolutions: {
-          title: 'Cloud Solutions',
-          description: 'Scalable cloud infrastructure and services to power your business operations efficiently.',
+        processAutomation: {
+          title: 'Process Automation',
+          description: 'We digitize repetitive tasks and optimize workflows to increase operational efficiency and reduce human error.',
         },
-        dataAnalytics: {
-          title: 'Data Analytics',
-          description: 'Transform your data into actionable insights with advanced analytics and visualization tools.',
+        techConsulting: {
+          title: 'Technology Advisory',
+          description: 'We guide the adoption of digital solutions with strategic analysis and personalized technical support.',
         },
-        cybersecurity: {
-          title: 'Cybersecurity',
-          description: 'Comprehensive security solutions to protect your business from digital threats and vulnerabilities.',
+        agileEmpowerment: {
+          title: 'Agile Empowerment',
+          description: 'Transform your digital processes with fast decision-making and flexible strategy. Technology should adapt to you—not the other way around.',
         },
-        consulting: {
-          title: 'Consulting',
-          description: 'Expert consultation services to guide your business through digital transformation and growth.',
+        trainingPrograms: {
+          title: 'Training & Courses',
+          description: 'We strengthen technical and digital skills through practical, personalized training aligned with your goals.',
         },
       },
     },

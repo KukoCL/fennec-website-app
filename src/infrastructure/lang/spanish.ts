@@ -38,29 +38,29 @@ export const appTexts = {
         'Ofrecemos soluciones de negocio integrales diseñadas para acelerar el crecimiento y la transformación digital de su empresa.',
       services: {
         webDevelopment: {
-          title: 'Desarrollo Web',
+          title: 'Desarrollo de software a medida',
           description:
-            'Aplicaciones web personalizadas construidas con tecnologías modernas y mejores prácticas para un rendimiento óptimo.',
+            'Desarrollamos software a medida que combina eficiencia, escalabilidad y usabilidad, aplicado a plataformas y aplicaciones empresariales.',
         },
-        mobileApps: {
-          title: 'Aplicaciones Móviles',
-          description: 'Aplicaciones móviles nativas y multiplataforma que involucran a los usuarios e impulsan el crecimiento del negocio.',
+        systemsIntegration: {
+          title: 'Integración de Sistemas',
+          description: 'Conectamos aplicaciones y plataformas para construir ecosistemas digitales eficientes, escalables y seguros.',
         },
-        cloudSolutions: {
-          title: 'Soluciones en la Nube',
-          description: 'Infraestructura y servicios en la nube escalables para potenciar las operaciones de su negocio de manera eficiente.',
+        processAutomation: {
+          title: 'Automatización de Procesos',
+          description: 'Digitalizamos tareas repetitivas y optimizamos flujos de trabajo para aumentar la eficiencia operativa y reducir errores humanos.',
         },
-        dataAnalytics: {
-          title: 'Analítica de Datos',
-          description: 'Transforme sus datos en conocimientos accionables con herramientas avanzadas de análisis y visualización.',
+        techConsulting: {
+          title: 'Asesoramiento Tecnológico',
+          description: 'Guiamos la adopción de soluciones digitales con análisis estratégico y acompañamiento técnico personalizado.',
         },
-        cybersecurity: {
-          title: 'Ciberseguridad',
-          description: 'Soluciones de seguridad integrales para proteger su negocio de amenazas y vulnerabilidades digitales.',
+        agileEmpowerment: {
+          title: 'Empoderamiento ágil',
+          description: 'Transforma tus procesos digitales con decisiones rápidas y estrategia flexible. Descubre cómo la tecnología puede adaptarse a ti, no al revés.',
         },
-        consulting: {
-          title: 'Consultoría',
-          description: 'Servicios de consultoría especializada para guiar su negocio a través de la transformación digital y el crecimiento.',
+        trainingPrograms: {
+          title: 'Cursos y capacitaciones',
+          description: 'Fortalecemos habilidades técnicas y digitales a través de programas de formación prácticos, personalizados y alineados a tus objetivos.',
         },
       },
     },
