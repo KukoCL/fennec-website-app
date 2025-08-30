@@ -28,7 +28,7 @@ export const appTexts = {
       features: {
         fastDelivery: 'Fast Delivery',
         secure: 'Secure',
-        support: '24/7 Support',
+        support: 'Support',
         analytics: 'Analytics',
       },
     },
@@ -86,7 +86,7 @@ export const appTexts = {
     callToActionSection: {
       title: 'Ready to Transform Your Business?',
       description:
-        "Join hundreds of satisfied clients who have accelerated their growth with our innovative solutions. Let's discuss how we can help you achieve your business goals.",
+        "Accelerate your growth with our innovative solutions. Let's discuss how we can help you achieve your business goals.",
       buttons: {
         getStarted: 'Get Started Today',
         callUs: 'Call Us Now',
@@ -148,7 +148,7 @@ export const appTexts = {
         gonzalo: {
           name: 'Gonzalo Hevia',
           position: 'CEO & Founder',
-          bio: 'Methodical and analytical, he lives by the philosophy that everything has a logic. Passionate about video games and understanding how things work at their core. With a solid track record in both the public and private sectors, he has architected technological solutions for critical projects in key institutions. His commitment, responsibility, and rigor make him a reliable and efficient technical pillar.',
+          bio: 'Methodical and analytical, with experience as a software architect and technical leader. Passionate about video games and understanding how things work at their core. With a solid track record in both the public and private sectors, he has architected technological solutions for critical projects in key institutions. His commitment, responsibility, and rigor make him a reliable and efficient technical pillar.',
         },
         francisco: {
           name: 'Francisco Puebla',
@@ -490,7 +490,7 @@ export const appTexts = {
     },
     contact: {
       title: 'Contact Info',
-      email: 'info@fenneccompany.com',
+      email: 'contacto@fennecsoft.cl',
       phone: '+1 (555) 123-4567',
       address: '123 Business St, City, State 12345',
     },

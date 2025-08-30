@@ -28,7 +28,7 @@ export const appTexts = {
       features: {
         fastDelivery: 'Entrega Rápida',
         secure: 'Seguro',
-        support: 'Soporte 24/7',
+        support: 'Soporte',
         analytics: 'Analítica',
       },
     },
@@ -86,7 +86,7 @@ export const appTexts = {
     callToActionSection: {
       title: '¿Listo para Transformar Su Negocio?',
       description:
-        'Únase a cientos de clientes satisfechos que han acelerado su crecimiento con nuestras soluciones innovadoras. Hablemos sobre cómo podemos ayudarle a alcanzar sus objetivos de negocio.',
+        'Acelere su crecimiento con nuestras soluciones innovadoras. Hablemos sobre cómo podemos ayudarle a alcanzar sus objetivos de negocio.',
       buttons: {
         getStarted: 'Comenzar Hoy',
         callUs: 'Llámanos Ahora',
@@ -148,7 +148,7 @@ export const appTexts = {
         gonzalo: {
           name: 'Gonzalo Hevia',
           position: 'CEO y Fundador',
-          bio: 'Metódico y analítico, vive bajo la filosofía de que todo tiene una lógica. Apasionado por los videojuegos y por entender cómo funcionan las cosas desde su raíz. Con sólida trayectoria en el sector público y privado, ha sido arquitecto de soluciones tecnológicas para proyectos críticos en instituciones clave. Su compromiso, responsabilidad y rigurosidad lo convierten en un pilar técnico confiable y eficiente.',
+          bio: 'Metódico y analítico, con experiencia como arquitecto de software y líder técnico. Apasionado por los videojuegos y por entender cómo funcionan las cosas desde su raíz. Con sólida trayectoria en el sector público y privado, ha sido arquitecto de soluciones tecnológicas para proyectos críticos en instituciones clave. Su compromiso, responsabilidad y rigurosidad lo convierten en un pilar técnico confiable y eficiente.',
         },
         francisco: {
           name: 'Francisco Puebla',
@@ -491,7 +491,7 @@ export const appTexts = {
     },
     contact: {
       title: 'Información de Contacto',
-      email: 'info@fenneccompany.com',
+      email: 'contacto@fennecsoft.cl',
       phone: '+1 (555) 123-4567',
       address: '123 Business St, City, State 12345',
     },
