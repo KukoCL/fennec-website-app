@@ -6,3 +6,11 @@ export type ApiResponse<T> = {
   statusText: string
   isOk: boolean
 }
+
+export type ServiceKey =
+  | 'webDevelopment'
+  | 'systemsIntegration'
+  | 'processAutomation'
+  | 'techConsulting'
+  | 'agileEmpowerment'
+  | 'trainingPrograms'

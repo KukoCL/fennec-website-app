@@ -32,6 +32,7 @@
 import { computed } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import useAppLang from '../composables/settings/useAppLang';
+import type { ServiceKey } from '../infrastructure/types';
 
 const { getAppTexts } = useAppLang();
 const appTexts = computed(() => getAppTexts().home.featuresSection);
@@ -40,32 +41,32 @@ const services = [
   {
     id: 1,
     icon: 'laptop-code',
-    textKey: 'webDevelopment' as keyof typeof appTexts.value.services,
+    textKey: 'webDevelopment' as ServiceKey,
   },
   {
     id: 2,
     icon: 'network-wired',
-    textKey: 'systemsIntegration' as keyof typeof appTexts.value.services,
+    textKey: 'systemsIntegration' as ServiceKey,
   },
   {
     id: 3,
     icon: 'robot',
-    textKey: 'processAutomation' as keyof typeof appTexts.value.services,
+    textKey: 'processAutomation' as ServiceKey,
   },
   {
     id: 4,
     icon: 'lightbulb',
-    textKey: 'techConsulting' as keyof typeof appTexts.value.services,
+    textKey: 'techConsulting' as ServiceKey,
   },
   {
     id: 5,
     icon: 'rocket',
-    textKey: 'agileEmpowerment' as keyof typeof appTexts.value.services,
+    textKey: 'agileEmpowerment' as ServiceKey,
   },
   {
     id: 6,
     icon: 'chalkboard-teacher',
-    textKey: 'trainingPrograms' as keyof typeof appTexts.value.services,
+    textKey: 'trainingPrograms' as ServiceKey,
   },
 ];
 </script>
