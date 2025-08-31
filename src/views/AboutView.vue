@@ -2,12 +2,13 @@
 import { computed } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import useAppLang from '@/composables/settings/useAppLang'
-import gonzalo from '@/assets/images/team/gonzalo.png'
+import gonzalo from '@/assets/images/team/gonzalo.jpg'
 import francisco from '@/assets/images/team/francisco.png'
 import christian from '@/assets/images/team/christian.png'
 import daniel from '@/assets/images/team/daniel.png'
 import jaime from '@/assets/images/team/jaime.png'
-import teamImg from '@/assets/images/team/team.jpg'
+// import teamImg from '@/assets/images/team/team.jpg'
+import teamImgAlt from '@/assets/images/team/teamImgAlt.jpg'
 
 const { getAppTexts } = useAppLang()
 const appTexts = computed(() => getAppTexts().about)
@@ -34,8 +35,7 @@ const teamMembers = computed<TeamMember[]>(() => {
       bio: members.gonzalo.bio,
       avatar: gonzalo,
       social: {
-        linkedin: '#',
-        twitter: '#',
+        linkedin: 'https://www.linkedin.com/in/gonzalo-hevia-castillo-b22235a1/',
       },
     },
     {
@@ -91,13 +91,13 @@ const teamMembers = computed<TeamMember[]>(() => {
     <section class="hero-section bg-primary text-white py-5 position-relative overflow-hidden">
       <div class="container px-lg-5 position-relative">
         <div class="row align-items-center py-5">
-          <div class="col-lg-6">
+          <div class="col-lg-12">
             <h1 class="display-4 fw-bold mb-4 hero-title">{{ appTexts.hero.title }}</h1>
             <p class="lead hero-description">
               {{ appTexts.hero.description }}
             </p>
           </div>
-          <div class="col-lg-6">
+          <!-- <div class="col-lg-6">
             <div class="bg-dark rounded-3 p-4">
               <div class="row text-center">
                 <div class="col-6 mb-3">
@@ -118,7 +118,7 @@ const teamMembers = computed<TeamMember[]>(() => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -197,7 +197,7 @@ const teamMembers = computed<TeamMember[]>(() => {
           <div class="col-lg-6">
             <div class="card border-0 shadow-sm h-100">
               <img
-                :src="teamImg"
+                :src="teamImgAlt"
                 alt="Team Image"
                 class="img-fluid rounded-3"
                 style="object-fit: cover; height: auto; width: 100%"

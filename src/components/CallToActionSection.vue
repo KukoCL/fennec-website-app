@@ -7,10 +7,10 @@ import useAppLang from '../composables/settings/useAppLang';
 const { getAppTexts } = useAppLang();
 const appTexts = computed(() => getAppTexts().home.callToActionSection);
 
-const subscribeNewsletter = () => {
-  // Handle newsletter subscription
-  alert(appTexts.value.newsletter.successMessage);
-};
+// const subscribeNewsletter = () => {
+//   // Handle newsletter subscription
+//   alert(appTexts.value.newsletter.successMessage);
+// };
 </script>
 
 <template>
@@ -29,16 +29,16 @@ const subscribeNewsletter = () => {
               <FontAwesomeIcon icon="rocket" class="me-2" />
               {{ appTexts.buttons.getStarted }}
             </RouterLink>
-            <a href="tel:+1-555-123-4567" class="btn btn-outline-light btn-lg">
+            <!-- <a href="tel:+1-555-123-4567" class="btn btn-outline-light btn-lg">
               <FontAwesomeIcon icon="phone" class="me-2" />
               {{ appTexts.buttons.callUs }}
-            </a>
+            </a> -->
           </div>
         </div>
       </div>
 
       <!-- Newsletter Signup -->
-      <div class="row mt-5 pt-5 border-top border-light border-opacity-25">
+      <!-- <div class="row mt-5 pt-5 border-top border-light border-opacity-25">
         <div class="col-lg-8 mx-auto text-center">
           <h3 class="h4 mb-3">{{ appTexts.newsletter.title }}</h3>
           <p class="mb-4">
@@ -65,7 +65,7 @@ const subscribeNewsletter = () => {
             {{ appTexts.newsletter.privacyNote }}
           </small>
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
 </template>

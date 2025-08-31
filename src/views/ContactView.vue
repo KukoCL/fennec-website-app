@@ -121,14 +121,13 @@ const submitForm = async () => {
   isSubmitting.value = true
   try {
     // Check if running in development mode
-    const isDevelopment = import.meta.env.DEV
-      || window.location.hostname === 'localhost'
-      || window.location.hostname === '127.0.0.1'
+    const isDevelopment =
+      import.meta.env.DEV || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
 
     if (isDevelopment) {
       // Simulate email sending with 2-second delay in development
       console.log('Development mode: Simulating email sending...')
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      await new Promise((resolve) => setTimeout(resolve, 2000))
 
       // Simulate successful response
       resetFormAndShowSuccess()
@@ -217,7 +216,7 @@ const submitForm = async () => {
                         class="form-control"
                         :class="{
                           'is-invalid': validationErrors.name,
-                          'is-valid': form.name && !validationErrors.name
+                          'is-valid': form.name && !validationErrors.name,
                         }"
                         id="name"
                         required
@@ -250,7 +249,7 @@ const submitForm = async () => {
                         class="form-control"
                         :class="{
                           'is-invalid': validationErrors.email,
-                          'is-valid': form.email && !validationErrors.email
+                          'is-valid': form.email && !validationErrors.email,
                         }"
                         id="email"
                         required
@@ -303,7 +302,7 @@ const submitForm = async () => {
                         class="form-control"
                         :class="{
                           'is-invalid': validationErrors.message,
-                          'is-valid': form.message && !validationErrors.message
+                          'is-valid': form.message && !validationErrors.message,
                         }"
                         id="message"
                         rows="5"
@@ -346,8 +345,12 @@ const submitForm = async () => {
                   v-if="showSuccessAlert"
                   class="alert alert-success alert-dismissible fade show mt-4"
                   role="alert"
+                  style="color:black !important"
                 >
-                  <font-awesome-icon icon="fa-solid fa-check-circle" class="me-2" />
+                  <font-awesome-icon
+                    icon="fa-solid fa-check-circle"
+                    class="me-2"
+                  />
                   {{ appTexts.contact.form.successMessage }}
                   <button
                     type="button"
@@ -369,9 +372,18 @@ const submitForm = async () => {
                 </h3>
 
                 <!-- Phone Contact -->
-                <div class="contact-item mb-4">
+                <!-- <div class="contact-item mb-4">
                   <div class="d-flex align-items-center mb-2">
-                    <div class="contact-icon bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px; min-width: 48px;">
+                    <div class="
+                      contact-icon
+                      bg-success
+                      bg-opacity-10
+                      rounded-circle
+                      d-flex
+                      align-items-center
+                      justify-content-center
+                      me-3"
+                      style="width: 48px; height: 48px; min-width: 48px;">
                       <font-awesome-icon icon="fa-solid fa-phone" class="text-success fs-5" />
                     </div>
                     <div class="flex-grow-1">
@@ -381,17 +393,27 @@ const submitForm = async () => {
                       </a>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
                 <!-- Email Contact -->
                 <div class="contact-item mb-4">
                   <div class="d-flex align-items-center mb-2">
-                    <div class="contact-icon bg-white bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px; min-width: 48px;">
-                      <font-awesome-icon icon="fa-solid fa-envelope" class="text-white fs-5" style="color: var(--orange);" />
+                    <div
+                      class="contact-icon bg-white bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
+                      style="width: 48px; height: 48px; min-width: 48px"
+                    >
+                      <font-awesome-icon
+                        icon="fa-solid fa-envelope"
+                        class="text-white fs-5"
+                        style="color: var(--orange)"
+                      />
                     </div>
                     <div class="flex-grow-1">
                       <h6 class="fw-bold mb-1">{{ appTexts.contact.info.emailLabel }}</h6>
-                      <a :href="`mailto:${appTexts.contact.info.email}`" class="text-decoration-none text-muted text-break">
+                      <a
+                        :href="`mailto:${appTexts.contact.info.email}`"
+                        class="text-decoration-none text-muted text-break"
+                      >
                         {{ appTexts.contact.info.email }}
                       </a>
                     </div>
@@ -405,16 +427,36 @@ const submitForm = async () => {
                 <div class="mt-auto">
                   <h6 class="fw-bold mb-3 text-center">{{ appTexts.contact.info.followUs }}</h6>
                   <div class="d-flex justify-content-center gap-3">
-                    <a href="#" class="btn btn-outline-primary btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <a
+                      href="https://web.facebook.com/profile.php?id=61578497711864"
+                      class="btn btn-outline-primary btn-sm rounded-circle d-flex align-items-center justify-content-center"
+                      style="width: 40px; height: 40px"
+                    >
                       <font-awesome-icon icon="fa-brands fa-facebook-f" />
                     </a>
-                    <a href="#" class="btn btn-outline-info btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <!--
+                    <a
+                      href="#"
+                      class="
+                        btn btn-outline-info btn-sm rounded-circle d-flex align-items-center justify-content-center"
+                      style="width: 40px; height: 40px;"
+                    >
                       <font-awesome-icon icon="fa-brands fa-twitter" />
                     </a>
-                    <a href="#" class="btn btn-outline-primary btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <a
+                      href="#"
+                      class="
+                        btn btn-outline-primary btn-sm rounded-circle d-flex align-items-center justify-content-center"
+                      style="width: 40px; height: 40px;"
+                    >
                       <font-awesome-icon icon="fa-brands fa-linkedin-in" />
                     </a>
-                    <a href="#" class="btn btn-outline-danger btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    -->
+                    <a
+                      href="https://www.instagram.com/fennecsoft"
+                      class="btn btn-outline-danger btn-sm rounded-circle d-flex align-items-center justify-content-center"
+                      style="width: 40px; height: 40px"
+                    >
                       <font-awesome-icon icon="fa-brands fa-instagram" />
                     </a>
                   </div>
