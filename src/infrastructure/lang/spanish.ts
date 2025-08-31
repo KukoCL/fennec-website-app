@@ -429,7 +429,7 @@ export const appTexts = {
       phoneLabel: 'Teléfono',
       phone: '+1 (555) 123-4567',
       emailLabel: 'Correo',
-      email: 'info@fenneccompany.com',
+      email: 'contacto@fennecsoft.cl',
       hoursLabel: 'Horario de Atención',
       hours: ['Lun - Vie: 9:00 AM - 6:00 PM', 'Sáb: 10:00 AM - 4:00 PM', 'Dom: Cerrado'],
       followUs: 'Síguenos',
