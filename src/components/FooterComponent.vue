@@ -80,8 +80,10 @@ const appTexts = computed(() => getAppTexts().footer);
           <h6 class="text-uppercase fw-bold mb-3">{{ appTexts.contact.title }}</h6>
           <ul class="list-unstyled">
             <li class="mb-2">
+              <a :href="`mailto:${appTexts.contact.email}`" class="text-light text-decoration-none">
               <FontAwesomeIcon icon="envelope" class="me-2" />
               {{ appTexts.contact.email }}
+              </a>
             </li>
             <!-- <li class="mb-2">
               <FontAwesomeIcon icon="phone" class="me-2" />
