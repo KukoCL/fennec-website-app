@@ -28,7 +28,7 @@ export const appTexts = {
       features: {
         fastDelivery: 'Fast Delivery',
         secure: 'Secure',
-        support: '24/7 Support',
+        support: 'Support',
         analytics: 'Analytics',
       },
     },
@@ -42,25 +42,25 @@ export const appTexts = {
           description:
             'Custom web applications built with modern technologies and best practices for optimal performance.',
         },
-        mobileApps: {
-          title: 'Mobile Apps',
-          description: 'Native and cross-platform mobile applications that engage users and drive business growth.',
+        systemsIntegration: {
+          title: 'Systems Integration',
+          description: 'We connect applications and platforms to build efficient, scalable, and secure digital ecosystems.',
         },
-        cloudSolutions: {
-          title: 'Cloud Solutions',
-          description: 'Scalable cloud infrastructure and services to power your business operations efficiently.',
+        processAutomation: {
+          title: 'Process Automation',
+          description: 'We digitize repetitive tasks and optimize workflows to increase operational efficiency and reduce human error.',
         },
-        dataAnalytics: {
-          title: 'Data Analytics',
-          description: 'Transform your data into actionable insights with advanced analytics and visualization tools.',
+        techConsulting: {
+          title: 'Technology Advisory',
+          description: 'We guide the adoption of digital solutions with strategic analysis and personalized technical support.',
         },
-        cybersecurity: {
-          title: 'Cybersecurity',
-          description: 'Comprehensive security solutions to protect your business from digital threats and vulnerabilities.',
+        agileEmpowerment: {
+          title: 'Agile Empowerment',
+          description: 'Transform your digital processes with fast decision-making and flexible strategy. Technology should adapt to you—not the other way around.',
         },
-        consulting: {
-          title: 'Consulting',
-          description: 'Expert consultation services to guide your business through digital transformation and growth.',
+        trainingPrograms: {
+          title: 'Training & Courses',
+          description: 'We strengthen technical and digital skills through practical, personalized training aligned with your goals.',
         },
       },
     },
@@ -86,7 +86,7 @@ export const appTexts = {
     callToActionSection: {
       title: 'Ready to Transform Your Business?',
       description:
-        "Join hundreds of satisfied clients who have accelerated their growth with our innovative solutions. Let's discuss how we can help you achieve your business goals.",
+        "Accelerate your growth with our innovative solutions. Let's discuss how we can help you achieve your business goals.",
       buttons: {
         getStarted: 'Get Started Today',
         callUs: 'Call Us Now',
@@ -148,7 +148,7 @@ export const appTexts = {
         gonzalo: {
           name: 'Gonzalo Hevia',
           position: 'CEO & Founder',
-          bio: 'Methodical and analytical, he lives by the philosophy that everything has a logic. Passionate about video games and understanding how things work at their core. With a solid track record in both the public and private sectors, he has architected technological solutions for critical projects in key institutions. His commitment, responsibility, and rigor make him a reliable and efficient technical pillar.',
+          bio: 'Methodical and analytical, with experience as a software architect and technical leader. Passionate about video games and understanding how things work at their core. With a solid track record in both the public and private sectors, he has architected technological solutions for critical projects in key institutions. His commitment, responsibility, and rigor make him a reliable and efficient technical pillar.',
         },
         francisco: {
           name: 'Francisco Puebla',
@@ -490,7 +490,7 @@ export const appTexts = {
     },
     contact: {
       title: 'Contact Info',
-      email: 'info@fenneccompany.com',
+      email: 'contacto@fennecsoft.cl',
       phone: '+1 (555) 123-4567',
       address: '123 Business St, City, State 12345',
     },

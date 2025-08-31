@@ -32,6 +32,7 @@
 import { computed } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import useAppLang from '../composables/settings/useAppLang';
+import type { ServiceKey } from '../infrastructure/types';
 
 const { getAppTexts } = useAppLang();
 const appTexts = computed(() => getAppTexts().home.featuresSection);
@@ -39,33 +40,33 @@ const appTexts = computed(() => getAppTexts().home.featuresSection);
 const services = [
   {
     id: 1,
-    icon: 'code',
-    textKey: 'webDevelopment' as keyof typeof appTexts.value.services,
+    icon: 'laptop-code',
+    textKey: 'webDevelopment' as ServiceKey,
   },
   {
     id: 2,
-    icon: 'mobile-alt',
-    textKey: 'mobileApps' as keyof typeof appTexts.value.services,
+    icon: 'network-wired',
+    textKey: 'systemsIntegration' as ServiceKey,
   },
   {
     id: 3,
-    icon: 'cloud',
-    textKey: 'cloudSolutions' as keyof typeof appTexts.value.services,
+    icon: 'robot',
+    textKey: 'processAutomation' as ServiceKey,
   },
   {
     id: 4,
-    icon: 'fa-solid fa-chart-simple',
-    textKey: 'dataAnalytics' as keyof typeof appTexts.value.services,
+    icon: 'lightbulb',
+    textKey: 'techConsulting' as ServiceKey,
   },
   {
     id: 5,
-    icon: 'shield-alt',
-    textKey: 'cybersecurity' as keyof typeof appTexts.value.services,
+    icon: 'rocket',
+    textKey: 'agileEmpowerment' as ServiceKey,
   },
   {
     id: 6,
-    icon: 'users',
-    textKey: 'consulting' as keyof typeof appTexts.value.services,
+    icon: 'chalkboard-teacher',
+    textKey: 'trainingPrograms' as ServiceKey,
   },
 ];
 </script>

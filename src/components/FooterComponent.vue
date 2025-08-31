@@ -20,13 +20,13 @@ const appTexts = computed(() => getAppTexts().footer);
             <a href="https://www.facebook.com/profile.php?id=61578497711864" class="text-light me-3" aria-label="Facebook">
               <FontAwesomeIcon :icon="['fab', 'facebook-f']" />
             </a>
-            <a href="#" class="text-light me-3" aria-label="Twitter">
+            <!-- <a href="#" class="text-light me-3" aria-label="Twitter">
               <FontAwesomeIcon :icon="['fab', 'twitter']" />
             </a>
             <a href="#" class="text-light me-3" aria-label="LinkedIn">
               <FontAwesomeIcon :icon="['fab', 'linkedin-in']" />
-            </a>
-            <a href="#" class="text-light" aria-label="Instagram">
+            </a> -->
+            <a href="https://www.instagram.com/fennecsoft" class="text-light" aria-label="Instagram">
               <FontAwesomeIcon :icon="['fab', 'instagram']" />
             </a>
           </div>
@@ -62,16 +62,16 @@ const appTexts = computed(() => getAppTexts().footer);
           <h6 class="text-uppercase fw-bold mb-3">{{ appTexts.services.title }}</h6>
           <ul class="list-unstyled">
             <li class="mb-2">
-              <a href="#" class="text-light text-decoration-none">{{ appTexts.services.links.webDevelopment }}</a>
+              <RouterLink to="/services" class="text-light text-decoration-none">{{ appTexts.services.links.webDevelopment }}</RouterLink>
             </li>
             <li class="mb-2">
-              <a href="#" class="text-light text-decoration-none">{{ appTexts.services.links.mobileApps }}</a>
+              <RouterLink to="/services" class="text-light text-decoration-none">{{ appTexts.services.links.mobileApps }}</RouterLink>
             </li>
             <li class="mb-2">
-              <a href="#" class="text-light text-decoration-none">{{ appTexts.services.links.cloudSolutions }}</a>
+              <RouterLink to="/services" class="text-light text-decoration-none">{{ appTexts.services.links.cloudSolutions }}</RouterLink>
             </li>
             <li class="mb-2">
-              <a href="#" class="text-light text-decoration-none">{{ appTexts.services.links.consulting }}</a>
+              <RouterLink to="/services" class="text-light text-decoration-none">{{ appTexts.services.links.consulting }}</RouterLink>
             </li>
           </ul>
         </div>
@@ -83,14 +83,14 @@ const appTexts = computed(() => getAppTexts().footer);
               <FontAwesomeIcon icon="envelope" class="me-2" />
               {{ appTexts.contact.email }}
             </li>
-            <li class="mb-2">
+            <!-- <li class="mb-2">
               <FontAwesomeIcon icon="phone" class="me-2" />
               {{ appTexts.contact.phone }}
             </li>
             <li class="mb-2">
               <FontAwesomeIcon icon="map-marker-alt" class="me-2" />
               {{ appTexts.contact.address }}
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -105,10 +105,10 @@ const appTexts = computed(() => getAppTexts().footer);
               {{ appTexts.copyright }}
             </p>
           </div>
-          <div class="col-md-6 text-md-end">
+          <!-- <div class="col-md-6 text-md-end">
             <a href="#" class="text-light text-decoration-none me-3">{{ appTexts.legalLinks.privacyPolicy }}</a>
             <a href="#" class="text-light text-decoration-none">{{ appTexts.legalLinks.termsOfService }}</a>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

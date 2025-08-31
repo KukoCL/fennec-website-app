@@ -28,7 +28,7 @@ export const appTexts = {
       features: {
         fastDelivery: 'Entrega Rápida',
         secure: 'Seguro',
-        support: 'Soporte 24/7',
+        support: 'Soporte',
         analytics: 'Analítica',
       },
     },
@@ -38,29 +38,29 @@ export const appTexts = {
         'Ofrecemos soluciones de negocio integrales diseñadas para acelerar el crecimiento y la transformación digital de su empresa.',
       services: {
         webDevelopment: {
-          title: 'Desarrollo Web',
+          title: 'Desarrollo de software a medida',
           description:
-            'Aplicaciones web personalizadas construidas con tecnologías modernas y mejores prácticas para un rendimiento óptimo.',
+            'Desarrollamos software a medida que combina eficiencia, escalabilidad y usabilidad, aplicado a plataformas y aplicaciones empresariales.',
         },
-        mobileApps: {
-          title: 'Aplicaciones Móviles',
-          description: 'Aplicaciones móviles nativas y multiplataforma que involucran a los usuarios e impulsan el crecimiento del negocio.',
+        systemsIntegration: {
+          title: 'Integración de Sistemas',
+          description: 'Conectamos aplicaciones y plataformas para construir ecosistemas digitales eficientes, escalables y seguros.',
         },
-        cloudSolutions: {
-          title: 'Soluciones en la Nube',
-          description: 'Infraestructura y servicios en la nube escalables para potenciar las operaciones de su negocio de manera eficiente.',
+        processAutomation: {
+          title: 'Automatización de Procesos',
+          description: 'Digitalizamos tareas repetitivas y optimizamos flujos de trabajo para aumentar la eficiencia operativa y reducir errores humanos.',
         },
-        dataAnalytics: {
-          title: 'Analítica de Datos',
-          description: 'Transforme sus datos en conocimientos accionables con herramientas avanzadas de análisis y visualización.',
+        techConsulting: {
+          title: 'Asesoramiento Tecnológico',
+          description: 'Guiamos la adopción de soluciones digitales con análisis estratégico y acompañamiento técnico personalizado.',
         },
-        cybersecurity: {
-          title: 'Ciberseguridad',
-          description: 'Soluciones de seguridad integrales para proteger su negocio de amenazas y vulnerabilidades digitales.',
+        agileEmpowerment: {
+          title: 'Empoderamiento ágil',
+          description: 'Transforma tus procesos digitales con decisiones rápidas y estrategia flexible. Descubre cómo la tecnología puede adaptarse a ti, no al revés.',
         },
-        consulting: {
-          title: 'Consultoría',
-          description: 'Servicios de consultoría especializada para guiar su negocio a través de la transformación digital y el crecimiento.',
+        trainingPrograms: {
+          title: 'Cursos y capacitaciones',
+          description: 'Fortalecemos habilidades técnicas y digitales a través de programas de formación prácticos, personalizados y alineados a tus objetivos.',
         },
       },
     },
@@ -86,7 +86,7 @@ export const appTexts = {
     callToActionSection: {
       title: '¿Listo para Transformar Su Negocio?',
       description:
-        'Únase a cientos de clientes satisfechos que han acelerado su crecimiento con nuestras soluciones innovadoras. Hablemos sobre cómo podemos ayudarle a alcanzar sus objetivos de negocio.',
+        'Acelere su crecimiento con nuestras soluciones innovadoras. Hablemos sobre cómo podemos ayudarle a alcanzar sus objetivos de negocio.',
       buttons: {
         getStarted: 'Comenzar Hoy',
         callUs: 'Llámanos Ahora',
@@ -148,7 +148,7 @@ export const appTexts = {
         gonzalo: {
           name: 'Gonzalo Hevia',
           position: 'CEO y Fundador',
-          bio: 'Metódico y analítico, vive bajo la filosofía de que todo tiene una lógica. Apasionado por los videojuegos y por entender cómo funcionan las cosas desde su raíz. Con sólida trayectoria en el sector público y privado, ha sido arquitecto de soluciones tecnológicas para proyectos críticos en instituciones clave. Su compromiso, responsabilidad y rigurosidad lo convierten en un pilar técnico confiable y eficiente.',
+          bio: 'Metódico y analítico, con experiencia como arquitecto de software y líder técnico. Apasionado por los videojuegos y por entender cómo funcionan las cosas desde su raíz. Con sólida trayectoria en el sector público y privado, ha sido arquitecto de soluciones tecnológicas para proyectos críticos en instituciones clave. Su compromiso, responsabilidad y rigurosidad lo convierten en un pilar técnico confiable y eficiente.',
         },
         francisco: {
           name: 'Francisco Puebla',
@@ -325,13 +325,13 @@ export const appTexts = {
     },
     projects: {
       ecommercePlatform: {
-        title: 'Plataforma de Comercio Electrónico',
-        description: 'Solución moderna de comercio electrónico con análisis avanzados y gestión de inventario.',
-        category: 'Desarrollo Web',
+        title: 'Plataforma Organizacional | Concesionaria RED (ex Transantiago)',
+        description: 'Plataforma integral diseñada para respaldar y optimizar la gestión operativa de una importante concesionaria de RED, abordando las necesidades específicas de sus distintas unidades de negocio. Dentro de sus características principales destacan: planificación operativa de flota, gestión de jornadas de conductores, gestión de flota y despacho de viajes, módulo de recursos humanos, control y reducción de evasiones, dashboard y reportes de gestión.',
+        category: 'Desarrollo a Medida',
       },
       mobileBankingApp: {
-        title: 'Aplicación de Banca Móvil',
-        description: 'Aplicación segura de banca móvil con autenticación biométrica.',
+        title: 'Plataforma para la Tramitación de Propiedad Industrial',
+        description: 'Plataforma tecnológica especializada para apoyar la implementación de la nueva Ley de Propiedad Industrial, vigente desde el año 2022. Esta solución fue creada para modernizar y agilizar los procesos relacionados con la gestión de derechos marcarios y de invenciones, alineándose con los nuevos estándares normativos y operativos. Componentes clave de esta solución son; plataforma web para presentación de solicitudes, API para automatización de procesos, herramienta backoffice para la gestión interna de las presentaciones de solicitudes.',
         category: 'Desarrollo Móvil',
       },
       cloudMigration: {
@@ -491,7 +491,7 @@ export const appTexts = {
     },
     contact: {
       title: 'Información de Contacto',
-      email: 'info@fenneccompany.com',
+      email: 'contacto@fennecsoft.cl',
       phone: '+1 (555) 123-4567',
       address: '123 Business St, City, State 12345',
     },

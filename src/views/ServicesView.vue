@@ -158,26 +158,14 @@ const services = computed<Service[]>(() => {
         <div class="row g-4 align-items-center justify-content-center">
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <FontAwesomeIcon :icon="['fab', 'react']" class="text-info" style="font-size: 3rem" />
-              <p class="small mt-2 mb-0">React</p>
-            </div>
-          </div>
-          <div class="col-6 col-md-3 col-lg-2 text-center">
-            <div class="tech-logo p-3">
               <FontAwesomeIcon :icon="['fab', 'vuejs']" class="text-success" style="font-size: 3rem" />
               <p class="small mt-2 mb-0">Vue.js</p>
             </div>
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <FontAwesomeIcon :icon="['fab', 'node-js']" class="text-success" style="font-size: 3rem" />
-              <p class="small mt-2 mb-0">Node.js</p>
-            </div>
-          </div>
-          <div class="col-6 col-md-3 col-lg-2 text-center">
-            <div class="tech-logo p-3">
-              <FontAwesomeIcon :icon="['fab', 'python']" class="text-primary" style="font-size: 3rem" />
-              <p class="small mt-2 mb-0">Python</p>
+              <FontAwesomeIcon :icon="['fab', 'windows']" class="text-info" style="font-size: 3rem" />
+              <p class="small mt-2 mb-0">.NET Core</p>
             </div>
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
@@ -188,8 +176,20 @@ const services = computed<Service[]>(() => {
           </div>
           <div class="col-6 col-md-3 col-lg-2 text-center">
             <div class="tech-logo p-3">
-              <FontAwesomeIcon :icon="['fab', 'windows']" class="text-info" style="font-size: 3rem" />
-              <p class="small mt-2 mb-0">.NET Core</p>
+              <FontAwesomeIcon :icon="['fab', 'node-js']" class="text-success" style="font-size: 3rem" />
+              <p class="small mt-2 mb-0">Node.js</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3 col-lg-2 text-center">
+            <div class="tech-logo p-3">
+              <FontAwesomeIcon :icon="['fab', 'react']" class="text-info" style="font-size: 3rem" />
+              <p class="small mt-2 mb-0">React</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3 col-lg-2 text-center">
+            <div class="tech-logo p-3">
+              <FontAwesomeIcon :icon="['fab', 'python']" class="text-primary" style="font-size: 3rem" />
+              <p class="small mt-2 mb-0">Python</p>
             </div>
           </div>
         </div>
@@ -202,7 +202,7 @@ const services = computed<Service[]>(() => {
         <div class="row align-items-center">
           <div class="col-lg-8">
             <h2 class="display-6 fw-bold mb-3">{{ appTexts.cta.title }}</h2>
-            <p class="lead mb-0">
+            <p class="lead mb-3">
               {{ appTexts.cta.description }}
             </p>
           </div>
