@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
+import { isLitePath } from '@/infrastructure/utils/isLitePath';
 import HomeView from '../views/HomeView.vue';
-
-const isLitePath = (path: string) => path === '/lite' || path.startsWith('/lite/');
 
 const router = createRouter({
   history: createWebHashHistory(),

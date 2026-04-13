@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { useRoute } from 'vue-router'
 import useAppLang from '@/composables/settings/useAppLang'
+import { isLitePath } from '@/infrastructure/utils/isLitePath'
 import gonzalo from '@/assets/images/team/gonzalo.jpg'
 import francisco from '@/assets/images/team/francisco.png'
 import christian from '@/assets/images/team/christian.png'
@@ -14,7 +15,7 @@ import teamImgAlt from '@/assets/images/team/teamImgAlt.jpg'
 const { getAppTexts } = useAppLang()
 const appTexts = computed(() => getAppTexts().about)
 const route = useRoute()
-const isLiteMode = computed(() => route.path.startsWith('/lite'))
+const isLiteMode = computed(() => isLitePath(route.path))
 
 interface TeamMember {
   name: string
