@@ -18,9 +18,9 @@ export const appTexts = {
   },
   home: {
     heroSection: {
-      headerTitle: 'Soluciones de Negocio Modernas para la Era Digital',
+      headerTitle: 'Desarrollo de Software para Rendimiento y Escalabilidad',
       description:
-        'Ayudamos a las empresas a transformar su negocio con tecnología de vanguardia, estrategias innovadoras y consultoría especializada para impulsar el crecimiento y el éxito.',
+        'Nuestro enfoque principal es el desarrollo de software: diseñamos y construimos soluciones escalables con buenas prácticas de ingeniería, alto rendimiento e integración confiable de sistemas.',
       buttons: {
         getStarted: 'Comenzar',
         ourServices: 'Nuestros Servicios',
@@ -35,7 +35,7 @@ export const appTexts = {
     featuresSection: {
       title: 'Nuestros Servicios',
       description:
-        'Ofrecemos soluciones de negocio integrales diseñadas para acelerar el crecimiento y la transformación digital de su empresa.',
+        'Entregamos servicios centrados en software que combinan buenas prácticas, optimización de rendimiento, integración de sistemas y escalabilidad a largo plazo.',
       services: {
         webDevelopment: {
           title: 'Desarrollo de software a medida',
@@ -106,7 +106,7 @@ export const appTexts = {
     hero: {
       title: 'Acerca de Fennec Company',
       description:
-        'Somos una empresa de tecnología con visión de futuro dedicada a ayudar a las empresas a prosperar en la era digital a través de soluciones innovadoras y orientación experta.',
+        'Somos una empresa de desarrollo de software enfocada en calidad de ingeniería, rendimiento, integración y escalabilidad para impulsar el crecimiento de su negocio.',
       stats: {
         projects: 'Proyectos',
         teamMembers: 'Miembros del Equipo',
@@ -469,7 +469,7 @@ export const appTexts = {
     companyInfo: {
       title: 'Fennec Company',
       description:
-        'Ofrecemos soluciones de negocio modernas para ayudar a su empresa a crecer y tener éxito en la era digital.',
+        'Construimos soluciones de software con buenas prácticas, alto rendimiento, integración fluida y arquitectura escalable.',
     },
     navigation: {
       title: 'Enlaces Rápidos',
