@@ -51,8 +51,7 @@ router.beforeEach((to, from) => {
   const toLitePath = isLitePath(to.path);
 
   if (fromLitePath && !toLitePath) {
-    const normalizedPath = to.path.startsWith('/') ? to.path : `/${to.path}`;
-    const litePath = normalizedPath === '/' ? '/lite' : `/lite${normalizedPath}`;
+    const litePath = to.path === '/' ? '/lite' : `/lite${to.path}`;
 
     return {
       path: litePath,
