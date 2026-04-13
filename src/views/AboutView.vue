@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { useRoute } from 'vue-router'
 import useAppLang from '@/composables/settings/useAppLang'
 import gonzalo from '@/assets/images/team/gonzalo.jpg'
 import francisco from '@/assets/images/team/francisco.png'
@@ -12,6 +13,8 @@ import teamImgAlt from '@/assets/images/team/teamImgAlt.jpg'
 
 const { getAppTexts } = useAppLang()
 const appTexts = computed(() => getAppTexts().about)
+const route = useRoute()
+const isLiteMode = computed(() => route.path === '/lite/about' || route.path.startsWith('/lite/'))
 
 interface TeamMember {
   name: string
@@ -28,7 +31,7 @@ interface TeamMember {
 const teamMembers = computed<TeamMember[]>(() => {
   const members = appTexts.value.team.members
 
-  return [
+  const fullTeam = [
     {
       name: members.gonzalo.name,
       position: members.gonzalo.position,
@@ -82,6 +85,12 @@ const teamMembers = computed<TeamMember[]>(() => {
       },
     },
   ]
+
+  if (isLiteMode.value) {
+    return [fullTeam[0]]
+  }
+
+  return fullTeam
 })
 </script>
 
