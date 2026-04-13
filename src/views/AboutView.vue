@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { useRoute } from 'vue-router'
 import useAppLang from '@/composables/settings/useAppLang'
+import { isLitePath } from '@/infrastructure/utils/isLitePath'
 import gonzalo from '@/assets/images/team/gonzalo.jpg'
 import francisco from '@/assets/images/team/francisco.png'
 import christian from '@/assets/images/team/christian.png'
@@ -12,6 +14,8 @@ import teamImgAlt from '@/assets/images/team/teamImgAlt.jpg'
 
 const { getAppTexts } = useAppLang()
 const appTexts = computed(() => getAppTexts().about)
+const route = useRoute()
+const isLiteMode = computed(() => isLitePath(route.path))
 
 interface TeamMember {
   name: string
@@ -28,16 +32,18 @@ interface TeamMember {
 const teamMembers = computed<TeamMember[]>(() => {
   const members = appTexts.value.team.members
 
-  return [
-    {
-      name: members.gonzalo.name,
-      position: members.gonzalo.position,
-      bio: members.gonzalo.bio,
-      avatar: gonzalo,
-      social: {
-        linkedin: 'https://www.linkedin.com/in/gonzalo-hevia-castillo-b22235a1/',
-      },
+  const gonzaloMember = {
+    name: members.gonzalo.name,
+    position: members.gonzalo.position,
+    bio: members.gonzalo.bio,
+    avatar: gonzalo,
+    social: {
+      linkedin: 'https://www.linkedin.com/in/gonzalo-hevia-castillo-b22235a1/',
     },
+  }
+
+  const fullTeam = [
+    gonzaloMember,
     {
       name: members.francisco.name,
       position: members.francisco.position,
@@ -82,6 +88,12 @@ const teamMembers = computed<TeamMember[]>(() => {
       },
     },
   ]
+
+  if (isLiteMode.value) {
+    return [gonzaloMember]
+  }
+
+  return fullTeam
 })
 </script>
 

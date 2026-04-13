@@ -18,9 +18,9 @@ export const appTexts = {
   },
   home: {
     heroSection: {
-      headerTitle: 'Modern Business Solutions for the Digital Age',
+      headerTitle: 'Software Development Built for Performance and Scale',
       description:
-        'We help companies transform their business with cutting-edge technology, innovative strategies, and expert consultation to drive growth and success.',
+        'Our core focus is software development: we design and build scalable solutions with engineering best practices, high performance standards, and reliable system integration.',
       buttons: {
         getStarted: 'Get Started',
         ourServices: 'Our Services',
@@ -35,7 +35,7 @@ export const appTexts = {
     featuresSection: {
       title: 'Our Services',
       description:
-        "We offer comprehensive business solutions designed to accelerate your company's growth and digital transformation.",
+        'We deliver software-first services that combine best practices, performance optimization, system integration, and long-term scalability.',
       services: {
         webDevelopment: {
           title: 'Web Development',
@@ -106,7 +106,7 @@ export const appTexts = {
     hero: {
       title: 'About Fennec Company',
       description:
-        'We are a forward-thinking technology company dedicated to helping businesses thrive in the digital age through innovative solutions and expert guidance.',
+        'We are a software development company focused on engineering quality, performance, integration, and scalability to help businesses grow with confidence.',
       stats: {
         projects: 'Projects',
         teamMembers: 'Team Members',
@@ -468,7 +468,7 @@ export const appTexts = {
   footer: {
     companyInfo: {
       title: 'Fennec Company',
-      description: 'We provide modern business solutions to help your company grow and succeed in the digital age.',
+      description: 'We build software solutions with best practices, strong performance, seamless integration, and scalable architecture.',
     },
     navigation: {
       title: 'Quick Links',
