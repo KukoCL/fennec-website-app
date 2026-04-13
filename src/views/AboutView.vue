@@ -14,7 +14,7 @@ import teamImgAlt from '@/assets/images/team/teamImgAlt.jpg'
 const { getAppTexts } = useAppLang()
 const appTexts = computed(() => getAppTexts().about)
 const route = useRoute()
-const isLiteMode = computed(() => route.path === '/lite/about' || route.path.startsWith('/lite/'))
+const isLiteMode = computed(() => route.path.startsWith('/lite'))
 
 interface TeamMember {
   name: string
