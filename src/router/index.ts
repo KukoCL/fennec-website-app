@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 
+const isLitePath = (path: string) => path === '/lite' || path.startsWith('/lite/');
+
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -45,7 +47,6 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-  const isLitePath = (path: string) => path === '/lite' || path.startsWith('/lite/');
   const fromLitePath = isLitePath(from.path);
   const toLitePath = isLitePath(to.path);
 
