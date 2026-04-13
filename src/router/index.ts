@@ -45,11 +45,13 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-  const fromLitePath = from.path === '/lite' || from.path.startsWith('/lite/');
-  const toLitePath = to.path === '/lite' || to.path.startsWith('/lite/');
+  const isLitePath = (path: string) => path === '/lite' || path.startsWith('/lite/');
+  const fromLitePath = isLitePath(from.path);
+  const toLitePath = isLitePath(to.path);
 
   if (fromLitePath && !toLitePath) {
-    const litePath = to.path === '/' ? '/lite' : `/lite${to.path}`;
+    const normalizedPath = to.path.startsWith('/') ? to.path : `/${to.path}`;
+    const litePath = normalizedPath === '/' ? '/lite' : `/lite${normalizedPath}`;
 
     return {
       path: litePath,
