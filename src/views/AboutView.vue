@@ -31,19 +31,16 @@ interface TeamMember {
 
 const teamMembers = computed<TeamMember[]>(() => {
   const members = appTexts.value.team.members
-
-  const gonzaloMember = {
-    name: members.gonzalo.name,
-    position: members.gonzalo.position,
-    bio: members.gonzalo.bio,
-    avatar: gonzalo,
-    social: {
-      linkedin: 'https://www.linkedin.com/in/gonzalo-hevia-castillo-b22235a1/',
+  return [
+    {
+      name: members.gonzalo.name,
+      position: members.gonzalo.position,
+      bio: members.gonzalo.bio,
+      avatar: gonzalo,
+      social: {
+        linkedin: 'https://www.linkedin.com/in/gonzalo-hevia-castillo-b22235a1/',
+      },
     },
-  }
-
-  const fullTeam = [
-    gonzaloMember,
     {
       name: members.francisco.name,
       position: members.francisco.position,
@@ -88,8 +85,6 @@ const teamMembers = computed<TeamMember[]>(() => {
       },
     },
   ]
-
-  return fullTeam
 })
 </script>
 
