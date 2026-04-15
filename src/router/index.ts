@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import { isLitePath } from '@/infrastructure/utils/isLitePath';
+import { isFullPath } from '@/infrastructure/utils/isFullPath';
 import HomeView from '../views/HomeView.vue';
 
 const router = createRouter({
@@ -9,31 +9,31 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      alias: ['/lite'],
+      alias: ['/full'],
     },
     {
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutView.vue'),
-      alias: ['/lite/about'],
+      alias: ['/full/about'],
     },
     {
       path: '/services',
       name: 'services',
       component: () => import('../views/ServicesView.vue'),
-      alias: ['/lite/services'],
+      alias: ['/full/services'],
     },
     {
       path: '/portfolio',
       name: 'portfolio',
       component: () => import('../views/PortfolioView.vue'),
-      alias: ['/lite/portfolio'],
+      alias: ['/full/portfolio'],
     },
     {
       path: '/contact',
       name: 'contact',
       component: () => import('../views/ContactView.vue'),
-      alias: ['/lite/contact'],
+      alias: ['/full/contact'],
     },
   ],
   scrollBehavior(to, from, savedPosition) {
@@ -46,19 +46,19 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-  const fromLitePath = isLitePath(from.path);
-  const toLitePath = isLitePath(to.path);
+  const fromFullPath = isFullPath(from.path);
+  const toFullPath = isFullPath(to.path);
 
-  if (fromLitePath && !toLitePath) {
-    const litePath = to.path === '/' ? '/lite' : `/lite${to.path}`;
-    const resolvedLitePath = router.resolve(litePath);
+  if (fromFullPath && !toFullPath) {
+    const fullPath = to.path === '/' ? '/full' : `/full${to.path}`;
+    const resolvedFullPath = router.resolve(fullPath);
 
-    if (resolvedLitePath.matched.length === 0) {
+    if (resolvedFullPath.matched.length === 0) {
       return true;
     }
 
     return {
-      path: litePath,
+      path: fullPath,
       query: to.query,
       hash: to.hash,
     };
