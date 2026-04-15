@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { useRoute } from 'vue-router'
 import useAppLang from '@/composables/settings/useAppLang'
-import { isLitePath } from '@/infrastructure/utils/isLitePath'
+import { isFullPath } from '@/infrastructure/utils/isFullPath'
 import gonzalo from '@/assets/images/team/gonzalo.jpg'
 import francisco from '@/assets/images/team/francisco.png'
 import christian from '@/assets/images/team/christian.png'
@@ -15,7 +15,7 @@ import teamImgAlt from '@/assets/images/team/teamImgAlt.jpg'
 const { getAppTexts } = useAppLang()
 const appTexts = computed(() => getAppTexts().about)
 const route = useRoute()
-const isLiteMode = computed(() => isLitePath(route.path))
+const isFullMode = computed(() => isFullPath(route.path))
 
 interface TeamMember {
   name: string
@@ -89,10 +89,6 @@ const teamMembers = computed<TeamMember[]>(() => {
     },
   ]
 
-  if (isLiteMode.value) {
-    return [gonzaloMember]
-  }
-
   return fullTeam
 })
 </script>
@@ -141,7 +137,10 @@ const teamMembers = computed<TeamMember[]>(() => {
     </section>
 
     <!-- Mission & Vision -->
-    <section class="py-5">
+    <section
+      v-if="isFullMode"
+      class="py-5"
+    >
       <div class="container">
         <div class="row g-5">
           <div class="col-lg-6">
