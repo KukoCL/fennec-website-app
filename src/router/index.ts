@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import { isFullPath } from '@/infrastructure/utils/isFullPath';
 import HomeView from '../views/HomeView.vue';
 
 const router = createRouter({
@@ -43,28 +42,6 @@ const router = createRouter({
       return { top: 0 };
     }
   },
-});
-
-router.beforeEach((to, from) => {
-  const fromFullPath = isFullPath(from.path);
-  const toFullPath = isFullPath(to.path);
-
-  if (fromFullPath && !toFullPath) {
-    const fullPath = to.path === '/' ? '/full' : `/full${to.path}`;
-    const resolvedFullPath = router.resolve(fullPath);
-
-    if (resolvedFullPath.matched.length === 0) {
-      return true;
-    }
-
-    return {
-      path: fullPath,
-      query: to.query,
-      hash: to.hash,
-    };
-  }
-
-  return true;
 });
 
 export default router;
