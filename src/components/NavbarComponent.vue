@@ -1,16 +1,27 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute } from 'vue-router';
 import { ref, computed } from 'vue';
 import { useAppSettingsStore } from '@/stores/appSettingsStore';
 import { storeToRefs } from 'pinia';
 import useAppLang from '@/composables/settings/useAppLang';
+import { isFullPath } from '@/infrastructure/utils/isFullPath';
 
 const { getAppTexts } = useAppLang();
 const appTexts = computed(() => getAppTexts());
+const route = useRoute();
 
 const isNavCollapsed = ref(true);
 const appSettingsStore = useAppSettingsStore();
 const { appLanguage } = storeToRefs(appSettingsStore);
+const isFullMode = computed(() => isFullPath(route.path));
+
+const resolveNavPath = (path: '/' | '/about' | '/services' | '/portfolio' | '/contact') => {
+  if (!isFullMode.value) {
+    return path;
+  }
+
+  return path === '/' ? '/full' : `/full${path}`;
+};
 
 const toggleNav = () => {
   isNavCollapsed.value = !isNavCollapsed.value;
@@ -30,7 +41,7 @@ const currentLanguageLabel = computed(() => {
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <RouterLink class="navbar-brand fw-bold" to="/">
+      <RouterLink class="navbar-brand fw-bold" :to="resolveNavPath('/')">
         <img src="/favicon.ico" alt="Logo" width="45" height="40" class="d-inline-block align-top me-2 fennec-logo" />
         <span class="brand-text">{{ appTexts.navbar.brand1 }}<span class="text-fennec-orange">{{ appTexts.navbar.brand2 }}</span></span>
       </RouterLink>
@@ -49,27 +60,27 @@ const currentLanguageLabel = computed(() => {
       <div class="collapse navbar-collapse" :class="{ show: !isNavCollapsed }" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/" @click="isNavCollapsed = true">{{
+            <RouterLink class="nav-link" :to="resolveNavPath('/')" @click="isNavCollapsed = true">{{
               appTexts.navbar.navigation.home
             }}</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/about" @click="isNavCollapsed = true">{{
+            <RouterLink class="nav-link" :to="resolveNavPath('/about')" @click="isNavCollapsed = true">{{
               appTexts.navbar.navigation.about
             }}</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/services" @click="isNavCollapsed = true">{{
+            <RouterLink class="nav-link" :to="resolveNavPath('/services')" @click="isNavCollapsed = true">{{
               appTexts.navbar.navigation.services
             }}</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/portfolio" @click="isNavCollapsed = true">{{
+            <RouterLink class="nav-link" :to="resolveNavPath('/portfolio')" @click="isNavCollapsed = true">{{
               appTexts.navbar.navigation.portfolio
             }}</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/contact" @click="isNavCollapsed = true">{{
+            <RouterLink class="nav-link" :to="resolveNavPath('/contact')" @click="isNavCollapsed = true">{{
               appTexts.navbar.navigation.contact
             }}</RouterLink>
           </li>
