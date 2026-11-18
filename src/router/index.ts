@@ -1,9 +1,20 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
+import { createRouter, createWebHashHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
+import { useAuthStore } from '@/stores/authStore'
+import { PortalError } from '@/features/portal/api'
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
+    { path: '/dashboard', name: 'dashboard', component: () => import('../views/DashboardHomeView.vue'),
+      meta: { requiresAuth: true } },
+    { path: '/login', name: 'login', component: () => import('../views/LoginView.vue') },
+    {
+      path: '/dashboard/jumbo',
+      name: 'jumbo-telemetry',
+      component: () => import('../views/TelemetryDashboardView.vue'),
+      meta: { requiresAuth: true },
+    },
     {
       path: '/',
       name: 'home',
@@ -37,11 +48,22 @@ const router = createRouter({
   ],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
-      return savedPosition;
+      return savedPosition
     } else {
-      return { top: 0 };
+      return { top: 0 }
     }
   },
-});
+})
 
-export default router;
+router.beforeEach(async (to) => {
+  if (!to.meta.requiresAuth) return true
+  const auth = useAuthStore()
+  try {
+    if (await auth.restoreSession()) return true
+    return { name: 'login' }
+  } catch (error) {
+    return { name: 'login', query: { reason: error instanceof PortalError ? error.code : 'unavailable' } }
+  }
+})
+
+export default router
