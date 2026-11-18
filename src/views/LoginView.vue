@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import '@/assets/portal.css'
+import EnvironmentSelector from '@/features/portal/EnvironmentSelector.vue'
 import { computed, onBeforeUnmount, ref } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
@@ -22,8 +23,13 @@ const error = ref<PortalErrorCode | 'loginRequired' | null>(null)
 const routeError = computed(() => {
   const code = route.query.reason
   return code === 'sessionExpired' || code === 'configuration' || code === 'unavailable' || code === 'forbidden'
-    ? texts.value[code] : ''
+    ? texts.value[code]
+    : ''
 })
+function environmentChanged() {
+  password.value = ''
+  error.value = null
+}
 async function submit() {
   if (submitting.value) return
   error.value = null
@@ -67,6 +73,11 @@ async function submit() {
       >
         {{ error ? texts[error] : routeError }}
       </div>
+      <EnvironmentSelector
+        :disabled="submitting"
+        @changed="environmentChanged"
+      />
+      <p class="portal-muted small">{{ texts.memorySession }}</p>
       <form
         class="portal-panel"
         @submit.prevent="submit"

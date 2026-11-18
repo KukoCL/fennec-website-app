@@ -10,7 +10,7 @@ vi.mock('@/features/portal/api', async (original) => ({
 }));
 const session: DashboardSession = {
   user: { id: 'test', email: 'test@example.com', roles: ['telemetry'] },
-  csrfToken: 'example-nonce', expiresAtUtc: '2026-11-17T12:00:00Z',
+  environment: 'qa', csrfToken: 'example-nonce', expiresAtUtc: '2026-11-17T12:00:00Z',
 };
 async function setup() {
   const router = createRouter({ history: createMemoryHistory(), routes: [

@@ -21,7 +21,7 @@ async function mountDashboard(operator = false) {
   await router.push('/'); await router.isReady();
   const pinia = createPinia();
   if (operator) useAuthStore(pinia).session = {
-    user: { id: 'fixture', email: 'fixture@example.test', roles: [] }, csrfToken: 'fixture-csrf',
+    user: { id: 'fixture', email: 'fixture@example.test', roles: [] }, environment: 'qa', csrfToken: 'fixture-csrf',
     expiresAtUtc: '2026-12-01T00:00:00Z', canManageActivation: true,
   };
   wrapper = mount(Dashboard, { global: { plugins: [pinia, router] } });

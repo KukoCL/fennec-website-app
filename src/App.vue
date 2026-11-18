@@ -24,9 +24,13 @@ async function refreshIfNeeded() {
   try {
     await auth.refreshSession()
   } catch (error) {
-    if (error instanceof PortalError && error.code === 'sessionExpired'
-      && !auth.isAuthenticated && route.meta.requiresAuth) {
-      await router.replace({ name: 'login', query: { reason: 'sessionExpired' } })
+    if (
+      error instanceof PortalError &&
+      (error.code === 'sessionExpired' || error.code === 'forbidden') &&
+      !auth.isAuthenticated &&
+      route.meta.requiresAuth
+    ) {
+      await router.replace({ name: 'login', query: { reason: error.code } })
     }
   } finally {
     clearTimeout(refreshTimer)

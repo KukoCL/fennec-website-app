@@ -2,6 +2,12 @@ import { computed } from 'vue'
 import { useAppSettingsStore } from '@/stores/appSettingsStore'
 
 const es = {
+  memorySession:
+    'La sesión se conserva al recargar esta pestaña hasta que venza. La restauración del navegador ' +
+      'puede recuperarla; cierra sesión para revocarla. Cambiar de ambiente requiere volver a ingresar.',
+  storageUnavailable:
+    'El navegador no permite conservar la sesión. Sigue activa en memoria, pero al recargar tendrás ' +
+      'que iniciar sesión de nuevo.',
   login: 'Iniciar sesión',
   logout: 'Cerrar sesión',
   account: 'Mi cuenta',
@@ -9,7 +15,8 @@ const es = {
   activationBusy: 'Otro cambio está en curso o su resultado sigue pendiente. Espera y actualiza el inventario.',
   activationConflict: 'El estado cambió desde la última lectura. Actualiza el inventario antes de confirmar de nuevo.',
   deviceMissing: 'El dispositivo ya no aparece en el inventario disponible.',
-  activationUnknown: 'No se pudo confirmar el resultado. El cambio puede haberse aplicado. No lo ' +
+  activationUnknown:
+    'No se pudo confirmar el resultado. El cambio puede haberse aplicado. No lo ' +
     'reintentes sin actualizar el inventario.',
   telemetry: 'Telemetría Jumbo',
   restricted: 'ACCESO PRIVADO',
@@ -27,7 +34,8 @@ const es = {
   configuration: 'El servicio aún no está configurado. Contacta al administrador.',
   sessionExpired: 'Tu sesión venció. Vuelve a iniciar sesión.',
   forbidden: 'Tu cuenta no tiene acceso a esta telemetría.',
-  simulatorScope: 'Vista Jumbo sobre la API configurada. La fuente actual no informa simulatorId ni ' +
+  simulatorScope:
+    'Vista Jumbo sobre la API configurada. La fuente actual no informa simulatorId ni ' +
     'separa dispositivos por simulador.',
   dashboardTitle: 'Telemetría · Jumbo',
   dashboardDescription: 'Consulta el uso acumulado de los dispositivos y su distribución por fecha.',
@@ -85,6 +93,11 @@ const es = {
   hide: 'Ocultar',
 }
 const en: typeof es = {
+  memorySession:
+    'The session survives reloads in this tab until expiry. Browser tab restoration may recover it; ' +
+      'sign out to revoke it. Changing environment requires a new sign-in.',
+  storageUnavailable:
+    'Your browser cannot retain the session. It remains active in memory, but reloading requires signing in again.',
   login: 'Sign in',
   logout: 'Sign out',
   account: 'My account',
@@ -92,8 +105,8 @@ const en: typeof es = {
   activationBusy: 'Another change is in progress or its outcome is pending. Wait and refresh inventory.',
   activationConflict: 'The state changed since the last read. Refresh inventory before confirming again.',
   deviceMissing: 'The device no longer appears in the available inventory.',
-  activationUnknown: 'The result could not be confirmed. The change may have applied. Refresh inventory ' +
-    'before trying again.',
+  activationUnknown:
+    'The result could not be confirmed. The change may have applied. Refresh inventory ' + 'before trying again.',
   telemetry: 'Jumbo telemetry',
   restricted: 'PRIVATE ACCESS',
   title: 'Welcome back',
@@ -110,7 +123,8 @@ const en: typeof es = {
   configuration: 'The service is not configured yet. Contact your administrator.',
   sessionExpired: 'Your session expired. Please sign in again.',
   forbidden: 'Your account cannot access this telemetry.',
-  simulatorScope: 'Jumbo view of the configured API. The current source does not provide simulator IDs ' +
+  simulatorScope:
+    'Jumbo view of the configured API. The current source does not provide simulator IDs ' +
     'or partition devices by simulator.',
   dashboardTitle: 'Telemetry · Jumbo',
   dashboardDescription: 'Explore cumulative device usage and its daily distribution.',
