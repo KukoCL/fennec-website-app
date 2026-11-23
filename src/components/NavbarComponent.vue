@@ -1,14 +1,41 @@
 <script setup lang="ts">
-import { RouterLink, useRoute } from 'vue-router';
+import { RouterLink, useRoute, useRouter } from 'vue-router';
 import { ref, computed } from 'vue';
 import { useAppSettingsStore } from '@/stores/appSettingsStore';
 import { storeToRefs } from 'pinia';
 import useAppLang from '@/composables/settings/useAppLang';
 import { isFullPath } from '@/infrastructure/utils/isFullPath';
+import { useAuthStore } from '@/stores/authStore';
+import { usePortalTexts } from '@/features/portal/texts';
 
 const { getAppTexts } = useAppLang();
 const appTexts = computed(() => getAppTexts());
 const route = useRoute();
+const router = useRouter()
+const auth = useAuthStore()
+const portalTexts = usePortalTexts()
+const accountDetails = ref<HTMLDetailsElement | null>(null)
+const signingOut = ref(false)
+const logoutError = ref(false)
+const closeAccount = () => {
+  if (accountDetails.value) accountDetails.value.open = false
+}
+function closeAccountMenus() { closeAccount(); isNavCollapsed.value = true; }
+async function signOut() {
+  if (signingOut.value) return
+  signingOut.value = true
+  logoutError.value = false
+  try {
+    await auth.logout()
+    closeAccount()
+    isNavCollapsed.value = true
+    await router.replace({ name: 'login' })
+  } catch {
+    logoutError.value = true
+  } finally {
+    signingOut.value = false
+  }
+}
 
 const isNavCollapsed = ref(true);
 const appSettingsStore = useAppSettingsStore();
@@ -51,7 +78,7 @@ const currentLanguageLabel = computed(() => {
         type="button"
         @click="toggleNav"
         aria-controls="navbarNav"
-        aria-expanded="false"
+        :aria-expanded="!isNavCollapsed"
         :aria-label="appTexts.navbar.toggleNavigation"
       >
         <span class="navbar-toggler-icon"></span>
@@ -87,6 +114,47 @@ const currentLanguageLabel = computed(() => {
           <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
             <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
             <hr class="d-lg-none my-2 text-white-50" />
+          </li>
+          <li class="nav-item portal-account-item">
+            <RouterLink
+              v-if="!auth.isAuthenticated"
+              class="nav-link portal-login-link"
+              to="/login"
+              @click="isNavCollapsed = true"
+            >
+              {{ portalTexts.login }}
+            </RouterLink>
+            <details
+              v-else
+              ref="accountDetails"
+              class="portal-account"
+              @keydown.esc="closeAccount"
+            >
+              <summary class="nav-link">{{ portalTexts.account }}</summary>
+              <div class="portal-account-menu">
+                <p class="portal-account-email">{{ auth.session?.user.email }}</p>
+                <RouterLink
+                  to="/dashboard"
+                  @click="closeAccountMenus"
+                >
+                  {{ portalTexts.simulators }}
+                </RouterLink>
+                <button
+                  type="button"
+                  :disabled="signingOut"
+                  @click="signOut"
+                >
+                  {{ portalTexts.logout }}
+                </button>
+                <p
+                  v-if="logoutError"
+                  class="portal-logout-error"
+                  role="alert"
+                >
+                  {{ portalTexts.unavailable }}
+                </p>
+              </div>
+            </details>
           </li>
           <li class="nav-item dropdown">
             <a
@@ -272,6 +340,70 @@ hr {
 
   .nav-link.router-link-active::after {
     display: none;
+  }
+}
+.portal-account {
+  position: relative;
+}
+.portal-account summary {
+  cursor: pointer;
+  list-style: none;
+}
+.portal-account summary::-webkit-details-marker {
+  display: none;
+}
+.portal-account summary::after {
+  content: ' ▾';
+}
+.portal-account-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  min-width: 235px;
+  max-width: 320px;
+  background: #1e2228;
+  border: 1px solid #46505d;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 12px 32px #0008;
+}
+.portal-account-menu a,
+.portal-account-menu button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  color: #e8e8e8;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.portal-account-menu a:hover,
+.portal-account-menu button:hover {
+  background: #303743;
+  color: #ffb45c;
+}
+.portal-account-email {
+  color: #aeb8c6;
+  padding: 8px 10px;
+  margin: 0;
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+.portal-account-menu .portal-logout-error {
+  color: #ffb5b5;
+  font-size: 0.75rem;
+  margin: 8px;
+}
+.portal-login-link {
+  color: #ffb45c !important;
+}
+@media (max-width: 991.98px) {
+  .portal-account-menu {
+    position: static;
+    max-width: none;
   }
 }
 </style>

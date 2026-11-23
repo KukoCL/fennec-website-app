@@ -55,6 +55,9 @@ jobs:
         run: npm ci
 
       - name: Build project
+        env:
+          VITE_DASHBOARD_API_BASE_URL: ${{ vars.VITE_DASHBOARD_API_BASE_URL }}
+          VITE_GOOGLE_MAPS_EMBED_API_KEY: ${{ vars.VITE_GOOGLE_MAPS_EMBED_API_KEY }}
         run: npm run build
 
       - name: Copy CNAME file to dist folder

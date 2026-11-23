@@ -3,11 +3,14 @@ import { mount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
 import Navbar from '../NavbarComponent.vue';
 import { createRouter, createWebHistory } from 'vue-router';
+import { useAuthStore } from '@/stores/authStore';
 
 const createTestRouter = () =>
   createRouter({
     history: createWebHistory(),
     routes: [
+      { path: '/login', name: 'login', component: { template: '<div />' } },
+      { path: '/dashboard', name: 'dashboard', component: { template: '<div />' } },
       {
         path: '/',
         name: 'Home',
@@ -108,4 +111,23 @@ describe('Navbar', () => {
 
     expect(servicesLink?.attributes('href')).toBe('/full/services');
   });
+  it('shows the private telemetry menu only for an authenticated session', async () => {
+    const wrapper = mountNavbar();
+    expect(wrapper.find('.portal-login-link').exists()).toBe(true);
+    const auth = useAuthStore();
+    auth.session = {
+      user: { id: 'test', email: 'test@example.com' },
+      csrfToken: 'not-rendered-nonce', expiresAtUtc: '2026-11-17T12:00:00Z',
+    };
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.portal-login-link').exists()).toBe(false);
+    expect(wrapper.find('.portal-account-menu').text()).toContain('Simuladores');
+    expect(wrapper.html()).not.toContain('not-rendered-nonce');
+    await wrapper.find('.navbar-toggler').trigger('click');
+    expect(wrapper.find('.navbar-toggler').attributes('aria-expanded')).toBe('true');
+    await wrapper.find('.portal-account-menu a').trigger('click');
+    expect(wrapper.find('.collapse.show').exists()).toBe(false);
+    wrapper.unmount();
+  });
+
 });
