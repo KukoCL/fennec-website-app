@@ -117,7 +117,7 @@ There is no route, geocoding, inferred location, extra inventory read or cross-d
 
 **Sharing scope:** all displayed coordinates, the client IP and site origin can be received by
 Google once the user opts in. Neither device IDs, dates, timestamps, accuracy, Auth/session tokens
-nor admin credentials are passed to Google. No point data is placed in a URL, HTML attribute or
+nor admin credentials are passed to Google. No point data is placed in the provider URL, iframe HTML attributes or
 iframe source. A new device, filtered record set, history refresh or environment clears consent and
 removes the provider frame. Selecting another point or changing UI language does not expand the
 shared data. “Return to local map” destroys the frame; it cannot undo data already shared. Script
