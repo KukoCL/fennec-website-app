@@ -1,15 +1,74 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import type { DailyUsage } from './api'
 import { useAppSettingsStore } from '@/stores/appSettingsStore'
 import { formatTimestamp } from './dates'
 import { fittedViewBox, mapObservations, projectLocation } from './map/observations'
 import landPaths from './map/landPaths.json'
-import { googleEmbedUrl } from './map/googleEmbed'
+import { googleMapMessage, GOOGLE_MAP_PROTOCOL } from './map/googleFrame'
 const props = defineProps<{ records: DailyUsage[]; deviceId: string }>()
 const settings = useAppSettingsStore()
-const googleKey = import.meta.env.VITE_GOOGLE_MAPS_EMBED_API_KEY?.trim() ?? ''
+const googleKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY?.trim() ?? ''
 const showGoogle = ref(false)
+const googleFrame = ref<HTMLIFrameElement>()
+const mapAction = ref<HTMLButtonElement>()
+const googleStatus = ref<'loading' | 'loaded' | 'error' | ''>('')
+let googleTimeout: ReturnType<typeof setTimeout> | undefined
+let googleInitialized = false
+const frameUrl = `${import.meta.env.BASE_URL}telemetry-google-map.html`
+const sendToMap = (message: Record<string, unknown>) => {
+  if (showGoogle.value) googleFrame.value?.contentWindow?.postMessage(
+    { protocol: GOOGLE_MAP_PROTOCOL, ...message }, '*',
+  )
+}
+const stopGoogle = () => {
+  showGoogle.value = false
+  clearTimeout(googleTimeout)
+}
+const loadGoogle = async () => {
+  if (showGoogle.value || !points.value.length || !googleKey) return
+  googleStatus.value = 'loading'
+  googleInitialized = false
+  showGoogle.value = true
+  fit.value = true
+  googleTimeout = setTimeout(() => {
+    googleStatus.value = 'error'
+    stopGoogle()
+  }, 25_000)
+  await nextTick()
+  mapAction.value?.focus()
+}
+const returnLocal = async () => {
+  stopGoogle()
+  await nextTick()
+  mapAction.value?.focus()
+}
+const onMapMessage = (event: MessageEvent) => {
+  if (!showGoogle.value || !googleFrame.value?.contentWindow
+    || event.source !== googleFrame.value.contentWindow || event.origin !== 'null') return
+  const message = googleMapMessage(event.data, points.value.length)
+  if (!message) return
+  if (message.type === 'ready' && !googleInitialized) {
+    googleInitialized = true
+    sendToMap({ type: 'init', key: googleKey,
+      language: settings.appLanguage === 'en' ? 'en' : 'es',
+      points: points.value.map((point) => ({ lat: point.latitude, lng: point.longitude })),
+      selected: selectedIndex.value,
+    })
+  } else if (message.type === 'select') selectedId.value = points.value[message.index]!.id
+  else if (message.type === 'loaded') {
+    clearTimeout(googleTimeout)
+    googleStatus.value = 'loaded'
+  } else if (message.type === 'error') {
+    googleStatus.value = 'error'
+    stopGoogle()
+  }
+}
+onMounted(() => window.addEventListener('message', onMapMessage))
+onBeforeUnmount(() => {
+  stopGoogle()
+  window.removeEventListener('message', onMapMessage)
+})
 const words = computed(() =>
   settings.appLanguage === 'en'
     ? {
@@ -21,17 +80,20 @@ const words = computed(() =>
       last: 'Last record',
       empty: 'No valid location observations in this period.',
       privacy: 'Local map. Coordinates are not sent to external map services.',
-      google: 'Load selected location in Google Maps',
+      google: 'Load all locations in Google Maps',
       local: 'Return to local map',
-      googleMissing: 'Street map unavailable: a restricted Google Maps Embed API key has not been configured.',
+      googleMissing: 'Street map unavailable: a restricted Google Maps JavaScript API key has not been configured.',
+      googleLoading: 'Loading Google Maps…',
+      googleError: 'Google Maps could not load. The local map remains available. ' +
+        'Check the browser key, billing or network.',
       googleConsent:
-          'Loading Google Maps sends the selected coordinates, your IP address and this site’s origin to Google. ' +
-          'Further selections in this view also load in Google. No device ID or timestamps are included. ' +
-          'One observation is shown at a time. Use the local map if you do not want to share locations.',
+          'Loading Google Maps shares ALL displayed location points in this period, your IP address and this site’s ' +
+          'origin with Google. No device IDs, timestamps or session credentials are shared. ' +
+          'Use the local map if you do not want to share locations. Changing the data requires another opt-in.',
       googleActive:
-          'Google Maps shows only the selected observation, not all observations or a route. ' +
-          'If the map is blocked or shows an error, return to the local map; the site cannot verify ' +
-            'the embedded map’s status.',
+          'All displayed observations are shown. Numbers match the selector; ×N groups coincident points. ' +
+          'Click a group to cycle its observations, or use the selector for overlapping markers. ' +
+          'Returning to the local map stops this map, but cannot undo locations already shared.',
       googlePrivacy: 'Google privacy policy',
       googleTerms: 'Google Maps terms',
       observations: 'Optional first/last observations, not a continuous route.',
@@ -53,19 +115,22 @@ const words = computed(() =>
       last: 'Último registro',
       empty: 'No hay observaciones de ubicación válidas en este período.',
       privacy: 'Mapa local. Las coordenadas no se envían a servicios de mapas externos.',
-      google: 'Cargar ubicación seleccionada en Google Maps',
+      google: 'Cargar todas las ubicaciones en Google Maps',
       local: 'Volver al mapa local',
-      googleMissing: 'Mapa de calles no disponible: falta configurar una API key restringida de Google Maps Embed.',
+      googleMissing: 'Mapa de calles no disponible: ' +
+        'falta configurar una API key restringida de Google Maps JavaScript.',
+      googleLoading: 'Cargando Google Maps…',
+      googleError: 'Google Maps no pudo cargar. Sigue disponible el mapa local. ' +
+        'Revisa la API key, facturación o conexión.',
       googleConsent:
-          'Cargar Google Maps envía las coordenadas seleccionadas, tu dirección IP y el origen de ' +
-            'este sitio a Google. ' +
-          'Las siguientes selecciones de esta vista también se cargan en Google. No se incluyen IDs ' +
-            'ni horas de los registros. ' +
-          'Se muestra una observación a la vez. Usa el mapa local si no quieres compartir ubicaciones.',
+          'Cargar Google Maps comparte TODOS los puntos de ubicación mostrados en este período, tu dirección IP y ' +
+          'el origen de este sitio con Google. No se comparten IDs, horas de registros ni credenciales de sesión. ' +
+          'Usa el mapa local si no quieres compartir ubicaciones. Cambiar los datos requiere aceptar de nuevo.',
       googleActive:
-          'Google Maps muestra solo la observación seleccionada, no todos los puntos ni una ruta. ' +
-          'Si el mapa está bloqueado o muestra un error, vuelve al mapa local; el sitio no puede ' +
-            'verificar el estado del mapa incorporado.',
+          'Se muestran todas las observaciones. Los números coinciden con el selector; ' +
+          '×N agrupa puntos coincidentes. ' +
+          'Haz clic en un grupo para alternar sus observaciones, o usa el selector para marcadores superpuestos. ' +
+          'Volver al mapa local detiene este mapa, pero no revierte las ubicaciones ya compartidas.',
       googlePrivacy: 'Privacidad de Google',
       googleTerms: 'Condiciones de Google Maps',
       observations: 'Observaciones opcionales del primer/último registro, no una ruta continua.',
@@ -85,18 +150,22 @@ const points = computed(() => mapObservations(props.records, props.deviceId))
 const selectedId = ref('')
 const fit = ref(true)
 const selected = computed(() => points.value.find((point) => point.id === selectedId.value))
+const selectedIndex = computed(() => points.value.findIndex((point) => point.id === selectedId.value))
+watch(selectedIndex, (index) => { if (index >= 0) sendToMap({ type: 'select', index }) })
+const setExtent = (fitted: boolean) => {
+  fit.value = fitted
+  sendToMap({ type: fitted ? 'fit' : 'world' })
+}
 const viewBox = computed(() => (fit.value ? fittedViewBox(points.value) : '0 0 360 180'))
 const markerSize = computed(() => Number(viewBox.value.split(' ')[2]) / 170)
 watch(
   points,
   (value) => {
     selectedId.value = value[0]?.id ?? ''
-    showGoogle.value = false
+    stopGoogle()
+    googleStatus.value = ''
   },
   { immediate: true },
-)
-const embedUrl = computed(() =>
-  showGoogle.value && selected.value ? googleEmbedUrl(selected.value, googleKey, settings.appLanguage) : '',
 )
 const timestamp = (value: string) =>
   formatTimestamp(value, settings.appLanguage === 'en' ? 'en-GB' : 'es-CL', words.value.unavailable)
@@ -112,38 +181,98 @@ const longitudeLines = [0, 60, 120, 180, 240, 300, 360]
     <div class="map-toolbar">
       <h2 id="location-map-title">{{ words.title }}</h2>
       <div
-        v-if="!showGoogle"
         class="map-actions"
       >
         <button
           type="button"
           :aria-pressed="!fit"
-          @click="fit = false"
+          :disabled="showGoogle && googleStatus === 'loading'"
+          @click="setExtent(false)"
         >
           {{ words.world }}
         </button>
         <button
           type="button"
           :aria-pressed="fit"
-          :disabled="!points.length"
-          @click="fit = true"
+          :disabled="!points.length || (showGoogle && googleStatus === 'loading')"
+          @click="setExtent(true)"
         >
           {{ words.fit }}
         </button>
       </div>
     </div>
     <p class="portal-muted small">{{ showGoogle ? words.observations : words.note }}</p>
+    <template v-if="points.length">
+      <p
+        v-if="!googleKey"
+        class="portal-muted small mt-3 mb-2"
+      >
+        {{ words.googleMissing }}
+      </p>
+      <template v-else>
+        <p class="portal-muted small mt-3 mb-2">{{ showGoogle ? words.googleActive : words.googleConsent }}</p>
+        <button
+          v-if="showGoogle"
+          ref="mapAction"
+          type="button"
+          class="portal-button portal-secondary"
+          data-test="map-local"
+          @click="returnLocal"
+        >
+          {{ words.local }}
+        </button>
+        <button
+          v-else
+          ref="mapAction"
+          type="button"
+          class="portal-button"
+          data-test="map-google"
+          @click="loadGoogle"
+        >
+          {{ words.google }}
+        </button>
+        <p class="small mt-2">
+          <a
+            class="portal-link"
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ words.googlePrivacy }}
+          </a>
+          ·
+          <a
+            class="portal-link"
+            href="https://www.google.com/intl/en/help/terms_maps/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ words.googleTerms }}
+          </a>
+        </p>
+      </template>
+    </template>
     <iframe
-      v-if="embedUrl"
-      :src="embedUrl"
+      v-if="showGoogle"
+      ref="googleFrame"
+      :src="frameUrl"
+      sandbox="allow-scripts"
       class="google-map"
       :title="`${words.title} · Google Maps`"
       referrerpolicy="strict-origin-when-cross-origin"
-      loading="lazy"
-      allowfullscreen
     />
+    <p
+      v-if="googleStatus === 'loading' && showGoogle"
+      class="portal-muted small mt-2"
+      role="status"
+    >{{ words.googleLoading }}</p>
+    <p
+      v-if="googleStatus === 'error'"
+      class="portal-warning small mt-2"
+      role="alert"
+    >{{ words.googleError }}</p>
     <svg
-      v-else
+      v-if="!showGoogle"
       class="location-svg"
       :viewBox="viewBox"
       role="img"
@@ -271,54 +400,6 @@ const longitudeLines = [0, 60, 120, 180, 240, 300, 360]
         </div>
       </dl>
     </template>
-    <template v-if="points.length">
-      <p
-        v-if="!googleKey"
-        class="portal-muted small mt-3 mb-2"
-      >
-        {{ words.googleMissing }}
-      </p>
-      <template v-else>
-        <p class="portal-muted small mt-3 mb-2">{{ showGoogle ? words.googleActive : words.googleConsent }}</p>
-        <button
-          v-if="showGoogle"
-          type="button"
-          class="portal-button portal-secondary"
-          data-test="map-local"
-          @click="showGoogle = false"
-        >
-          {{ words.local }}
-        </button>
-        <button
-          v-else
-          type="button"
-          class="portal-button"
-          data-test="map-google"
-          @click="showGoogle = true"
-        >
-          {{ words.google }}
-        </button>
-        <p class="small mt-2">
-          <a
-            class="portal-link"
-            href="https://policies.google.com/privacy"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {{ words.googlePrivacy }}
-          </a>
-          ·
-          <a
-            class="portal-link"
-            href="https://www.google.com/intl/en/help/terms_maps/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {{ words.googleTerms }}
-          </a>
-        </p>
-      </template>
-    </template>
     <p
       v-if="!showGoogle"
       class="portal-muted small mb-1"
@@ -335,6 +416,12 @@ const longitudeLines = [0, 60, 120, 180, 240, 300, 360]
 </template>
 
 <style scoped>
+.telemetry-location-map {
+  min-width: 0;
+}
+.telemetry-location-map .form-select {
+  max-width: 100%;
+}
 .google-map {
   display: block;
   width: 100%;

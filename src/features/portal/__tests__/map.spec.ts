@@ -1,9 +1,11 @@
-import { describe, expect, it, vi } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { flushPromises, mount } from '@vue/test-utils'
 import { createPinia } from 'pinia'
 import type { DailyUsage } from '../api'
 import { fittedViewBox, mapObservations, projectLocation } from '../map/observations'
 import TelemetryLocationMap from '../TelemetryLocationMap.vue'
+import { googleMapMessage, GOOGLE_MAP_PROTOCOL } from '../map/googleFrame'
+import { useAppSettingsStore } from '@/stores/appSettingsStore'
 const observation = {
   occurredAtUtc: '2026-11-17T10:00:00Z',
   receivedAtUtc: '2026-11-17T10:01:00Z',
@@ -102,62 +104,130 @@ describe('offline telemetry map', () => {
   })
 })
 
-describe('optional Google Maps Embed', () => {
-  it('builds a fixed Google URL with only coordinates and the public browser key', async () => {
-    const { googleEmbedUrl } = await import('../map/googleEmbed')
-    const url = new URL(googleEmbedUrl(observation.location, 'public/browser?key', 'es'))
-    expect(url.origin + url.pathname).toBe('https://www.google.com/maps/embed/v1/place')
-    expect(url.searchParams.get('q')).toBe('-33.45,-70.66')
-    expect(url.searchParams.get('key')).toBe('public/browser?key')
-    expect(url.searchParams.size).toBe(5)
-    expect(googleEmbedUrl({ latitude: NaN, longitude: 0 }, 'key', 'en')).toBe('')
-    expect(googleEmbedUrl({ latitude: 0, longitude: 181 }, 'key', 'en')).toBe('')
-    expect(googleEmbedUrl({ latitude: 0, longitude: 0 }, '', 'en')).toBe('')
+describe('optional multipoint Google Maps', () => {
+  afterEach(() => { vi.restoreAllMocks(); vi.unstubAllEnvs(); vi.useRealTimers() })
+  function setup(records = [record]) {
+    const pinia = createPinia()
+    const wrapper = mount(TelemetryLocationMap, {
+      props: { records, deviceId: 'example' },
+      global: { plugins: [pinia] },
+      attachTo: document.body,
+    })
+    return { wrapper, settings: useAppSettingsStore(pinia) }
+  }
+  function providerMessage(wrapper: ReturnType<typeof setup>['wrapper'], data: object, origin = 'null',
+    source: MessageEventSource | null = wrapper.find('iframe').element.contentWindow) {
+    window.dispatchEvent(new MessageEvent('message', {
+      source, origin, data: { protocol: GOOGLE_MAP_PROTOCOL, ...data },
+    }))
+  }
+  it('accepts only protocol states and an existing integer observation index', () => {
+    for (const data of [null, 'ready', {}, { type: 'ready' }, { protocol: GOOGLE_MAP_PROTOCOL, type: 'fetch' },
+      { protocol: GOOGLE_MAP_PROTOCOL, type: 'select', index: -1 },
+      { protocol: GOOGLE_MAP_PROTOCOL, type: 'select', index: 2 },
+      { protocol: GOOGLE_MAP_PROTOCOL, type: 'select', index: 0.5 }]) {
+      expect(googleMapMessage(data, 2)).toBeNull()
+    }
+    expect(googleMapMessage({ protocol: GOOGLE_MAP_PROTOCOL, type: 'select', index: 1 }, 2))
+      .toEqual({ type: 'select', index: 1 })
   })
   it('never loads Google without configuration and keeps the local fallback', () => {
-    vi.stubEnv('VITE_GOOGLE_MAPS_EMBED_API_KEY', '')
-    try {
-      const wrapper = mount(TelemetryLocationMap, {
-        props: { records: [record], deviceId: 'example' },
-        global: { plugins: [createPinia()] },
-      })
-      expect(wrapper.find('iframe').exists()).toBe(false)
-      expect(wrapper.find('[data-test="map-google"]').exists()).toBe(false)
-      expect(wrapper.find('svg').exists()).toBe(true)
-      expect(wrapper.text()).toContain('falta configurar')
-      wrapper.unmount()
-    } finally {
-      vi.unstubAllEnvs()
-    }
+    vi.stubEnv('VITE_GOOGLE_MAPS_API_KEY', '')
+    const { wrapper } = setup()
+    expect(wrapper.find('iframe').exists()).toBe(false)
+    expect(wrapper.find('[data-test="map-google"]').exists()).toBe(false)
+    expect(wrapper.find('svg').exists()).toBe(true)
+    expect(wrapper.text()).toContain('falta configurar')
+    wrapper.unmount()
   })
-  it('requires a click, maps each selected observation, and resets sharing for new data', async () => {
-    vi.stubEnv('VITE_GOOGLE_MAPS_EMBED_API_KEY', 'public-test-key')
-    try {
-      const another = { ...observation, location: { latitude: 0, longitude: 0, accuracyMeters: 10 } }
-      const records = [{ ...record, last: another }]
-      const wrapper = mount(TelemetryLocationMap, {
-        props: { records, deviceId: 'example' },
-        global: { plugins: [createPinia()] },
-      })
-      expect(wrapper.find('iframe').exists()).toBe(false)
-      expect(wrapper.text()).toContain('tu dirección IP')
-      await wrapper.find('[data-test="map-google"]').trigger('click')
-      expect(wrapper.find('iframe').attributes('referrerpolicy')).toBe('strict-origin-when-cross-origin')
-      expect(new URL(wrapper.find('iframe').attributes('src')!).searchParams.get('q')).toBe('-33.45,-70.66')
-      expect(wrapper.find('svg').exists()).toBe(false)
-      await wrapper.find('select').setValue(wrapper.findAll('option')[1]!.attributes('value'))
-      expect(new URL(wrapper.find('iframe').attributes('src')!).searchParams.get('q')).toBe('0,0')
-      expect(wrapper.text()).toContain('solo la observación seleccionada')
-      await wrapper.find('[data-test="map-local"]').trigger('click')
-      expect(wrapper.find('iframe').exists()).toBe(false)
-      expect(wrapper.find('svg').exists()).toBe(true)
-      await wrapper.find('[data-test="map-google"]').trigger('click')
-      await wrapper.setProps({ records: [{ ...record, date: '2026-11-18' }] })
-      expect(wrapper.find('iframe').exists()).toBe(false)
-      expect(wrapper.find('svg').exists()).toBe(true)
-      wrapper.unmount()
-    } finally {
-      vi.unstubAllEnvs()
-    }
+  it('requires consent for all displayed points and isolates Google from the authenticated realm', async () => {
+    vi.stubEnv('VITE_GOOGLE_MAPS_API_KEY', 'public-test-key')
+    const another = { ...observation, location: { latitude: 10, longitude: 20, accuracyMeters: 10 } }
+    const { wrapper, settings } = setup([{ ...record, last: another }])
+    expect(wrapper.find('iframe').exists()).toBe(false)
+    expect(wrapper.find('script[src*="google"]').exists()).toBe(false)
+    expect(wrapper.text()).toContain('TODOS los puntos')
+    await wrapper.find('[data-test="map-google"]').trigger('click')
+    const frame = wrapper.find('iframe')
+    expect(frame.attributes('sandbox')).toBe('allow-scripts')
+    expect(frame.attributes('referrerpolicy')).toBe('strict-origin-when-cross-origin')
+    expect(frame.attributes('src')).toBe('/telemetry-google-map.html')
+    expect(frame.attributes('srcdoc')).toBeUndefined()
+    expect(wrapper.find('svg').exists()).toBe(false)
+    expect(wrapper.findAll('.map-actions button').every((button) => button.attributes('disabled') !== undefined))
+      .toBe(true)
+    const post = vi.spyOn(frame.element.contentWindow!, 'postMessage')
+    providerMessage(wrapper, { type: 'ready' }, 'https://attacker.test')
+    providerMessage(wrapper, { type: 'ready' }, 'null', window)
+    expect(post).not.toHaveBeenCalled()
+    providerMessage(wrapper, { type: 'ready' })
+    expect(post).toHaveBeenCalledWith({ protocol: GOOGLE_MAP_PROTOCOL, type: 'init', key: 'public-test-key',
+      language: 'es', points: [{ lat: -33.45, lng: -70.66 }, { lat: 10, lng: 20 }], selected: 0 }, '*')
+    const count = post.mock.calls.length
+    providerMessage(wrapper, { type: 'ready' })
+    expect(post).toHaveBeenCalledTimes(count)
+    const sent = JSON.stringify(post.mock.calls)
+    expect(sent).not.toContain('example')
+    expect(sent).not.toContain('2026-11')
+    providerMessage(wrapper, { type: 'loaded' })
+    await flushPromises()
+    expect(wrapper.text()).not.toContain('Cargando Google')
+    expect(wrapper.findAll('.map-actions button').every((button) => button.attributes('disabled') === undefined))
+      .toBe(true)
+    await wrapper.find('select').setValue(wrapper.findAll('option')[1]!.attributes('value'))
+    expect(post).toHaveBeenLastCalledWith({ protocol: GOOGLE_MAP_PROTOCOL, type: 'select', index: 1 }, '*')
+    const current = wrapper.find('select').element.value
+    providerMessage(wrapper, { type: 'select', index: -1 })
+    providerMessage(wrapper, { type: 'select', index: 0 }, 'https://attacker.test')
+    await flushPromises()
+    expect(wrapper.find('select').element.value).toBe(current)
+    providerMessage(wrapper, { type: 'select', index: 0 })
+    await flushPromises()
+    expect(wrapper.find('select').element.value).toBe(wrapper.findAll('option')[0]!.attributes('value'))
+    const buttons = wrapper.findAll('.map-actions button')
+    await buttons[0]!.trigger('click')
+    expect(post).toHaveBeenLastCalledWith({ protocol: GOOGLE_MAP_PROTOCOL, type: 'world' }, '*')
+    await buttons[1]!.trigger('click')
+    expect(post).toHaveBeenLastCalledWith({ protocol: GOOGLE_MAP_PROTOCOL, type: 'fit' }, '*')
+    settings.appLanguage = 'en'
+    await flushPromises()
+    expect(wrapper.find('iframe').element).toBe(frame.element)
+    await wrapper.find('[data-test="map-local"]').trigger('click')
+    expect(wrapper.find('iframe').exists()).toBe(false)
+    expect(wrapper.find('svg').exists()).toBe(true)
+    expect(document.activeElement).toBe(wrapper.find('[data-test="map-google"]').element)
+    await wrapper.find('[data-test="map-google"]').trigger('click')
+    await wrapper.setProps({ records: [{ ...record, date: '2026-11-18' }] })
+    expect(wrapper.find('iframe').exists()).toBe(false)
+    expect(wrapper.find('svg').exists()).toBe(true)
+    wrapper.unmount()
+  })
+  it('resets consent for device changes, invalid data, failures and a frame that never answers', async () => {
+    vi.stubEnv('VITE_GOOGLE_MAPS_API_KEY', 'public-test-key')
+    vi.useFakeTimers()
+    const clear = vi.spyOn(globalThis, 'clearTimeout')
+    const schedule = vi.spyOn(globalThis, 'setTimeout')
+    const { wrapper } = setup()
+    await wrapper.find('[data-test="map-google"]').trigger('click')
+    await wrapper.setProps({ deviceId: 'different' })
+    expect(wrapper.find('iframe').exists()).toBe(false)
+    await wrapper.setProps({ deviceId: 'example' })
+    await wrapper.find('[data-test="map-google"]').trigger('click')
+    providerMessage(wrapper, { type: 'error' })
+    await flushPromises()
+    expect(wrapper.find('iframe').exists()).toBe(false)
+    expect(wrapper.find('[role="alert"]').text()).toContain('no pudo cargar')
+    await wrapper.find('[data-test="map-google"]').trigger('click')
+    await vi.advanceTimersByTimeAsync(25_000)
+    expect(wrapper.find('iframe').exists()).toBe(false)
+    expect(wrapper.find('svg').exists()).toBe(true)
+    await wrapper.find('[data-test="map-google"]').trigger('click')
+    const timerIndex = schedule.mock.calls.map((args) => args[1]).lastIndexOf(25_000)
+    const timer = schedule.mock.results[timerIndex]!.value
+    await wrapper.setProps({ records: [{ ...record, first: null, last: null }] })
+    expect(wrapper.find('iframe').exists()).toBe(false)
+    expect(wrapper.find('select').exists()).toBe(false)
+    wrapper.unmount()
+    expect(clear).toHaveBeenCalledWith(timer)
   })
 })

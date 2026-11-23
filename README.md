@@ -55,7 +55,7 @@ is not an authentication scope.
 Copy `.env.example` to `.env.local` for development. Configure the public endpoint URL:
 
 - `VITE_DASHBOARD_API_BASE_URL` (one public URL for the existing website BFF)
-- optionally `VITE_GOOGLE_MAPS_EMBED_API_KEY` (see mapping below).
+- optionally `VITE_GOOGLE_MAPS_API_KEY` (see mapping below).
 
 Use the same names as repository variables for CI. These values are public, **not secrets**.
 Use the existing website BFF's HTTPS AWS `execute-api` URL including its stage, with no trailing
@@ -100,43 +100,76 @@ changing date filters uses that history and preserves the actual last-fetch time
 Missing records are not confirmed zero usage. The inventory warning remains visible when
 `historicalInventoryVerified` is false. `active` means enabled, not online; IDs do not identify
 hardware models. First/last locations are optional reported observations, not continuous tracking.
-### Optional Google Maps, local fallback
+### Optional multipoint Google Maps, local fallback
 
 The default map uses bundled Natural Earth public-domain land geometry and local SVG projection.
-It makes no map/tile/geocoding requests and sends no location data to a map provider. It is a coarse
+It makes no map/tile/geocoding requests and sends no locations to a map provider. It is a coarse
 reference map, not street-level mapping or a navigation aid.
 
-With `VITE_GOOGLE_MAPS_EMBED_API_KEY` configured, the user can explicitly load Google Maps after a
-privacy disclosure. Maps Embed `place` mode shows a street map with **one selected observation at a
-time**, not every marker simultaneously. The selector keeps every first/last observation separately
-accessible, including overlapping positions. No continuous route, inferred location or accuracy is
-invented. Coordinates, observation/receipt timestamps in UTC and reported accuracy remain visible.
+With the optional `VITE_GOOGLE_MAPS_API_KEY`, the existing dashboard offers Google Maps JavaScript
+API after an explicit disclosure and click. The map fits **every valid first/last observation in
+the selected device/date range**, not just the selected point. Invalid coordinates are excluded;
+zero coordinates remain valid. Numbered controls match the observation selector. Exactly coincident
+positions are grouped with `×N`; clicking cycles through the observations without moving their
+coordinates. The selector also raises the selected marker above nearby overlapping markers. Each
+observation's UTC timestamps and accuracy stay in the dashboard, not in the provider document.
+There is no route, geocoding, inferred location, extra inventory read or cross-device aggregation.
 
-The Google iframe sends the selected coordinates, client IP and website origin to Google; later
-observation selections in that view also load Google. Device IDs, timestamps, Auth/session tokens
-and admin credentials are not included in its URL. New history/device/environment data resets the
-opt-in. A manual “Return to local map” removes the iframe. The app cannot inspect a cross-origin
-iframe to distinguish a working map from key/billing/CSP/network errors. The local map remains
-available even if Google is blocked, and missing configuration never loads Google.
+**Sharing scope:** all displayed coordinates, the client IP and site origin can be received by
+Google once the user opts in. Neither device IDs, dates, timestamps, accuracy, Auth/session tokens
+nor admin credentials are passed to Google. No point data is placed in a URL, HTML attribute or
+iframe source. A new device, filtered record set, history refresh or environment clears consent and
+removes the provider frame. Selecting another point or changing UI language does not expand the
+shared data. “Return to local map” destroys the frame; it cannot undo data already shared. Script
+errors, authentication failure callbacks and timeouts return to the local map with a visible warning.
+Not every tile/key/billing problem is detectable; the local-map control is always available.
 
-Before enabling Google Maps:
+**Isolation:** Google code runs only in `public/telemetry-google-map.html`, loaded by a real HTTP(S)
+URL in an iframe with **`sandbox="allow-scripts"` only**. Do not add `allow-same-origin`, load the SDK
+in the SPA, or replace the frame with `srcdoc`/a data URL. The frame requires both embedding and an
+opaque `window.origin` before it can load Google, so direct or unsandboxed loading does not bootstrap
+the SDK. It cannot read the authenticated SPA's DOM or sessionStorage. Parent and frame validate the
+sender window and exact expected origin. Because the frame's origin is opaque, the parent must use
+`postMessage(..., '*')` to its exact `contentWindow`; only the public browser key, language, numeric
+positions and selected index are sent. Replies are restricted to state or a bounded index, not
+arbitrary actions. This is an isolation boundary, not a promise that coordinates remain private
+after opt-in.
 
-1. Create a Google Cloud project, enable **Maps Embed API**, and configure billing as required by
-   Google's setup flow. Use a dedicated **browser** API key restricted to Maps Embed API and approved
-   website HTTP referrers (production origin and only the intended development origins). The key is
-   public in the built app, so it must not be an unrestricted/server key.
-2. Review the [Maps Embed setup](https://developers.google.com/maps/documentation/embed/get-api-key),
-   [embedding guide](https://developers.google.com/maps/documentation/embed/embedding-map) and
-   [security guidance](https://developers.google.com/maps/api-security-best-practices). The iframe uses
-   `strict-origin-when-cross-origin` so key restrictions receive only the site's origin, not page data.
-3. Per Google's [Embed billing documentation](https://developers.google.com/maps/documentation/embed/usage-and-billing)
-   checked 2026-11-18, Embed usage is available at no charge with unlimited requests. This implementation
-   does not load the separately billed Maps JavaScript, Places, Routes or Geocoding APIs. Verify current
-   terms/prices before enabling billing; no Google project, key or billing account was created here.
-4. Review location-sharing authority, Google's [privacy policy](https://policies.google.com/privacy) and
-   [Maps terms](https://www.google.com/intl/en/help/terms_maps/), plus the site's privacy/terms notices.
-   Keep provider attribution visible and permit the Google iframe in any deployed CSP. Test a restricted
-   key on the final origin; no live Google Maps rendering was verified without a key.
+Configuration and release checklist:
+
+1. An authorized owner must provide a dedicated public **browser** key for **Maps JavaScript API**,
+   with website HTTP-referrer restrictions covering only approved origins. The old
+   `VITE_GOOGLE_MAPS_EMBED_API_KEY` is intentionally not reused: Embed-only keys cannot authorize the
+   new API, which has different billing. Configure `VITE_GOOGLE_MAPS_API_KEY` in `.env.local` or the
+   same-named GitHub repository variable. The workflow passes that public value to the build.
+   Do not put server keys, Auth tokens, AWS credentials or Quest admin keys in `VITE_*` variables.
+2. Review Google's [key setup](https://developers.google.com/maps/documentation/javascript/get-api-key),
+   [SDK loader](https://developers.google.com/maps/documentation/javascript/load-maps-js-api), and
+   [API security guidance](https://developers.google.com/maps/api-security-best-practices).
+   The loader uses `auth_referrer_policy=origin` and `strict-origin-when-cross-origin`; restrictions
+   must match the website origin without a path. Allow only the intended production hostname and
+   explicit development origins/ports, not a wildcard over unrelated sites.
+3. Maps JavaScript map loads use the **Dynamic Maps** SKU and require billing. Review the current
+   [usage and billing](https://developers.google.com/maps/documentation/javascript/usage-and-billing)
+   and linked prices, quotas and alerts before enabling. Reopening the Google view creates another
+   map instance and can incur another map load. Places, Geocoding, Routes and Street View are not
+   loaded. No Google project, key, account or billing changes are made by this code.
+4. This uses the quarterly SDK channel, raster maps and supported
+   [OverlayView](https://developers.google.com/maps/documentation/javascript/customoverlays) controls,
+   not deprecated `Marker`. No map ID or cloud map-style resource is required. Keep Google's map
+   attribution visible. Review the [CSP guide](https://developers.google.com/maps/documentation/javascript/content-security-policy)
+   if a hosting policy restricts the static frame, its classic local script, or Google's resources.
+5. Review location-sharing authority, Google's [privacy policy](https://policies.google.com/privacy),
+   [Maps terms](https://www.google.com/intl/en/help/terms_maps/) and the site's notices.
+6. **Real-key acceptance check, still required:** on the final HTTPS origin with synthetic points,
+   verify that a website-restricted key works inside the opaque sandbox in supported browsers.
+   Google warns that browsers can omit referrers for opaque/local content. This frame deliberately
+   uses an HTTP(S) `src`, not `srcdoc`/data, but mocks cannot prove Google's authorization behavior.
+   If restrictions fail, keep the local fallback enabled and diagnose the referrer/CSP. **Do not
+   remove key restrictions or weaken the sandbox.** Verify zero Google requests before opt-in,
+   multi-point fitting, coincident and nearby-point selection, narrow-screen/keyboard operation,
+   reset on device/date/environment/refresh, return-to-local, and blocked/invalid-key behavior.
+   Do not use live telemetry or a real dashboard token in the provider tests.
 
 ### Authorized activation
 
