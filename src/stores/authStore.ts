@@ -1,14 +1,23 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import {
-  portalApi, PortalError, clearSessionTransport, restoreSessionEnvironment, sessionPersistsOnReload,
-  type TelemetryEnvironment, type DashboardSession,
+  portalApi,
+  PortalError,
+  clearSessionTransport,
+  restoreSessionTransport,
+  restoreTelemetryEnvironment,
+  selectTelemetryEnvironment,
+  sessionPersistsOnReload,
+  type TelemetryEnvironment,
+  type DashboardSession,
 } from '@/features/portal/api'
 
 // Only metadata and CSRF are reactive. API transport owns the tab-scoped opaque credential.
 export const useAuthStore = defineStore('auth', () => {
   const session = ref<DashboardSession | null>(null)
-  const environment = ref<TelemetryEnvironment>(restoreSessionEnvironment())
+  restoreSessionTransport()
+  const environment = ref<TelemetryEnvironment>(restoreTelemetryEnvironment())
+  const activationPending = ref(false)
   const refreshUnavailable = ref(false)
   const reloadSessionAvailable = ref(sessionPersistsOnReload())
   const isAuthenticated = computed(() => session.value !== null)
@@ -33,7 +42,7 @@ export const useAuthStore = defineStore('auth', () => {
     const operation = ++sessionOperation
     const promise = (async () => {
       try {
-        const result = await portalApi.session(environment.value)
+        const result = await portalApi.session()
         if (current === generation && observedRevision === revision) {
           applyMetadata(result)
           revision++
@@ -60,7 +69,7 @@ export const useAuthStore = defineStore('auth', () => {
     session.value = null
     reloadSessionAvailable.value = false
     refreshUnavailable.value = false
-    const result = await portalApi.login(email, password, environment.value)
+    const result = await portalApi.login(email, password)
     if (current === generation) applyMetadata(result)
   }
   async function refreshSession() {
@@ -73,15 +82,15 @@ export const useAuthStore = defineStore('auth', () => {
     const operation = ++refreshOperation
     const promise = (async () => {
       try {
-        const result = await portalApi.refresh(csrf, environment.value)
+        const result = await portalApi.refresh(csrf)
         if (current === generation && observedRevision === revision) {
           applyMetadata(result)
           refreshUnavailable.value = false
         }
       } catch (error) {
         if (current !== generation || observedRevision !== revision) return
-        if (error instanceof PortalError
-          && (error.code === 'sessionExpired' || error.code === 'forbidden')) clearSession()
+        if (error instanceof PortalError && (error.code === 'sessionExpired' || error.code === 'forbidden'))
+          clearSession()
         else refreshUnavailable.value = true
         throw error
       } finally {
@@ -95,10 +104,11 @@ export const useAuthStore = defineStore('auth', () => {
     const current = generation
     revision++
     if (session.value) {
-      try { await portalApi.logout(session.value.csrfToken, environment.value) }
-      catch (error) {
-        if (!(error instanceof PortalError
-          && (error.code === 'sessionExpired' || error.code === 'forbidden'))) throw error
+      try {
+        await portalApi.logout(session.value.csrfToken)
+      } catch (error) {
+        if (!(error instanceof PortalError && (error.code === 'sessionExpired' || error.code === 'forbidden')))
+          throw error
       }
     }
     if (current !== generation) return false
@@ -107,22 +117,45 @@ export const useAuthStore = defineStore('auth', () => {
   }
   function clearSession() {
     clearSessionTransport()
-    generation++; revision++
-    sessionOperation++; refreshOperation++
-    pendingSession = null; pendingRefresh = null
+    generation++
+    revision++
+    sessionOperation++
+    refreshOperation++
+    pendingSession = null
+    pendingRefresh = null
     session.value = null
     refreshUnavailable.value = false
     reloadSessionAvailable.value = false
   }
-  async function changeEnvironment(next: TelemetryEnvironment) {
+  function changeEnvironment(next: TelemetryEnvironment) {
+    if (!['qa', 'prod'].includes(next)) throw new PortalError('configuration')
     if (next === environment.value) return
-    const current = generation
-    const previousEnvironment = environment.value
-    // A later login or concurrent switch wins; never revoke one session then switch a newer one.
-    if (!await logout() || generation !== current + 1 || environment.value !== previousEnvironment)
-      throw new PortalError('unavailable')
+    if (activationPending.value) throw new PortalError('activationBusy')
+    selectTelemetryEnvironment(next)
     environment.value = next
   }
-  return { reloadSessionAvailable, environment, changeEnvironment, session, isAuthenticated,
-    refreshUnavailable, restoreSession, login, logout, refreshSession, clearSession }
+  function beginActivation() {
+    if (activationPending.value || !session.value) return false
+    activationPending.value = true
+    return true
+  }
+  function finishActivation() {
+    activationPending.value = false
+  }
+  return {
+    activationPending,
+    beginActivation,
+    finishActivation,
+    reloadSessionAvailable,
+    environment,
+    changeEnvironment,
+    session,
+    isAuthenticated,
+    refreshUnavailable,
+    restoreSession,
+    login,
+    logout,
+    refreshSession,
+    clearSession,
+  }
 })

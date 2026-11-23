@@ -11,6 +11,7 @@ vi.mock('../api', async (original) => ({
 }))
 const device = { deviceId: 'synthetic-device', active: true, locationEnabled: false }
 const result: ActivationResult = {
+  environment: 'qa',
   deviceId: device.deviceId,
   active: false,
   previousActive: true,
@@ -42,13 +43,13 @@ async function setup(canManage = true) {
   const pinia = createPinia()
   setActivePinia(pinia)
   const auth = useAuthStore()
-  auth.session = {
-    user: { id: 'fixture', email: 'fixture@example.test', roles: [] },
-    environment: 'qa',
-    csrfToken: 'fixture-csrf',
-    expiresAtUtc: '2026-12-01T00:00:00Z',
-    canManageActivation: canManage,
-  }
+  if (canManage)
+    auth.session = {
+      user: { id: 'fixture', email: 'fixture@example.test' },
+
+      csrfToken: 'fixture-csrf',
+      expiresAtUtc: '2026-12-01T00:00:00Z',
+    }
   const router = createRouter({
     history: createMemoryHistory(),
     routes: [
@@ -70,12 +71,12 @@ const open = async (wrapper: VueWrapper) => wrapper.find('[data-test="activation
 describe('device activation confirmation', () => {
   beforeEach(() => {
     vi.resetAllMocks()
+    sessionStorage.clear()
     vi.mocked(portalApi.setActivation).mockResolvedValue(result)
   })
-  it('does not offer a mutation to read-only users', async () => {
+  it('does not offer a mutation without an authenticated owner session', async () => {
     const { wrapper } = await setup(false)
     expect(wrapper.find('[data-test="activation-open"]').exists()).toBe(false)
-    expect(wrapper.text()).toContain('acceso de lectura')
     expect(portalApi.setActivation).not.toHaveBeenCalled()
     wrapper.unmount()
   })
@@ -163,4 +164,29 @@ describe('device activation confirmation', () => {
     expect(portalApi.setActivation).not.toHaveBeenCalled()
     wrapper.unmount()
   })
+  it('requires reconciliation instead of accepting a result from another environment', async () => {
+    vi.mocked(portalApi.setActivation).mockResolvedValueOnce({ ...result, environment: 'prod' })
+    const { wrapper, updateDevice } = await setup()
+    await open(wrapper)
+    await wrapper.find('[data-test="activation-confirm"]').trigger('click')
+    await flushPromises()
+    expect(updateDevice).not.toHaveBeenCalled()
+    expect(wrapper.find('[role="alert"]').text()).toContain('puede haberse aplicado')
+    expect(wrapper.find('[data-test="activation-open"]').attributes('disabled')).toBeDefined()
+    wrapper.unmount()
+  })
+  it('holds the global switch lock after leaving until the pending write settles', async () => {
+    let resolve!: (value: ActivationResult) => void
+    vi.mocked(portalApi.setActivation).mockReturnValueOnce(new Promise((done) => { resolve = done }))
+    const { wrapper, auth } = await setup()
+    await open(wrapper)
+    await wrapper.find('[data-test="activation-confirm"]').trigger('click')
+    wrapper.unmount()
+    expect(auth.activationPending).toBe(true)
+    expect(() => auth.changeEnvironment('prod')).toThrow('activationBusy')
+    resolve(result); await flushPromises()
+    expect(auth.activationPending).toBe(false)
+    auth.changeEnvironment('prod'); expect(auth.environment).toBe('prod')
+  })
+
 })

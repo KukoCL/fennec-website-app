@@ -18,11 +18,9 @@ export class PortalError extends Error {
 }
 export type TelemetryEnvironment = 'qa' | 'prod'
 export interface DashboardSession {
-  environment: TelemetryEnvironment
-  user: { id: string; email: string; roles: string[] }
+  user: { id: string; email: string }
   csrfToken: string
   expiresAtUtc: string
-  canManageActivation?: boolean
 }
 export interface DeviceSummary {
   deviceId: string
@@ -30,6 +28,7 @@ export interface DeviceSummary {
   locationEnabled: boolean
 }
 export interface DevicePage {
+  environment: TelemetryEnvironment
   devices: DeviceSummary[]
   nextCursor: string | null
   historicalInventoryVerified: boolean
@@ -47,20 +46,21 @@ export interface DailyUsage {
   totalDurationSeconds: number
 }
 export interface ActivationResult {
+  environment: TelemetryEnvironment
   deviceId: string
   active: boolean
   previousActive: boolean
   auditId: string
 }
 interface StoredSession {
-  environment: TelemetryEnvironment
   accessToken: string
   expiresAtUtc: string
   apiBaseUrl: string
   origin: string
 }
-const storageKey = 'fennec:dashboard:session:v1'
-let transport: { environment: TelemetryEnvironment; token: string } | null = null
+const storageKey = 'fennec:dashboard:session:v2'
+const environmentKey = 'fennec:dashboard:environment'
+let transport: { token: string } | null = null
 let generation = 0
 let restorationAttempted = false
 let persisted = false
@@ -81,12 +81,11 @@ export function clearSessionTransport() {
   restorationAttempted = true
   removeStoredSession()
 }
-function persistSession(environment: TelemetryEnvironment, token: string, expiresAtUtc: string) {
+function persistSession(token: string, expiresAtUtc: string) {
   const stored: StoredSession = {
-    environment,
     accessToken: token,
     expiresAtUtc,
-    apiBaseUrl: baseUrl(environment),
+    apiBaseUrl: baseUrl(),
     origin: window.location.origin,
   }
   if (!Number.isFinite(Date.parse(expiresAtUtc)) || Date.parse(expiresAtUtc) <= Date.now()) {
@@ -101,41 +100,50 @@ function persistSession(environment: TelemetryEnvironment, token: string, expire
     removeStoredSession()
   }
 }
-export function restoreSessionEnvironment(): TelemetryEnvironment {
-  if (restorationAttempted) return transport?.environment ?? 'qa'
+// Telemetry selection is a UI preference, never an authentication scope.
+export function restoreTelemetryEnvironment(): TelemetryEnvironment {
+  try {
+    return sessionStorage.getItem(environmentKey) === 'prod' ? 'prod' : 'qa'
+  } catch {
+    return 'qa'
+  }
+}
+export function selectTelemetryEnvironment(environment: TelemetryEnvironment) {
+  if (!['qa', 'prod'].includes(environment)) throw new PortalError('configuration')
+  try {
+    sessionStorage.setItem(environmentKey, environment)
+  } catch {
+    /* Memory-only selection. */
+  }
+}
+export function restoreSessionTransport() {
+  if (restorationAttempted) return
   restorationAttempted = true
   try {
+    // Old deployment-scoped credentials cannot be restored into the single-BFF session contract.
+    sessionStorage.removeItem('fennec:dashboard:session:v1')
     const raw = sessionStorage.getItem(storageKey)
-    if (!raw) return 'qa'
+    if (!raw) return
     const value: StoredSession = JSON.parse(raw)
     if (
       !value ||
-      !['qa', 'prod'].includes(value.environment) ||
       !/^[a-f0-9]{64}$/.test(value.accessToken) ||
-      value.apiBaseUrl !== baseUrl(value.environment) ||
+      value.apiBaseUrl !== baseUrl() ||
       value.origin !== window.location.origin ||
       !Number.isFinite(Date.parse(value.expiresAtUtc)) ||
       Date.parse(value.expiresAtUtc) <= Date.now()
     ) {
       removeStoredSession()
-      return 'qa'
+      return
     }
-    transport = { environment: value.environment, token: value.accessToken }
+    transport = { token: value.accessToken }
     persisted = true
-    return value.environment
   } catch {
     removeStoredSession()
-    return 'qa'
   }
 }
-function baseUrl(environment: TelemetryEnvironment): string {
-  const value = (
-    environment === 'prod'
-      ? import.meta.env.VITE_DASHBOARD_API_BASE_URL_PROD
-      : import.meta.env.VITE_DASHBOARD_API_BASE_URL_QA
-  )
-    ?.trim()
-    .replace(/\/$/, '')
+function baseUrl(): string {
+  const value = import.meta.env.VITE_DASHBOARD_API_BASE_URL?.trim().replace(/\/$/, '')
   if (!value) throw new PortalError('configuration')
   let url: URL
   try {
@@ -152,26 +160,12 @@ function baseUrl(environment: TelemetryEnvironment): string {
     url.hash
   )
     throw new PortalError('configuration')
-  const other = (
-    environment === 'prod'
-      ? import.meta.env.VITE_DASHBOARD_API_BASE_URL_QA
-      : import.meta.env.VITE_DASHBOARD_API_BASE_URL_PROD
-  )
-    ?.trim()
-    .replace(/\/$/, '')
-  if (value === other) throw new PortalError('configuration')
   return value
 }
 
-async function request<T>(
-  path: string,
-  options: RequestInit = {},
-  login = false,
-  activation = false,
-  environment: TelemetryEnvironment = 'qa',
-): Promise<T> {
-  const url = baseUrl(environment)
-  const token = transport?.environment === environment ? transport.token : null
+async function request<T>(path: string, options: RequestInit = {}, login = false, activation = false): Promise<T> {
+  const url = baseUrl()
+  const token = transport?.token
   if (!login && !token) throw new PortalError('sessionExpired')
   const controller = new AbortController()
   const cancel = () => controller.abort()
@@ -230,86 +224,71 @@ async function request<T>(
     options.signal?.removeEventListener('abort', cancel)
   }
 }
-function sessionMetadata(result: DashboardSession, environment: TelemetryEnvironment): DashboardSession {
-  if (result.environment !== environment) throw new PortalError('forbidden')
-  // Keep the opaque transport credential out of reactive metadata/devtools.
+function sessionMetadata(result: DashboardSession): DashboardSession {
+  if (!result.user?.id || !result.user.email || !result.csrfToken || !Number.isFinite(Date.parse(result.expiresAtUtc)))
+    throw new PortalError('unavailable')
+  // Keep opaque credentials and upstream roles out of reactive metadata/devtools.
   return {
-    user: result.user,
-    environment: result.environment,
+    user: { id: result.user.id, email: result.user.email },
     expiresAtUtc: result.expiresAtUtc,
     csrfToken: result.csrfToken,
-    canManageActivation: result.canManageActivation,
   }
 }
+function telemetryQuery(environment: TelemetryEnvironment): string {
+  if (!['qa', 'prod'].includes(environment)) throw new PortalError('configuration')
+  return `environment=${environment}`
+}
 export const portalApi = {
-  session: async (environment: TelemetryEnvironment = 'qa') =>
-    sessionMetadata(await request<DashboardSession>('/dashboard/session', {}, false, false, environment), environment),
-  login: async (email: string, password: string, environment: TelemetryEnvironment = 'qa') => {
+  session: async () => sessionMetadata(await request<DashboardSession>('/dashboard/session')),
+  login: async (email: string, password: string) => {
     clearSessionTransport()
     const current = generation
     const result = await request<DashboardSession & { accessToken: string }>(
       '/dashboard/session',
       { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) },
       true,
-      false,
-      environment,
     )
-    const metadata = sessionMetadata(result, environment)
+    const metadata = sessionMetadata(result)
     if (!/^[a-f0-9]{64}$/.test(result.accessToken)) throw new PortalError('unavailable')
     if (current !== generation) throw new DOMException('Login cancelled', 'AbortError')
-    transport = { environment, token: result.accessToken }
-    persistSession(environment, result.accessToken, result.expiresAtUtc)
+    transport = { token: result.accessToken }
+    persistSession(result.accessToken, result.expiresAtUtc)
     return metadata
   },
-  refresh: async (csrfToken: string, environment: TelemetryEnvironment = 'qa') => {
+  refresh: async (csrfToken: string) => {
     const current = generation
     const metadata = sessionMetadata(
-      await request<DashboardSession>(
-        '/dashboard/session/refresh',
-        {
-          method: 'POST',
-          headers: { 'X-Dashboard-CSRF': csrfToken },
-        },
-        false,
-        false,
-        environment,
-      ),
-      environment,
-    )
-    if (current === generation && transport?.environment === environment)
-      persistSession(environment, transport.token, metadata.expiresAtUtc)
-    return metadata
-  },
-  logout: (csrfToken: string, environment: TelemetryEnvironment = 'qa') =>
-    request<void>(
-      '/dashboard/session/logout',
-      {
+      await request<DashboardSession>('/dashboard/session/refresh', {
         method: 'POST',
         headers: { 'X-Dashboard-CSRF': csrfToken },
-      },
-      false,
-      false,
-      environment,
-    ),
-  devices: (cursor?: string, signal?: AbortSignal, environment: TelemetryEnvironment = 'qa') =>
+      }),
+    )
+    if (current === generation && transport) persistSession(transport.token, metadata.expiresAtUtc)
+    return metadata
+  },
+  logout: (csrfToken: string) =>
+    request<void>('/dashboard/session/logout', {
+      method: 'POST',
+      headers: { 'X-Dashboard-CSRF': csrfToken },
+    }),
+  devices: (cursor: string | undefined, signal: AbortSignal | undefined, environment: TelemetryEnvironment) =>
     request<DevicePage>(
-      `/dashboard/telemetry/devices${cursor ? `?cursor=${encodeURIComponent(cursor)}` : ''}`,
-      {
-        signal,
-      },
-      false,
-      false,
-      environment,
-    ),
+      `/dashboard/telemetry/devices?${telemetryQuery(environment)}` +
+        (cursor ? `&cursor=${encodeURIComponent(cursor)}` : ''),
+      { signal },
+    ).then((result) => {
+      if (result.environment !== environment) throw new PortalError('unavailable')
+      return result
+    }),
   setActivation: (
     deviceId: string,
     active: boolean,
     expectedActive: boolean,
     csrfToken: string,
-    environment: TelemetryEnvironment = 'qa',
+    environment: TelemetryEnvironment,
   ) =>
     request<ActivationResult>(
-      `/dashboard/telemetry/devices/${encodeURIComponent(deviceId)}/activation`,
+      `/dashboard/telemetry/devices/${encodeURIComponent(deviceId)}/activation?${telemetryQuery(environment)}`,
       {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'X-Dashboard-CSRF': csrfToken },
@@ -317,14 +296,13 @@ export const portalApi = {
       },
       false,
       true,
-      environment,
-    ),
-  dailyUsage: (deviceId: string, signal?: AbortSignal, environment: TelemetryEnvironment = 'qa') =>
+    ).then((result) => {
+      if (result.environment !== environment) throw new PortalError('activationUnknown')
+      return result
+    }),
+  dailyUsage: (deviceId: string, signal: AbortSignal | undefined, environment: TelemetryEnvironment) =>
     request<DailyUsage[]>(
-      `/dashboard/telemetry/daily-usage?deviceId=${encodeURIComponent(deviceId)}`,
+      `/dashboard/telemetry/daily-usage?${telemetryQuery(environment)}&deviceId=${encodeURIComponent(deviceId)}`,
       { signal },
-      false,
-      false,
-      environment,
     ),
 }

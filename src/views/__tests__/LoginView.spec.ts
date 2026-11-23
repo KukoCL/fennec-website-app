@@ -9,8 +9,8 @@ vi.mock('@/features/portal/api', async (original) => ({
   portalApi: { login: vi.fn() },
 }));
 const session: DashboardSession = {
-  user: { id: 'test', email: 'test@example.com', roles: ['telemetry'] },
-  environment: 'qa', csrfToken: 'example-nonce', expiresAtUtc: '2026-11-17T12:00:00Z',
+  user: { id: 'test', email: 'test@example.com' },
+  csrfToken: 'example-nonce', expiresAtUtc: '2026-11-17T12:00:00Z',
 };
 async function setup() {
   const router = createRouter({ history: createMemoryHistory(), routes: [
@@ -57,7 +57,7 @@ describe('private login', () => {
     expect(wrapper.find('#login-password').attributes('type')).toBe('password');
     wrapper.unmount();
   });
-  it('explains a role-denied redirect instead of silently showing normal login', async () => {
+  it('explains a owner-denied redirect instead of silently showing normal login', async () => {
     const { wrapper, router } = await setup();
     await router.replace('/?reason=forbidden'); await flushPromises();
     expect(wrapper.find('[role="alert"]').text()).toContain('no tiene acceso');

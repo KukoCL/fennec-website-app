@@ -45,7 +45,7 @@ const texts = computed(() =>
     <div class="portal-eyebrow">FENNECSOFT / PORTAL</div>
     <h1 id="portal-home-title">{{ texts.title }}</h1>
     <p class="portal-muted">{{ texts.description }}</p>
-    <EnvironmentSelector return-to-login />
+    <EnvironmentSelector />
     <p
       v-if="!auth.reloadSessionAvailable"
       class="portal-notice"

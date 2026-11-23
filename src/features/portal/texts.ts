@@ -4,10 +4,10 @@ import { useAppSettingsStore } from '@/stores/appSettingsStore'
 const es = {
   memorySession:
     'La sesión se conserva al recargar esta pestaña hasta que venza. La restauración del navegador ' +
-      'puede recuperarla; cierra sesión para revocarla. Cambiar de ambiente requiere volver a ingresar.',
+    'puede recuperarla; cierra sesión para revocarla. Puedes cambiar de ambiente sin volver a ingresar.',
   storageUnavailable:
     'El navegador no permite conservar la sesión. Sigue activa en memoria, pero al recargar tendrás ' +
-      'que iniciar sesión de nuevo.',
+    'que iniciar sesión de nuevo.',
   login: 'Iniciar sesión',
   logout: 'Cerrar sesión',
   account: 'Mi cuenta',
@@ -95,7 +95,7 @@ const es = {
 const en: typeof es = {
   memorySession:
     'The session survives reloads in this tab until expiry. Browser tab restoration may recover it; ' +
-      'sign out to revoke it. Changing environment requires a new sign-in.',
+    'sign out to revoke it. You can switch environments without signing in again.',
   storageUnavailable:
     'Your browser cannot retain the session. It remains active in memory, but reloading requires signing in again.',
   login: 'Sign in',

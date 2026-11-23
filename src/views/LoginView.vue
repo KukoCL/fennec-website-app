@@ -26,10 +26,6 @@ const routeError = computed(() => {
     ? texts.value[code]
     : ''
 })
-function environmentChanged() {
-  password.value = ''
-  error.value = null
-}
 async function submit() {
   if (submitting.value) return
   error.value = null
@@ -73,10 +69,7 @@ async function submit() {
       >
         {{ error ? texts[error] : routeError }}
       </div>
-      <EnvironmentSelector
-        :disabled="submitting"
-        @changed="environmentChanged"
-      />
+      <EnvironmentSelector :disabled="submitting" />
       <p class="portal-muted small">{{ texts.memorySession }}</p>
       <form
         class="portal-panel"

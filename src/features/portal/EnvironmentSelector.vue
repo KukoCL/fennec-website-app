@@ -1,16 +1,14 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
 import { useAppSettingsStore } from '@/stores/appSettingsStore'
 import { usePortalTexts } from './texts'
 import { PortalError, type PortalErrorCode, type TelemetryEnvironment } from './api'
-const props = defineProps<{ disabled?: boolean; returnToLogin?: boolean }>()
+const props = defineProps<{ disabled?: boolean }>()
 const emit = defineEmits<{ busy: [value: boolean]; changed: [] }>()
 const auth = useAuthStore()
 const settings = useAppSettingsStore()
 const common = usePortalTexts()
-const router = useRouter()
 const busy = ref(false)
 const error = ref<PortalErrorCode | null>(null)
 const words = computed(() =>
@@ -19,32 +17,37 @@ const words = computed(() =>
       label: 'Telemetry environment',
       qa: 'QA · Test data',
       prod: 'PROD · Production data',
-      note: 'One website, separate data sources. Changing environment signs you out and requires a new sign-in.',
+      note: 'One website, separate data sources. Switching keeps your current sign-in and clears the previous data.',
       production: 'PRODUCTION: changes affect real devices in Prod.',
-      pending: 'Signing out of the previous environment…',
+      pending: 'Changing telemetry environment…',
     }
     : {
       label: 'Ambiente de telemetría',
       qa: 'QA · Datos de prueba',
       prod: 'PROD · Datos de producción',
-      note: 'Un solo sitio, fuentes separadas. Cambiar de ambiente cierra la sesión y requiere ' +
-        'iniciar sesión de nuevo.',
+      note: 'Un solo sitio, fuentes separadas. Cambiar de ambiente conserva tu sesión y limpia los datos anteriores.',
       production: 'PRODUCCIÓN: los cambios afectan dispositivos reales de Prod.',
-      pending: 'Cerrando sesión del ambiente anterior…',
+      pending: 'Cambiando ambiente de telemetría…',
     },
 )
 async function change(event: Event) {
   const select = event.target as HTMLSelectElement
   const next = select.value as TelemetryEnvironment
   select.value = auth.environment
-  if (busy.value || props.disabled || !['qa', 'prod'].includes(next) || next === auth.environment) return
+  if (
+    busy.value ||
+    props.disabled ||
+    auth.activationPending ||
+    !['qa', 'prod'].includes(next) ||
+    next === auth.environment
+  )
+    return
   busy.value = true
   emit('busy', true)
   error.value = null
   try {
     await auth.changeEnvironment(next)
     emit('changed')
-    if (props.returnToLogin) await router.replace({ name: 'login' })
   } catch (cause) {
     error.value = cause instanceof PortalError ? cause.code : 'unavailable'
   } finally {
@@ -68,7 +71,7 @@ async function change(event: Event) {
       id="telemetry-environment"
       class="form-select"
       :value="auth.environment"
-      :disabled="disabled || busy"
+      :disabled="disabled || busy || auth.activationPending"
       @change="change"
     >
       <option value="qa">{{ words.qa }}</option>

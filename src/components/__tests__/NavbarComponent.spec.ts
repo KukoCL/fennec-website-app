@@ -116,8 +116,8 @@ describe('Navbar', () => {
     expect(wrapper.find('.portal-login-link').exists()).toBe(true);
     const auth = useAuthStore();
     auth.session = {
-      user: { id: 'test', email: 'test@example.com', roles: ['telemetry'] },
-      environment: 'qa', csrfToken: 'not-rendered-nonce', expiresAtUtc: '2026-11-17T12:00:00Z',
+      user: { id: 'test', email: 'test@example.com' },
+      csrfToken: 'not-rendered-nonce', expiresAtUtc: '2026-11-17T12:00:00Z',
     };
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.portal-login-link').exists()).toBe(false);

@@ -44,6 +44,7 @@ const records = ref<DailyUsage[]>([])
 const lastUpdated = ref<string | null>(null)
 let abort = new AbortController()
 let requestId = 0
+let inventoryRequestId = 0
 let cached: { deviceId: string; records: DailyUsage[]; fetchedAt: string } | null = null
 const locale = computed(() => (settings.appLanguage === 'en' ? 'en-GB' : 'es-CL'))
 const visibleRecords = computed(() =>
@@ -85,11 +86,11 @@ async function loadUsage() {
   loading.value = true
   error.value = null
   const deviceId = selectedDevice.value
+  const environment = auth.environment
   const nextRange = { ...range.value }
   try {
     const useCache = cached?.deviceId === deviceId && Date.now() - Date.parse(cached.fetchedAt) < 60_000
-    const result =
-      useCache && cached ? cached.records : await portalApi.dailyUsage(deviceId, abort.signal, auth.environment)
+    const result = useCache && cached ? cached.records : await portalApi.dailyUsage(deviceId, abort.signal, environment)
     const fetchedAt = useCache && cached ? cached.fetchedAt : new Date().toISOString()
     if (id !== requestId) return
     cached = { deviceId, records: result, fetchedAt }
@@ -109,6 +110,7 @@ async function refreshInventory() {
   if (inventoryRefreshing.value) throw new PortalError('unavailable')
   inventoryRefreshing.value = true
   const current = requestId
+  const inventoryId = ++inventoryRequestId
   const environment = auth.environment
   try {
     const all: DeviceSummary[] = []
@@ -134,7 +136,7 @@ async function refreshInventory() {
       selectedDevice.value = devices.value[0]?.deviceId ?? ''
     }
   } finally {
-    inventoryRefreshing.value = false
+    if (inventoryId === inventoryRequestId) inventoryRefreshing.value = false
   }
 }
 function updateDevice(result: ActivationResult) {
@@ -143,6 +145,7 @@ function updateDevice(result: ActivationResult) {
   )
 }
 async function initialize() {
+  const current = requestId
   if (inventoryLoaded.value) {
     cached = null
     await loadUsage()
@@ -153,18 +156,26 @@ async function initialize() {
   try {
     await refreshInventory()
   } catch (cause) {
-    await reportError(cause)
-    if (error.value === 'unavailable') error.value = 'inventoryError'
+    if (current === requestId) {
+      await reportError(cause)
+      if (error.value === 'unavailable') error.value = 'inventoryError'
+    }
   } finally {
-    loading.value = false
+    if (current === requestId) loading.value = false
   }
-  if (inventoryLoaded.value && selectedDevice.value) await loadUsage()
+  if (current === requestId && inventoryLoaded.value && selectedDevice.value) await loadUsage()
 }
 watch(
   () => auth.environment,
   () => {
     requestId++
     abort.abort()
+    abort = new AbortController()
+    inventoryRequestId++
+    inventoryRefreshing.value = false
+    loading.value = true
+    error.value = null
+    validation.value = null
     cached = null
     records.value = []
     devices.value = []
@@ -174,7 +185,9 @@ watch(
     inventoryLoaded.value = false
     inventoryVerified.value = false
     uncertainDevices.value.clear()
+    void initialize()
   },
+  { flush: 'sync' },
 )
 onMounted(initialize)
 onBeforeUnmount(() => {
@@ -204,8 +217,7 @@ onBeforeUnmount(() => {
     </header>
 
     <EnvironmentSelector
-      :disabled="loading || inventoryRefreshing || activationBusy"
-      return-to-login
+      :disabled="activationBusy"
       @busy="switchingEnvironment = $event"
     />
     <template v-if="!switchingEnvironment">

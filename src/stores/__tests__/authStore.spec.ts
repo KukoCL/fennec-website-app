@@ -7,8 +7,8 @@ vi.mock('@/features/portal/api', async (original) => ({
   portalApi: { session: vi.fn(), login: vi.fn(), logout: vi.fn(), refresh: vi.fn() },
 }))
 const session: DashboardSession = {
-  user: { id: 'test', email: 'test@example.com', roles: ['telemetry'] },
-  environment: 'qa',
+  user: { id: 'test', email: 'test@example.com' },
+
   csrfToken: 'example-nonce',
   expiresAtUtc: '2026-11-17T12:00:00Z',
 }
@@ -16,6 +16,7 @@ describe('private dashboard session', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
     vi.resetAllMocks()
+    sessionStorage.clear()
   })
   it('restores an in-memory session without using browser storage', async () => {
     const storage = vi.spyOn(Storage.prototype, 'setItem')
@@ -115,69 +116,116 @@ describe('private dashboard session', () => {
     expect(await pending).toBe(false)
     expect(auth.isAuthenticated).toBe(true)
   })
-  it('does not switch environments after a superseding login', async () => {
-    let resolve!: () => void
-    vi.mocked(portalApi.logout).mockReturnValue(
+  it('switches environments without revoking, relogging or replacing the owner session', async () => {
+    const auth = useAuthStore()
+    auth.session = session
+    const before = auth.session
+    auth.changeEnvironment('prod')
+    expect(auth.environment).toBe('prod')
+    expect(auth.session).toBe(before)
+    auth.changeEnvironment('qa')
+    expect(auth.session).toBe(before)
+    expect(portalApi.logout).not.toHaveBeenCalled()
+    expect(portalApi.login).not.toHaveBeenCalled()
+  })
+  it('refuses an environment switch for the entire lifetime of a pending write', () => {
+    const auth = useAuthStore()
+    auth.session = session
+    expect(auth.beginActivation()).toBe(true)
+    expect(auth.beginActivation()).toBe(false)
+    expect(() => auth.changeEnvironment('prod')).toThrow('activationBusy')
+    expect(auth.environment).toBe('qa')
+    auth.finishActivation()
+    auth.changeEnvironment('prod')
+    expect(auth.environment).toBe('prod')
+  })
+  it('does not let an old restore overwrite refreshed expiry', async () => {
+    let resolve!: (value: DashboardSession) => void
+    vi.mocked(portalApi.session).mockReturnValueOnce(
       new Promise((done) => {
         resolve = done
       }),
     )
-    vi.mocked(portalApi.login).mockResolvedValue(session)
     const auth = useAuthStore()
     auth.session = session
-    const pending = auth.changeEnvironment('prod')
-    await auth.login('test@example.com', 'password')
-    resolve()
-    await expect(pending).rejects.toThrow()
-    expect(auth.environment).toBe('qa')
-    expect(auth.isAuthenticated).toBe(true)
+    const pending = auth.restoreSession()
+    const fresh = { ...session, expiresAtUtc: '2026-11-17T13:00:00Z' }
+    vi.mocked(portalApi.refresh).mockResolvedValueOnce(fresh)
+    await auth.refreshSession()
+    resolve({ ...session })
+    await pending
+    expect(auth.session).toEqual(fresh)
   })
-  it('does not let an old restore overwrite refreshed expiry or permissions', async () => {
-    let resolve!: (value: DashboardSession) => void;
-    vi.mocked(portalApi.session).mockReturnValueOnce(new Promise((done) => { resolve = done; }));
-    const auth = useAuthStore(); auth.session = session;
-    const pending = auth.restoreSession();
-    const fresh = { ...session, expiresAtUtc: '2026-11-17T13:00:00Z', canManageActivation: false };
-    vi.mocked(portalApi.refresh).mockResolvedValueOnce(fresh);
-    await auth.refreshSession();
-    resolve({ ...session, canManageActivation: true }); await pending;
-    expect(auth.session).toEqual(fresh);
-  });
   it('does not release a newer restore when an obsolete restore finishes', async () => {
-    let resolveOld!: (value: DashboardSession) => void;
-    let resolveNew!: (value: DashboardSession) => void;
-    vi.mocked(portalApi.session).mockReturnValueOnce(new Promise((done) => { resolveOld = done; }))
-      .mockReturnValueOnce(new Promise((done) => { resolveNew = done; }));
-    const auth = useAuthStore();
-    const old = auth.restoreSession(); auth.clearSession();
-    const current = auth.restoreSession();
-    resolveOld(session); await old;
-    const repeated = auth.restoreSession();
-    expect(portalApi.session).toHaveBeenCalledTimes(2);
-    resolveNew(session); expect(await current).toBe(true); expect(await repeated).toBe(true);
-  });
+    let resolveOld!: (value: DashboardSession) => void
+    let resolveNew!: (value: DashboardSession) => void
+    vi.mocked(portalApi.session)
+      .mockReturnValueOnce(
+        new Promise((done) => {
+          resolveOld = done
+        }),
+      )
+      .mockReturnValueOnce(
+        new Promise((done) => {
+          resolveNew = done
+        }),
+      )
+    const auth = useAuthStore()
+    const old = auth.restoreSession()
+    auth.clearSession()
+    const current = auth.restoreSession()
+    resolveOld(session)
+    await old
+    const repeated = auth.restoreSession()
+    expect(portalApi.session).toHaveBeenCalledTimes(2)
+    resolveNew(session)
+    expect(await current).toBe(true)
+    expect(await repeated).toBe(true)
+  })
   it('does not release a newer refresh after an obsolete refresh finishes', async () => {
-    let resolveOld!: (value: DashboardSession) => void;
-    let resolveNew!: (value: DashboardSession) => void;
-    vi.mocked(portalApi.refresh).mockReturnValueOnce(new Promise((done) => { resolveOld = done; }))
-      .mockReturnValueOnce(new Promise((done) => { resolveNew = done; }));
-    vi.mocked(portalApi.login).mockResolvedValueOnce(session);
-    const auth = useAuthStore(); auth.session = session;
-    const old = auth.refreshSession(); await auth.login('test@example.com', 'password');
-    const current = auth.refreshSession(); resolveOld(session); await old;
-    const repeated = auth.refreshSession();
-    expect(portalApi.refresh).toHaveBeenCalledTimes(2);
-    const fresh = { ...session, canManageActivation: false };
-    resolveNew(fresh); await current; await repeated;
-    expect(auth.session).toEqual(fresh);
-  });
+    let resolveOld!: (value: DashboardSession) => void
+    let resolveNew!: (value: DashboardSession) => void
+    vi.mocked(portalApi.refresh)
+      .mockReturnValueOnce(
+        new Promise((done) => {
+          resolveOld = done
+        }),
+      )
+      .mockReturnValueOnce(
+        new Promise((done) => {
+          resolveNew = done
+        }),
+      )
+    vi.mocked(portalApi.login).mockResolvedValueOnce(session)
+    const auth = useAuthStore()
+    auth.session = session
+    const old = auth.refreshSession()
+    await auth.login('test@example.com', 'password')
+    const current = auth.refreshSession()
+    resolveOld(session)
+    await old
+    const repeated = auth.refreshSession()
+    expect(portalApi.refresh).toHaveBeenCalledTimes(2)
+    const fresh = { ...session, csrfToken: 'fresh-csrf' }
+    resolveNew(fresh)
+    await current
+    await repeated
+    expect(auth.session).toEqual(fresh)
+  })
   it('waits for an active refresh instead of launching competing restore metadata', async () => {
-    let resolve!: (value: DashboardSession) => void;
-    vi.mocked(portalApi.refresh).mockReturnValueOnce(new Promise((done) => { resolve = done; }));
-    const auth = useAuthStore(); auth.session = session;
-    const refresh = auth.refreshSession(); const restore = auth.restoreSession();
-    expect(portalApi.session).not.toHaveBeenCalled();
-    resolve(session); await refresh; expect(await restore).toBe(true);
-  });
-
+    let resolve!: (value: DashboardSession) => void
+    vi.mocked(portalApi.refresh).mockReturnValueOnce(
+      new Promise((done) => {
+        resolve = done
+      }),
+    )
+    const auth = useAuthStore()
+    auth.session = session
+    const refresh = auth.refreshSession()
+    const restore = auth.restoreSession()
+    expect(portalApi.session).not.toHaveBeenCalled()
+    resolve(session)
+    await refresh
+    expect(await restore).toBe(true)
+  })
 })

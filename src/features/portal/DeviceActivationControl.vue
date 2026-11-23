@@ -45,8 +45,6 @@ const texts = computed(() =>
       delay: 'An offline client may not receive the change immediately. This is not an emergency stop.',
       scope: 'The current API does not identify simulator IDs. This action cannot be scoped to a separate simulator.',
       operatorDenied: 'Your account is not allowed to change device activation.',
-      readonly:
-          'Your account has read-only access. Activation requires an operator permission verified by the server.',
       saved: 'Authorization saved.',
       audit: 'Audit reference',
       unknown: 'State requires verification',
@@ -74,8 +72,6 @@ const texts = computed(() =>
       scope:
           'La API actual no identifica simuladores por ID. Esta acción no puede limitarse a otro simulador separado.',
       operatorDenied: 'Tu cuenta no tiene permiso para cambiar la activación del dispositivo.',
-      readonly:
-          'Tu cuenta tiene acceso de lectura. La activación requiere permiso de operador validado por el servidor.',
       saved: 'Autorización guardada.',
       audit: 'Referencia de auditoría',
       unknown: 'Estado por verificar',
@@ -97,7 +93,7 @@ const error = ref<PortalErrorCode | null>(null)
 const localNeedsRefresh = ref(false)
 const needsRefresh = computed(() => localNeedsRefresh.value || props.requiresRefresh === true)
 const saved = ref<ActivationResult | null>(null)
-const canManage = computed(() => auth.session?.canManageActivation === true)
+const canManage = computed(() => auth.isAuthenticated)
 let alive = true
 const stateLabel = (active: boolean) => (active ? common.value.enabled : common.value.disabled)
 watch(
@@ -169,6 +165,7 @@ async function confirmChange() {
     closeConfirmation()
     return
   }
+  if (!auth.beginActivation()) return
   pending.value = true
   emit('busy', true)
   try {
@@ -181,6 +178,7 @@ async function confirmChange() {
     )
     if (!alive) return
     if (
+      result.environment !== target.environment ||
       result.deviceId !== target.deviceId ||
       result.active !== target.active ||
       result.previousActive !== target.expectedActive ||
@@ -205,6 +203,7 @@ async function confirmChange() {
       await handleError(cause)
     }
   } finally {
+    auth.finishActivation()
     if (alive) {
       pending.value = false
       emit('busy', false)
@@ -253,12 +252,6 @@ onBeforeUnmount(() => {
     </div>
     <p class="portal-muted small mt-3 mb-1">{{ texts.effect }}</p>
     <p class="portal-muted small mb-1">{{ texts.delay }}</p>
-    <p
-      v-if="!canManage"
-      class="portal-muted small mb-0"
-    >
-      {{ texts.readonly }}
-    </p>
     <p
       v-if="needsRefresh"
       class="portal-notice mt-3 mb-0"
