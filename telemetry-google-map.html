@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Google Maps · reported observations</title>
+    <style>
+      html, body, #map { width: 100%; height: 100%; margin: 0; background: #101f2c; }
+      .observation-pin { position: absolute; transform: translate(-50%, -50%); min-width: 30px;
+        height: 30px; padding: 3px 7px; border: 2px solid #17232e; border-radius: 50%;
+        background: #ffad46; color: #111; font: bold 13px system-ui; cursor: pointer;
+        box-shadow: 0 1px 4px #0008; white-space: nowrap; }
+      .observation-pin[aria-pressed="true"] { border-color: #fff; outline: 3px solid #1d5978; z-index: 2; }
+      .observation-pin:focus-visible { outline: 4px solid #135dff; z-index: 3; }
+    </style>
+  </head>
+  <body>
+    <div id="map" role="region" aria-label="Google Maps"></div>
+    <!-- Classic script: a sandboxed opaque origin must not require a same-origin module fetch. -->
+    <script src="./telemetry-google-map.js"></script>
+  </body>
+</html>
