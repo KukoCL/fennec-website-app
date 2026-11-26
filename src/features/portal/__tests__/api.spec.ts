@@ -82,6 +82,33 @@ describe('single website BFF client', () => {
     await expect(api.session()).rejects.toMatchObject({ code: 'sessionExpired' })
     expect(fetchMock).toHaveBeenCalledTimes(2)
   })
+  it('saves and removes an alias for the exact device and environment with session and CSRF', async () => {
+    const api = await authenticated()
+    const deviceId = 'device_01'
+    fetchMock.mockResolvedValueOnce(ok({ deviceId, environment: 'qa', alias: 'Visor taller' }))
+    await expect(api.setDeviceAlias(deviceId, 'Visor taller', 'nonce', 'qa')).resolves.toMatchObject({
+      alias: 'Visor taller',
+    })
+    expect(fetchMock).toHaveBeenCalledWith(
+      `${base}/dashboard/telemetry/devices/device_01/alias?environment=qa`,
+      expect.objectContaining({
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Dashboard-CSRF': 'nonce',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ alias: 'Visor taller' }),
+      }),
+    )
+    fetchMock.mockResolvedValueOnce(ok({ deviceId, environment: 'prod', alias: null }))
+    await expect(api.setDeviceAlias(deviceId, null, 'nonce', 'prod')).resolves.toMatchObject({ alias: null })
+    expect(fetchMock.mock.calls[1]?.[1].body).toBe('{"alias":null}')
+    fetchMock.mockResolvedValueOnce(ok({ deviceId: 'wrong_device', environment: 'qa', alias: 'Visor taller' }))
+    await expect(api.setDeviceAlias(deviceId, 'Visor taller', 'nonce', 'qa')).rejects.toMatchObject({
+      code: 'unavailable',
+    })
+  })
   it('rejects malformed or missing opaque tokens', async () => {
     const { portalApi } = await import('../api')
     for (const accessToken of ['', undefined, 'upstream.JWT', 'A'.repeat(64)]) {
