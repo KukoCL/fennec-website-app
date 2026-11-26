@@ -8,7 +8,7 @@ import { useAuthStore } from '@/stores/authStore'
 import { portalApi, PortalError } from '@/features/portal/api'
 vi.mock('@/features/portal/api', async (original) => ({
   ...(await original<typeof import('@/features/portal/api')>()),
-  portalApi: { devices: vi.fn(), dailyUsage: vi.fn(), setActivation: vi.fn() },
+  portalApi: { devices: vi.fn(), dailyUsage: vi.fn(), setActivation: vi.fn(), setDeviceAlias: vi.fn() },
 }))
 const device = { deviceId: 'test-device', active: true, locationEnabled: false }
 const usage = { deviceId: 'test-device', date: '2026-11-17', totalDurationSeconds: 4500, first: null, last: null }
@@ -76,6 +76,32 @@ describe('Jumbo dashboard', () => {
     expect(wrapper.text()).toContain('1 h 15 min')
     expect(wrapper.text()).toContain('2026-11-17')
     expect(wrapper.text()).not.toContain('Online')
+  })
+  it('saves and removes a human-readable label without changing the selected device ID', async () => {
+    const { wrapper } = await mountDashboard(true)
+    await wrapper.get('#telemetry-alias').setValue('  Visor taller  ')
+    vi.mocked(portalApi.setDeviceAlias).mockResolvedValueOnce({
+      environment: 'qa',
+      deviceId: device.deviceId,
+      alias: 'Visor taller',
+    })
+    await wrapper.get('form:has(#telemetry-alias)').trigger('submit')
+    await flushPromises()
+    expect(portalApi.setDeviceAlias).toHaveBeenCalledWith(device.deviceId, 'Visor taller', 'fixture-csrf', 'qa')
+    expect(wrapper.get('#telemetry-device option').text()).toBe('Visor taller · test-device')
+    expect(wrapper.text()).toContain('Alias guardado.')
+    expect(portalApi.dailyUsage).toHaveBeenCalledTimes(1)
+    await wrapper.get('#telemetry-alias').setValue('')
+    vi.mocked(portalApi.setDeviceAlias).mockResolvedValueOnce({
+      environment: 'qa',
+      deviceId: device.deviceId,
+      alias: null,
+    })
+    await wrapper.get('form:has(#telemetry-alias)').trigger('submit')
+    await flushPromises()
+    expect(portalApi.setDeviceAlias).toHaveBeenLastCalledWith(device.deviceId, null, 'fixture-csrf', 'qa')
+    expect(wrapper.get('#telemetry-device option').text()).toBe(device.deviceId)
+    expect(wrapper.text()).toContain('Alias quitado.')
   })
   it('does not turn missing records into a confirmed zero', async () => {
     vi.mocked(portalApi.dailyUsage).mockResolvedValue([])

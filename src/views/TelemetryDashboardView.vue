@@ -30,6 +30,9 @@ const inventoryLoaded = ref(false)
 const loading = ref(true)
 const inventoryRefreshing = ref(false)
 const activationBusy = ref(false)
+const aliasBusy = ref(false)
+const aliasDraft = ref('')
+const aliasStatus = ref<'aliasSaved' | 'aliasRemoved' | 'aliasError' | 'aliasInvalid' | null>(null)
 const switchingEnvironment = ref(false)
 const uncertainDevices = ref(new Set<string>())
 function markUncertain(deviceId: string) {
@@ -55,6 +58,15 @@ const visibleRecords = computed(() =>
 const totalSeconds = computed(() => visibleRecords.value.reduce((sum, record) => sum + record.totalDurationSeconds, 0))
 const maxSeconds = computed(() => Math.max(1, ...visibleRecords.value.map((record) => record.totalDurationSeconds)))
 const selectedSummary = computed(() => devices.value.find((device) => device.deviceId === appliedDevice.value))
+const aliasDevice = computed(() => devices.value.find((device) => device.deviceId === selectedDevice.value))
+watch(
+  [() => aliasDevice.value?.deviceId, () => aliasDevice.value?.alias],
+  () => {
+    aliasDraft.value = aliasDevice.value?.alias ?? ''
+    aliasStatus.value = null
+  },
+  { flush: 'sync' },
+)
 const timestamp = (value?: string | null) => formatTimestamp(value, locale.value, texts.value.notAvailable)
 function changePreset() {
   if (preset.value !== 'custom') range.value = presetRange(preset.value)
@@ -75,6 +87,39 @@ async function reportError(cause: unknown) {
     return
   }
   error.value = cause instanceof PortalError ? cause.code : 'unavailable'
+}
+async function saveAlias() {
+  const device = aliasDevice.value
+  const csrfToken = auth.session?.csrfToken
+  if (!device || !csrfToken || aliasBusy.value || activationBusy.value || inventoryRefreshing.value) return
+  const alias = aliasDraft.value.trim() || null
+  if (alias === (device.alias ?? null)) return
+  const containsControl = [...aliasDraft.value].some((character) => {
+    const code = character.charCodeAt(0)
+    return code < 32 || (code >= 127 && code <= 159)
+  })
+  if (containsControl || (alias?.length ?? 0) > 60) {
+    aliasStatus.value = 'aliasInvalid'
+    return
+  }
+  aliasBusy.value = true
+  aliasStatus.value = null
+  const environment = auth.environment
+  try {
+    const saved = await portalApi.setDeviceAlias(device.deviceId, alias, csrfToken, environment)
+    if (environment !== auth.environment || abort.signal.aborted) return
+    devices.value = devices.value.map((item) =>
+      item.deviceId === saved.deviceId ? { ...item, alias: saved.alias } : item,
+    )
+    aliasDraft.value = saved.alias ?? ''
+    aliasStatus.value = saved.alias === null ? 'aliasRemoved' : 'aliasSaved'
+  } catch (cause) {
+    if (environment !== auth.environment || abort.signal.aborted) return
+    if (cause instanceof PortalError && cause.code === 'sessionExpired') await reportError(cause)
+    else aliasStatus.value = 'aliasError'
+  } finally {
+    aliasBusy.value = false
+  }
 }
 async function loadUsage() {
   if (loading.value || activationBusy.value || inventoryRefreshing.value || !selectedDevice.value) return
@@ -217,7 +262,7 @@ onBeforeUnmount(() => {
     </header>
 
     <EnvironmentSelector
-      :disabled="activationBusy"
+      :disabled="activationBusy || aliasBusy"
       @busy="switchingEnvironment = $event"
     />
     <template v-if="!switchingEnvironment">
@@ -258,7 +303,7 @@ onBeforeUnmount(() => {
               id="telemetry-device"
               v-model="selectedDevice"
               class="form-select"
-              :disabled="loading || inventoryRefreshing || activationBusy || !devices.length"
+              :disabled="loading || inventoryRefreshing || activationBusy || aliasBusy || !devices.length"
             >
               <option
                 v-if="!devices.length"
@@ -271,7 +316,7 @@ onBeforeUnmount(() => {
                 :key="device.deviceId"
                 :value="device.deviceId"
               >
-                {{ device.deviceId }}
+                {{ device.alias ? `${device.alias} · ${device.deviceId}` : device.deviceId }}
               </option>
             </select>
           </div>
@@ -349,6 +394,53 @@ onBeforeUnmount(() => {
           {{ texts[validation] }}
         </p>
       </form>
+      <form
+        v-if="aliasDevice"
+        class="portal-panel mt-3"
+        @submit.prevent="saveAlias"
+      >
+        <label
+          for="telemetry-alias"
+          class="form-label"
+        >
+          {{ texts.deviceAlias }}
+        </label>
+        <div class="d-flex flex-wrap gap-2">
+          <input
+            id="telemetry-alias"
+            v-model="aliasDraft"
+            type="text"
+            class="form-control w-auto flex-grow-1"
+            maxlength="60"
+            aria-describedby="telemetry-alias-hint"
+            :disabled="aliasBusy || activationBusy || inventoryRefreshing"
+            @input="aliasStatus = null"
+          />
+          <button
+            type="submit"
+            class="portal-button"
+            :disabled="
+              aliasBusy || activationBusy || inventoryRefreshing || aliasDraft.trim() === (aliasDevice.alias ?? '')
+            "
+          >
+            {{ aliasBusy ? texts.aliasSaving : texts.aliasSave }}
+          </button>
+        </div>
+        <p
+          id="telemetry-alias-hint"
+          class="portal-muted small mb-0 mt-2"
+        >
+          {{ texts.aliasHint }}
+        </p>
+        <p
+          v-if="aliasStatus"
+          class="small mb-0 mt-2"
+          :class="{ 'portal-error': aliasStatus === 'aliasError' || aliasStatus === 'aliasInvalid' }"
+          role="status"
+        >
+          {{ texts[aliasStatus] }}
+        </p>
+      </form>
       <p class="portal-muted small mt-3 mb-0">{{ texts.retention }}</p>
 
       <div
@@ -375,6 +467,7 @@ onBeforeUnmount(() => {
       </div>
       <template v-else-if="lastUpdated">
         <div class="mt-4 d-flex flex-wrap align-items-center gap-2">
+          <strong v-if="selectedSummary?.alias">{{ selectedSummary.alias }}</strong>
           <span class="portal-device-id">{{ appliedDevice }}</span>
           <span
             v-if="selectedSummary"

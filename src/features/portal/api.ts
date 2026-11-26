@@ -26,6 +26,7 @@ export interface DeviceSummary {
   deviceId: string
   active: boolean
   locationEnabled: boolean
+  alias?: string | null
 }
 export interface DevicePage {
   environment: TelemetryEnvironment
@@ -278,6 +279,19 @@ export const portalApi = {
       { signal },
     ).then((result) => {
       if (result.environment !== environment) throw new PortalError('unavailable')
+      return result
+    }),
+  setDeviceAlias: (deviceId: string, alias: string | null, csrfToken: string, environment: TelemetryEnvironment) =>
+    request<{ environment: TelemetryEnvironment; deviceId: string; alias: string | null }>(
+      `/dashboard/telemetry/devices/${encodeURIComponent(deviceId)}/alias?${telemetryQuery(environment)}`,
+      {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'X-Dashboard-CSRF': csrfToken },
+        body: JSON.stringify({ alias }),
+      },
+    ).then((result) => {
+      if (result?.environment !== environment || result.deviceId !== deviceId || result.alias !== alias)
+        throw new PortalError('unavailable')
       return result
     }),
   setActivation: (
